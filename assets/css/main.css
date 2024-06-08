@@ -1,8 +1,35 @@
-.meera-inimai-regular {
-    font-family: "Meera Inimai", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+ul {
+  padding-top: 5px;
+}
+
+ul > li {
+    list-style-type: none;
+    display: inline;
+}
+
+a:link.language, a:visited.language {
+  background-color: purple;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover.language, a:active.language {
+  background-color: purple;
+}
+
+
+.visible {
+  visibility: visible;
+}
+
+.not-visible {
+  visibility: hidden;
+}
+
+
 
   /* Container styles */
 .scrolling-text-container {
