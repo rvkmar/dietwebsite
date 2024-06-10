@@ -51,3 +51,32 @@ window.addEventListener('DOMContentLoaded', async () => {
     toggleTamilStylesheet(userPreferredLanguage);
 });
 
+
+// Clock
+// function clock() {
+//     var today = new Date();
+//     var h = today.getHours();
+//     var m = today.getMinutes();
+//     var s = today.getSeconds();
+//     m = checkTime(m);
+//     s = checkTime(s);
+//     document.getElementById('datetime').innerHTML =
+//     today + ", " + h + ":" + m + ":" + s;
+//     var t = setTimeout(clock, 500);
+// }
+// function checkTime(i) {
+//     if(i < 10) {i = "0" + i};
+//     return i;
+// }
+
+function clock() {
+    return setInterval(() => {
+        var today = new Date();
+        datetime.innerHTML = today;
+    }, 500);
+}
+// document.getElementById('datetime').innerHTML = clock();
+setInterval(() => {
+    var clock = document.getElementById('datetime');
+    clock.innerHTML = new Date();
+}, 500);
