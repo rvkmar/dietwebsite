@@ -1,6 +1,6 @@
 /* CSS style sheet */
 ul {
-  padding-top: 1px;
+  padding: auto;
 }
 
 ul > li {
