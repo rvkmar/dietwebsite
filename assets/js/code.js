@@ -52,31 +52,20 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-// Clock
-// function clock() {
-//     var today = new Date();
-//     var h = today.getHours();
-//     var m = today.getMinutes();
-//     var s = today.getSeconds();
-//     m = checkTime(m);
-//     s = checkTime(s);
-//     document.getElementById('datetime').innerHTML =
-//     today + ", " + h + ":" + m + ":" + s;
-//     var t = setTimeout(clock, 500);
-// }
-// function checkTime(i) {
-//     if(i < 10) {i = "0" + i};
-//     return i;
-// }
-
-function clock() {
-    return setInterval(() => {
-        var today = new Date();
-        datetime.innerHTML = today;
-    }, 500);
+function checkTime(i) {
+    if(i < 10) {i = "0" + i};
+    return i;
 }
-// document.getElementById('datetime').innerHTML = clock();
+
 setInterval(() => {
     var clock = document.getElementById('datetime');
-    clock.innerHTML = new Date();
+    var calendar = new Date();
+    var date = checkTime(calendar.getDate());
+    var month = checkTime(calendar.getMonth());
+    var year = calendar.getFullYear();
+    var hour = checkTime(calendar.getHours());
+    var minute = checkTime(calendar.getMinutes());
+    var second = checkTime(calendar.getSeconds());
+    var time = date + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+    clock.innerHTML = time;
 }, 500);
