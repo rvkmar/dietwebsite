@@ -1,5 +1,6 @@
+/* CSS style sheet */
 ul {
-  padding-top: 5px;
+  padding-top: 1px;
 }
 
 ul > li {
@@ -10,7 +11,7 @@ ul > li {
 a:link.language, a:visited.language {
   background-color: purple;
   color: white;
-  padding: 5px 15px;
+  padding: 1px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
