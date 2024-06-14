@@ -14,36 +14,22 @@
     <header>
         <div class="container-fluid bg-dark" data-bs-theme="dark">
             <div class="container">
-                <div class="row">
+                <div class="row content">
                     <div class="col text-light align-items-left">
                         <span id="datetime"></span>
                     </div>
-                    <!-- <div class="col text-light">
-                        <i class="fa-solid fa-phone-flip"></i> (044) 28445561
-                    </div>
-                    <div class="col text-light">
-                        <i class="fa-solid fa-envelope-circle-check"></i> dietchn@gmail.com
-                    </div>
-                    <div class="col text-light text-end"> -->
-                    <nav class="col text-end align-items-end">
+                    <div class="col text-end">
                         <ul>
                             <li><a class="language" href="index.html" onclick="changeLanguage('en')">English</a>
                             </li>
                             <li><a class="language" href="index.html" onclick="changeLanguage('tam')">தமிழ்</a></li>
                         </ul>
-                    </nav>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </header>
     <main>
-        <div class="mt-0 p-5 container-fluid bg-secondary text-light text-center">
-            <h1 data-i18n="welcome_message"></h1>
-            <p data-i18n="address"></p>
-            <p data-i18n="contact"></p>
-        </div>
-
         <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
@@ -51,7 +37,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggler">
-                    <a class="navbar-brand" href="#"><i class="fa-solid fa-house"></i></a>
+                    <a class="navbar-brand" href="#"><img src="./assets/images/dietLogoCleaned.png" class="img-responsive" style="max-height:2em; "></a>
                     <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"> -->
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
@@ -86,17 +72,23 @@
                 </div>
             </div>
         </nav>
+        <div class="mt-0 p-5 container-fluid bg-secondary text-light text-center">
+            <h1 data-i18n="welcome_message"></h1>
+            <p data-i18n="address"></p>
+            <p>
+                <i class="fa-solid fa-phone-flip"></i>
+                <span data-i18n="contact1"></span>
+                <br>
+                <i class="fa-solid fa-envelope-circle-check"></i>
+                <span data-i18n="contact2"></span>
+            </p>
+        </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-2">
-                    <p class="fs-2 fw-bolder text-danger text-end">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </p>
-                </div>
                 <div class="col-10">
-                    <div class="scrolling-text-container text-end">
-                        <div class=" scrolling-text-inner" style="--marquee-speed: 20s; --direction:scroll-right"
+                    <div class="scrolling-text-container">
+                        <div class=" scrolling-text-inner" style="--marquee-speed: 20s; --direction:scroll-left"
                             role="marquee">
                             <div class="scrolling-text">
                                 <div class="scrolling-text-item">
@@ -109,6 +101,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-2">
+                    <p class="fs-2 fw-bolder text-danger">
+                        <i class="fa-solid fa-bullhorn fa-flip-horizontal"></i>
+                    </p>
                 </div>
             </div>
 

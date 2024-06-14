@@ -21,6 +21,12 @@ a:hover.language, a:active.language {
   background-color: purple;
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .visible {
   visibility: visible;
@@ -34,7 +40,8 @@ a:hover.language, a:active.language {
 
   /* Container styles */
 .scrolling-text-container {
-  background-color: #eff5ff;
+  /* background-color: #eff5ff; */
+  background-color: none;
   border-radius: 4px;
   overflow: hidden;
 }
