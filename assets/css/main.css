@@ -1,5 +1,6 @@
+/* CSS style sheet */
 ul {
-  padding-top: 5px;
+  padding: auto;
 }
 
 ul > li {
@@ -11,7 +12,7 @@ a:link.language, a:visited.language {
   /* background-color: purple; */
   background:transparent;
   color: white;
-  padding: 5px 15px;
+  padding: 1px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -19,6 +20,12 @@ a:link.language, a:visited.language {
 
 a:hover.language, a:active.language {
   background-color: purple;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -34,7 +41,8 @@ a:hover.language, a:active.language {
 
   /* Container styles */
 .scrolling-text-container {
-  background-color: #eff5ff;
+  /* background-color: #eff5ff; */
+  background-color: none;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -63,14 +71,14 @@ a:hover.language, a:active.language {
 }
 
 /* Pause the animation when a user hovers over it */
-.scrolling-text-container:hover .scrolling-text-inner>div {
+/* .scrolling-text-container:hover .scrolling-text-inner>div {
   animation-play-state: paused;
-}
+} */
 
 /* Setting the Animation using Keyframes */
 @keyframes scroll-left {
   0% {
-      transform: translateX(0%);
+      transform: translateX(100%);
   }
 
   100% {
@@ -84,7 +92,7 @@ a:hover.language, a:active.language {
   }
 
   100% {
-      transform: translateX(0%);
+      transform: translateX(100%);
   }
 }
 
