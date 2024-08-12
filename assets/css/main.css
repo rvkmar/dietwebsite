@@ -1,6 +1,7 @@
 /* CSS style sheet */
 ul {
-  padding: 2rem 2rem;
+  /* padding: 2rem 2rem; */
+  padding: auto;
 }
 
 ul > li {
@@ -164,4 +165,8 @@ footer {
   color: #fff;
   padding: 1rem 0;
   text-align: center;
+}
+
+.languageAlign {
+  padding: 2rem 2rem;
 }
