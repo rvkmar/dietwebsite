@@ -1,6 +1,6 @@
 /* CSS style sheet */
 ul {
-  padding: auto;
+  padding: 2em 2em;
 }
 
 ul > li {
@@ -9,7 +9,7 @@ ul > li {
 }
 
 a:link.language, a:visited.language {
-  /* background-color: purple; */
+  background-color: rgb(85, 39, 225);
   background:transparent;
   color: white;
   padding: 1px 10px;
