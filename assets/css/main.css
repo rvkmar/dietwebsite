@@ -103,6 +103,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #3e88d7 0%, #5e7186 50%, #00c4cc 100%);
 }
 .hero {
   position: relative;
@@ -163,7 +164,7 @@ body {
 footer {
   background: #343a40;
   color: #fff;
-  padding: 1rem 0;
+  padding: 0.01rem 0;
   text-align: center;
 }
 
