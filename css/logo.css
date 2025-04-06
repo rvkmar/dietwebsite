@@ -1,0 +1,68 @@
+.logo-img {
+    width: 22%;
+    height: auto;
+    max-width: 100%;
+    transition: all 0.3s ease;
+}
+
+.logo-text em {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.1rem;
+}
+
+.logo-text p {
+    font-style: italic;
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+.logo-text i {
+    font-style: italic;
+    font-weight: 100;
+    font-size: 0.6em;
+}
+
+.sw-logo img {
+width: auto;
+height: 5em; /* Adjust height as needed */
+max-width: 100%;
+    /* Scales up on smaller screens */
+    margin: 10px;
+    padding: 0%;
+}
+
+/* click outlines made transparent */
+a {
+    outline: transparent !important;
+}
+
+/* flexslider control menu visibility hidden after disabling in JavaScript */
+.flexslider .flex-pauseplay {
+    display: none !important;
+}
+
+#main_menu {
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        width: auto; 
+        height: 3em; /* Adjust height as needed */
+        max-width: 100%;
+            /* Scales up on smaller screens */
+        }
+
+    #logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-text,
+    #logo p {
+        text-align: center;
+    }
+}
