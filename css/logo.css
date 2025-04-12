@@ -85,3 +85,26 @@ a {
         text-align: center;
     }
 }
+
+.article68217830 body{
+        font-family: Georgia, serif;
+        line-height: 1.6;
+        margin: 2em;
+}
+
+.article68217830 h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.3em;
+}
+.article68217830 h3 {
+    color: #34495e;
+}
+.article68217830 p {
+    margin-bottom: 1em;
+    /* align-items: justify; */
+    text-align: justify;
+}
+.article68217830 .references {
+    margin-top: 2em;
+}
