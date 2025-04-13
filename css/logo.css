@@ -105,6 +105,7 @@ a {
     /* align-items: justify; */
     text-align: justify;
 }
-.article68217830 .references {
-    margin-top: 2em;
+.references li{
+    margin-top: 0.8em;
+    padding-left: 1%;
 }
