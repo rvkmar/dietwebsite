@@ -109,3 +109,64 @@ a {
     margin-top: 0.8em;
     padding-left: 1%;
 }
+
+/* language switch */
+  .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-family: sans-serif;
+      margin-left: 5px;
+      padding: 6% 0 0 0;
+  }
+
+  .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 28px;
+  }
+
+  .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+  }
+
+  .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+  }
+
+  .slider:before {
+      position: absolute;
+      content: "EN";
+      height: 24px;
+      width: 26px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      color: black;
+      text-align: center;
+      line-height: 24px;
+      font-size: 12px;
+      border-radius: 50%;
+      transition: .4s;
+  }
+
+  input:checked+.slider {
+      background-color: #4CAF50;
+  }
+
+  input:checked+.slider:before {
+      transform: translateX(30px);
+      content: "த";
+  }
