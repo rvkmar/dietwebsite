@@ -110,6 +110,26 @@ a {
     padding-left: 1%;
 }
 
+blockquote {
+    font-size: 35px;
+    line-height: 52px;
+    margin: 28px 0;
+    overflow: hidden;
+    padding: 0 0 0 26px;
+    font-weight: 100;
+    color: #CC6B39;
+    position: relative;
+}
+
+blockquote:before {
+    content: "";
+    border-left: 6px solid #39348F;
+    position: absolute;
+    bottom: 14px;
+    top: 13px;
+    left: 0;
+}
+
 /* language switch */
   .language-switch {
       display: flex;
