@@ -17,18 +17,19 @@
 }
 
 @font-face {
-    font-family: "Tau-Marutham.ttf";
+    font-family: "Tau-Marutham";
     src: url("/fonts/TAU-Marutham.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 .tamil {
-    font-family: "Tau-Marutham.ttf";
+    font-family: "Tau-Marutham";
 }
 
 samp {
-    font-family: 'Roboto';
+    /* font-family: 'Roboto'; */
+    font-family: 'Open Sans',"TAU-Marutham", sans-serif;
 }
 
 .logo-img {
