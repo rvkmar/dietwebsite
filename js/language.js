@@ -12,12 +12,29 @@
 // version2
 // function to update content based on selected language
   // Update visible content with i18n values
-  function updateContent(langData) {
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-      const key = element.getAttribute('data-i18n');
-      element.textContent = langData[key];
-    });
-  }
+//   function updateContent(langData) {
+//     document.querySelectorAll('[data-i18n]').forEach(element => {
+//       const key = element.getAttribute('data-i18n');
+//       element.textContent = langData[key];
+//     });
+// }
+
+  // Version 3
+function updateContent(langData) {
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    const value = langData[key] || ''; // Fallback to empty string if key not found
+
+    const tag = element.tagName.toLowerCase();
+
+    if (tag === 'input' || tag === 'textarea' || tag === 'button') {
+      element.value = value;
+    } else {
+      element.textContent = value;
+    }
+  });
+}
+
 
   // Store selected language
   function setLanguagePreference(lang) {
