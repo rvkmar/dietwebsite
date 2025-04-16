@@ -29,7 +29,7 @@
 
 samp {
     /* font-family: 'Roboto'; */
-    font-family: 'Open Sans',"TAU-Marutham", sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .logo-img {
@@ -205,3 +205,27 @@ blockquote:before {
       transform: translateX(30px);
       content: "த";
   }
+
+/* menu hover colors and sub menu underline properties override */
+.main-menu .sub-nav ul li a:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    outline: none;
+}
+
+.main-menu>ul>li.active>a,
+.main-menu>ul>li>a:focus,
+.main-menu>ul>li:hover>a,
+.main-menu>ul>li>a:hover,
+.main-menu>ul>li>a.home,
+.nav-item>a.open {
+    /* background: #ee9858; */
+    background: #9d5722;
+    color: #fff !important;
+}
+
+.sub-nav {
+    /* background: #a46212; */
+    background: #a46212;
+    color: #fff !important;
+}
