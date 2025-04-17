@@ -105,8 +105,16 @@ function updateContent(langData) {
     toggleTamilBodyClass(userPreferredLanguage); // ✅ added
 
     // Toggle event listener
-    langToggle.addEventListener('change', () => {
-      const selectedLang = langToggle.checked ? 'ta' : 'en';
-      changeLanguage(selectedLang);
+    // langToggle.addEventListener('change', () => {
+    //   const selectedLang = langToggle.checked ? 'ta' : 'en';
+    //   changeLanguage(selectedLang);
+    // });
+
+    // Version 2 // Toggle event listener for mobile
+    ['change', 'click', 'touchstart'].forEach(event => {
+    langToggle.addEventListener(event, () => {
+    const selectedLang = langToggle.checked ? 'ta' : 'en';
+    changeLanguage(selectedLang);
     });
   });
+});
