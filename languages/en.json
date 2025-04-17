@@ -45,5 +45,9 @@
     "calendar":"Academic Training Calendar",
     "current_activities":"Current Activities",
     "activity_archive":"Activity Archive",
-    "alumni":"Alumni Association"
+    "alumni":"Alumni Association",
+    "textbookmodules":"Textbook and Modules",
+    "textbook":"Textbooks",
+    "modules":"Modules",
+    "contact-us":"Contact Us"
 }
