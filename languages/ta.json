@@ -15,5 +15,8 @@
     "organization":"கட்டமைப்பு",
     "districtprofile":"மாவட்டத் தகவல்",
     "districtstatistics":"மாவட்டத் தரவுகள்",
-    "principalsdesk":"தலைமையுரை"
+    "principalsdesk":"தலைமையுரை",
+    "staff":"பணியாளர்கள்",
+    "academicstaff":"கல்விப் பணியாளர்கள்",
+    "adminstaff":"நிருவாகப் பணியாளர்கள்"
 }

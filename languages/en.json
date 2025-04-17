@@ -15,5 +15,8 @@
     "organization":"Organization Structure",
     "districtprofile":"District Profile",
     "districtstatistics":"District Statistics",
-    "principalsdesk":"Principal's Desk"
+    "principalsdesk":"Principal's Desk",
+    "staff":"Faculty and Staff",
+    "academicstaff":"Academic Faculty",
+    "adminstaff":"Administrative Staff"
 }
