@@ -18,5 +18,9 @@
     "principalsdesk":"Principal's Desk",
     "staff":"Faculty and Staff",
     "academicstaff":"Academic Faculty",
-    "adminstaff":"Administrative Staff"
+    "adminstaff":"Administrative Staff",
+    "courses":"Courses",
+    "coursedeled":"Diploma in Elementary Education (D.El.Ed.,)",
+    "coursetpd":"Teachers' Professional Development (TPD)",
+    "departments":"Departments"
 }
