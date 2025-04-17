@@ -43,7 +43,11 @@ function updateContent(langData) {
 
   // Fetch language JSON
   async function fetchLanguageData(lang) {
-    const response = await fetch(`languages/${lang}.json`);
+    const response = await fetch(`languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
+    if (!response.ok) {
+      console.error('Error fetching language data:', response.statusText);
+      return {}; // Return empty object on error
+    }
     return response.json();
   }
 
@@ -61,7 +65,7 @@ function updateContent(langData) {
       toggleTamilStylesheet(lang);
       toggleTamilBodyClass(lang); // ✅ add this line
       contentContainer.classList.remove('fade-out');
-    }, 100); // Adjust the timeout duration to match your CSS transition duration
+    }, 60); // Adjust the timeout duration to match your CSS transition duration
   }
 
   // Toggle Tamil-specific stylesheet

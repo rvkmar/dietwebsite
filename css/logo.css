@@ -150,9 +150,18 @@ blockquote:before {
     .logo img {
             max-width: 65px;
             padding: 0 5px 0 5px;
-            height: 3.5em;
+            /* height: 3.5em; */
         }
     }
+
+/* logo in medium screen */
+@media screen and (max-width: 767px) {
+    .logo img {
+        max-width: 65px;
+        padding: 0 5px 0 5px;
+        /* height: 3.5em; */
+    }
+}
 
 /* transition while changing language fade and fade-out */
 .fade {
