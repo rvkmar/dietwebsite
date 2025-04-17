@@ -32,6 +32,27 @@ samp {
     font-family: 'Open Sans', sans-serif;
 }
 
+@media (max-width: 768px) {
+    .logo-img {
+        width: auto; 
+        height: 3em; /* Adjust height as needed */
+        max-width: 100%;
+            /* Scales up on smaller screens */
+        }
+
+    #logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-text,
+    #logo p {
+        text-align: center;
+    }
+}
+
 .logo-img {
     width: 22%;
     height: auto;
@@ -58,9 +79,10 @@ samp {
 }
 
 .sw-logo img {
-width: auto;
-height: 5em; /* Adjust height as needed */
-max-width: 100%;
+    width: auto;
+    height: 5em;
+    /* Adjust height as needed */
+    max-width: 100%;
     /* Scales up on smaller screens */
     margin: 10px;
     padding: 0%;
@@ -78,27 +100,6 @@ a {
 
 #main_menu {
     transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .logo-img {
-        width: auto; 
-        height: 3em; /* Adjust height as needed */
-        max-width: 100%;
-            /* Scales up on smaller screens */
-        }
-
-    #logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .logo-text,
-    #logo p {
-        text-align: center;
-    }
 }
 
 .article68217830 body{
@@ -190,7 +191,7 @@ blockquote:before {
     width: 60px;
     height: 28px;
     cursor: pointer;
-    touch-action: manipulation; /* improves responsiveness */
+    margin-left: 10px;
 }
 
 .switch input {
@@ -198,6 +199,7 @@ blockquote:before {
     width: 0;
     height: 0;
     position: absolute;
+    z-index: 1;
 }
 
 .slider {
@@ -210,6 +212,7 @@ blockquote:before {
     background-color: #ccc;
     transition: .4s;
     border-radius: 34px;
+    touch-action: manipulation; /* improves responsiveness */
 }
 
 .slider:before {

@@ -65,7 +65,7 @@ function updateContent(langData) {
       toggleTamilStylesheet(lang);
       toggleTamilBodyClass(lang); // ✅ add this line
       contentContainer.classList.remove('fade-out');
-    }, 60); // Adjust the timeout duration to match your CSS transition duration
+    }, 200); // Adjust the timeout duration to match your CSS transition duration
   }
 
   // Toggle Tamil-specific stylesheet
@@ -122,7 +122,7 @@ function updateContent(langData) {
     // });
 
     // Version 2 // Toggle event listener for mobile
-    ['change', 'click', 'touchstart'].forEach(event => {
+    ['touchstart', 'touchend', 'change', 'click'].forEach(event => {
     langToggle.addEventListener(event, () => {
     const selectedLang = langToggle.checked ? 'ta' : 'en';
     changeLanguage(selectedLang);
