@@ -229,3 +229,7 @@ blockquote:before {
     background: #a46212;
     color: #fff !important;
 }
+
+.ico-site-search .search-drop {
+    background: #a46212;
+}
