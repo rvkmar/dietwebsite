@@ -22,9 +22,9 @@
    <link rel="icon" href="images/favicon/dietLogoCleaned.png" type="image/png">
    <link rel="shortcut icon" href="images/favicon/dietLogoCleaned.png" type="image/png">
 
-   <!-- logo-img css -->
-   <link href="css/logo.css" rel="stylesheet" media="all">
-   <!-- logo-img css -->
+   <!-- Load Tamil font CSS first -->
+   <link rel="stylesheet" href="css/early-font.css">
+
    <link href="css/base.css" rel="stylesheet" media="all">
    <link href="css/base-responsive.css" rel="stylesheet" media="all">
    <link href="css/grid.css" rel="stylesheet" media="all">
@@ -38,6 +38,9 @@
    <link href="css/site-responsive.css" rel="stylesheet" media="all">
    <link href="css/ma5gallery.css" rel="stylesheet" type="text/css">
    <link href="css/print.css" rel="stylesheet" type="text/css" media="print">
+   <!-- logo-img css -->
+   <link href="css/logo.css" rel="stylesheet" media="all">
+   <!-- logo-img css -->
    <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -61,19 +64,21 @@
                   <div class="common-left clearfix">
                      <ul>
                         <!-- Links to Tamil Nadu Government and SCERT websites -->
-                        <li class="gov-india"><span class="li_eng responsive_go_eng"><a target="_blank"
-                                 href="https://tn.gov.in/"
-                                 title="Government of Tamil Nadu, External Link that opens in a new window">Government
-                                 of Tamil Nadu</a></span></li>
+                        <li class="gov-india"><span class="li_eng responsive_go_eng">
+                              <a target="_blank" href="https://tn.gov.in/"
+                                 title="Government of Tamil Nadu, External Link that opens in a new window">
+                                 <samp data-i18n="government">Government of Tamil Nadu</samp>
+                              </a></span></li>
                         <li class="ministry"><span class="li_eng responsive_go_eng"><a target="_blank"
                                  href="https://tnschools.gov.in/scert"
-                                 title="SCERT Tamil Nadu, External Link that opens in a new window">SCERT Tamil
-                                 Nadu</a></span></li>
+                                 title="SCERT Tamil Nadu, External Link that opens in a new window">
+                                 <samp data-i18n="scert">SCERT Tamil Nadu</samp></a></span></li>
                      </ul>
                   </div>
                   <div class="common-right clearfix">
                      <ul id="header-nav">
-                        <li class="ico-skip cf"><a href="#skipCont" title="">Skip to main content</a>
+                        <li class="ico-skip cf"><a href="#skipCont" title=""><span data-i18n="skip">Skip to main
+                                 content</span></a>
                         </li>
                         <li class="ico-site-search cf">
                            <a href="javascript:void(0);" id="toggleSearch" title="Site Search">
@@ -81,6 +86,19 @@
                            <div class="search-drop both-search">
 
                               <div class="find">
+                                 <form method="get" action="https://www.google.com/search" target='_blank'>
+                                    <label for="search_key_g" class="notdisplay">Search</label>
+                                    <input type="text" name="q" value="" id="search_key_g">
+                                    <input type="submit" data-i18n="search" class="submit">
+                                    <div class="">
+                                       <input type="radio" name="sitesearch" value="" id="the_web">
+                                       <label for="the_web" data-i18n="web">The Web</label>
+                                       <input type="radio" name="sitesearch" value="dietchennai.org" id="the_domain"
+                                          checked> <label for="the_domain" data-i18n="diet">DIET, Chennai</label>
+                                    </div>
+                                 </form>
+                              </div>
+                              <!-- <div class="find">
                                  <form method="get" action="https://www.google.com/search" target='_blank'>
                                     <label for="search_key_g" class="notdisplay">Search</label>
                                     <input type="text" name="q" value="" id="search_key_g">
@@ -92,7 +110,7 @@
                                           checked> <label for="the_domain">DIET, Chennai</label>
                                     </div>
                                  </form>
-                              </div>
+                              </div> -->
                            </div>
                         </li>
                         <li class="ico-accessibility cf">
@@ -161,7 +179,8 @@
                      <span>District Institute of Education &amp; Training (DIET), Chennai</span>
                      <!-- <p>A Centre of Excellence sanctioned by the Ministry of Education, Government of India &amp;
                         <br>Department of School Education, Government of Tamil Nadu </p> -->
-                     <i>Lady Willingdon Educational Campus, Kamarajar Salai, Triplicane, Chennai, Tamil
+                     <i data-i18n="address">Lady Willingdon Educational Campus, Kamarajar Salai, Triplicane, Chennai,
+                        Tamil
                         Nadu. PIN 600 005</i>
                   </span>
                </a>
@@ -184,19 +203,21 @@
             <p class="showhide"><em></em><em></em><em></em></p>
             <nav class="main-menu clearfix" id="main_menu" style="">
                <ul class="nav-menu">
-                  <li class="nav-item"> <a href="index-2.html" class=""><i class="fa fa-home"
-                           aria-hidden="true">&nbsp</i>Home</a>
+                  <li class="nav-item"> <a href="index-2.html" class=""><i class="fa fa-home" aria-hidden="true"></i>
+                        <samp data-i18n="home">Home</samp>
+                     </a>
                   </li>
 
-                  <li class="nav-item"> <a href="#" class="">About Us</a>
+                  <li class="nav-item"> <a href="#" class=""><samp data-i18n="aboutus">About Us</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="about-diet.html">About DIET</a></li>
-                           <li><a href="about-diet-chennai.html">Introduction to DIET Chennai</a></li>
-                           <li><a href="district_profile.html">District Profile</a></li>
-                           <li><a href="#">Mission and Vision</a></li>
-                           <li><a href="#">Role and Functions of DIET</a></li>
-                           <li><a href="#">Statistics of the DIET</a></li>
+                           <li><a href="about-diet.html"><samp data-i18n="aboutdiet">About DIET</samp></a></li>
+                           <li><a href="about-diet-chennai.html"><samp data-i18n="introduction">Introduction to DIET Chennai</samp></a></li>
+                           <li><a href="#"><samp data-i18n="missionvision">Mission and Vision</samp></a></li>
+                           <li><a href="#"><samp data-i18n="rolefunction">Role and Functions of DIET</samp></a></li>
+                           <li><a href="#"><samp data-i18n="organization">Organization Structure</samp></a></li>
+                           <li><a href="district_profile.html"><samp data-i18n="districtprofile">District Profile</samp></a></li>
+                           <li><a href="#"><samp data-i18n="districtstatistics">District Statistics </samp></a></li>
                            <!-- <li><a href="about-diet.html">About DIET</a></li>
                            <li><a href="about-diet-Chennai.html">Introduction of DIET Chennai</a></li>
                            <li><a href="mission-vision.html">Mission and Vision</a></li>
@@ -206,87 +227,88 @@
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Principal's Desk</a></li>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="principalsdesk">Principal's Desk</samp></a></li>
                   <!-- <li class="nav-item"><a href="principal-desk.html" class="">Principal's Desk</a></li> -->
 
-                  <li class="nav-item"> <a href="#" class="">Faculty and Staff</a>
+                  <li class="nav-item"> <a href="#" class=""><samp data-i18n="staff">Faculty and Staff</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Academic Staff</a></li>
-                           <li><a href="#">Non-Academic Staff</a></li>
+                           <li><a href="#"><samp data-i18n="academicstaff">Academic Staff</samp></a></li>
+                           <li><a href="#"><samp data-i18n="adminstaff">Non-Academic Staff</samp></a></li>
                            <!-- <li><a href="academic-staff.html">Academic Staff</a></li>
                            <li><a href="non-academic-staff.html">Non-Academic Staff</a></li> -->
                         </ul>
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Courses</a>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="courses">Courses</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Diploma in Elementary Education (D.El.Ed.,)</a></li>
-                           <li><a href="https://dietchennai.moodlecloud.com">Teachers' Professional Development courses
-                                 <i>(Need based)</i></a></li>
+                           <li><a href="#"><samp data-i18n="coursedeled">Diploma in Elementary Education (D.El.Ed.,)</samp></a></li>
+                           <li><a href="https://dietchennai.moodlecloud.com"><samp data-i18n="coursetpd">Teachers' Professional Development courses</samp>
+                                 </a></li>
                         </ul>
                      </div>
                   </li>
-                  <li class="nav-item"><a href="#" class="">Departments</a>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="departments">Departments</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Pre-service Teacher Education</a></li>
-                           <li><a href="#">Teacher Professional Development</a></li>
-                           <li><a href="#">Education Technology & Material Development</a></li>
-                           <li><a href="#">Assessment & Evaluation</a></li>
-                           <li><a href="#">Field Interaction & Action Research</a></li>
+                           <li><a href="#"><samp data-i18n="pste">Pre-service Teacher Education</samp></a></li>
+                           <li><a href="#"><samp data-i18n="tpd">Teacher Professional Development</samp></a></li>
+                           <li><a href="#"><samp data-i18n="etmd">Education Technology & Material Development</samp></a></li>
+                           <li><a href="#"><samp data-i18n="ae">Assessment & Evaluation</samp></a></li>
+                           <li><a href="#"><samp data-i18n="fiar">Field Interaction & Action Research</samp></a></li>
                         </ul>
                      </div>
                   </li>
                   <!-- <li class="nav-item"><a href="courses.html" class="">Courses</a></li>
                   <li class="nav-item"><a href="departments.html" class="">Departments</a></li> -->
 
-                  <li class="nav-item"><a href="#" class="">Acts & Rules</a>
+                  <li class="nav-item"><a href="#" class="">
+                     <samp data-i18n="actsrules">Acts & Rules</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Right to Information Act</a></li>
-                           <li><a href="#">DIET Acts And Rules</a></li>
+                           <li><a href="#"><samp data-i18n="rti">Right to Information Act</samp></a></li>
+                           <li><a href="#"><samp data-i18n="dietrules">DIET Acts And Rules</samp></a></li>
                            <!-- <li><a href="rti.html">Right to Information Act</a></li>
                            <li><a href="diet-acts-rules.html">DIET Acts And Rules</a></li> -->
                         </ul>
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Activities</a>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="activities">Activities</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Training Calendar</a></li>
-                           <li><a href="#">Current Activities</a></li>
-                           <li><a href="#">Activity Archive</a></li>
-                           <li><a href="#">👨‍👩‍👧‍👦 Alumni Association</a></li>
+                           <li><a href="#"><samp data-i18n="calendar">Training Calendar</samp></a></li>
+                           <li><a href="#"><samp data-i18n="current_activities">Current Activities</samp></a></li>
+                           <li><a href="#"><samp data-i18n="activity_archive">Activity Archive</samp></a></li>
+                           <li><a href="#">👨‍👩‍👧‍👦 <samp data-i18n="alumni">Alumni Association</samp></a></li>
                            <!-- <li><a href="current_activities.html">Current Activities</a></li>
                            <li><a href="activity_archive.html">Activity Archive</a></li> -->
                         </ul>
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Textbooks and Modules</a>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="textbookmodules">Textbooks and Modules</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Textbooks</a></li>
-                           <li><a href="#">Modules</a></li>
+                           <li><a href="#"><samp data-i18n="textbook">Textbooks</samp></a></li>
+                           <li><a href="#"><samp data-i18n="modules">Modules</samp></a></li>
                            <!-- <li><a href="textbooks.html">Textbooks</a></li>
                            <li><a href="modules.html">Modules</a></li> -->
                         </ul>
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Contact Us</a></li>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="contact-us">Contact Us</samp></a></li>
                   <!-- <li class="nav-item"><a href="contact-us.html" class="">Contact Us</a></li> -->
 
-                  <li class="nav-item"><a href="#" class="">Documents</a>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="documents">Documents</samp></a>
                      <div class="sub-nav">
                         <ul class="sub-nav-group">
-                           <li><a href="#">Publications</a></li>
-                           <li><a href="#">Reports</a></li>
-                           <li><a href="#">Forms</a></li>
+                           <li><a href="#"><samp data-i18n="publications">Publications</samp></a></li>
+                           <li><a href="#"><samp data-i18n="reports">Reports</samp></a></li>
+                           <li><a href="#"><samp data-i18n="forms">Forms</samp></a></li>
                            <!-- <li><a href="publications.html">Publications</a></li>
                            <li><a href="reports.html">Reports</a></li>
                            <li><a href="forms.html">Forms</a></li> -->
@@ -294,7 +316,7 @@
                      </div>
                   </li>
 
-                  <li class="nav-item"><a href="#" class="">Important Links</a></li>
+                  <li class="nav-item"><a href="#" class=""><samp data-i18n="important_links">Important Links</samp></a></li>
                   <!-- <li class="nav-item"><a href="impo-links.html" class="">Important Links</a></li> -->
                </ul>
             </nav>
@@ -722,7 +744,7 @@
                   <strong>District Institute of Education and Training, Chennai</strong><span>Designed, Developed by
                      <a target="_blank" title="NIC, External Link that opens in a new window"
                         href="https://dietchennai.org/">
-                        <strong>DIET, Chennai</strong></a></span>
+                        <strong>Academic faculty of DIET, Chennai</strong></a></span>
                </div>
                <div class="last-updated">
                   <strong>Last Updated: 06-APR-2025</strong>
