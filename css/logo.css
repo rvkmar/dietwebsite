@@ -145,66 +145,88 @@ blockquote:before {
     left: 0;
 }
 
+/* Logo in small screen */
+@media screen and (max-width: 375px) {
+    .logo img {
+            max-width: 65px;
+            padding: 0 5px 0 5px;
+            height: 3.5em;
+        }
+    }
+
+/* transition while changing language fade and fade-out */
+.fade {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
 /* language switch */
-  .language-switch {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-      font-family: sans-serif;
-      margin-left: 5px;
-      padding: 6% 0 0 0;
-  }
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-left: 5px;
+    padding: 6% 0 0 0;
+}
 
-  .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 28px;
-  }
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+    cursor: pointer;
+    touch-action: manipulation; /* improves responsiveness */
+}
 
-  .switch input {
-      opacity: 1;
-      width: 0;
-      height: 0;
-  }
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
 
-  .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-  }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
 
-  .slider:before {
-      position: absolute;
-      content: "EN";
-      height: 24px;
-      width: 26px;
-      left: 2px;
-      bottom: 2px;
-      background-color: white;
-      color: black;
-      text-align: center;
-      line-height: 24px;
-      font-size: 12px;
-      border-radius: 50%;
-      transition: .4s;
-  }
+.slider:before {
+    position: absolute;
+    content: "EN";
+    height: 24px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    border-radius: 50%;
+    transition: .4s;
+}
 
-  input:checked+.slider {
-      background-color: #4CAF50;
-  }
+input:checked+.slider {
+    background-color: #4CAF50;
+}
 
-  input:checked+.slider:before {
-      transform: translateX(30px);
-      content: "த";
-  }
+input:checked+.slider:before {
+    transform: translateX(30px);
+    content: "த";
+}
 
 /* menu hover colors and sub menu underline properties override */
 .main-menu .sub-nav ul li a:hover {

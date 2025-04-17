@@ -51,10 +51,17 @@ function updateContent(langData) {
   async function changeLanguage(lang) {
     setLanguagePreference(lang);
 
+    const contentContainer = document.body;
+    contentContainer.classList.add('fade-out');
+
     const langData = await fetchLanguageData(lang);
-    updateContent(langData);
-    toggleTamilStylesheet(lang);
-    toggleTamilBodyClass(lang); // ✅ add this line
+
+    setTimeout(() => {
+      updateContent(langData);
+      toggleTamilStylesheet(lang);
+      toggleTamilBodyClass(lang); // ✅ add this line
+      contentContainer.classList.remove('fade-out');
+    }, 100); // Adjust the timeout duration to match your CSS transition duration
   }
 
   // Toggle Tamil-specific stylesheet
@@ -91,7 +98,7 @@ function updateContent(langData) {
     
     // change for the overflow button text
     const overflowButton = document.getElementById("btn-more-toggle");
-    overflowButton.innerHTML = '<samp data-i18n="more"></samp>';
+    overflowButton.setAttribute('data-i18n', 'more');
 
     // Set toggle switch state
     if (userPreferredLanguage === 'ta') {
