@@ -88,6 +88,10 @@ function updateContent(langData) {
   document.addEventListener('DOMContentLoaded', async () => {
     const langToggle = document.getElementById('langToggle');
     const userPreferredLanguage = localStorage.getItem('language') || 'en';
+    
+    // change for the overflow button text
+    const overflowButton = document.getElementById("btn-more-toggle");
+    overflowButton.innerHTML = '<samp data-i18n="more"></samp>';
 
     // Set toggle switch state
     if (userPreferredLanguage === 'ta') {
