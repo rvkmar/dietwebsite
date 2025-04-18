@@ -47,8 +47,10 @@ function updateContent(langData) {
   }
 
   // Fetch language JSON
-  async function fetchLanguageData(lang) {
-    const response = await fetch(`/languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
+async function fetchLanguageData(lang) {
+    // let basePath = window.location.pathname.includes('dietwebsite') ? '/dietwebsite/' : '/';
+    let basePath = window.location.pathname.includes('dietchennai.org') ? '/dietchennai.org/' : '/';
+    const response = await fetch(basePath + `languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
     if (!response.ok) {
       console.error('Error fetching language data:', response.statusText);
       return {}; // Return empty object on error
