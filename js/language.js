@@ -43,7 +43,7 @@ function updateContent(langData) {
 
   // Fetch language JSON
   async function fetchLanguageData(lang) {
-    const response = await fetch(`languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
+    const response = await fetch(`/languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
     if (!response.ok) {
       console.error('Error fetching language data:', response.statusText);
       return {}; // Return empty object on error
