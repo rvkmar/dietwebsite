@@ -21,6 +21,11 @@
 
   // Version 3
 function updateContent(langData) {
+  // Update visible content with i18n values
+      // change for the overflow button text
+    const overflowButton = document.getElementById("btn-more-toggle");
+    overflowButton.setAttribute('data-i18n', 'more');
+
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
     const value = langData[key] || ''; // Fallback to empty string if key not found
@@ -100,10 +105,6 @@ function updateContent(langData) {
     const langToggle = document.getElementById('langToggle');
     const userPreferredLanguage = localStorage.getItem('language') || 'en';
     
-    // change for the overflow button text
-    const overflowButton = document.getElementById("btn-more-toggle");
-    overflowButton.setAttribute('data-i18n', 'more');
-
     // Set toggle switch state
     if (userPreferredLanguage === 'ta') {
       langToggle.checked = true;
@@ -123,9 +124,9 @@ function updateContent(langData) {
 
     // Version 2 // Toggle event listener for mobile
     ['touchstart', 'touchend', 'change', 'click'].forEach(event => {
-    langToggle.addEventListener(event, () => {
-    const selectedLang = langToggle.checked ? 'ta' : 'en';
-    changeLanguage(selectedLang);
+      langToggle.addEventListener(event, () => {
+        const selectedLang = langToggle.checked ? 'ta' : 'en';
+        changeLanguage(selectedLang);
+      });
     });
-  });
 });
