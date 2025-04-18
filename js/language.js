@@ -26,14 +26,31 @@ function setLanguagePreference(lang) {
 }
 
 // Fetch language JSON
+// async function fetchLanguageData(lang) {
+//   let basePath = window.location.pathname.includes('dietchennai.org') ? 'https://dietchennai.org/' : '/';
+//   const response = await fetch(basePath + `languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
+//   if (!response.ok) {
+//     console.error('Error fetching language data:', response.statusText);
+//     return {}; // Return empty object on error
+//   }
+//   return response.json();
+// }
+
+// Version 2 of fetchLanguageData function
 async function fetchLanguageData(lang) {
   let basePath = window.location.pathname.includes('dietchennai.org') ? 'https://dietchennai.org/' : '/';
-  const response = await fetch(basePath + `languages/${lang}.json?v=${Date.now()}`); // Cache-busting with timestamp
-  if (!response.ok) {
-    console.error('Error fetching language data:', response.statusText);
-    return {}; // Return empty object on error
+  try {
+    const response = await fetch(basePath + `lang/${lang}.json?v=${Date.now()}`);
+    if (!response.ok) {
+      console.error('Error fetching language data:', response.statusText);
+      return {}; // Return empty object on error
+    }
+    return response.json();
+  } catch (error) {
+    // Handle fetch cancellation or network failure
+    console.warn('Fetch was interrupted or failed:', error.message || error);
+    return {}; // Return empty object to prevent crash
   }
-  return response.json();
 }
 
 // Handle language switch

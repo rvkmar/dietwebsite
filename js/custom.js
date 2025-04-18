@@ -298,7 +298,13 @@ $(document).ready(function() {
                     video.setAttribute('controls', 'controls')
             }
         }
+    // try and catch video render button problem
+    try {
         videoMethods.renderVideoPlayButton()
+    } catch (e) {
+        console.log('Error rendering Video play button')
+    }
+    // Video Play Button
 });
 
 // ====Tab scrolling text====
