@@ -302,7 +302,7 @@ $(document).ready(function() {
     try {
         videoMethods.renderVideoPlayButton()
     } catch (e) {
-        console.log('Error rendering Video play button')
+        console.log(e)
     }
     // Video Play Button
 });

@@ -132,9 +132,17 @@ function dropdown1(dropdownId, hoverClass, mouseOffDelay) {
 				this.className = that.className;
 			}
 			var anchor = listItems[i].getElementsByTagName('a');
-			anchor = anchor[0];
-			anchor.onfocus = function() { tabOn(this.parentNode); }
-			anchor.onblur = function() { tabOff(this.parentNode); }
+
+			// using try catch to avoid error in IE
+			try {
+				anchor = anchor[0];
+				anchor.onfocus = function() { tabOn(this.parentNode); }
+				anchor.onblur = function() { tabOff(this.parentNode); }
+			} catch (e) {
+				console.log(e);
+				// do nothing
+			}
+			// using try catch to avoid error in IE
 		}
 	}
 	
