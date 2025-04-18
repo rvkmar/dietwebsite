@@ -25,6 +25,19 @@ function setLanguagePreference(lang) {
   localStorage.setItem('language', lang);
 }
 
+function showLang(lang) {
+  const englishElements = document.querySelectorAll('.englishparagraph');
+  const tamilElements = document.querySelectorAll('.tamilparagraph');
+
+  englishElements.forEach(el => {
+    el.style.display = lang === 'english' ? 'block' : 'none';
+  });
+
+  tamilElements.forEach(el => {
+    el.style.display = lang === 'tamil' ? 'block' : 'none';
+  });
+}
+
 // Fetch language JSON
 // async function fetchLanguageData(lang) {
 //   let basePath = window.location.pathname.includes('dietchennai.org') ? 'https://dietchennai.org/' : '/';
@@ -64,6 +77,7 @@ async function changeLanguage(lang) {
 
   setTimeout(() => {
     updateContent(langData);
+    showLang(lang === 'ta' ? 'tamil' : 'english');
     toggleTamilStylesheet(lang);
     toggleTamilBodyClass(lang);
     contentContainer.classList.remove('fade-out');
@@ -101,6 +115,7 @@ function toggleTamilBodyClass(lang) {
 document.addEventListener('DOMContentLoaded', async () => {
   const langToggle = document.getElementById('langToggle');
   const userPreferredLanguage = localStorage.getItem('language') || 'en';
+  showLang(userPreferredLanguage === 'ta' ? 'tamil' : 'english');
 
   if (userPreferredLanguage === 'ta') {
     langToggle.checked = true;
