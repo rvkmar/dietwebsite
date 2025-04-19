@@ -216,25 +216,49 @@ $(document).ready(function(){
 });
     
     var a = 0;
-    $(window).scroll(function() {
+    // $(window).scroll(function() {
     
-      var oTop = $('#counter').offset().top - window.innerHeight;
-      if (a == 0 && $(window).scrollTop() > oTop) {
-        $('.count').each(function () {
-        $(this).prop('Counter',0).animate({
-            Counter: $(this).text()
+    //   var oTop = $('#counter').offset().top - window.innerHeight;
+    //   if (a == 0 && $(window).scrollTop() > oTop) {
+    //     $('.count').each(function () {
+    //     $(this).prop('Counter',0).animate({
+    //         Counter: $(this).text()
+    //     }, {
+    //         duration: 4000,
+    //         easing: 'swing',
+    //         step: function (now) {
+    //             $(this).text(Math.ceil(now));
+    //         }
+    //     });
+    // });
+    //     a = 1;
+    //   }
+    
+// });
+    
+// with try and catch block
+$(window).scroll(function() {
+  try {
+    var oTop = $('#counter').offset().top - window.innerHeight;
+    if (a == 0 && $(window).scrollTop() > oTop) {
+      $('.count').each(function () {
+        $(this).prop('Counter', 0).animate({
+          Counter: $(this).text()
         }, {
-            duration: 4000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
+          duration: 4000,
+          easing: 'swing',
+          step: function (now) {
+            $(this).text(Math.ceil(now));
+          }
         });
-    });
-        a = 1;
-      }
-    
-    });
+      });
+      a = 1;
+    }
+  } catch (error) {
+    console.error('Scroll animation error:', error);
+  }
+});
+
 
 $(document).ready(function(){
     $('figure img').ma5gallery({
