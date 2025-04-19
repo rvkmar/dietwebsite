@@ -153,6 +153,10 @@ blockquote:before {
             padding: 0 5px 0 5px;
             /* height: 3.5em; */
         }
+    .common-left ul li span.li_eng {
+            font-size: 106%;
+            text-align: center;
+        }
     }
 
 /* logo in medium screen */
@@ -161,6 +165,10 @@ blockquote:before {
         max-width: 65px;
         padding: 0 5px 0 5px;
         /* height: 3.5em; */
+    }
+    .common-left ul li span.li_eng {
+        font-size: 106%;
+        text-align: center;
     }
 }
 
