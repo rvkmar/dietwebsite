@@ -84,7 +84,7 @@ samp {
     /* Adjust height as needed */
     max-width: 100%;
     /* Scales up on smaller screens */
-    margin: 10px;
+    margin: 18px;
     padding: 0%;
 }
 
@@ -161,6 +161,12 @@ blockquote:before {
         max-width: 65px;
         padding: 0 5px 0 5px;
         /* height: 3.5em; */
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .sw-logo img {
+        display: none;
     }
 }
 
