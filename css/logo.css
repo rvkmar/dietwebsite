@@ -157,6 +157,9 @@ blockquote:before {
             font-size: 106%;
             text-align: center;
         }
+    .white-bg {
+            margin-top: 0.5%;
+        }
     }
 
 /* logo in medium screen */
@@ -169,6 +172,9 @@ blockquote:before {
     .common-left ul li span.li_eng {
         font-size: 106%;
         text-align: center;
+    }
+    .white-bg {
+        margin-top: 0.5%;
     }
 }
 
