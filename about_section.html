@@ -26,9 +26,8 @@
     <style>
         html,
         body {
-            margin-left: 3rem;
-            margin-right: 3rem;
-            padding-left: 1rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
             font-family: sans-serif;
             overflow: hidden;
             /* prevent internal scrolling */
@@ -37,12 +36,22 @@
         h1 {
             margin-top: 0;
         }
+
+        @media screen and (min-width: 1260px) {
+            html,
+            body {
+                margin-left: 2rem;
+                margin-right: 2rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
     </style>
 </head>
 
-<body class="mt-3 mb-4 px-4">
+<body>
 
-    <h1><i class="fa fa-university"></i> DIET, Chennai</h1>
+    <h2><i class="fa fa-university"></i> District Institute of Education and Training, Chennai</h2>
 
     <div class="accordion" id="accordionDIET">
         <!-- Mission -->
@@ -50,7 +59,7 @@
             <h2 class="accordion-header" id="headingMission">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseMission" aria-expanded="true" aria-controls="collapseMission">
-                    <i class="fa fa-bullseye me-2"></i> <em>Mission Statement</em>
+                    <i class="fa fa-bullseye me-2"></i> <em>Our Mission</em>
                 </button>
             </h2>
             <div id="collapseMission" class="accordion-collapse collapse show" aria-labelledby="headingMission"
@@ -68,7 +77,7 @@
             <h2 class="accordion-header" id="headingVision">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseVision" aria-expanded="false" aria-controls="collapseVision">
-                    <i class="fa fa-eye me-2"></i> <em>Vision Statement</em>
+                    <i class="fa fa-eye me-2"></i> <em>Our Vision</em>
                 </button>
             </h2>
             <div id="collapseVision" class="accordion-collapse collapse" aria-labelledby="headingVision"
