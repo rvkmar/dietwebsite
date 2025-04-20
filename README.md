@@ -1,1 +1,1 @@
-# DIET Chennai website
+# website
