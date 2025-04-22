@@ -185,7 +185,7 @@ blockquote:before {
 }
 
 /* visual alignment while in full screen of pc */
-@media screen and (min-width: 1260px) {
+@media screen and (min-width: 1260px) and (max-width: 1920px){
     .main-menu a.btn-more,
     .main-menu a.btn-more:hover,
     .main-menu a.btn-more:focus {
