@@ -134,3 +134,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
+
+// Date time
+function checkTime(i) {
+    if(i < 10) {i = "0" + i};
+    return i;
+}
+
+setInterval(() => {
+    var clock = document.getElementById('datetime');
+    var calendar = new Date();
+    var date = checkTime(calendar.getDate());
+    var month = checkTime(calendar.getMonth() + 1);
+    var year = calendar.getFullYear();
+    var hour = checkTime(calendar.getHours());
+    var minute = checkTime(calendar.getMinutes());
+    var second = checkTime(calendar.getSeconds());
+    var time = date + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+    clock.innerHTML = time;
+}, 500);
