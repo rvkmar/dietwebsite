@@ -131,7 +131,7 @@ jQuery(document).ready(function(){
 		jQuery(".ico-accessibility img.top").attr("src","images/ico-accessibility-light.png");
 		jQuery(".ico-accessibility img.bottom").attr("src","images/ico-accessibility-light.png");
 		
-		jQuery(".sw-logo img").attr("src","images/swach-bharat-y.png");
+		jQuery(".sw-logo img").attr("src","images/favicon/english-logo.png");
 		
 	});
 	jQuery('.light').click(function(){	
@@ -159,7 +159,7 @@ jQuery(document).ready(function(){
 		jQuery(".ico-accessibility img.top").attr("src","images/ico-accessibility.png");
 		jQuery(".ico-accessibility img.bottom").attr("src","images/ico-accessibility-light.png");
 		
-		jQuery(".sw-logo img").attr("src","images/swach-bharat.png");
+		jQuery(".sw-logo img").attr("src","images/favicon/english-logo.png");
 
 	});
 	if(getCookie('contrast') == "1") {
@@ -182,7 +182,7 @@ jQuery(document).ready(function(){
 		jQuery(".ico-accessibility img.top").attr("src","images/ico-accessibility-light.png");
 		jQuery(".ico-accessibility img.bottom").attr("src","images/ico-accessibility-light.png");
 		
-		jQuery(".sw-logo img").attr("src","images/swach-bharat-y.png");
+		jQuery(".sw-logo img").attr("src","images/favicon/english-logo.png");
 	}
 	if(getCookie('contrast') == "0" ) {
 		jQuery("[href*='../css/change.css']").remove();
