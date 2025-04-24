@@ -67,6 +67,17 @@ samp {
     font-size: 0.6em;
 }
 
+/* if window is scaled to 125% */
+@media (max-resolution: 1.25dppx) {
+    body {
+        transform: scale(0.9);
+        transform-origin: top left;
+        width: 115%;
+        /* Counteract the shrinking caused by scale */
+        height: 100vh;
+    }
+}
+
 .sw-logo img {
     width: auto;
     height: 5em;
