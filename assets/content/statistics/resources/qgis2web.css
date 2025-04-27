@@ -409,3 +409,9 @@ td video {
 	padding-left: 8px !important;
 	list-style: none;	
 	}
+
+/* qgis remove attribution */
+#bottom-right-container {
+    pointer-events: auto;
+    display: none;
+}

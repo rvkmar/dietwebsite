@@ -395,3 +395,18 @@ input:checked+.slider:before {
     position: relative;
     text-align: left;
 }
+
+/* qgis image */
+.img-resolution {
+    text-align: center;
+}
+
+.img-resolution-img {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    /* width: 25vw; 
+    height: 110vh;  */
+    margin-bottom: 1rem;
+}

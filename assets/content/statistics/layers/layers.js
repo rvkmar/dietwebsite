@@ -23,7 +23,7 @@ var lyr_Districts_1 = new ol.layer.Vector({
                 source:jsonSource_Districts_1, 
                 style: style_Districts_1,
                 popuplayertitle: 'Districts',
-                interactive: true,
+                interactive: false,
                 title: '<img src="styles/legend/Districts_1.png" /> Districts'
             });
 var format_chennaiassemblyconstituencyboundaries_2 = new ol.format.GeoJSON();
@@ -38,7 +38,7 @@ var lyr_chennaiassemblyconstituencyboundaries_2 = new ol.layer.Vector({
                 source:jsonSource_chennaiassemblyconstituencyboundaries_2, 
                 style: style_chennaiassemblyconstituencyboundaries_2,
                 popuplayertitle: 'chennai-assembly-constituency-boundaries',
-                interactive: true,
+                interactive: false,
                 title: 'chennai-assembly-constituency-boundaries'
             });
 var format_chennaiparliamentaryconstituencies_3 = new ol.format.GeoJSON();
@@ -53,7 +53,7 @@ var lyr_chennaiparliamentaryconstituencies_3 = new ol.layer.Vector({
                 source:jsonSource_chennaiparliamentaryconstituencies_3, 
                 style: style_chennaiparliamentaryconstituencies_3,
                 popuplayertitle: 'chennai-parliamentary-constituencies',
-                interactive: true,
+                interactive: false,
                 title: 'chennai-parliamentary-constituencies'
             });
 var format_GCC_DIVISION_4 = new ol.format.GeoJSON();
@@ -68,7 +68,7 @@ var lyr_GCC_DIVISION_4 = new ol.layer.Vector({
                 source:jsonSource_GCC_DIVISION_4, 
                 style: style_GCC_DIVISION_4,
                 popuplayertitle: 'GCC_DIVISION',
-                interactive: true,
+                interactive: false,
                 title: '<img src="styles/legend/GCC_DIVISION_4.png" /> GCC_DIVISION'
             });
 var format_GCC_ZONE_5 = new ol.format.GeoJSON();
@@ -93,9 +93,13 @@ var jsonSource_TNschoolsGIS_6 = new ol.source.Vector({
     attributions: ' ',
 });
 jsonSource_TNschoolsGIS_6.addFeatures(features_TNschoolsGIS_6);
+cluster_TNschoolsGIS_6 = new ol.source.Cluster({
+  distance: 30,
+  source: jsonSource_TNschoolsGIS_6
+});
 var lyr_TNschoolsGIS_6 = new ol.layer.Vector({
                 declutter: false,
-                source:jsonSource_TNschoolsGIS_6, 
+                source:cluster_TNschoolsGIS_6, 
                 style: style_TNschoolsGIS_6,
                 popuplayertitle: 'TNschoolsGIS',
                 interactive: true,
@@ -119,13 +123,13 @@ lyr_chennaiassemblyconstituencyboundaries_2.set('fieldImages', {'fid': '', 'Name
 lyr_chennaiparliamentaryconstituencies_3.set('fieldImages', {'fid': '', 'Name': 'TextEdit', 'description': 'TextEdit', 'timestamp': 'DateTime', 'begin': 'DateTime', 'end': 'DateTime', 'altitudeMode': 'TextEdit', 'tessellate': 'Range', 'extrude': 'Range', 'visibility': 'Range', 'drawOrder': 'Range', 'icon': 'TextEdit', 'OBJECTID': 'Range', 'PARLIAMENT': 'TextEdit', 'SHAPE_AREA': 'TextEdit', 'SHAPE_LEN': 'TextEdit', });
 lyr_GCC_DIVISION_4.set('fieldImages', {'fid': 'TextEdit', 'id': 'TextEdit', 'name': 'TextEdit', '': 'TextEdit', });
 lyr_GCC_ZONE_5.set('fieldImages', {'fid': 'TextEdit', 'id': 'TextEdit', 'zone_number': 'TextEdit', 'zone_name': 'TextEdit', 'wards_details': 'TextEdit', 'Number of Wards': 'Range', 'name': 'TextEdit', });
-lyr_TNschoolsGIS_6.set('fieldImages', {'fid': 'TextEdit', 'SNO': 'Range', 'OBJECT_ID': 'Range', 'DISTRICT': 'TextEdit', 'BLOCK': 'TextEdit', 'EDUCATION_DISTRICT': 'TextEdit', 'NAME': 'TextEdit', 'MANAGING_DEPARTMENT': 'TextEdit', 'MANAGEMENT': 'TextEdit', 'CATEGORY': 'TextEdit', 'CATEGORY_GROUP': 'TextEdit', 'DIRECTORATE': 'TextEdit', 'LOCALBODY': 'TextEdit', 'TOWN_MUNICIPALITY': 'TextEdit', 'HABITATION': 'TextEdit', 'CLUSTER': 'TextEdit', 'LATITUTE': 'TextEdit', 'LONGITUDE': 'TextEdit', 'ASSEMBLY': 'TextEdit', 'PARLIAMENT': 'TextEdit', 'DEPT_CODE': 'TextEdit', 'STATUS': 'CheckBox', 'CREATED_BY': 'TextEdit', });
+lyr_TNschoolsGIS_6.set('fieldImages', {'fid': '', 'SNO': 'Range', 'OBJECT_ID': 'Range', 'DISTRICT': 'TextEdit', 'BLOCK': 'TextEdit', 'EDUCATION_DISTRICT': 'TextEdit', 'NAME': 'TextEdit', 'MANAGING_DEPARTMENT': 'TextEdit', 'MANAGEMENT': 'TextEdit', 'CATEGORY': 'TextEdit', 'CATEGORY_GROUP': 'TextEdit', 'DIRECTORATE': 'TextEdit', 'LOCALBODY': 'TextEdit', 'TOWN_MUNICIPALITY': 'TextEdit', 'HABITATION': 'TextEdit', 'CLUSTER': 'TextEdit', 'LATITUTE': 'TextEdit', 'LONGITUDE': 'TextEdit', 'ASSEMBLY': 'TextEdit', 'PARLIAMENT': 'TextEdit', 'DEPT_CODE': 'TextEdit', 'STATUS': 'CheckBox', 'CREATED_BY': 'TextEdit', });
 lyr_Districts_1.set('fieldLabels', {'fid': 'no label', 'dist_name': 'no label', 'ed_distric': 'no label', 'lgd_coed': 'no label', 'rd_lgd_cod': 'no label', 'dis_tamil': 'no label', });
 lyr_chennaiassemblyconstituencyboundaries_2.set('fieldLabels', {'fid': 'no label', 'Name': 'no label', 'description': 'no label', 'timestamp': 'no label', 'begin': 'no label', 'end': 'no label', 'altitudeMode': 'no label', 'tessellate': 'no label', 'extrude': 'no label', 'visibility': 'no label', 'drawOrder': 'no label', 'icon': 'no label', 'AC_NO': 'no label', 'ASSEMBLY_C': 'no label', 'ASSEMBLY_N': 'no label', 'DISTRICT': 'no label', 'DIVISION_N': 'no label', 'OBJECTID': 'no label', 'PARLIAMENT': 'no label', 'REGION': 'no label', 'SHAPE_AREA': 'no label', 'SHAPE_LEN': 'no label', 'ZN': 'no label', });
-lyr_chennaiparliamentaryconstituencies_3.set('fieldLabels', {'fid': 'no label', 'Name': 'no label', 'description': 'no label', 'timestamp': 'no label', 'begin': 'no label', 'end': 'no label', 'altitudeMode': 'no label', 'tessellate': 'no label', 'extrude': 'no label', 'visibility': 'no label', 'drawOrder': 'no label', 'icon': 'no label', 'OBJECTID': 'no label', 'PARLIAMENT': 'no label', 'SHAPE_AREA': 'no label', 'SHAPE_LEN': 'no label', });
-lyr_GCC_DIVISION_4.set('fieldLabels', {'fid': 'no label', 'id': 'no label', 'name': 'no label', });
-lyr_GCC_ZONE_5.set('fieldLabels', {'fid': 'no label', 'id': 'no label', 'zone_number': 'no label', 'zone_name': 'no label', 'wards_details': 'no label', 'Number of Wards': 'no label', 'name': 'no label', });
-lyr_TNschoolsGIS_6.set('fieldLabels', {'fid': 'no label', 'SNO': 'no label', 'OBJECT_ID': 'no label', 'DISTRICT': 'no label', 'BLOCK': 'no label', 'EDUCATION_DISTRICT': 'no label', 'NAME': 'no label', 'MANAGING_DEPARTMENT': 'no label', 'MANAGEMENT': 'no label', 'CATEGORY': 'no label', 'CATEGORY_GROUP': 'no label', 'DIRECTORATE': 'no label', 'LOCALBODY': 'no label', 'TOWN_MUNICIPALITY': 'no label', 'HABITATION': 'no label', 'CLUSTER': 'no label', 'LATITUTE': 'no label', 'LONGITUDE': 'no label', 'ASSEMBLY': 'no label', 'PARLIAMENT': 'no label', 'DEPT_CODE': 'no label', 'STATUS': 'no label', 'CREATED_BY': 'no label', });
+lyr_chennaiparliamentaryconstituencies_3.set('fieldLabels', {'fid': 'no label', 'Name': 'no label', 'description': 'inline label - always visible', 'timestamp': 'no label', 'begin': 'no label', 'end': 'no label', 'altitudeMode': 'no label', 'tessellate': 'no label', 'extrude': 'no label', 'visibility': 'no label', 'drawOrder': 'no label', 'icon': 'no label', 'OBJECTID': 'no label', 'PARLIAMENT': 'no label', 'SHAPE_AREA': 'no label', 'SHAPE_LEN': 'no label', });
+lyr_GCC_DIVISION_4.set('fieldLabels', {'fid': 'hidden field', 'id': 'hidden field', 'name': 'hidden field', });
+lyr_GCC_ZONE_5.set('fieldLabels', {'fid': 'hidden field', 'id': 'hidden field', 'zone_number': 'inline label - always visible', 'zone_name': 'inline label - always visible', 'wards_details': 'hidden field', 'Number of Wards': 'hidden field', 'name': 'inline label - always visible', });
+lyr_TNschoolsGIS_6.set('fieldLabels', {'fid': 'hidden field', 'SNO': 'hidden field', 'OBJECT_ID': 'hidden field', 'DISTRICT': 'header label - always visible', 'BLOCK': 'inline label - always visible', 'EDUCATION_DISTRICT': 'inline label - always visible', 'NAME': 'inline label - always visible', 'MANAGING_DEPARTMENT': 'inline label - always visible', 'MANAGEMENT': 'inline label - always visible', 'CATEGORY': 'inline label - always visible', 'CATEGORY_GROUP': 'inline label - always visible', 'DIRECTORATE': 'inline label - always visible', 'LOCALBODY': 'inline label - always visible', 'TOWN_MUNICIPALITY': 'inline label - always visible', 'HABITATION': 'inline label - always visible', 'CLUSTER': 'inline label - always visible', 'LATITUTE': 'hidden field', 'LONGITUDE': 'hidden field', 'ASSEMBLY': 'inline label - always visible', 'PARLIAMENT': 'inline label - always visible', 'DEPT_CODE': 'inline label - always visible', 'STATUS': 'hidden field', 'CREATED_BY': 'hidden field', });
 lyr_TNschoolsGIS_6.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
 });
