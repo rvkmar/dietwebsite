@@ -374,3 +374,24 @@ input:checked+.slider:before {
 .footer-top-wrapper {
     background: #a46212;
 }
+
+/* footer change color */
+.footer-bottom-wrapper {
+    background-repeat: repeat;
+    background-color: #3c3c3c;
+    padding: 0px 0px;
+    color: #fff;
+    position: relative;
+    text-align: right;
+}
+
+.last-updated {
+    text-align: justify;
+}
+
+.footer-content {
+    padding: 0px 0px;
+    color: #fff;
+    position: relative;
+    text-align: left;
+}
