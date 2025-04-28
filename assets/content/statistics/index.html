@@ -65,7 +65,44 @@
             text-align: right;
         }
 
-        #toggle-legend {
+        #legend {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+            position: relative;
+            display: block;
+            /* visible initially */
+            opacity: 1;
+            /* fully visible initially */
+            transition: opacity 0.5s ease;
+            /* Smooth fade */
+        }
+
+        #legend.fade-out {
+            opacity: 0;
+            /* fade out to transparent */
+            pointer-events: none;
+            /* prevent clicking while hidden */
+        }
+
+        #legend img {
+            width: 150px;
+        }
+
+        #close-legend {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #9b8b8b;
+        }
+
+        #show-legend {
             background-color: #fff;
             border: 1px solid #666;
             padding: 5px;
@@ -74,19 +111,7 @@
             font-size: 12px;
         }
 
-        #legend {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.5s ease-out;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 5px;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
 
-        #legend img {
-            width: 150px;
-        }
 
         #north-arrow {
             position: absolute;
@@ -126,8 +151,9 @@
     </div>
     <!-- map legend and north arrow -->
     <div id="legend-container">
-        <button id="toggle-legend">Show Legend</button>
+        <button id="show-legend" style="display: none;">Show Legend</button>
         <div id="legend">
+            <button id="close-legend">&times;</button>
             <img src="/assets/content/statistics/images/legend.png" alt="Map Legend" style="width:150px;">
         </div>
     </div>
@@ -162,17 +188,34 @@
     <script src="./resources/qgis2web.js"></script>
     <!-- for clickable legend -->
     <script>
-        document.getElementById('toggle-legend').addEventListener('click', function () {
-            var legend = document.getElementById('legend');
-            if (legend.style.maxHeight && legend.style.maxHeight !== "0px") {
-                legend.style.maxHeight = "0px";
-                this.textContent = 'Show Legend';
-            } else {
-                legend.style.maxHeight = "500px"; // Enough height for your legend image
-                this.textContent = 'Hide Legend';
-            }
+        const legend = document.getElementById('legend');
+        const showLegendButton = document.getElementById('show-legend');
+        const closeLegendButton = document.getElementById('close-legend');
+
+        closeLegendButton.addEventListener('click', function () {
+            // Start fading out
+            legend.classList.add('fade-out');
+
+            // After fade animation (0.5s), hide legend and show button
+            setTimeout(function () {
+                legend.style.display = "none";
+                showLegendButton.style.display = "inline-block";
+            }, 500); // matches the CSS transition time
+        });
+
+        showLegendButton.addEventListener('click', function () {
+            // Show the legend first
+            legend.style.display = "block";
+
+            // Allow a tiny time gap before removing fade-out (to trigger CSS transition)
+            setTimeout(function () {
+                legend.classList.remove('fade-out');
+            }, 10);
+
+            showLegendButton.style.display = "none";
         });
     </script>
+
 </body>
 
 </html>
