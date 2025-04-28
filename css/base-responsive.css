@@ -354,7 +354,7 @@
 		padding: 0px;
 		float: none;
 		display: block;
-		text-align: center;
+		/* text-align: center; */
 		padding-bottom: 8px;
 	}
 	.logo-cmf {
@@ -531,7 +531,7 @@
 	.copyright-content {
 		width: 100%;
 		float: none;
-		text-align: center;
+		/* text-align: center; */
 	}
 	.logo-cmf {
 		float: none;
