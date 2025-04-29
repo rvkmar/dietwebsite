@@ -77,6 +77,7 @@ async function changeLanguage(lang) {
 
   setTimeout(() => {
     updateContent(langData);
+    updateImages(lang); // <--- Added this line
     showLang(lang === 'ta' ? 'tamil' : 'english');
     toggleTamilStylesheet(lang);
     toggleTamilBodyClass(lang);
@@ -110,6 +111,17 @@ function toggleTamilBodyClass(lang) {
     document.body.classList.remove('tamil-body');
   }
 }
+
+// Update images based on selected language
+function updateImages(lang) {
+  document.querySelectorAll('[data-i18n-image-en]').forEach(img => {
+    const newSrc = img.getAttribute(`data-i18n-image-${lang}`);
+    if (newSrc) {
+      img.src = newSrc;
+    }
+  });
+}
+
 
 // On page load
 document.addEventListener('DOMContentLoaded', async () => {
