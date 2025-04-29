@@ -410,3 +410,23 @@ input:checked+.slider:before {
     height: 110vh;  */
     margin-bottom: 1rem;
 }
+
+/* spacing between paragraph in principal's desk */
+.custompara {
+    text-align: justify; 
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+    padding: 0 1em;
+    /* Optional: Add padding for better readability */
+    /* font-size: 1.2em; */
+}
+
+.custompara h2 {
+    color: #2c3e50;
+    /* border-bottom: 2px solid #ccc; */
+    padding-bottom: 1em;
+}
+.custompara p {
+    margin-bottom: 1em;
+    /* Optional: Add margin to paragraphs for spacing */
+}
