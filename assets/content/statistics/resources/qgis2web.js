@@ -8,6 +8,10 @@ var map = new ol.Map({
     })
 });
 
+var scaleLine = new ol.control.ScaleLine();
+map.addControl(scaleLine);
+
+
 //initial view - epsg:3857 coordinates if not "Match project CRS"
 map.getView().fit([8895535.434080, 1441939.449868, 8980337.959227, 1487890.297699], map.getSize());
 
