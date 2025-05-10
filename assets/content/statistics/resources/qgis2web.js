@@ -8,9 +8,23 @@ var map = new ol.Map({
     })
 });
 
+// Add a scale line control to the map
 var scaleLine = new ol.control.ScaleLine();
 map.addControl(scaleLine);
 
+// Inside the file where map is initialized
+// After: var map = new ol.Map({...});
+// For DIET fa-university icon
+var dietOverlay = new ol.Overlay({
+    element: document.getElementById('diet-icon'),
+    positioning: 'bottom-center',
+    stopEvent: false
+  });
+  
+  var dietCoords = ol.proj.fromLonLat([80.27904656339534,13.04756542633238]); // Replace with actual coords
+  dietOverlay.setPosition(dietCoords);
+  map.addOverlay(dietOverlay);
+  
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
 map.getView().fit([8895535.434080, 1441939.449868, 8980337.959227, 1487890.297699], map.getSize());
