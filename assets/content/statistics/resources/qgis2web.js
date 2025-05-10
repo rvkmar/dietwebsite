@@ -21,7 +21,7 @@ var dietOverlay = new ol.Overlay({
     stopEvent: false
   });
   
-  var dietCoords = ol.proj.fromLonLat([80.27904656339534,13.04756542633238]); // Replace with actual coords
+  var dietCoords = ol.proj.fromLonLat([80.27917846836266,13.047668788212622]); // Replace with actual coords
   dietOverlay.setPosition(dietCoords);
   map.addOverlay(dietOverlay);
   
