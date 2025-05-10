@@ -111,11 +111,16 @@
             font-size: 12px;
         }
 
-        #north-arrow {
+        #compass {
             position: absolute;
             bottom: 10px;
             right: 10px;
             z-index: 1000;
+        }
+
+        #compass-img {
+            width: 50px;
+            transition: transform 0.5s ease;
         }
     </style>
     <!-- map header css -->
@@ -188,10 +193,11 @@
             <img src="/assets/content/statistics/images/legend.png" alt="Map Legend" style="width:150px;">
         </div>
     </div>
-
-    <div id="north-arrow">
-        <img src="/assets/content/statistics/images/north-arrow.png" alt="North Arrow" style="width:50px;">
+    <!-- North arrow and compass -->
+    <div id="compass">
+        <img id="compass-img" src="/assets/content/statistics/images/north-arrow.png" alt="Compass" style="width:50px;">
     </div>
+
     <!-- map header -->
     <div id="map-header">
         Schools in Chennai
@@ -244,6 +250,12 @@
             }, 10);
 
             showLegendButton.style.display = "none";
+        });
+
+        map.getView().on('change:rotation', function () {
+            var rotation = map.getView().getRotation();
+            var compass = document.getElementById('compass-img');
+            compass.style.transform = 'rotate(' + (-rotation) + 'rad)';
         });
     </script>
 
