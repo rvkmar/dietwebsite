@@ -68,14 +68,44 @@ samp {
 }
 
 /* if window is scaled to 125% */
-@media (max-resolution: 1.25dppx) {
+/* @media (max-resolution: 1.25dppx) {
     body {
         transform: scale(0.9);
         transform-origin: top left;
-        width: 115%;
-        /* Counteract the shrinking caused by scale */
-        height: 100vh;
-    }
+        width: 115%;  /* Counteract the shrinking caused by scale */
+        /* height: 100vh; */
+    /* } */
+/* } */
+
+/* If zoomed out to 80% */
+body.zoom-80 {
+    transform: scale(1.25);
+    transform-origin: top left;
+    width: 80%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* If zoom is 125% */
+body.zoom-125 {
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111.11%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Optional: default zoom (100%) */
+body.zoom-100 {
+    transform: none;
+    width: 100%;
+    height: auto;
+}
+
+/* Fallback for unhandled zooms */
+body.zoom-other {
+    outline: 2px dashed red;
+    /* for debugging */
 }
 
 .sw-logo img {

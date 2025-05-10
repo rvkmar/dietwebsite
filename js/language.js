@@ -122,6 +122,33 @@ function updateImages(lang) {
   });
 }
 
+// Function to detectZoomLevel
+(function () {
+  function detectZoomLevel() {
+    const zoom = Math.round(window.devicePixelRatio * 100);
+    const body = document.body;
+
+    // Remove old zoom classes
+    body.classList.remove('zoom-80', 'zoom-100', 'zoom-125', 'zoom-other');
+
+    // Add the appropriate class
+    if (zoom === 80) {
+      body.classList.add('zoom-80');
+    } else if (zoom === 100) {
+      body.classList.add('zoom-100');
+    } else if (zoom === 125) {
+      body.classList.add('zoom-125');
+    } else {
+      body.classList.add('zoom-other');
+    }
+  }
+
+  // Run on page load and resize
+  window.addEventListener('DOMContentLoaded', detectZoomLevel);
+  window.addEventListener('resize', detectZoomLevel);
+})();
+
+
 
 // On page load
 document.addEventListener('DOMContentLoaded', async () => {
