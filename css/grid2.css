@@ -129,6 +129,6 @@ body .grid-container{
         width: 100%;
     }
     .card-front img {
-        width: 100%;
+        width: 60%;
     }
 }
