@@ -104,6 +104,9 @@ body.zoom-100 {
 
 /* Fallback for unhandled zooms */
 body.zoom-other {
+    transform: none;
+        width: 95%;
+        height: auto;
     /* outline: 2px dashed red; */
     /* for debugging */
 }
