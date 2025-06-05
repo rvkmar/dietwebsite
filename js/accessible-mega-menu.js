@@ -1004,3 +1004,47 @@ if (jQuery) {
     },
   });
 })(jQuery, window, document);
+
+// custom error handlers
+window.onerror = function(message, source, lineno, colno, error) {
+  console.error("Global JS Error:", { message, source, lineno, colno, error });
+};
+
+window.onunhandledrejection = function(event) {
+  console.error("Unhandled Promise Rejection:", event.reason);
+};
+
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+  console.error("AJAX Error:", {
+    url: settings.url,
+    method: settings.type,
+    status: jqxhr.status,
+    response: jqxhr.responseText,
+    error: thrownError
+  });
+});
+
+(function($) {
+  var originalOn = $.fn.on;
+  $.fn.on = function(...args) {
+    const events = args[0];
+    const selector = typeof args[1] === 'string' ? args[1] : null;
+    const handler = args[selector ? 2 : 1];
+
+    const wrappedHandler = function(...handlerArgs) {
+      try {
+        return handler.apply(this, handlerArgs);
+      } catch (err) {
+        console.error("jQuery event handler error:", err);
+      }
+    };
+
+    if (selector) {
+      args[2] = wrappedHandler;
+    } else {
+      args[1] = wrappedHandler;
+    }
+
+    return originalOn.apply(this, args);
+  };
+})(jQuery);

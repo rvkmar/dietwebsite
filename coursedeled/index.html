@@ -49,6 +49,82 @@
     <noscript>
         <link href="/css/no-js.css" type="text/css" rel="stylesheet">
     </noscript>
+    <style>
+        /* Centered button container */
+        .img-container {
+            display: flex;
+            justify-content: center;
+            /* gap: 20px; */
+            margin-top: 0.5%;
+            /* height: 60vh; */
+            align-items: center;
+        }
+
+        /* Centered button container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            /* gap: 20px; */
+            /* margin-top: 2%; */
+            margin-bottom: 5%;
+            /* height: 60vh; */
+            align-items: center;
+        }
+
+        /* Button styles */
+        .apply-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 960px;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 24px;
+            top: 16px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -412,8 +488,33 @@
             <!--/#page-head-->
             <!-- <div class="main_content"> -->
             <!-- TODO: Add D.El.Ed., course details -->
-            <div>
-                <iframe src="https://scert.tnschools.gov.in/" style="width: 100%; height: 100vh; border: none"></iframe>
+            <div class="img-container">
+                <img src="\images\banner\deled_banner.png" alt="Diploma banner"
+                    style="width: 100%; height: auto; max-width: 800px; margin-bottom: 20px;">
+            </div>
+            <div class="button-container">
+                <!-- Buttons -->
+                <button class="apply-btn" onclick="openModal('instructions')">View Instructions</button>
+                <button class="apply-btn" onclick="openModal('apply')">Apply Now</button>
+                <!-- <button class="apply-btn" onclick="confirmApply()">Apply Now</button> -->
+            </div>
+            <!-- Apply Modal -->
+            <div id="applyModal" class="modal" onclick="ignoreOutsideClick(event, 'apply')">
+                <span class="close" onclick="closeModal('apply')">&times;</span>
+                <div class="modal-content">
+                    <iframe src="https://scert.tnschools.gov.in/admission/diploma_elementary_education"
+                        title="Application Page"></iframe>
+                </div>
+            </div>
+
+            <!-- Instructions Modal -->
+            <div id="instructionsModal" class="modal">
+                <span class="close" onclick="closeModal('instructions')">&times;</span>
+                <div class="modal-content">
+                    <iframe
+                        src="https://d1wpyxz35bzzz4.cloudfront.net/2025_2026_D.El.Ed_Admission_Guidelines_for_Government_Institutions.pdf"
+                        title="Admission Guidelines PDF"></iframe>
+                </div>
             </div>
         </section>
     </div>
@@ -541,6 +642,56 @@
     <script src="/js/easyResponsiveTabs.js" defer></script>
     <script src="/js/language.js" defer></script>
     <script src="/js/custom.js" defer></script>
+    <script>
+        function openModal(type) {
+            document.getElementById(type + "Modal").style.display = "block";
+        }
+
+        function closeModal(type) {
+            if (type === "apply") {
+                const confirmClose = confirm("Are you sure you want to close the application window?");
+                if (!confirmClose) return;
+            }
+            document.getElementById(type + "Modal").style.display = "none";
+        }
+
+        // Only Instructions modal closes on outside click
+        window.onclick = function (event) {
+            const instructionsModal = document.getElementById("instructionsModal");
+            if (event.target === instructionsModal) {
+                instructionsModal.style.display = "none";
+            }
+        };
+
+        // Prevent outside click from closing Apply modal
+        function ignoreOutsideClick(event, type) {
+            if (type === 'apply' && event.target.id === "applyModal") {
+                // Do nothing
+            }
+        }
+
+        function confirmApply() {
+            const go = confirm("You are about to leave this page and open the application form. Continue?");
+            if (go) {
+                window.open("https://scert.tnschools.gov.in/admission/diploma_elementary_education", "_blank");
+            }
+        }
+
+        // Disable Esc key for Apply modal
+        window.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                const applyModal = document.getElementById("applyModal");
+                const instructionsModal = document.getElementById("instructionsModal");
+
+                if (applyModal.style.display === "block") {
+                    // Do nothing — block Esc for Apply modal
+                    event.preventDefault();
+                } else if (instructionsModal.style.display === "block") {
+                    instructionsModal.style.display = "none";
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
