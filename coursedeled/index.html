@@ -92,14 +92,24 @@
         }
 
         .close {
-            color: white;
+            position: absolute;
+            top: 12px;
+            right: 16px;
             font-size: 28px;
             font-weight: bold;
-            position: absolute;
-            right: 24px;
-            top: 16px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 4px 10px;
+            border-radius: 50%;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             z-index: 10000;
+            line-height: 1;
+        }
+
+        .close:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+            transform: scale(1.1);
         }
 
         .apply-btn {
@@ -131,6 +141,21 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        .confirm-box {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            margin: 20% auto;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: #333;
+            /* Make sure text is visible */
+            font-size: 16px;
+            /* Ensure it’s readable */
         }
     </style>
 </head>
@@ -509,7 +534,9 @@
                     </div>
                 </div>
             </div>
-            <p style="text-align: center; margin: 1%; font-style: italic;">For more info, please visit the <a href="https://scert.tnschools.gov.in" style="color: #007bff; font-weight: 600;">Official SCERT Tamil Nadu website</a> </p>
+            <p style="text-align: center; margin: 1%; font-style: italic;">For more info, please visit the <a
+                    href="https://scert.tnschools.gov.in" style="color: #007bff; font-weight: 600;">Official SCERT Tamil
+                    Nadu website</a> </p>
             <!-- Apply Modal -->
             <div id="applyModal" class="modal" onclick="ignoreOutsideClick(event, 'apply')">
                 <span class="close" onclick="showConfirmModal()">&times;</span>
