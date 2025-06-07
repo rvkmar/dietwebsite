@@ -13,94 +13,99 @@ if($('.nav-menu li ul[class="sub-nav-group"] li ul[class="sub-nav-group"] li').f
 } ) ( jQuery );
 */
 // code end
-jQuery(document).ready(function(){
-	jQuery("#edit-search-block-form--2").attr("placeholder", "Search - Keyword, Phrase");
-	jQuery(".gtranslate select").attr("id","gtranslate");			   
-	jQuery("#gtranslate").before('<label class="notdisplay" for="gtranslate">Google Translate</label>');
-	//contrast
-	if(getCookie('contrast') == 0 || getCookie('contrast') == null){
-	jQuery(".light").hide();
-	jQuery(".dark").show();
-    }else{
-	jQuery(".light").show();
-	jQuery(".dark").hide();
-	
-    }
-    jQuery(".search-drop").css("display", "none");
-    jQuery(".common-right ul li ul").css("visibility", "hidden");
-
-// Fix Header
-
-	var num = 36; //number of pixels before modifying styles
-    jQuery(window).bind('scroll', function () {
-        if (jQuery(window).scrollTop() > num) {
-        jQuery('.fixed-division').addClass('sticky');
+try {
+	jQuery(document).ready(function(){
+		jQuery("#edit-search-block-form--2").attr("placeholder", "Search - Keyword, Phrase");
+		jQuery(".gtranslate select").attr("id","gtranslate");			   
+		jQuery("#gtranslate").before('<label class="notdisplay" for="gtranslate">Google Translate</label>');
+		//contrast
+		if(getCookie('contrast') == 0 || getCookie('contrast') == null){
+		jQuery(".light").hide();
+		jQuery(".dark").show();
+		}else{
+		jQuery(".light").show();
+		jQuery(".dark").hide();
 		
-    
-        } else {
-        jQuery('.fixed-division').removeClass('sticky');
-    
-        }
-    });		
-			
-jQuery(document).ready(function(){
-
-jQuery("#main-menu div > ul" ).attr("id","nav");
-//
-	dropdown1('nav','hover',10);
-//
-dropdown1("header-nav", "hover", 20);
-
-});
-		
-	
-// Mobile Nav	
-jQuery('.sub-menu').append('<i class="fa fa-caret-right"></i>');
-	jQuery('.toggle-nav-bar').click(function(){	
-	jQuery('#nav').slideToggle();
-	//jQuery('#nav li').removeClass('open');
-    
-	/*jQuery("#nav li").click(function(){
-		jQuery("#nav li").removeClass('open');
-		jQuery(this).addClass('open');
-	}); */
-	
-		jQuery("#nav li").hover(
-		function() {
-		jQuery( this  ).addClass( "open" );
-		}, function() {
-		jQuery( this ).removeClass( "open" );
 		}
-		);
+		jQuery(".search-drop").css("display", "none");
+		jQuery(".common-right ul li ul").css("visibility", "hidden");
+	
+	// Fix Header
+	
+		var num = 36; //number of pixels before modifying styles
+		jQuery(window).bind('scroll', function () {
+			if (jQuery(window).scrollTop() > num) {
+			jQuery('.fixed-division').addClass('sticky');
+			
 		
+			} else {
+			jQuery('.fixed-division').removeClass('sticky');
+		
+			}
+		});		
+				
+	jQuery(document).ready(function(){
+	
+	jQuery("#main-menu div > ul" ).attr("id","nav");
+	//
+		dropdown1('nav','hover',10);
+	//
+	dropdown1("header-nav", "hover", 20);
+	
 	});
+			
+		
+	// Mobile Nav	
+	jQuery('.sub-menu').append('<i class="fa fa-caret-right"></i>');
+		jQuery('.toggle-nav-bar').click(function(){	
+		jQuery('#nav').slideToggle();
+		//jQuery('#nav li').removeClass('open');
+		
+		/*jQuery("#nav li").click(function(){
+			jQuery("#nav li").removeClass('open');
+			jQuery(this).addClass('open');
+		}); */
+		
+			jQuery("#nav li").hover(
+			function() {
+			jQuery( this  ).addClass( "open" );
+			}, function() {
+			jQuery( this ).removeClass( "open" );
+			}
+			);
+			
+		});
+	
+	
+	//Skip Content
+	jQuery('a[href^="#skipCont"]').click(function() {
+	jQuery('html,body').animate({ scrollTop: jQuery(this.hash).offset().top}, 500);
+	//return false;
+	//e.preventDefault();
+	
+	});
+	
+	// Toggle Search
+	
+	
+	
+		jQuery("#toggleSearch").click(function(e) {
+			jQuery(".search-drop").toggle();
+			e.stopPropagation();
+		});
+	
+		jQuery(document).click(function(e) {
+			if (!jQuery(e.target).is('.search-drop, .search-drop *')) {
+				jQuery(".search-drop").hide();
+			}
+		});
+	
+	
+	});
+} catch (error) {
+	console.log(error);
+}
 
-
-//Skip Content
-jQuery('a[href^="#skipCont"]').click(function() {
-jQuery('html,body').animate({ scrollTop: jQuery(this.hash).offset().top}, 500);
-//return false;
-//e.preventDefault();
-
-});
-
-// Toggle Search
-
-
-
-    jQuery("#toggleSearch").click(function(e) {
-        jQuery(".search-drop").toggle();
-        e.stopPropagation();
-    });
-
-    jQuery(document).click(function(e) {
-        if (!jQuery(e.target).is('.search-drop, .search-drop *')) {
-            jQuery(".search-drop").hide();
-        }
-    });
-
-
-});
 
 
 
