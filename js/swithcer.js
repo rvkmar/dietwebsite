@@ -103,105 +103,109 @@ if (manual_or_random=="manual"){ //IF MANUAL MODE
 	} 
 }
 
-jQuery(document).ready(function(){		
-	jQuery('#menu-item-278 > a, #menu-item-194 > a, #menu-item-192 >  a').click(function(){return false;});		
-	jQuery('.dark').click(function(){	
-		var thirtyDays = 1000*60*60*24*30;
-		var expireDate = new Date((new Date()).valueOf() + thirtyDays);		
-		document.cookie = 'contrast' +"="+ 1 +"; expires="+expireDate.toGMTString()+"; path=/";
-		document.cookie="username=John Doe";
-		jQuery(".light").show();
-		jQuery(".dark").hide();
-		jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
-		jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
-		jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
-		
-		jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
-		jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
-		
-		//jQuery(".ico-social img.top").attr("src","/images/ico-social-y.png");
-		//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
-		
-		jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search-y.png");
-		jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
-		
-		jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap-y.png");
-		jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
-		
-		jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
-		jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
-		
-		jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
-		
+try {
+	jQuery(document).ready(function(){		
+		jQuery('#menu-item-278 > a, #menu-item-194 > a, #menu-item-192 >  a').click(function(){return false;});		
+		jQuery('.dark').click(function(){	
+			var thirtyDays = 1000*60*60*24*30;
+			var expireDate = new Date((new Date()).valueOf() + thirtyDays);		
+			document.cookie = 'contrast' +"="+ 1 +"; expires="+expireDate.toGMTString()+"; path=/";
+			document.cookie="username=John Doe";
+			jQuery(".light").show();
+			jQuery(".dark").hide();
+			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
+			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
+			jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
+			
+			jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
+			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
+			
+			//jQuery(".ico-social img.top").attr("src","/images/ico-social-y.png");
+			//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
+			
+			jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search-y.png");
+			jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
+			
+			jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap-y.png");
+			jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
+			
+			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
+			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
+			
+			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
+			
+		});
+		jQuery('.light').click(function(){	
+			var thirtyDays = 1000*60*60*24*30;
+			var expireDate = new Date((new Date()).valueOf() + thirtyDays);		
+			document.cookie = 'contrast' +"="+ 0 +"; expires="+expireDate.toGMTString()+"; path=/";		
+			jQuery(".light").hide();
+			jQuery(".dark").show();		
+			jQuery("[href*='change.css']").remove();
+			jQuery("[href*='site-change.css']").remove();
+			jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
+			
+			jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
+			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
+			
+			//jQuery(".ico-social img.top").attr("src","/images/ico-social.png");
+			//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
+			
+			jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search.png");
+			jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
+			
+			jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap.png");
+			jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
+			
+			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility.png");
+			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
+			
+			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
+	
+		});
+		if(getCookie('contrast') == "1") {
+			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
+			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
+			jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
+			
+			jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
+			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
+			
+			//jQuery(".ico-social img.top").attr("src","/images/ico-social-y.png");
+			//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
+			
+			jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search-y.png");
+			jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
+			
+			jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap-y.png");
+			jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
+			
+			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
+			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
+			
+			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
+		}
+		if(getCookie('contrast') == "0" ) {
+			jQuery("[href*='../css/change.css']").remove();
+			jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
+			
+			jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
+			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
+			
+			//jQuery(".ico-social img.top").attr("src","/images/ico-social.png");
+			//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
+			
+			jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search.png");
+			jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
+			
+			jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap.png");
+			jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
+			
+			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility.png");
+			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
+			
+		}
 	});
-	jQuery('.light').click(function(){	
-		var thirtyDays = 1000*60*60*24*30;
-		var expireDate = new Date((new Date()).valueOf() + thirtyDays);		
-		document.cookie = 'contrast' +"="+ 0 +"; expires="+expireDate.toGMTString()+"; path=/";		
-		jQuery(".light").hide();
-		jQuery(".dark").show();		
-		jQuery("[href*='change.css']").remove();
-		jQuery("[href*='site-change.css']").remove();
-		jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
-		
-		jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
-		jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
-		
-		//jQuery(".ico-social img.top").attr("src","/images/ico-social.png");
-		//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
-		
-		jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search.png");
-		jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
-		
-		jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap.png");
-		jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
-		
-		jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility.png");
-		jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
-		
-		jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
-
-	});
-	if(getCookie('contrast') == "1") {
-		jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
-		jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
-		jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
-		
-		jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
-		jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
-		
-		//jQuery(".ico-social img.top").attr("src","/images/ico-social-y.png");
-		//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
-		
-		jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search-y.png");
-		jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
-		
-		jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap-y.png");
-		jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
-		
-		jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
-		jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
-		
-		jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
-	}
-	if(getCookie('contrast') == "0" ) {
-		jQuery("[href*='../css/change.css']").remove();
-		jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
-		
-		jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
-		jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
-		
-		//jQuery(".ico-social img.top").attr("src","/images/ico-social.png");
-		//jQuery(".ico-social img.bottom").attr("src","/images/ico-social-light.png");
-		
-		jQuery(".ico-site-search img.top").attr("src","/images/ico-site-search.png");
-		jQuery(".ico-site-search img.bottom").attr("src","/images/ico-site-search-light.png");
-		
-		jQuery(".ico-sitemap img.top").attr("src","/images/ico-sitemap.png");
-		jQuery(".ico-sitemap img.bottom").attr("src","/images/ico-sitemap-light.html");
-		
-		jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility.png");
-		jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
-		
-	}
-});
+} catch (error) {
+	console.log(error);
+}
