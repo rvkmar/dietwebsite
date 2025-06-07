@@ -255,7 +255,7 @@ $(window).scroll(function() {
       a = 1;
     }
   } catch (error) {
-    console.error('Scroll animation error:', error);
+    console.log('Scroll animation error:', error);
   }
 });
 
