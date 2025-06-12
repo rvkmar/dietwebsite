@@ -48,6 +48,33 @@
     <noscript>
         <link href="/css/no-js.css" type="text/css" rel="stylesheet">
     </noscript>
+    <style>
+
+    
+        h3 {
+            text-align: center;
+            color: #004080;
+        }
+    
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+    
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+    
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+    </style>
 </head>
 
 <body>
@@ -410,8 +437,10 @@
             <!--/#page-head-->
             <!-- <div class="main_content"> -->
             <!-- TODO: Add Gallery details -->
-            <div>
-                <iframe src="/default.html" style="width: 100%; height: 100vh; border: none"></iframe>
+            <div class="container">
+                <h3>Photo Gallery</h3>
+                <p style="text-align:center;">Photos from DIET Chennai events and activities</p>
+                <div class="gallery" id="gallery"></div>
             </div>
         </section>
     </div>
@@ -539,6 +568,24 @@
     <script src="/js/easyResponsiveTabs.js" defer></script>
     <script src="/js/language.js" defer></script>
     <script src="/js/custom.js" defer></script>
+    <script>
+        fetch('/assets/content/gallery/gallery.json')
+            .then(response => response.json())
+            .then(images => {
+                const galleryDiv = document.getElementById('gallery');
+                images.forEach(file => {
+                    const img = document.createElement('img');
+                    img.src = `/assets/content/gallery/${file}`;
+                    img.alt = file;
+                    galleryDiv.appendChild(img);
+                });
+            })
+            .catch(error => {
+                console.error('Failed to load gallery images:', error);
+                const fallback = document.getElementById('gallery');
+                fallback.innerHTML = '<p style="color: red;">Failed to load gallery images.</p>';
+            });
+    </script>
 </body>
 
 </html>

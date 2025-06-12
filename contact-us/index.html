@@ -48,6 +48,69 @@
     <noscript>
         <link href="/css/no-js.css" type="text/css" rel="stylesheet">
     </noscript>
+    <style>
+        /* .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        } */
+
+        .contact-details,
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .contact-details p {
+            margin: 10px 0;
+        }
+
+        .map {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 350px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003060;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -410,8 +473,32 @@
             <!--/#page-head-->
             <!-- <div class="main_content"> -->
             <!-- TODO: Add Contact details -->
-            <div>
-                <iframe src="/default.html" style="width: 100%; height: 100vh; border: none"></iframe>
+            <div class="container">
+                <div class="contact-details">
+                    <p><strong>District Institute of Education and Training (DIET), Chennai</strong></p>
+                    <p>Kamarajar Salai, Triplicane, Chennai – 600005</p>
+                    <p>Tamil Nadu, India</p>
+                    <p><strong>Email:</strong> principal@dietchn.ac.in</p>
+                    <p><strong>Phone:</strong> +91-94441 45002</p>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form action="mailto:principal@dietchn.ac.in" method="POST" enctype="text/plain">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+
+                <div class="map">
+                    <h2>Find Us on Map</h2>
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3890.056142866214!2d80.2791785!3d13.0476688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzUxLjYiTiA4MMKwMTYnNDUuMCJF!5e0!3m2!1sen!2sin!4v1718012345678"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </section>
     </div>
