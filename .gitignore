@@ -4,6 +4,7 @@
 ### VisualStudioCode ###
 .vscode/*
 ztest/*
+CNAME
 # Maybe .vscode/**/* instead - see comments
 # !.vscode/settings.json
 .vscode/settings.json
