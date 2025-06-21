@@ -49,6 +49,100 @@
     <noscript>
         <link href="/css/no-js.css" type="text/css" rel="stylesheet">
     </noscript>
+    <style>
+        /* Centered button container */
+        .img-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+    
+        /* Centered button container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+    
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    
+        .modal-content {
+            background-color: #fff;
+            margin: 4% auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 80vw;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    
+        .close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 4px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 10000;
+            line-height: 1;
+        }
+    
+        .close:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+    
+        .apply-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+    
+        .apply-btn:hover {
+            background-color: #0056b3;
+        }
+    
+        .button-overlay {
+            position: absolute;
+            top: 2.3rem;
+            left: 70%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+    
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -406,6 +500,16 @@
                 </div>
             </section>
             <!--/#page-head-->
+            <div class="button-overlay">
+                <button class="apply-btn" onclick="openModal('instructions')">Mandatory Disclosure</button>
+            </div>
+            <!-- Instructions Modal -->
+            <div id="instructionsModal" class="modal">
+                <span class="close" onclick="closeModal('instructions')">&times;</span>
+                <div class="modal-content">
+                    <iframe src="\assets\docs\mandatory_disclosure.html" title="Mandatory Disclosure"></iframe>
+                </div>
+            </div>
             <div class="article68217830">
                 <section id="paragraph" class="wrapper paragraph-wrapper">
                     <div class="container common-container four_content">
@@ -511,12 +615,14 @@
                                         <li>🏫 The <i>Lady Willingdon Teacher Training Institute</i> became the
                                             <i>District
                                                 Institute of Education and Training
-                                                (DIET), Chennai</i></li>
+                                                (DIET), Chennai</i>
+                                        </li>
                                         <li>🏫 The <i>Lady Willingdon Teacher Training College</i> became the
                                             <i>Institute
                                                 of
                                                 Advanced Study in Education
-                                                (IASE), Chennai</i></li>
+                                                (IASE), Chennai</i>
+                                        </li>
                                     </ul>
                                     <p>
                                         These changes positioned the institutions to support curriculum innovation,
@@ -764,6 +870,62 @@
     <script src="/js/easyResponsiveTabs.js" defer></script>
     <script src="/js/language.js" defer></script>
     <script src="/js/custom.js" defer></script>
+    <script>
+        function openModal(type) {
+            document.getElementById(type + "Modal").style.display = "block";
+        }
+
+        function closeModal(type) {
+            document.getElementById(type + "Modal").style.display = "none";
+        }
+
+        function showConfirmModal() {
+            document.getElementById("confirmModal").style.display = "block";
+        }
+
+        function closeConfirmModal() {
+            document.getElementById("confirmModal").style.display = "none";
+        }
+
+        function forceCloseApply() {
+            closeConfirmModal();
+            closeModal('apply');
+        }
+
+        // Only Instructions modal closes on outside click
+        window.onclick = function (event) {
+            const instructionsModal = document.getElementById("instructionsModal");
+            const confirmModal = document.getElementById("confirmModal");
+            if (event.target === instructionsModal) {
+                closeModal("instructions");
+            }
+            if (event.target === confirmModal) {
+                closeConfirmModal();
+            }
+        };
+
+        // Prevent outside click from closing Apply modal
+        function ignoreOutsideClick(event, type) {
+            if (type === 'apply' && event.target.id === "applyModal") {
+                // Do nothing
+            }
+        }
+
+        // Disable Esc key for Apply and Confirm modals
+        window.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                const applyModal = document.getElementById("applyModal");
+                const confirmModal = document.getElementById("confirmModal");
+                const instructionsModal = document.getElementById("instructionsModal");
+
+                if (confirmModal.style.display === "block" || applyModal.style.display === "block") {
+                    event.preventDefault();
+                } else if (instructionsModal.style.display === "block") {
+                    closeModal("instructions");
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
