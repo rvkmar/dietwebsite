@@ -3,7 +3,7 @@ backend:
   name: github
   repo: rvkmar/dietwebsite
   branch: main # Change to master if your default branch is master
-  site_domain: reliable-fairy-df7bcc.netlify.app
+  site_domain: www.dietchennai.org # Directs Decap to publish cleanly to your custom domain
 
 # Media File Paths
 media_folder: "images" # Folder where site images are stored
