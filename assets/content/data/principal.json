@@ -1,7 +1,10 @@
 {
   "photo": "/images/principal.png",
   "name": "Dr. S. Shameem",
+  "name_ta": "முனைவர் சுப. ஷமீம்",
   "designation": "Principal",
+  "designation_long": "Principal, DIET Chennai",
+  "designation_long_ta": "முதல்வர், DIET சென்னை",
   "qualification": "M.Sc., M.Phil.(Zoology), M.Ed., M.Phil.(Education), WBA, M.A.(Urdu), PGDPC, NET, SLET, Ph.D.",
   "experience": "24 years",
   "email": "principal@dietchennai.org",

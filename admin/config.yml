@@ -185,15 +185,18 @@ collections:
       - name: "principal_profile"
         label: "Principal's Photo & Profile"
         file: "assets/content/data/principal.json"
-        description: "The Principal's photo and profile. Used on the homepage, the Principal's Desk page, and automatically added as the first card on the Academic Faculty page — edit it here once and it updates everywhere. To change the DISPLAYED NAME/DESIGNATION text (which is bilingual, English + Tamil), use the 'Site Translations' collection instead (principalname / principaldesignation keys)."
+        description: "The Principal's photo, name, and designation — used on the Academic Faculty card, the homepage, the Principal's Desk page, and the Mandatory Disclosure document. Edit it here once and it updates everywhere; no other collection controls this anymore."
         fields:
           - label: "Photo"
             name: "photo"
             widget: "image"
             media_folder: "/images"
             public_folder: "/images"
-          - { label: "Name (used only on the Academic Faculty card)", name: "name", widget: "string" }
-          - { label: "Designation (used only on the Academic Faculty card)", name: "designation", widget: "string" }
+          - { label: "Name", name: "name", widget: "string", hint: "Used everywhere: this card, the homepage, Principal's Desk page, and the Mandatory Disclosure document." }
+          - { label: "Name (Tamil)", name: "name_ta", widget: "string", required: false, hint: "Shown on the homepage and Principal's Desk page when a visitor switches to Tamil. Leave blank to just keep showing the English name in Tamil mode too." }
+          - { label: "Designation (short, for this card)", name: "designation", widget: "string", hint: "Shown only on this Academic Faculty card, e.g. 'Principal' \u2014 matches the style of every other faculty member's card." }
+          - { label: "Designation (full title, for homepage/desk/disclosure)", name: "designation_long", widget: "string", hint: "e.g. 'Principal, DIET Chennai' \u2014 shown on the homepage, Principal's Desk page, and the Mandatory Disclosure document." }
+          - { label: "Designation (full title, Tamil)", name: "designation_long_ta", widget: "string", required: false }
           - { label: "Qualification", name: "qualification", widget: "text", required: false }
           - { label: "Teaching Experience", name: "experience", widget: "string", required: false }
           - { label: "Email", name: "email", widget: "string", required: false }
@@ -410,9 +413,11 @@ collections:
             - label: principalname
               name: principalname
               widget: text
+              hint: This value is NOT read anywhere on the site anymore \u2014 the Principal's name is now controlled entirely by the Principal collection, so it stays in sync across every page. Left here only so nothing in the translation file goes unmapped.
             - label: principaldesignation
               name: principaldesignation
               widget: text
+              hint: This value is NOT read anywhere on the site anymore \u2014 use the Principal collection's "Designation (full title...)" field instead.
             - label: announcements
               name: announcements
               widget: text
@@ -716,10 +721,12 @@ collections:
               name: principalname
               widget: text
               hint: 'EN: Dr. S. Shameem'
+              # NOT read anywhere anymore \u2014 use the Principal collection's Name (Tamil) field instead.
             - label: principaldesignation
               name: principaldesignation
               widget: text
               hint: 'EN: Principal, DIET Chennai'
+              # NOT read anywhere anymore \u2014 use the Principal collection's Designation (full title, Tamil) field instead.
             - label: announcements
               name: announcements
               widget: text

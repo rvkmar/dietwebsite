@@ -78,6 +78,7 @@ async function changeLanguage(lang) {
   setTimeout(() => {
     updateContent(langData);
     updateImages(lang); // <--- Added this line
+    updateText(lang);
     showLang(lang === 'ta' ? 'tamil' : 'english');
     toggleTamilStylesheet(lang);
     toggleTamilBodyClass(lang);
@@ -118,6 +119,20 @@ function updateImages(lang) {
     const newSrc = img.getAttribute(`data-i18n-image-${lang}`);
     if (newSrc) {
       img.src = newSrc;
+    }
+  });
+}
+
+// Update text on elements populated by js/cms-content.js (data-cms-text)
+// that also carry a Tamil variant, e.g. the Principal's name/designation on
+// the homepage and Principal's Desk page. Same pattern as updateImages()
+// above, kept separate since these attributes are set at runtime by
+// cms-content.js after it fetches its data, not present in the raw HTML.
+function updateText(lang) {
+  document.querySelectorAll('[data-i18n-text-en]').forEach(el => {
+    const newText = el.getAttribute(`data-i18n-text-${lang}`);
+    if (newText) {
+      el.textContent = newText;
     }
   });
 }

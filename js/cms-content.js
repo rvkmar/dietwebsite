@@ -157,6 +157,27 @@
     });
   }
 
+  function renderText(el) {
+    // <h2 data-cms-text="name" data-cms-text-ta="name_ta" data-cms-source="principal">
+    // Sets textContent from an arbitrary flat JSON data file (not a list) —
+    // same idea as renderImage(), for text instead of an image src. If
+    // data-cms-text-ta is also present, this additionally sets
+    // data-i18n-text-en/ta attributes so js/language.js's updateText()
+    // (mirroring its existing updateImages() banner-swap mechanism) can
+    // swap this element's text when a visitor toggles the site language.
+    var key = el.getAttribute("data-cms-text");
+    var taKey = el.getAttribute("data-cms-text-ta");
+    var source = el.getAttribute("data-cms-source") || "site-settings";
+    fetchJSON(source, function (data) {
+      if (!data || !data[key]) return;
+      el.textContent = data[key];
+      if (taKey) {
+        el.setAttribute("data-i18n-text-en", data[key]);
+        if (data[taKey]) { el.setAttribute("data-i18n-text-ta", data[taKey]); }
+      }
+    });
+  }
+
   function init() {
     var lists = document.querySelectorAll("[data-cms-list]");
     for (var i = 0; i < lists.length; i++) {
@@ -170,6 +191,8 @@
     for (var k = 0; k < grids.length; k++) { renderStaffGrid(grids[k]); }
     var images = document.querySelectorAll("[data-cms-image]");
     for (var m = 0; m < images.length; m++) { renderImage(images[m]); }
+    var texts = document.querySelectorAll("[data-cms-text]");
+    for (var n = 0; n < texts.length; n++) { renderText(texts[n]); }
   }
 
   if (document.readyState === "loading") {
