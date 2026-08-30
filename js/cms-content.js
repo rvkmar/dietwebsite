@@ -64,7 +64,12 @@
       var list = data && data.items ? data.items : null;
       if (!list || !list.length) return;
       el.innerHTML = list.map(function (b) {
-        return '<li><img src="' + esc(b.image) + '" alt="' + esc(b.alt || "") + '"></li>';
+        // data-i18n-image-en/ta let the existing js/language.js bilingual
+        // toggle (updateImages()) swap this image on language switch, same
+        // as the old hardcoded banner did.
+        var taAttr = b.image_ta ? ' data-i18n-image-ta="' + esc(b.image_ta) + '"' : "";
+        return '<li><img src="' + esc(b.image) + '" data-i18n-image-en="' + esc(b.image) + '"' +
+          taAttr + ' alt="' + esc(b.alt || "") + '"></li>';
       }).join("");
       if (window.jQuery && jQuery(el).closest(".flexslider").length && jQuery.fn.flexslider) {
         try { jQuery(el).closest(".flexslider").flexslider(0); } catch (e) {}

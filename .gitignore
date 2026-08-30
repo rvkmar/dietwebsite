@@ -16,4 +16,20 @@ push_both.bat
 # Ignore all local history of files
 **/.history
 
+### OS / editor cruft ###
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+### Node / tooling (Decap CMS local dev, if ever used) ###
+node_modules/
+npm-debug.log*
+.env
+.env.local
+
+### Netlify ###
+.netlify/
+
 # End of https://www.gitignore.io/api/visualstudiocode

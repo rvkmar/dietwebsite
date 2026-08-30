@@ -1,7 +1,7 @@
 {
   "items": [
-    { "image": "/images/banner/carousel_banner.png", "alt": "DIET Chennai" },
-    { "image": "/images/banner/tamil_vaaram.png", "alt": "Tamil Vaaram" },
-    { "image": "/images/banner/know-school-banner.jpg", "alt": "Know Your School" }
+    { "image": "/images/banner/carousel_banner.png", "image_ta": "/images/banner/carousel_banner_tamil.png", "alt": "DIET Chennai" },
+    { "image": "/images/banner/tamil_vaaram.png", "image_ta": "", "alt": "Tamil Vaaram" },
+    { "image": "/images/banner/know-school-banner.jpg", "image_ta": "", "alt": "Know Your School" }
   ]
 }
