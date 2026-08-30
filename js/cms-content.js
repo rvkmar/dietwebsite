@@ -91,30 +91,46 @@
     });
   }
 
+  function staffCardHTML(m) {
+    return '<div class="card"><div class="card-inner">' +
+      '<div class="card-front">' +
+      '<img src="' + esc(m.photo) + '" alt="' + esc((m.name || "Staff") + " Photo") + '">' +
+      '<h3>' + esc(m.name) + '</h3>' +
+      '<p>' + esc(m.designation) + '</p>' +
+      '</div>' +
+      '<div class="card-back">' +
+      '<p><strong>Qualification:</strong> ' + esc(m.qualification) + '</p>' +
+      '<p><strong>' + esc(m._expLabel) + ':</strong> ' + esc(m.experience) + '</p>' +
+      '<p><strong>Email:</strong> ' + esc(m.email) + '</p>' +
+      '<p><strong>Phone:</strong> ' + esc(m.phone) + '</p>' +
+      '</div>' +
+      '</div></div>';
+  }
+
   function renderStaffGrid(el) {
     // Renders academic-faculty.json / admin-staff.json as the site's
     // existing flip-card markup (.card > .card-inner > .card-front/.card-back)
     // so the existing CSS/flip animation keeps working unchanged.
     var source = el.getAttribute("data-cms-grid");
     var expLabel = el.getAttribute("data-cms-exp-label") || "Experience";
+    // Optional: prepend a single-record file (e.g. "principal") as the first
+    // card, so that person only needs to be edited in ONE place (their own
+    // dedicated collection) instead of also duplicating them in this list.
+    var prependSource = el.getAttribute("data-cms-grid-prepend");
+
     fetchJSON(source, function (data) {
-      var list = data && data.items ? data.items : null;
-      if (!list || !list.length) return;
-      el.innerHTML = list.map(function (m) {
-        return '<div class="card"><div class="card-inner">' +
-          '<div class="card-front">' +
-          '<img src="' + esc(m.photo) + '" alt="' + esc((m.name || "Staff") + " Photo") + '">' +
-          '<h3>' + esc(m.name) + '</h3>' +
-          '<p>' + esc(m.designation) + '</p>' +
-          '</div>' +
-          '<div class="card-back">' +
-          '<p><strong>Qualification:</strong> ' + esc(m.qualification) + '</p>' +
-          '<p><strong>' + esc(expLabel) + ':</strong> ' + esc(m.experience) + '</p>' +
-          '<p><strong>Email:</strong> ' + esc(m.email) + '</p>' +
-          '<p><strong>Phone:</strong> ' + esc(m.phone) + '</p>' +
-          '</div>' +
-          '</div></div>';
-      }).join("");
+      var list = data && data.items ? data.items.slice() : [];
+      function finish(prepended) {
+        var all = prepended ? [prepended].concat(list) : list;
+        if (!all.length) return;
+        all.forEach(function (m) { m._expLabel = expLabel; });
+        el.innerHTML = all.map(staffCardHTML).join("");
+      }
+      if (prependSource) {
+        fetchJSON(prependSource, function (p) { finish(p || null); });
+      } else {
+        finish(null);
+      }
     });
   }
 
@@ -125,6 +141,19 @@
       if (field === "last_updated" && data.last_updated) {
         el.textContent = " " + data.last_updated;
       }
+    });
+  }
+
+  function renderImage(el) {
+    // <img data-cms-image="photo" data-cms-source="principal"> — sets src
+    // from an arbitrary flat JSON data file (not a list). Used for a single
+    // person/record whose photo appears on more than one page (e.g. the
+    // Principal on the homepage and the Principal's Desk page) so it only
+    // needs to be uploaded once.
+    var key = el.getAttribute("data-cms-image");
+    var source = el.getAttribute("data-cms-source") || "site-settings";
+    fetchJSON(source, function (data) {
+      if (data && data[key]) { el.src = data[key]; }
     });
   }
 
@@ -139,6 +168,8 @@
     for (var j = 0; j < fields.length; j++) { renderField(fields[j]); }
     var grids = document.querySelectorAll("[data-cms-grid]");
     for (var k = 0; k < grids.length; k++) { renderStaffGrid(grids[k]); }
+    var images = document.querySelectorAll("[data-cms-image]");
+    for (var m = 0; m < images.length; m++) { renderImage(images[m]); }
   }
 
   if (document.readyState === "loading") {

@@ -1,15 +1,6 @@
 {
   "items": [
     {
-      "photo": "/images/principal.png",
-      "name": "Dr. S. Shameem",
-      "designation": "Principal",
-      "qualification": "M.Sc., M.Phil.(Zoology), M.Ed., M.Phil.(Education), WBA, M.A.(Urdu), PGDPC, NET, SLET, Ph.D.",
-      "experience": "24 years",
-      "email": "principal@dietchennai.org",
-      "phone": "+91 9444145002"
-    },
-    {
       "photo": "/assets/staff/sujatha.jpeg",
       "name": "Dr. M. Sujatha",
       "designation": "Vice-Principal and Senior Lecturer",
