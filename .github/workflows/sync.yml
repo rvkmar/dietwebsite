@@ -29,6 +29,9 @@ jobs:
           
           # 3. Add the destination link
           git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@://github.com
+
+          # Added standard error capturing below
+          git push destination main:main --force 2>&1
           
           # 4. Use the '+' prefix to forcefully overwrite the remote history
           git push destination +main:main
