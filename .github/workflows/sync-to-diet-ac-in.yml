@@ -28,27 +28,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Save current CNAME file
-        run: |
-          cp diet-repo/CNAME /tmp/CNAME.backup
+        run: cp diet-repo/CNAME /tmp/CNAME.backup
 
       - name: Sync files
         run: |
-          # Copy all files except CNAME from dietwebsite to diet-repo
           rsync -av --exclude='.git' --exclude='CNAME' --exclude='.github' . diet-repo/
-          
-          # Restore CNAME
           cp /tmp/CNAME.backup diet-repo/CNAME
 
       - name: Push to diet.ac.in
         run: |
           cd diet-repo
           git add .
-          
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
+          if ! git diff --cached --quiet; then
             git commit -m "Sync from dietwebsite (CNAME preserved)"
             git push origin main
+          else
+            echo "No changes to commit"
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
