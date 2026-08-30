@@ -27,10 +27,8 @@ jobs:
           git add CNAME
           git commit -m "Set production domain for diet.ac.in" || true
           
-          # 3. Add the correct destination repository URL (diet.ac.in)
-          git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@://github.com
+          # 3. Add the correct destination repository URL (rvkmar/diet.ac.in)
+          git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@github.com/rvkmar/diet.ac.in.git
           
           # 4. Use the '+' prefix to bypass the unrelated histories block from your manual pushes
           git push destination +main:main
-
-
