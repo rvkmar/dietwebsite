@@ -40,6 +40,23 @@ samp {
     #logo p {
         text-align: center;
     }
+
+    /* Let the bilingual title, English title, and address wrap instead of
+       overflowing the viewport (was forced to a single line by the legacy
+       ".logo a span { white-space: nowrap }" rule in site.css, which is
+       inherited by everything inside .logo-text). */
+    .logo-text,
+    .logo-text > span,
+    .tamilmarutham,
+    .logo-text i {
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .logo-text {
+        max-width: 100%;
+    }
 }
 
 .logo-img {
