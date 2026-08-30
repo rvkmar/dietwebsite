@@ -25,7 +25,7 @@ jobs:
           repository: rvkmar/diet.ac.in
           path: diet-repo
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DIET_SYNC_TOKEN }}
 
       - name: Save current CNAME file
         run: cp diet-repo/CNAME /tmp/CNAME.backup
@@ -46,4 +46,4 @@ jobs:
             echo "No changes to commit"
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DIET_SYNC_TOKEN }}
