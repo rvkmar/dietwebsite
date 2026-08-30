@@ -1,0 +1,46 @@
+name: Sync to diet.ac.in
+
+on:
+  push:
+    branches:
+      - main  # Change to master if your default branch is master
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Destination Repo
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.SYNC_PAT }}
+        run: |
+          # Configure Git identities for DEFAULT PUSH
+          # git config --global user.name "GitHub Action"
+          # git config --global user.email "action@github.com"
+          
+          # Add the destination repository as a remote using the PAT
+          # git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@://github.com
+          
+          # Fetch destination history to ensure a clean push
+          # git fetch destination main
+          
+          # Force push the current main branch to the destination repository
+          # Note: This will temporarily overwrite the CNAME file on diet.ac.in
+          # git push destination main:main --force
+
+          # Dynamically overwrite the CNAME right before pushing
+          git config --global user.name "GitHub Action"
+          git config --global config.user.email "action@github.com"
+          
+          # Explicitly overwrite the CNAME file for the destination domain
+          echo "diet.ac.in" > CNAME
+          git add CNAME
+          git commit -m "Set production domain for diet.ac.in" || true
+          
+          git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@://github.com
+          git push destination main:main --force
+
