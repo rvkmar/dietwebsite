@@ -33,14 +33,19 @@ jobs:
           # git push destination main:main --force
 
           # Dynamically overwrite the CNAME right before pushing
+          # 1. Correctly configure Git identities
           git config --global user.name "GitHub Action"
-          git config --global config.user.email "action@github.com"
+          git config --global user.email "action@github.com"
           
-          # Explicitly overwrite the CNAME file for the destination domain
+          # 2. Overwrite the CNAME file for the destination domain
           echo "diet.ac.in" > CNAME
           git add CNAME
           git commit -m "Set production domain for diet.ac.in" || true
           
+          # 3. Add the correct destination repository URL
           git remote add destination https://x-access-token:${API_TOKEN_GITHUB}@://github.com
+          
+          # 4. Push the changes securely
           git push destination main:main --force
+
 
