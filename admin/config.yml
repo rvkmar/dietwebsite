@@ -1,32 +1,750 @@
-# Authentication Backend
+# Decap CMS configuration for dietchennai.org
+# This site is pure static HTML with no build step, so structured content
+# (announcements, circulars, downloads, banner images, the last-updated date,
+# and the photo gallery) lives in small JSON data files under
+# assets/content/data/ and assets/content/gallery/, fetched and rendered at
+# runtime by /js/cms-content.js. Editing those collections below is safe and
+# will never break page layout.
+#
+# Every other page is also editable as a raw HTML source file (bottom of this
+# file, "All Website Pages" collection) as a fallback, but editing raw HTML
+# can break page layout if markup is deleted or malformed — use carefully,
+# and prefer the structured collections above when the content you want to
+# change is an announcement, circular, document, banner image, or the
+# last-updated date.
+
 backend:
   name: github
   repo: rvkmar/dietwebsite
   branch: main # Change to master if your default branch is master
   site_domain: www.dietchennai.org # Directs Decap to publish cleanly to your custom domain
 
-# Media File Paths
-media_folder: "images" # Folder where site images are stored
-public_folder: "/images" # Path used in HTML src attributes
+# Media File Paths (default — used by the raw HTML pages and anywhere a
+# field below doesn't override it)
+media_folder: "images"
+public_folder: "/images"
 
-# Content Structuring 
 collections:
-  - name: "pages"
-    label: "Website Pages"
-    delete: false # Prevents deleting core website structure
-    editor:
-      preview: false # Disable previews for raw standalone HTML
+  - name: "site_settings"
+    label: "Site Settings"
     files:
-      - name: "home"
-        label: "Home Page"
+      - name: "settings"
+        label: "General Settings"
+        file: "assets/content/data/site-settings.json"
+        description: "Controls the 'Last Updated' date shown in the footer of every page."
+        fields:
+          - { label: "Last Updated (e.g. 18-APR-2025)", name: "last_updated", widget: "string" }
+
+  - name: "announcements"
+    label: "Announcements"
+    files:
+      - name: "announcements"
+        label: "Announcements List"
+        file: "assets/content/data/announcements.json"
+        description: "Shown on the homepage 'Announcements' tab and on the /announcements/ page."
+        fields:
+          - label: "Announcements"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
+              - { label: "External Link (optional)", name: "link", widget: "string", required: false }
+              - label: "Attach Document (optional)"
+                name: "file"
+                widget: "file"
+                required: false
+                media_folder: "/assets/docs"
+                public_folder: "/assets/docs"
+
+  - name: "circulars"
+    label: "Circulars"
+    files:
+      - name: "circulars"
+        label: "Circulars List"
+        file: "assets/content/data/circulars.json"
+        description: "Shown on the homepage 'Circulars' tab and on the /circulars/ page."
+        fields:
+          - label: "Circulars"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
+              - { label: "External Link (optional)", name: "link", widget: "string", required: false }
+              - label: "Attach Document (optional)"
+                name: "file"
+                widget: "file"
+                required: false
+                media_folder: "/assets/docs"
+                public_folder: "/assets/docs"
+
+  - name: "downloads"
+    label: "Downloads / Documents"
+    files:
+      - name: "downloads"
+        label: "Downloads, Forms, Publications & Reports"
+        file: "assets/content/data/downloads.json"
+        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /doc-reports/. Use Category to route an entry to the right page."
+        fields:
+          - label: "Documents"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} ({{category}})"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["forms", "publications", "reports"]
+                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /doc-reports/. It always also appears on /downloads/."
+              - { label: "External Link (optional)", name: "link", widget: "string", required: false }
+              - label: "Attach Document (optional)"
+                name: "file"
+                widget: "file"
+                required: false
+                media_folder: "/assets/docs"
+                public_folder: "/assets/docs"
+
+  - name: "banner"
+    label: "Homepage Banner"
+    files:
+      - name: "banner"
+        label: "Banner Slides"
+        file: "assets/content/data/banner.json"
+        description: "Images shown in the rotating banner at the top of the homepage."
+        fields:
+          - label: "Slides"
+            name: "items"
+            widget: "list"
+            summary: "{{alt}}"
+            fields:
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                media_folder: "/images/banner"
+                public_folder: "/images/banner"
+              - { label: "Alt Text", name: "alt", widget: "string", required: false }
+
+  - name: "gallery"
+    label: "Photo Gallery"
+    files:
+      - name: "gallery"
+        label: "Gallery Images"
+        file: "assets/content/gallery/gallery.json"
+        description: "Photos shown on the /gallery/ page."
+        fields:
+          - label: "Photos"
+            name: "images"
+            widget: "list"
+            field:
+              label: "Photo"
+              name: "image"
+              widget: "image"
+              media_folder: "/assets/content/gallery"
+              public_folder: "/assets/content/gallery"
+
+  - name: "about_fragments"
+    label: "About / Roles Content"
+    files:
+      - name: "about_mission"
+        label: "Mission & Vision content (embedded on /mission-vision/)"
+        file: "assets/content/about_mission.html"
+        fields:
+          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
+      - name: "about_roles"
+        label: "Roles & Functions content (embedded on /roles-functions/)"
+        file: "assets/content/about_roles.html"
+        fields:
+          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
+
+  - name: "pages"
+    label: "All Website Pages (raw HTML)"
+    delete: false # Prevents deleting core website structure
+    files:
+      - name: "404"
+        label: "404 (raw HTML)"
+        file: "404.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "about-diet-chennai"
+        label: "About Diet Chennai (raw HTML)"
+        file: "about-diet-chennai/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "about-diet"
+        label: "About Diet (raw HTML)"
+        file: "about-diet/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "academic-faculty"
+        label: "Academic Faculty (raw HTML)"
+        file: "academic-faculty/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "activ-alumni"
+        label: "Activ Alumni (raw HTML)"
+        file: "activ-alumni/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "activ-archive"
+        label: "Activ Archive (raw HTML)"
+        file: "activ-archive/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "activ-calendar"
+        label: "Activ Calendar (raw HTML)"
+        file: "activ-calendar/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "activ-current"
+        label: "Activ Current (raw HTML)"
+        file: "activ-current/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "admin-staff"
+        label: "Admin Staff (raw HTML)"
+        file: "admin-staff/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "announcements"
+        label: "Announcements (raw HTML)"
+        file: "announcements/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "assets-content-about-mission"
+        label: "Assets / Content / About Mission (raw HTML)"
+        file: "assets/content/about_mission.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "assets-content-about-roles"
+        label: "Assets / Content / About Roles (raw HTML)"
+        file: "assets/content/about_roles.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "assets-content-statistics"
+        label: "Assets / Content / Statistics (raw HTML)"
+        file: "assets/content/statistics/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "assets-docs-mandatory-disclosure"
+        label: "Assets / Docs / Mandatory Disclosure (raw HTML)"
+        file: "assets/docs/mandatory_disclosure.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "circulars"
+        label: "Circulars (raw HTML)"
+        file: "circulars/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "contact-us"
+        label: "Contact Us (raw HTML)"
+        file: "contact-us/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "coursedeled"
+        label: "Coursedeled (raw HTML)"
+        file: "coursedeled/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "courses"
+        label: "Courses (raw HTML)"
+        file: "courses/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "coursetpd"
+        label: "Coursetpd (raw HTML)"
+        file: "coursetpd/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "default"
+        label: "Default (raw HTML)"
+        file: "default.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "departments"
+        label: "Departments (raw HTML)"
+        file: "departments/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "dept-ae"
+        label: "Dept Ae (raw HTML)"
+        file: "dept-ae/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "dept-etmd"
+        label: "Dept Etmd (raw HTML)"
+        file: "dept-etmd/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "dept-fiar"
+        label: "Dept Fiar (raw HTML)"
+        file: "dept-fiar/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "dept-pste"
+        label: "Dept Pste (raw HTML)"
+        file: "dept-pste/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "dept-tpd"
+        label: "Dept Tpd (raw HTML)"
+        file: "dept-tpd/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "disclaimer"
+        label: "Disclaimer (raw HTML)"
+        file: "disclaimer/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "district-statistics"
+        label: "District Statistics (raw HTML)"
+        file: "district-statistics/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "district-profile"
+        label: "District Profile (raw HTML)"
+        file: "district_profile/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "doc-forms"
+        label: "Doc Forms (raw HTML)"
+        file: "doc-forms/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "doc-publications"
+        label: "Doc Publications (raw HTML)"
+        file: "doc-publications/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "doc-reports"
+        label: "Doc Reports (raw HTML)"
+        file: "doc-reports/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "downloads"
+        label: "Downloads (raw HTML)"
+        file: "downloads/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "feedback"
+        label: "Feedback (raw HTML)"
+        file: "feedback/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "gallery"
+        label: "Gallery (raw HTML)"
+        file: "gallery/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "help"
+        label: "Help (raw HTML)"
+        file: "help/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "important-links"
+        label: "Important Links (raw HTML)"
+        file: "important-links/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "index"
+        label: "Index (raw HTML)"
         file: "index.html"
         fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Main Body Content", name: "body", widget: "markdown" }
-
-      - name: "about"
-        label: "About Page"
-        file: "about.html" # Ensure about.html exists at your repository root
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "library"
+        label: "Library (raw HTML)"
+        file: "library/index.html"
         fields:
-          - { label: "About Title", name: "title", widget: "string" }
-          - { label: "About Text", name: "body", widget: "markdown" }
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "media"
+        label: "Media (raw HTML)"
+        file: "media/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "mission-vision"
+        label: "Mission Vision (raw HTML)"
+        file: "mission-vision/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "org-structure"
+        label: "Org Structure (raw HTML)"
+        file: "org-structure/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "principals-desk"
+        label: "Principals Desk (raw HTML)"
+        file: "principals-desk/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "roles-functions"
+        label: "Roles Functions (raw HTML)"
+        file: "roles-functions/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "rti-diet-rules"
+        label: "Rti Diet Rules (raw HTML)"
+        file: "rti-diet-rules/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "rti"
+        label: "Rti (raw HTML)"
+        file: "rti/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "sitemap"
+        label: "Sitemap (raw HTML)"
+        file: "sitemap/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "tb-module"
+        label: "Tb Module (raw HTML)"
+        file: "tb-module/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "tb-textbook"
+        label: "Tb Textbook (raw HTML)"
+        file: "tb-textbook/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "terms-conditions"
+        label: "Terms Conditions (raw HTML)"
+        file: "terms-conditions/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "theme-css-site-change"
+        label: "Theme / Css / Site Change (raw HTML)"
+        file: "theme/css/site-change.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "web-manager"
+        label: "Web Manager (raw HTML)"
+        file: "web-manager/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
+      - name: "website-policies"
+        label: "Website Policies (raw HTML)"
+        file: "website-policies/index.html"
+        fields:
+          - label: "Full page HTML source"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+            output_code_only: true
+            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
