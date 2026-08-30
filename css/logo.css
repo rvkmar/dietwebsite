@@ -34,6 +34,9 @@ samp {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .logo-text,
@@ -42,20 +45,33 @@ samp {
     }
 
     /* Let the bilingual title, English title, and address wrap instead of
-       overflowing the viewport (was forced to a single line by the legacy
-       ".logo a span { white-space: nowrap }" rule in site.css, which is
-       inherited by everything inside .logo-text). */
-    .logo-text,
-    .logo-text > span,
-    .tamilmarutham,
-    .logo-text i {
+       overflowing the viewport, and keep the whole logo block centered.
+       Scoped with the #logo ancestor so specificity beats the legacy
+       ".logo a span { white-space: nowrap }" rule in site.css (a class +
+       2 type selectors), which otherwise wins over a same-weight override
+       and keeps forcing the English title onto one long line that pushes
+       the block off-center and off-screen. */
+    #logo .logo-text,
+    #logo .logo-text > span,
+    #logo .tamilmarutham,
+    #logo .logo-text i {
         white-space: normal;
         overflow-wrap: break-word;
         word-break: break-word;
     }
 
-    .logo-text {
+    #logo .logo-text {
+        width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    h2.logo {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        box-sizing: border-box;
     }
 }
 
