@@ -1,0 +1,53 @@
+name: Sync to diet.ac.in
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dietwebsite repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Checkout diet.ac.in repository
+        uses: actions/checkout@v4
+        with:
+          repository: rvkmar/diet.ac.in
+          path: diet-repo
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save current CNAME file
+        run: |
+          cp diet-repo/CNAME /tmp/CNAME.backup
+
+      - name: Sync files
+        run: |
+          # Copy all files except CNAME from dietwebsite to diet-repo
+          rsync -av --exclude='.git' --exclude='CNAME' --exclude='.github' . diet-repo/
+          
+          # Restore CNAME
+          cp /tmp/CNAME.backup diet-repo/CNAME
+
+      - name: Push to diet.ac.in
+        run: |
+          cd diet-repo
+          git add .
+          
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sync from dietwebsite (CNAME preserved)"
+            git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
