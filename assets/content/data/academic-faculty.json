@@ -1,0 +1,193 @@
+{
+  "items": [
+    {
+      "photo": "/images/principal.png",
+      "name": "Dr. S. Shameem",
+      "designation": "Principal",
+      "qualification": "M.Sc., M.Phil.(Zoology), M.Ed., M.Phil.(Education), WBA, M.A.(Urdu), PGDPC, NET, SLET, Ph.D.",
+      "experience": "24 years",
+      "email": "principal@dietchennai.org",
+      "phone": "+91 9444145002"
+    },
+    {
+      "photo": "/assets/staff/sujatha.jpeg",
+      "name": "Dr. M. Sujatha",
+      "designation": "Vice-Principal and Senior Lecturer",
+      "qualification": "M.A., M.Ed., Ph.D.",
+      "experience": "24 years",
+      "email": "sujatha@dietchennai.org",
+      "phone": "+91 9941112112"
+    },
+    {
+      "photo": "/assets/staff/punithavathi.jpeg",
+      "name": "Mrs. N. Punithavathi",
+      "designation": "Senior Lecturer",
+      "qualification": "M.Sc , M. Ed., M. Phil",
+      "experience": "18 years",
+      "email": "punithasiva1973@dietchn.ac.in",
+      "phone": "+91 9445488994"
+    },
+    {
+      "photo": "/assets/staff/sathi.png",
+      "name": "Dr. N. Sathi",
+      "designation": "Senior Lecturer",
+      "qualification": "M.Sc., M.Ed., M.Phil., Ph.D.,",
+      "experience": "25 years",
+      "email": "nsathi@dietchennai.org",
+      "phone": "+91 9444520311"
+    },
+    {
+      "photo": "/assets/staff/shanthi.jpeg",
+      "name": "Dr. V. Shanthi",
+      "designation": "Senior Lecturer",
+      "qualification": "M.A., M.Ed., M.Phil., Ph.D.,",
+      "experience": "28 years",
+      "email": "shanthiv@dietchn.ac.in",
+      "phone": "+91 9444757819"
+    },
+    {
+      "photo": "/assets/staff/babu.png",
+      "name": "Mr. S. Babu",
+      "designation": "Senior Lecturer",
+      "qualification": "M.Sc.(Mathematics), M.Ed., M.Phil.(Mathematics)",
+      "experience": "24 years",
+      "email": "subramanianbabu@dietchennai.org",
+      "phone": "+91 8778637678"
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Senior Lecturer - Vacant position",
+      "qualification": "",
+      "experience": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/pradeepkumar.jpg",
+      "name": "Mr. Pradeep Kumar G",
+      "designation": "Lecturer in Physical Education",
+      "qualification": "",
+      "experience": "18 years",
+      "email": "pradeep@dietchn.ac.in",
+      "phone": "+91 9444453334"
+    },
+    {
+      "photo": "/assets/staff/rekha.jpg",
+      "name": "Mrs. P. Rekha",
+      "designation": "Lecturer in History",
+      "qualification": "M.A., M.Ed, M.Phil, Ph.D.",
+      "experience": "20 years",
+      "email": "rekha@dietchn.ac.in",
+      "phone": "+91 9941103996"
+    },
+    {
+      "photo": "/assets/staff/sathyakumari.jpg",
+      "name": "Dr. V.S. Sathyakumari",
+      "designation": "Lecturer in Physics",
+      "qualification": "M.Sc.,M.Ed.,M.Phil.(Education).,Ph.D(Physics)",
+      "experience": "23 years",
+      "email": "sathyakumari2025@dietchn.ac.in",
+      "phone": "+91 9884723158"
+    },
+    {
+      "photo": "/assets/staff/guruprasad.jpeg",
+      "name": "Mr. Guruprasad Anantharam",
+      "designation": "Lecturer in Botany",
+      "qualification": "M.Phil., M Ed., (PhD)",
+      "experience": "12 years",
+      "email": "guruprasad@dietchn.ac.in",
+      "phone": "+91 9943519795"
+    },
+    {
+      "photo": "/assets/staff/angelineruby.png",
+      "name": "Ms. G. Angeline Ruby",
+      "designation": "Lecturer in Zoology",
+      "qualification": "M.Sc., M.Ed., M.Phil (Zoology)",
+      "experience": "14 years",
+      "email": "angelinerubyg@dietchn.ac.in",
+      "phone": "+91 9941188001"
+    },
+    {
+      "photo": "/assets/staff/ravikumar.JPG",
+      "name": "Mr. Ravikumar Rajabhather",
+      "designation": "Lecturer in Tamil",
+      "qualification": "M.A.,(Tamil), M.Ed., UGC-NET (Tamil), UGC-NET (Education)",
+      "experience": "13 years",
+      "email": "ravikumar@dietchennai.org",
+      "phone": "+91 9710032229"
+    },
+    {
+      "photo": "/assets/staff/vijayaraghavan.jpg",
+      "name": "Mr. S. Vijayaragavan",
+      "designation": "Lecturer in Mathematics",
+      "qualification": "M.Sc (Mathematics), M.Ed, M.Phil (Education)",
+      "experience": "8 years",
+      "email": "svragavan@dietchennai.org",
+      "phone": "+91 9786506959"
+    },
+    {
+      "photo": "/assets/staff/vimaladevi.jpeg",
+      "name": "Mrs. D. Vimala Devi",
+      "designation": "Lecturer in English",
+      "qualification": "M.A.,M.Ed.,M.Phil",
+      "experience": "8 years",
+      "email": "vimaladevi@dietchennai.org",
+      "phone": "+91 8925055513"
+    },
+    {
+      "photo": "/assets/staff/nevetha.png",
+      "name": "Mrs. Nevetha Selvaraj",
+      "designation": "Lecturer in Mathematics",
+      "qualification": "M.Sc. (Mathematics), M.Ed, M.Phil (Education)",
+      "experience": "8 years",
+      "email": "nevetha@dietchn.ac.in",
+      "phone": "+91 8248519234"
+    },
+    {
+      "photo": "/assets/staff/rajkamal.jpg",
+      "name": "Mrs. Rajkamal E Sivakumar",
+      "designation": "Lecturer in English",
+      "qualification": "M.A., M.Phil., M.Ed",
+      "experience": "8 years",
+      "email": "rajkamal@dietchn.ac.in",
+      "phone": "+91 9994952816"
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Lecturer in Tamil - Vacant position",
+      "qualification": "",
+      "experience": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Lecturer in Physics - Vacant position",
+      "qualification": "",
+      "experience": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Lecturer in Chemistry - Vacant position",
+      "qualification": "",
+      "experience": "",
+      "email": "",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Lecturer in Geography - Vacant position",
+      "qualification": "",
+      "experience": "",
+      "email": "",
+      "phone": ""
+    }
+  ]
+}

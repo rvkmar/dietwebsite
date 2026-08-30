@@ -91,6 +91,33 @@
     });
   }
 
+  function renderStaffGrid(el) {
+    // Renders academic-faculty.json / admin-staff.json as the site's
+    // existing flip-card markup (.card > .card-inner > .card-front/.card-back)
+    // so the existing CSS/flip animation keeps working unchanged.
+    var source = el.getAttribute("data-cms-grid");
+    var expLabel = el.getAttribute("data-cms-exp-label") || "Experience";
+    fetchJSON(source, function (data) {
+      var list = data && data.items ? data.items : null;
+      if (!list || !list.length) return;
+      el.innerHTML = list.map(function (m) {
+        return '<div class="card"><div class="card-inner">' +
+          '<div class="card-front">' +
+          '<img src="' + esc(m.photo) + '" alt="' + esc((m.name || "Staff") + " Photo") + '">' +
+          '<h3>' + esc(m.name) + '</h3>' +
+          '<p>' + esc(m.designation) + '</p>' +
+          '</div>' +
+          '<div class="card-back">' +
+          '<p><strong>Qualification:</strong> ' + esc(m.qualification) + '</p>' +
+          '<p><strong>' + esc(expLabel) + ':</strong> ' + esc(m.experience) + '</p>' +
+          '<p><strong>Email:</strong> ' + esc(m.email) + '</p>' +
+          '<p><strong>Phone:</strong> ' + esc(m.phone) + '</p>' +
+          '</div>' +
+          '</div></div>';
+      }).join("");
+    });
+  }
+
   function renderField(el) {
     var field = el.getAttribute("data-cms-field");
     fetchJSON("site-settings", function (data) {
@@ -110,6 +137,8 @@
     }
     var fields = document.querySelectorAll("[data-cms-field]");
     for (var j = 0; j < fields.length; j++) { renderField(fields[j]); }
+    var grids = document.querySelectorAll("[data-cms-grid]");
+    for (var k = 0; k < grids.length; k++) { renderStaffGrid(grids[k]); }
   }
 
   if (document.readyState === "loading") {

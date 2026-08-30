@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Tmt. S. Akilandeswari",
+      "designation": "Librarian",
+      "qualification": "M.A., M.L.I.S",
+      "experience": "9 years",
+      "email": "librarian@dietchennai.org",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Tmt. Narkis Banu",
+      "designation": "Assistant",
+      "qualification": "",
+      "experience": "",
+      "email": "office@dietchennai.org",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Tmt. V. Abinaya",
+      "designation": "Assistant",
+      "qualification": "",
+      "experience": "",
+      "email": "office@dietchennai.org",
+      "phone": ""
+    },
+    {
+      "photo": "/assets/staff/ambika.png",
+      "name": "Tmt. Ambika G",
+      "designation": "Steno Typist",
+      "qualification": "B.A.,",
+      "experience": "",
+      "email": "office@dietchennai.org",
+      "phone": "+91 6374905575"
+    }
+  ]
+}
