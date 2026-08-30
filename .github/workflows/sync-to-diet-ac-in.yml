@@ -49,5 +49,6 @@ jobs:
           else
             git commit -m "Sync from dietwebsite (CNAME preserved)"
             git push origin main
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
