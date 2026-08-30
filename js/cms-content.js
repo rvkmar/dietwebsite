@@ -71,8 +71,22 @@
         return '<li><img src="' + esc(b.image) + '" data-i18n-image-en="' + esc(b.image) + '"' +
           taAttr + ' alt="' + esc(b.alt || "") + '"></li>';
       }).join("");
-      if (window.jQuery && jQuery(el).closest(".flexslider").length && jQuery.fn.flexslider) {
-        try { jQuery(el).closest(".flexslider").flexslider(0); } catch (e) {}
+      // The homepage's js/custom.js deliberately skips initializing this
+      // particular flexslider on window.load (see the note there) so that
+      // it only ever gets initialized once, here, on the real slides —
+      // initializing it before this data arrived would apply
+      // display:none to these slides (flexslider's default CSS state for
+      // slides it has never activated) and leave the banner invisible.
+      if (window.jQuery && jQuery.fn.flexslider) {
+        var $slider = jQuery(el).closest(".flexslider");
+        if ($slider.length && !$slider.data("flexslider")) {
+          $slider.flexslider({
+            animation: "slide",
+            pausePlay: true,
+            controlNav: false,
+            start: function () { jQuery("body").removeClass("loading"); }
+          });
+        }
       }
     });
   }

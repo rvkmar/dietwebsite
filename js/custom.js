@@ -39,15 +39,12 @@
     
     
 $(window).load(function(){
-// Slider						
-    $('#flexSlider').flexslider({
-        animation: "slide",
-        pausePlay: true,
-        controlNav: false,
-        start: function(slider){
-        $('body').removeClass('loading');
-        }
-    });
+// Slider
+// NOTE: #flexSlider (the homepage banner) is intentionally NOT initialized
+// here. Its slides are loaded asynchronously from CMS data by
+// /js/cms-content.js, which initializes flexslider itself once that data
+// has rendered — initializing it here too would race with that async load
+// and leave the banner stuck at display:none (see cms-content.js).
     $('#flexSlider1').flexslider({
         animation: "slide",
         controlNav: false,
