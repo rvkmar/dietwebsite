@@ -1,46 +1,54 @@
 # Security response headers — Cloudflare setup for dietchennai.org
 
 Reference: Section 5.3 / Phase 1 of `DIET-Chennai-Website-Audit.docx`. A direct
-check of `https://dietchennai.org/` found none of the standard protective
-response headers set. This can't be applied from this session (no Cloudflare
-dashboard access here) — it needs to be added on your end, in either of two
-ways below. Values were chosen by checking what the live site actually loads
-(Google Fonts, the Cloudflare Insights beacon script, a Google search form,
-and — only on `/admin`— the Decap CMS loader from unpkg.com), not copied from
-a generic template.
+check of `https://dietchennai.org/` originally found none of the standard
+protective response headers set. **These are now applied and verified live**
+(see Option A's status note below) — this file is kept as the record of what
+was configured and why, and as the reference to come back to if a future
+change to the site needs the CSP widened for a new third-party resource.
+Values were chosen by checking what the live site actually loads (Google
+Fonts, the Cloudflare Insights beacon script, a Google search form, and —
+only on `/admin` — the Decap CMS loader from unpkg.com), not copied from a
+generic template.
 
 ## Option A — Transform Rules (no code, ~5 minutes)
 
-**Update 1, verified live 31 Aug 2026:** the two-rule setup below was applied
-and the site-wide headers are live and correct (confirmed via `curl -sI`).
-But `/admin` was *also* getting the site-wide CSP instead of its own — Decap
-CMS's loader script from unpkg.com was being blocked, and the CMS editor was
-a blank page. Root cause: Transform Rules don't stop at the first match
-the way this doc originally implied — every rule whose condition matches a
-request runs, in the order listed, and for **Modify Response Header** actions
-a later rule's value for the same header name *overwrites* an earlier rule's
-value. `/admin` matched both rules' conditions as originally written (its
-hostname is still `dietchennai.org`), so whichever rule was evaluated second
-won outright — in this case, the site-wide one. **Fixed by making the two
-rules' conditions mutually exclusive** (Rule 2 below now explicitly excludes
-`/admin`) so each request matches exactly one rule.
+**Status: applied and verified live, 31 Aug 2026.** Both response headers and
+the actual pages were checked, not just assumed from the config below:
+`curl -sI` confirms all 6 headers on both `https://dietchennai.org/` and
+`https://dietchennai.org/admin/`, each with its own correct CSP; the public
+site loads with no console errors introduced; and `/admin` loads all the way
+to Decap CMS's real "Login with GitHub" screen with a clean console (checked
+via `decap-cms-app 3.16.0` / `decap-cms-core 3.18.0` / `decap-cms 3.16.0`
+banners logging with no CSP violations alongside them). The two rules below
+are the values that ended up working, after two rounds of live debugging
+(see history below) — no further changes needed unless something else on the
+site starts loading a new third-party resource later.
 
-**Update 2, verified live right after Update 1 was applied:** with the rule
-conflict fixed, `/admin` moved past the blank-page state to a real, different
-error — Decap CMS's own config loader evaluates the fetched `config.yml` via
-something CSP treats as `eval()`-like, and threw `EvalError: Evaluating a
-string as JavaScript violates the following Content Security Policy
-directive because 'unsafe-eval' is not an allowed source of script`. This is
-Decap CMS's own requirement, not a mistake in the values below — its config
-parser needs `'unsafe-eval'` in `script-src` to run at all. **Rule 1's CSP
-value below has been updated to include it** (`script-src 'self'
-'unsafe-eval' https://unpkg.com`) — this is scoped to `/admin` only, so the
-public site's CSP (Rule 2) is unaffected and stays without `'unsafe-eval'`.
-If you already created Rule 1 from the version of this doc without it, edit
-that one header value to match what's below and re-save.
+<details>
+<summary>Debugging history (both issues now fixed in the values below)</summary>
+
+Two real problems turned up while verifying this, in sequence:
+
+1. **Rule-order overwrite.** The first version of Rule 2 (site-wide) matched
+   broadly on hostname, which meant it also matched `/admin` — and Transform
+   Rules don't stop at the first match; every matching rule runs, and for
+   *Modify Response Header* actions a later rule's value for the same header
+   overwrites an earlier one's. `/admin` was silently getting the site-wide
+   CSP (no `unpkg.com`), leaving Decap's loader script blocked and the CMS a
+   blank page. Fixed by making Rule 2's condition explicitly exclude
+   `/admin`, so the two rules can never both match the same request.
+2. **Missing `'unsafe-eval'`.** With the rule conflict fixed, `/admin` got
+   further but then threw `EvalError: Evaluating a string as JavaScript
+   violates the following Content Security Policy directive because
+   'unsafe-eval' is not an allowed source of script` — Decap CMS's own
+   config parser requires it to run at all, independent of anything site
+   -specific. Added to Rule 1's `script-src`, scoped to `/admin` only.
+
+</details>
 
 Cloudflare dashboard → your zone → **Rules → Transform Rules → Modify Response
-Header**. Add (or fix) these two rules:
+Header**. The two rules, as currently applied:
 
 ### Rule 1 — "Security headers: /admin"
 
@@ -59,9 +67,9 @@ Add these response headers:
 
 (`/admin` needs `unpkg.com` in `script-src`/`connect-src` because
 `admin/index.html` loads Decap CMS from there, and the CMS itself talks to
-`api.github.com`. It also needs `'unsafe-eval'` — see Update 2 above; this is
-Decap's own config parser, not something optional. Everything else is
-identical to Rule 2.)
+`api.github.com`. It also needs `'unsafe-eval'` — see the debugging history
+above; this is Decap's own config parser, not something optional. Everything
+else is identical to Rule 2.)
 
 ### Rule 2 — "Security headers: site-wide"
 
@@ -93,35 +101,34 @@ attributes and a couple of inline `<style>`/`<script>` blocks in the current
 HTML — tightening that further would mean auditing and removing every inline
 style first, which is real but separate work (candidate for Phase 2).
 
-After saving, verify **both** paths — this is exactly the check that caught
-the overwrite bug above, so it's worth doing for real rather than assuming:
+To re-verify after any future change here:
 ```
 curl -sI https://dietchennai.org/ | grep -i "content-security-policy"
 curl -sI https://dietchennai.org/admin/ | grep -i "content-security-policy"
 ```
 The second command's output must contain both `unpkg.com` and `'unsafe-eval'`.
-If it's missing either, the fix hasn't fully taken — check the Transform
-Rules list again before assuming it's fixed. Also open `/admin` in a browser
-afterward and confirm the CMS's actual editor UI loads (the collection list
-in the left sidebar), not just a blank page or an "Error loading the CMS
-configuration" screen — both of those are CSP failures specific to Decap and
-won't show as a failed HTTP status, only as an in-page error or console
-message.
+If it's missing either, check the Transform Rules list before assuming it's
+still correct. Also open `/admin` in a browser and confirm it reaches Decap's
+actual "Login with GitHub" screen (confirmed working state, checked via
+console: `decap-cms-app`/`decap-cms-core`/`decap-cms` version banners log
+with no CSP violations alongside them) — not a blank page or an "Error
+loading the CMS configuration" screen, both of which are CSP failures
+specific to Decap and won't show as a failed HTTP status, only as an in-page
+error or console message.
 
-**Separate, unrelated issue also seen live while checking this:** `/admin`'s
-loader script itself
-(`https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js`) returned `503` a
-few times in a row from unpkg.com's own CDN, independent of anything above —
-navigating to that exact URL directly worked and resolved to version
-3.16.0, so it's likely a transient unpkg hiccup rather than a real outage.
-Worth knowing regardless: `admin/index.html` loads Decap CMS from a floating
-`^3.0.0` version range with no fallback, so the CMS editor's availability is
-fully dependent on unpkg.com being up at the moment someone opens it. Pinning
-an exact version (e.g. `decap-cms@3.16.0`) wouldn't fix an unpkg outage but
-would at least stop an unannounced new Decap release from ever silently
-changing the editor's behavior underneath you. Not fixed here since it's a
-content/config decision, not a headers one — flagging it because it surfaced
-during this same check.
+**Separate, unrelated issue also seen live while debugging this:** `/admin`'s
+loader script (`https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js`)
+returned `503` a few times in a row from unpkg.com's own CDN before working —
+navigating to that exact URL directly worked and resolved to version 3.16.0,
+so it was a transient unpkg hiccup, not caused by anything here. Worth
+knowing regardless: `admin/index.html` loads Decap CMS from a floating
+`^3.0.0` version range with no pinned fallback, so the CMS editor's
+availability is fully dependent on unpkg.com being up at the moment someone
+opens it. Pinning an exact version (e.g. `decap-cms@3.16.0`) wouldn't prevent
+an unpkg outage but would at least stop an unannounced new Decap release
+from ever silently changing the editor's behavior underneath you. Not fixed
+here since it's a content/config decision, not a headers one — flagging it
+because it surfaced during this same check.
 
 ## Option B — a Cloudflare Worker (if you'd rather manage this as code)
 
