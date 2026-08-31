@@ -976,8 +976,14 @@ th {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     background: #d4d3d3;
     padding: 0px 0px;
-    visibility: visible;
-    
+    /* Was "visibility: visible" here, which -- being more specific than
+       the generic ".common-right ul li ul { visibility: hidden }" rule
+       below -- overrode it and made the social-icons dropdown render
+       open by default on every page load, until JS hid it a moment
+       later (a visible flash). Closed by default now; nothing here
+       relied on it starting visible. */
+    visibility: hidden;
+
 }
 .common-right ul li ul {
     position: absolute;
@@ -992,7 +998,13 @@ th {
     visibility: hidden;
 }
 .ico-site-search .search-drop {
-    visibility: visible;
+    /* Was "visibility: visible" plus no default "display" here, so the
+       search box rendered open on first paint every time, until
+       framework.js's ready handler hid it a moment later (a visible
+       flash on every load/refresh). Closed by default now; the
+       #toggleSearch click handler uses jQuery's .toggle(), which works
+       correctly regardless of the starting display value. */
+    display: none;
     position: absolute;
     left: 0;
     top: 36px;

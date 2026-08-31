@@ -337,7 +337,15 @@ padding-left:18px;
 }
 .sub-nav {
  border: 1px solid #552c2b;
- display: block;
+ /* Was "display: block" here, which forced every dropdown panel open
+    on mobile regardless of the accessibleMegaMenu plugin's own
+    open/closed state (the plugin already implements the correct
+    ".sub-nav{display:none} .sub-nav.open{display:block}" pattern --
+    see the unconditional rule earlier in this file -- this mobile-only
+    override was just fighting it), producing a visible flash of every
+    submenu open on every page load/refresh before the plugin's JS
+    settled it back closed. Removed so the existing open/closed
+    behavior applies on mobile too. */
  margin-top: 0px;
  padding: 0.5em 1em;
  position: relative;
