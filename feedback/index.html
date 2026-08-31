@@ -23,6 +23,7 @@
 
     <!-- Load Tamil font CSS first -->
     <link rel="stylesheet" href="/css/early-font.css">
+   <link href="/css/page-loader.css" rel="stylesheet" media="all">
 
     <link href="/css/base.css" rel="stylesheet" media="all">
     <link href="/css/base-responsive.css" rel="stylesheet" media="all">
@@ -51,6 +52,11 @@
 </head>
 
 <body>
+   <div id="page-loader" aria-hidden="true">
+      <img src="/images/favicon/dietLogoCleaned.png" alt="" class="page-loader-mark">
+      <div class="page-loader-spinner"></div>
+   </div>
+   <script src="/js/page-loader.js"></script>
     <div id="fb-root"></div>
     <header>
         <div class="region region-header-top">

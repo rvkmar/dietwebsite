@@ -70,20 +70,26 @@ async function fetchLanguageData(lang) {
 async function changeLanguage(lang) {
   setLanguagePreference(lang);
 
-  const contentContainer = document.body;
-  contentContainer.classList.add('fade-out');
+  // Cover the content swap with the same full-page loading screen used
+  // on initial load, instead of a body-opacity fade (which briefly
+  // showed a blank white page because .fade-out had no transition of
+  // its own applied to <body>).
+  if (typeof window.showPageLoader === 'function') {
+    window.showPageLoader();
+  }
 
   const langData = await fetchLanguageData(lang);
 
-  setTimeout(() => {
-    updateContent(langData);
-    updateImages(lang); // <--- Added this line
-    updateText(lang);
-    showLang(lang === 'ta' ? 'tamil' : 'english');
-    toggleTamilStylesheet(lang);
-    toggleTamilBodyClass(lang);
-    contentContainer.classList.remove('fade-out');
-  }, 200);
+  updateContent(langData);
+  updateImages(lang); // <--- Added this line
+  updateText(lang);
+  showLang(lang === 'ta' ? 'tamil' : 'english');
+  toggleTamilStylesheet(lang);
+  toggleTamilBodyClass(lang);
+
+  if (typeof window.hidePageLoader === 'function') {
+    window.hidePageLoader();
+  }
 }
 
 // Toggle Tamil-specific stylesheet
