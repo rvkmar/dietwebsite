@@ -11,10 +11,26 @@ a generic template.
 
 ## Option A — Transform Rules (no code, ~5 minutes)
 
-Cloudflare dashboard → your zone → **Rules → Transform Rules → Modify Response
-Header** → Create rule. Add these two rules, in this order:
+**Update, verified live 31 Aug 2026:** the two-rule setup below was applied
+and the site-wide headers are live and correct (confirmed via `curl -sI`).
+But `/admin` is *also* getting the site-wide CSP instead of its own — Decap
+CMS's loader script from unpkg.com is being blocked, and the CMS editor is
+now a blank page. Root cause: Transform Rules don't stop at the first match
+the way this doc originally implied — every rule whose condition matches a
+request runs, in the order listed, and for **Modify Response Header** actions
+a later rule's value for the same header name *overwrites* an earlier rule's
+value. `/admin` matches both rules' conditions as originally written (its
+hostname is still `dietchennai.org`), so whichever rule is evaluated second
+wins outright — in this case, the site-wide one. **Fix: make the two rules'
+conditions mutually exclusive** (Rule 2 below now explicitly excludes
+`/admin`) so each request matches exactly one rule and there's no
+overwrite to depend on rule order at all. Edit the existing "site-wide" rule's
+condition to the one below — no need to touch the `/admin` rule.
 
-### Rule 1 — "Security headers: /admin" (matches first, so it wins on /admin)
+Cloudflare dashboard → your zone → **Rules → Transform Rules → Modify Response
+Header**. Add (or fix) these two rules:
+
+### Rule 1 — "Security headers: /admin"
 
 **When incoming requests match:** `URI Path` `starts with` `/admin`
 
@@ -35,9 +51,17 @@ Add these response headers:
 
 ### Rule 2 — "Security headers: site-wide"
 
-**When incoming requests match:** `Hostname` `equals` `dietchennai.org` (or
-your working hostname/domain expression — leave broad, Rule 1 above already
-takes `/admin` out of scope by matching first)
+**When incoming requests match:** use **Edit expression** (not the simple
+field picker) and enter:
+
+```
+(http.host eq "dietchennai.org") and not starts_with(http.request.uri.path, "/admin")
+```
+
+This is the important fix — the previous "leave broad" guidance is what
+caused the overwrite. Excluding `/admin` here means the two rules can never
+both match the same request, so there's nothing left for rule order to get
+wrong.
 
 Add these response headers:
 
@@ -55,13 +79,33 @@ attributes and a couple of inline `<style>`/`<script>` blocks in the current
 HTML — tightening that further would mean auditing and removing every inline
 style first, which is real but separate work (candidate for Phase 2).
 
-After saving, verify with:
+After saving, verify **both** paths — this is exactly the check that caught
+the overwrite bug above, so it's worth doing for real rather than assuming:
 ```
-curl -sI https://dietchennai.org/ | grep -i "content-security-policy\|x-frame\|x-content-type\|referrer-policy\|permissions-policy\|strict-transport"
+curl -sI https://dietchennai.org/ | grep -i "content-security-policy"
+curl -sI https://dietchennai.org/admin/ | grep -i "content-security-policy"
 ```
-and confirm the homepage, the mega-menu, the language switch, and `/admin`
-still all work — a too-strict CSP fails silently in the browser console, not
-as a visible error, so check DevTools console after applying.
+The second command's output must contain `unpkg.com`. If it doesn't, the
+exclusion in Rule 2's condition didn't take (or there's a third rule/cache
+layer also touching this header) — check the Transform Rules list again
+before assuming it's fixed. Also open `/admin` in a browser afterward and
+confirm the CMS actually loads (not just a 200 status) — a too-strict CSP
+fails silently in the browser console in some cases, not as a visible error.
+
+**Separate, unrelated issue also seen live while checking this:** `/admin`'s
+loader script itself
+(`https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js`) returned `503` a
+few times in a row from unpkg.com's own CDN, independent of anything above —
+navigating to that exact URL directly worked and resolved to version
+3.16.0, so it's likely a transient unpkg hiccup rather than a real outage.
+Worth knowing regardless: `admin/index.html` loads Decap CMS from a floating
+`^3.0.0` version range with no fallback, so the CMS editor's availability is
+fully dependent on unpkg.com being up at the moment someone opens it. Pinning
+an exact version (e.g. `decap-cms@3.16.0`) wouldn't fix an unpkg outage but
+would at least stop an unannounced new Decap release from ever silently
+changing the editor's behavior underneath you. Not fixed here since it's a
+content/config decision, not a headers one — flagging it because it surfaced
+during this same check.
 
 ## Option B — a Cloudflare Worker (if you'd rather manage this as code)
 
