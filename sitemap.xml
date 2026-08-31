@@ -4,274 +4,234 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
 <url>
-  <loc>https://www.dietchennai.org/</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
+  <loc>https://dietchennai.org/</loc>
+  <lastmod>2026-08-31</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/sitemap.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/about-diet-chennai/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/index-2.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/about-diet/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/about-diet.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/academic-faculty/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/about-diet-chennai.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/activ-alumni/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/mission-vision.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/activ-archive/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/roles-functions.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/activ-calendar/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/organization-structure.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/activ-current/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/district_profile.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/admin-staff/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/district-statistics.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/announcements/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/principals-desk.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/circulars/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/academic-faculty.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/contact-us/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/admin-staff.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/coursedeled/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/coursedeled.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/courses/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/coursetpd.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/coursetpd/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/dept-pste.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/departments/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/dept-tpd.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/dept-ae/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/dept-etmd.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/dept-etmd/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/dept-ae.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/dept-fiar/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/dept-fiar.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/dept-pste/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/library.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/dept-tpd/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/rti.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/disclaimer/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/rti-diet-rules.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/district-statistics/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/activ-calendar.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/district_profile/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/activ-current.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/doc-forms/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/activ-archive.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/doc-publications/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/activ-alumni.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/doc-reports/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/tb-textbook.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/downloads/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/tb-module.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/feedback/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/contact-us.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/gallery/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/doc-publications.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/help/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/doc-reports.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/important-links/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/doc-forms.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/library/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/important-links.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/media/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/announcements.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/mission-vision/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/circulars.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/org-structure/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/media.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/principals-desk/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/downloads.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/roles-functions/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/courses.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/rti-diet-rules/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/departments.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/rti/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/gallery.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/sitemap/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/feedback.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/tb-module/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/website-policies.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/tb-textbook/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/terms-conditions.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/terms-conditions/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/help.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/web-manager/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://www.dietchennai.org/web-manager.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://dietchennai.org/website-policies/</loc>
+  <lastmod>2026-08-31</lastmod>
+  <priority>0.70</priority>
 </url>
-<url>
-  <loc>https://www.dietchennai.org/disclaimer.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/index.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/default.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/index-3.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/assets/content/about_mission.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/assets/content/about_roles.html</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.dietchennai.org/assets/district_profile.pdf</loc>
-  <lastmod>2025-04-22T07:18:42+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
 </urlset>
