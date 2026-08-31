@@ -17,7 +17,7 @@ backend:
   name: github
   repo: rvkmar/dietwebsite
   branch: main # Change to master if your default branch is master
-  site_domain: www.dietchennai.org # Directs Decap to publish cleanly to your custom domain
+  site_domain: dietchennai.org # Directs Decap to publish cleanly to your custom domain
 
 # Media File Paths (default — used by the raw HTML pages and anywhere a
 # field below doesn't override it)
