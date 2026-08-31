@@ -53,7 +53,7 @@ function showLang(lang) {
 async function fetchLanguageData(lang) {
   let basePath = window.location.pathname.includes('dietchennai.org') ? 'https://dietchennai.org/' : '/';
   try {
-    const response = await fetch(basePath + `languages/${lang}.json?v=${Date.now()}`);
+    const response = await fetch(basePath + `languages/${lang}.json`);
     if (!response.ok) {
       console.error('Error fetching language data:', response.statusText);
       return {}; // Return empty object on error
