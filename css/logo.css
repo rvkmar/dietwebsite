@@ -22,11 +22,20 @@ samp {
 }
 
 @media (max-width: 768px) {
-    .logo-img {
-        width: auto; 
-        height: 3em; /* Adjust height as needed */
-        max-width: 100%;
-            /* Scales up on smaller screens */
+    /* #logo-scoped: a later, unscoped ".logo-img { width:22%; height:auto }"
+       rule further down this same file (line ~91, meant for desktop) has
+       equal specificity and comes after this block in source order, so it
+       was silently winning here and overriding both width and height --
+       which is why the mobile logo stayed tiny even with a rule that looked
+       like it should have sized it. Scoping with #logo settles that. */
+    #logo .logo-img {
+        width: auto;
+        /* Was a fixed 3em (~42-45px) here, which made the emblem hard to
+           read on a phone. clamp() keeps it legible on narrow phones
+           without letting it get oversized as the breakpoint approaches
+           768px. */
+        height: clamp(72px, 22vw, 110px);
+        max-width: 60%;
         }
 
     #logo {
@@ -72,6 +81,16 @@ samp {
         max-width: 100%;
         text-align: center;
         box-sizing: border-box;
+    }
+
+    /* .logo a strong (the Tamil title) picks up padding-top: 22px from a
+       legacy desktop-oriented breakpoint in site-responsive.css (meant to
+       vertically align a small subtitle next to an inline logo in the old
+       layout). In this flex-column mobile layout that just leaves a large
+       empty gap under the emblem. #logo-scoped so it outweighs that rule's
+       equal specificity and wins regardless of stylesheet order. */
+    #logo .tamilmarutham {
+        padding-top: 6px;
     }
 }
 
