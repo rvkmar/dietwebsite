@@ -12,6 +12,14 @@
 (function () {
   var DATA_BASE = "/assets/content/data/";
   var cache = {};
+  // In-flight fetch promises, keyed by source name. Several elements on a
+  // single page can ask for the same source (e.g. the homepage's principal
+  // photo, name, and designation all read "principal") before the first
+  // request has resolved — without this, each one raced in and fired its
+  // own duplicate network request. Sharing the in-flight promise here means
+  // only the first caller actually fetches; everyone else awaits the same
+  // promise and the result still gets cached for any later calls too.
+  var inflight = {};
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -20,11 +28,18 @@
   }
 
   function fetchJSON(name, cb) {
-    if (cache[name]) { cb(cache[name]); return; }
-    fetch(DATA_BASE + name + ".json", { cache: "no-store" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) { cache[name] = data; cb(data); })
-      .catch(function () { cb(null); });
+    if (cache.hasOwnProperty(name)) { cb(cache[name]); return; }
+    if (!inflight[name]) {
+      inflight[name] = fetch(DATA_BASE + name + ".json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; })
+        .then(function (data) {
+          cache[name] = data;
+          delete inflight[name];
+          return data;
+        });
+    }
+    inflight[name].then(cb);
   }
 
   function renderListItem(item) {
