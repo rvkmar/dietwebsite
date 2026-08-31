@@ -11,21 +11,33 @@ a generic template.
 
 ## Option A — Transform Rules (no code, ~5 minutes)
 
-**Update, verified live 31 Aug 2026:** the two-rule setup below was applied
+**Update 1, verified live 31 Aug 2026:** the two-rule setup below was applied
 and the site-wide headers are live and correct (confirmed via `curl -sI`).
-But `/admin` is *also* getting the site-wide CSP instead of its own — Decap
-CMS's loader script from unpkg.com is being blocked, and the CMS editor is
-now a blank page. Root cause: Transform Rules don't stop at the first match
+But `/admin` was *also* getting the site-wide CSP instead of its own — Decap
+CMS's loader script from unpkg.com was being blocked, and the CMS editor was
+a blank page. Root cause: Transform Rules don't stop at the first match
 the way this doc originally implied — every rule whose condition matches a
 request runs, in the order listed, and for **Modify Response Header** actions
 a later rule's value for the same header name *overwrites* an earlier rule's
-value. `/admin` matches both rules' conditions as originally written (its
-hostname is still `dietchennai.org`), so whichever rule is evaluated second
-wins outright — in this case, the site-wide one. **Fix: make the two rules'
-conditions mutually exclusive** (Rule 2 below now explicitly excludes
-`/admin`) so each request matches exactly one rule and there's no
-overwrite to depend on rule order at all. Edit the existing "site-wide" rule's
-condition to the one below — no need to touch the `/admin` rule.
+value. `/admin` matched both rules' conditions as originally written (its
+hostname is still `dietchennai.org`), so whichever rule was evaluated second
+won outright — in this case, the site-wide one. **Fixed by making the two
+rules' conditions mutually exclusive** (Rule 2 below now explicitly excludes
+`/admin`) so each request matches exactly one rule.
+
+**Update 2, verified live right after Update 1 was applied:** with the rule
+conflict fixed, `/admin` moved past the blank-page state to a real, different
+error — Decap CMS's own config loader evaluates the fetched `config.yml` via
+something CSP treats as `eval()`-like, and threw `EvalError: Evaluating a
+string as JavaScript violates the following Content Security Policy
+directive because 'unsafe-eval' is not an allowed source of script`. This is
+Decap CMS's own requirement, not a mistake in the values below — its config
+parser needs `'unsafe-eval'` in `script-src` to run at all. **Rule 1's CSP
+value below has been updated to include it** (`script-src 'self'
+'unsafe-eval' https://unpkg.com`) — this is scoped to `/admin` only, so the
+public site's CSP (Rule 2) is unaffected and stays without `'unsafe-eval'`.
+If you already created Rule 1 from the version of this doc without it, edit
+that one header value to match what's below and re-save.
 
 Cloudflare dashboard → your zone → **Rules → Transform Rules → Modify Response
 Header**. Add (or fix) these two rules:
@@ -38,7 +50,7 @@ Add these response headers:
 
 | Header | Value |
 |---|---|
-| `Content-Security-Policy` | `default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://unpkg.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'` |
+| `Content-Security-Policy` | `default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://unpkg.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'` |
 | `X-Content-Type-Options` | `nosniff` |
 | `X-Frame-Options` | `SAMEORIGIN` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
@@ -47,7 +59,9 @@ Add these response headers:
 
 (`/admin` needs `unpkg.com` in `script-src`/`connect-src` because
 `admin/index.html` loads Decap CMS from there, and the CMS itself talks to
-`api.github.com`. Everything else is identical to Rule 2.)
+`api.github.com`. It also needs `'unsafe-eval'` — see Update 2 above; this is
+Decap's own config parser, not something optional. Everything else is
+identical to Rule 2.)
 
 ### Rule 2 — "Security headers: site-wide"
 
@@ -85,12 +99,14 @@ the overwrite bug above, so it's worth doing for real rather than assuming:
 curl -sI https://dietchennai.org/ | grep -i "content-security-policy"
 curl -sI https://dietchennai.org/admin/ | grep -i "content-security-policy"
 ```
-The second command's output must contain `unpkg.com`. If it doesn't, the
-exclusion in Rule 2's condition didn't take (or there's a third rule/cache
-layer also touching this header) — check the Transform Rules list again
-before assuming it's fixed. Also open `/admin` in a browser afterward and
-confirm the CMS actually loads (not just a 200 status) — a too-strict CSP
-fails silently in the browser console in some cases, not as a visible error.
+The second command's output must contain both `unpkg.com` and `'unsafe-eval'`.
+If it's missing either, the fix hasn't fully taken — check the Transform
+Rules list again before assuming it's fixed. Also open `/admin` in a browser
+afterward and confirm the CMS's actual editor UI loads (the collection list
+in the left sidebar), not just a blank page or an "Error loading the CMS
+configuration" screen — both of those are CSP failures specific to Decap and
+won't show as a failed HTTP status, only as an in-page error or console
+message.
 
 **Separate, unrelated issue also seen live while checking this:** `/admin`'s
 loader script itself
@@ -120,7 +136,7 @@ export default {
     const isAdmin = new URL(request.url).pathname.startsWith("/admin");
 
     const csp = isAdmin
-      ? "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://unpkg.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+      ? "default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://unpkg.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
       : "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; form-action 'self' https://www.google.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'";
 
     newHeaders.set("Content-Security-Policy", csp);
