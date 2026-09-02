@@ -107,6 +107,8 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             z-index: 10000;
             line-height: 1;
+            border: none;
+            font-family: inherit;
         }
 
         .close:hover {
@@ -547,7 +549,7 @@
                     Nadu website</a> </p>
             <!-- Apply Modal -->
             <div id="applyModal" class="modal" onclick="ignoreOutsideClick(event, 'apply')">
-                <span class="close" onclick="showConfirmModal()">&times;</span>
+                <button type="button" class="close" onclick="showConfirmModal()" aria-label="Close">&times;</button>
                 <div class="modal-content">
                     <!-- <iframe src="https://scert.tnschools.gov.in/admission/diploma_elementary_education" -->
                     <iframe src="https://scert.tnschools.gov.in/admission/instructions"
@@ -557,7 +559,7 @@
 
             <!-- Instructions Modal -->
             <div id="instructionsModal" class="modal">
-                <span class="close" onclick="closeModal('instructions')">&times;</span>
+                <button type="button" class="close" onclick="closeModal('instructions')" aria-label="Close">&times;</button>
                 <div class="modal-content">
                     <iframe
                         src="https://d1wpyxz35bzzz4.cloudfront.net/2025_2026_D.El.Ed_Admission_Guidelines_for_Government_Institutions.pdf"
