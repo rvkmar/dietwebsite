@@ -86,7 +86,17 @@ function menu_toggle(){
 	$('.showhide').click(function(e) {
 		$('#main_menu').stop().slideToggle('slow');
 		$('.showhide').toggleClass('close');
+		$(this).attr('aria-expanded', $(this).hasClass('close') ? 'true' : 'false');
 		
+	});
+	// Keyboard support: the toggle is a <p role="button"> for icon-animation
+	// CSS reasons (see css/site.css p.showhide.close em:...), so Enter/Space
+	// need to be wired up manually to match native <button> behavior.
+	$('.showhide').on('keydown', function(e) {
+		if (e.key === 'Enter' || e.key === ' ' || e.keyCode === 13 || e.keyCode === 32) {
+			e.preventDefault();
+			$(this).trigger('click');
+		}
 	});
 	
 	
