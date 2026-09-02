@@ -1,0 +1,103 @@
+name: Minify CSS and JS
+
+# Keeps the site's *.min.css/*.min.js companions in sync with their
+# source files automatically. Runs only when a source .css/.js file
+# actually changes (the `paths` filter below excludes the .min.*
+# files themselves), so the commit this workflow makes - which only
+# touches .min.* files - does not re-trigger itself. The `if` guard
+# and the `[skip ci]` in the commit message are both extra safety
+# nets against that same infinite-loop risk.
+#
+# This intentionally only minifies (removes whitespace/comments) -
+# it does not concatenate files into fewer requests. This codebase's
+# CSS has real load-order dependencies (later same-selector rules
+# are relied on to win in a few places), so true bundling needs a
+# careful, separate pass rather than being folded into this job.
+#
+# The file list below is deliberately explicit rather than "every
+# css/*.css and js/*.js" - the repo also has unused, pre-existing
+# bootstrap*.css/js files and some already-shipped .min.* files
+# (font-awesome.min.css, jquery itself) that this job should never
+# touch. Add a new stylesheet/script's base name to the matching
+# list below when you want it minified too.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "css/**.css"
+      - "js/**.js"
+      - "!css/**.min.css"
+      - "!js/**.min.js"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: minify-assets-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CSS_FILES: >-
+    base base-responsive grid font flexslider megamenu site
+    site-responsive ma5gallery logo page-loader no-js print
+    early-font
+  JS_FILES: >-
+    page-loader jquery-accessibleMegaMenu swithcer framework
+    jquery.flexslider font-size ma5gallery megamenu
+    easyResponsiveTabs language custom cms-content
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install minifiers
+        run: npm install -g clean-css-cli terser
+
+      - name: Minify CSS
+        run: |
+          set -e
+          for f in $CSS_FILES; do
+            if [ -f "css/$f.css" ]; then
+              echo "Minifying css/$f.css -> css/$f.min.css"
+              cleancss -o "css/$f.min.css" "css/$f.css"
+            else
+              echo "Skipping css/$f.css (not found)"
+            fi
+          done
+
+      - name: Minify JS
+        run: |
+          set -e
+          for f in $JS_FILES; do
+            if [ -f "js/$f.js" ]; then
+              echo "Minifying js/$f.js -> js/$f.min.js"
+              terser "js/$f.js" -o "js/$f.min.js" -c -m
+            else
+              echo "Skipping js/$f.js (not found)"
+            fi
+          done
+
+      - name: Commit updated minified files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add css/*.min.css js/*.min.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-minify changed CSS/JS [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
