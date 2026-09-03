@@ -117,62 +117,7 @@ extraHead: |
       </style>
 
 extraScript: |
-      <script>
-          function openModal(type) {
-              document.getElementById(type + "Modal").style.display = "block";
-          }
-
-          function closeModal(type) {
-              document.getElementById(type + "Modal").style.display = "none";
-          }
-
-          function showConfirmModal() {
-              document.getElementById("confirmModal").style.display = "block";
-          }
-
-          function closeConfirmModal() {
-              document.getElementById("confirmModal").style.display = "none";
-          }
-
-          function forceCloseApply() {
-              closeConfirmModal();
-              closeModal('apply');
-          }
-
-          // Only Instructions modal closes on outside click
-          window.onclick = function (event) {
-              const instructionsModal = document.getElementById("instructionsModal");
-              const confirmModal = document.getElementById("confirmModal");
-              if (event.target === instructionsModal) {
-                  closeModal("instructions");
-              }
-              if (event.target === confirmModal) {
-                  closeConfirmModal();
-              }
-          };
-
-          // Prevent outside click from closing Apply modal
-          function ignoreOutsideClick(event, type) {
-              if (type === 'apply' && event.target.id === "applyModal") {
-                  // Do nothing
-              }
-          }
-
-          // Disable Esc key for Apply and Confirm modals
-          window.addEventListener("keydown", function (event) {
-              if (event.key === "Escape") {
-                  const applyModal = document.getElementById("applyModal");
-                  const confirmModal = document.getElementById("confirmModal");
-                  const instructionsModal = document.getElementById("instructionsModal");
-
-                  if (confirmModal.style.display === "block" || applyModal.style.display === "block") {
-                      event.preventDefault();
-                  } else if (instructionsModal.style.display === "block") {
-                      closeModal("instructions");
-                  }
-              }
-          });
-      </script>
+  <script src="/js/modals.min.js" defer></script>
 
 
 ---
@@ -219,8 +164,8 @@ extraScript: |
 
                     <!-- Button Overlay -->
                     <div class="button-overlay">
-                        <button class="apply-btn" onclick="openModal('instructions')">View Instructions</button>
-                        <button class="apply-btn" onclick="openModal('apply')">Apply Now</button>
+                        <button class="apply-btn" data-modal-open="instructions">View Instructions</button>
+                        <button class="apply-btn" data-modal-open="apply">Apply Now</button>
                     </div>
                     <p style="color: #db3b00; text-align: center; font-weight:600;">Online admission window is closed. Please visit our DIET directly for spot admission.</p>
                 </div>
@@ -229,8 +174,8 @@ extraScript: |
                     href="https://scert.tnschools.gov.in" style="color: #0056b3; font-weight: 600;">Official SCERT Tamil
                     Nadu website</a> </p>
             <!-- Apply Modal -->
-            <div id="applyModal" class="modal" onclick="ignoreOutsideClick(event, 'apply')">
-                <button type="button" class="close" onclick="showConfirmModal()" aria-label="Close">&times;</button>
+            <div id="applyModal" class="modal">
+                <button type="button" class="close" data-modal-action="show-confirm" aria-label="Close">&times;</button>
                 <div class="modal-content">
                     <!-- <iframe src="https://scert.tnschools.gov.in/admission/diploma_elementary_education" -->
                     <iframe src="https://scert.tnschools.gov.in/admission/instructions"
@@ -240,7 +185,7 @@ extraScript: |
 
             <!-- Instructions Modal -->
             <div id="instructionsModal" class="modal">
-                <button type="button" class="close" onclick="closeModal('instructions')" aria-label="Close">&times;</button>
+                <button type="button" class="close" data-modal-close="instructions" aria-label="Close">&times;</button>
                 <div class="modal-content">
                     <iframe
                         src="https://d1wpyxz35bzzz4.cloudfront.net/2025_2026_D.El.Ed_Admission_Guidelines_for_Government_Institutions.pdf"
@@ -257,10 +202,10 @@ extraScript: |
                     <div style="display: flex; justify-content: space-around;">
                         <button
                             style="margin: 5%; padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px;"
-                            onclick="forceCloseApply()">Yes, Close</button>
+                            data-modal-action="force-close-apply">Yes, Close</button>
                         <button
                             style="margin: 5%; padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 4px;"
-                            onclick="closeConfirmModal()">Cancel</button>
+                            data-modal-action="close-confirm">Cancel</button>
                     </div>
                 </div>
             </div>

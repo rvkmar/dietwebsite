@@ -66,4 +66,20 @@ function set_font_size(fontType){
 	_setCookie("fontSize",fontSize);
 	jQuery("#fontSize").css("font-size",fontSize + "%");
 	//jQuery("#template_three_column").css("font-size",fontSize + "%");
-} 
+}
+
+/* Delegated click handler for the font-size controls in header.njk.
+   These used to be inline onClick="set_font_size(...)" attributes,
+   which the production Content Security Policy's script-src (no
+   'unsafe-inline') silently blocks -- the buttons rendered but did
+   nothing. Any value other than "increase"/"decrease" falls through
+   to set_font_size()'s existing reset branch, so "reset" works
+   without special-casing here. */
+document.addEventListener("click", function (event) {
+	var trigger = event.target.closest("[data-fontsize]");
+	if (trigger) {
+		event.preventDefault();
+		set_font_size(trigger.getAttribute("data-fontsize"));
+	}
+});
+

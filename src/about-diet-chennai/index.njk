@@ -101,62 +101,7 @@ extraHead: |
           }
       </style>
 extraScript: |
-  <script>
-          function openModal(type) {
-              document.getElementById(type + "Modal").style.display = "block";
-          }
-
-          function closeModal(type) {
-              document.getElementById(type + "Modal").style.display = "none";
-          }
-
-          function showConfirmModal() {
-              document.getElementById("confirmModal").style.display = "block";
-          }
-
-          function closeConfirmModal() {
-              document.getElementById("confirmModal").style.display = "none";
-          }
-
-          function forceCloseApply() {
-              closeConfirmModal();
-              closeModal('apply');
-          }
-
-          // Only Instructions modal closes on outside click
-          window.onclick = function (event) {
-              const instructionsModal = document.getElementById("instructionsModal");
-              const confirmModal = document.getElementById("confirmModal");
-              if (event.target === instructionsModal) {
-                  closeModal("instructions");
-              }
-              if (event.target === confirmModal) {
-                  closeConfirmModal();
-              }
-          };
-
-          // Prevent outside click from closing Apply modal
-          function ignoreOutsideClick(event, type) {
-              if (type === 'apply' && event.target.id === "applyModal") {
-                  // Do nothing
-              }
-          }
-
-          // Disable Esc key for Apply and Confirm modals
-          window.addEventListener("keydown", function (event) {
-              if (event.key === "Escape") {
-                  const applyModal = document.getElementById("applyModal");
-                  const confirmModal = document.getElementById("confirmModal");
-                  const instructionsModal = document.getElementById("instructionsModal");
-
-                  if (confirmModal.style.display === "block" || applyModal.style.display === "block") {
-                      event.preventDefault();
-                  } else if (instructionsModal.style.display === "block") {
-                      closeModal("instructions");
-                  }
-              }
-          });
-      </script>
+  <script src="/js/modals.min.js" defer></script>
 ---
 
     <!--/.nav-wrapper-->
@@ -192,11 +137,11 @@ extraScript: |
             </section>
             <!--/#page-head-->
             <div class="button-overlay">
-                <button class="apply-btn" onclick="openModal('instructions')">Mandatory Disclosure</button>
+                <button class="apply-btn" data-modal-open="instructions">Mandatory Disclosure</button>
             </div>
             <!-- Instructions Modal -->
             <div id="instructionsModal" class="modal">
-                <button type="button" class="close" onclick="closeModal('instructions')" aria-label="Close">&times;</button>
+                <button type="button" class="close" data-modal-close="instructions" aria-label="Close">&times;</button>
                 <div class="modal-content">
                     <iframe src="/assets/docs/mandatory_disclosure.html" title="Mandatory Disclosure"></iframe>
                 </div>
