@@ -4,7 +4,10 @@
       - name: "settings"
         label: "General Settings"
         file: "assets/content/data/site-settings.json"
-        description: "Controls the 'Last Updated' date shown in the footer of every page."
+        description: "Site-wide facts used in more than one place: the 'Last Updated' date shown in the footer of every page, and the institute's name/address/email/phone shown on the Contact Us page."
         fields:
           - { label: "Last Updated (e.g. 18-APR-2025)", name: "last_updated", widget: "string" }
-
+          - { label: "Institute Name", name: "institute_name", widget: "string", hint: "Shown at the top of the Contact Us page's address block." }
+          - { label: "Address", name: "address", widget: "text", hint: "Shown on the Contact Us page. One field for the full address (street, city, PIN, state)." }
+          - { label: "Email", name: "email", widget: "string", hint: "Shown on the Contact Us page and used as the 'Send Us a Message' form's destination address." }
+          - { label: "Phone", name: "phone", widget: "string", hint: "Shown on the Contact Us page." }

@@ -262,3 +262,34 @@ Each phase gets the same treatment as everything else this session: build, verif
 - **Translations approach**: resolved — see Section 3 (auto-generated field list, not a widget
   swap).
 - **Config.yml modularization**: confirmed and implemented — see Section 4.
+
+## 8. CMS collection UX pass — DONE (September 2026)
+
+Prompted by the CMS's own "Collections" sidebar being confusing in practice, not by a new phase in
+the sequence above:
+
+- **Downloads/Forms/Publications/Reports were one undifferentiated collection entry** ("Downloads,
+  Forms, Publications & Reports") backed by a single `downloads.json` with a `category` field, filtered
+  client-side per page. An editor had to open one blob list and remember to set Category correctly per
+  item. Split into four real files/collection entries — `downloads.json` (general, shown on
+  `/downloads/` and the homepage tab), `forms.json` (`/doc-forms/`), `publications.json`
+  (`/doc-publications/`), `reports.json` (`/reports/`) — each its own CMS entry, no Category field
+  needed any more since the file itself is now the category. `js/cms-content.js`'s `data-cms-category`
+  filtering was dead code after the split and was removed. Note the resulting behavior change: before,
+  `/downloads/` and the homepage tab showed *everything* (all categories, unfiltered); now `/downloads/`
+  shows only items added directly to the general "Downloads" file, and forms/publications/reports each
+  show only their own file. The one pre-existing item (a publications item) was moved into
+  `publications.json` to match its real content.
+- **Site Settings tracked only `last_updated`**, even though the Contact Us page's institute
+  name/address/email/phone were hardcoded directly in `src/contact-us/index.njk`'s raw HTML — not
+  editable through the CMS at all without touching page source. Added `institute_name`, `address`,
+  `email`, `phone` to the Site Settings JSON/schema and wired them into Contact Us via the existing
+  `data-cms-text`/`data-cms-source` runtime mechanism (same pattern already used for the Principal's
+  name/photo). Added one small new mechanism, `data-cms-mailto`, so the "Send Us a Message" form's
+  `mailto:` destination stays in sync with the Email field instead of needing a second hand-edit.
+
+Not done in this pass (unrelated to the collection-grouping complaint that prompted it): the
+Tier 2/3 raw-HTML-to-structured-fields work in Sections 4–7 above (department pages' richer fields,
+retiring the mission-vision/roles-functions iframes, Tier 3 bespoke schemas for about-diet-chennai,
+about-diet, coursedeled, rti-diet-rules, principals-desk, org-structure) is still open, phased as
+originally planned.

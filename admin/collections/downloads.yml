@@ -2,22 +2,17 @@
     label: "Downloads / Documents"
     files:
       - name: "downloads"
-        label: "Downloads, Forms, Publications & Reports"
+        label: "Downloads (General)"
         file: "assets/content/data/downloads.json"
-        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /reports/. Use Category to route an entry to the right page."
-        fields:
+        description: "Shown on the homepage 'Downloads' tab and on /downloads/. For a form, publication, or report, use the dedicated collection below instead so it also appears on the right dedicated page."
+        fields: &document_list_fields
           - label: "Documents"
             name: "items"
             widget: "list"
-            summary: "{{title}} ({{category}})"
+            summary: "{{title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
-              - label: "Category"
-                name: "category"
-                widget: "select"
-                options: ["forms", "publications", "reports"]
-                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /reports/. It always also appears on /downloads/."
               - { label: "External Link (optional)", name: "link", widget: "string", required: false }
               - label: "Attach Document (optional)"
                 name: "file"
@@ -25,4 +20,18 @@
                 required: false
                 media_folder: "/assets/docs"
                 public_folder: "/assets/docs"
-
+      - name: "forms"
+        label: "Forms"
+        file: "assets/content/data/forms.json"
+        description: "Shown on the /doc-forms/ page."
+        fields: *document_list_fields
+      - name: "publications"
+        label: "Publications"
+        file: "assets/content/data/publications.json"
+        description: "Shown on the /doc-publications/ page."
+        fields: *document_list_fields
+      - name: "reports"
+        label: "Reports"
+        file: "assets/content/data/reports.json"
+        description: "Shown on the /reports/ page."
+        fields: *document_list_fields

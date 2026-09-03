@@ -43,10 +43,13 @@ collections:
       - name: "settings"
         label: "General Settings"
         file: "assets/content/data/site-settings.json"
-        description: "Controls the 'Last Updated' date shown in the footer of every page."
+        description: "Site-wide facts used in more than one place: the 'Last Updated' date shown in the footer of every page, and the institute's name/address/email/phone shown on the Contact Us page."
         fields:
           - { label: "Last Updated (e.g. 18-APR-2025)", name: "last_updated", widget: "string" }
-
+          - { label: "Institute Name", name: "institute_name", widget: "string", hint: "Shown at the top of the Contact Us page's address block." }
+          - { label: "Address", name: "address", widget: "text", hint: "Shown on the Contact Us page. One field for the full address (street, city, PIN, state)." }
+          - { label: "Email", name: "email", widget: "string", hint: "Shown on the Contact Us page and used as the 'Send Us a Message' form's destination address." }
+          - { label: "Phone", name: "phone", widget: "string", hint: "Shown on the Contact Us page." }
   - name: "announcements"
     label: "Announcements"
     files:
@@ -97,22 +100,17 @@ collections:
     label: "Downloads / Documents"
     files:
       - name: "downloads"
-        label: "Downloads, Forms, Publications & Reports"
+        label: "Downloads (General)"
         file: "assets/content/data/downloads.json"
-        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /reports/. Use Category to route an entry to the right page."
-        fields:
+        description: "Shown on the homepage 'Downloads' tab and on /downloads/. For a form, publication, or report, use the dedicated collection below instead so it also appears on the right dedicated page."
+        fields: &document_list_fields
           - label: "Documents"
             name: "items"
             widget: "list"
-            summary: "{{title}} ({{category}})"
+            summary: "{{title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
-              - label: "Category"
-                name: "category"
-                widget: "select"
-                options: ["forms", "publications", "reports"]
-                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /reports/. It always also appears on /downloads/."
               - { label: "External Link (optional)", name: "link", widget: "string", required: false }
               - label: "Attach Document (optional)"
                 name: "file"
@@ -120,7 +118,21 @@ collections:
                 required: false
                 media_folder: "/assets/docs"
                 public_folder: "/assets/docs"
-
+      - name: "forms"
+        label: "Forms"
+        file: "assets/content/data/forms.json"
+        description: "Shown on the /doc-forms/ page."
+        fields: *document_list_fields
+      - name: "publications"
+        label: "Publications"
+        file: "assets/content/data/publications.json"
+        description: "Shown on the /doc-publications/ page."
+        fields: *document_list_fields
+      - name: "reports"
+        label: "Reports"
+        file: "assets/content/data/reports.json"
+        description: "Shown on the /reports/ page."
+        fields: *document_list_fields
   - name: "banner"
     label: "Homepage Banner"
     files:

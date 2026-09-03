@@ -5,9 +5,11 @@
  *
  * Usage on a page:
  *   <ul data-cms-list="announcements"></ul>
- *   <ul data-cms-list="downloads" data-cms-category="forms" data-cms-limit="5"></ul>
+ *   <ul data-cms-list="forms" data-cms-limit="5"></ul>
  *   <ul data-cms-list="banner"></ul>
  *   <strong data-cms-field="last_updated">18-APR-2025</strong>
+ *   <span data-cms-text="email" data-cms-source="site-settings">dietchn@nic.in</span>
+ *   <form data-cms-mailto="email" data-cms-source="site-settings" action="mailto:...">
  */
 (function () {
   var DATA_BASE = "/assets/content/data/";
@@ -79,13 +81,11 @@
 
   function renderList(el) {
     var source = el.getAttribute("data-cms-list");
-    var category = el.getAttribute("data-cms-category");
     var limit = parseInt(el.getAttribute("data-cms-limit") || "0", 10);
     fetchJSON(source, function (data) {
       var list = data && data.items ? data.items : null;
       if (!list || !list.length) { fallback(el); return; }
       var items = list.slice();
-      if (category) { items = items.filter(function (i) { return i.category === category; }); }
       items.sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
       if (limit) { items = items.slice(0, limit); }
       if (!items.length) { fallback(el); return; }
@@ -212,6 +212,19 @@
     });
   }
 
+  function renderMailto(el) {
+    // <form data-cms-mailto="email" data-cms-source="site-settings" action="mailto:...">
+    // Sets the form's action to "mailto:" + an arbitrary flat JSON field,
+    // same source convention as renderImage()/renderText(), so a contact
+    // form's destination address stays in sync with the visible email
+    // text instead of needing to be hand-edited in two places.
+    var key = el.getAttribute("data-cms-mailto");
+    var source = el.getAttribute("data-cms-source") || "site-settings";
+    fetchJSON(source, function (data) {
+      if (data && data[key]) { el.action = "mailto:" + data[key]; }
+    });
+  }
+
   function init() {
     var lists = document.querySelectorAll("[data-cms-list]");
     for (var i = 0; i < lists.length; i++) {
@@ -227,6 +240,8 @@
     for (var m = 0; m < images.length; m++) { renderImage(images[m]); }
     var texts = document.querySelectorAll("[data-cms-text]");
     for (var n = 0; n < texts.length; n++) { renderText(texts[n]); }
+    var mailtos = document.querySelectorAll("[data-cms-mailto]");
+    for (var p = 0; p < mailtos.length; p++) { renderMailto(mailtos[p]); }
   }
 
   if (document.readyState === "loading") {
