@@ -1,0 +1,91 @@
+---
+layout: base.njk
+---
+{#
+  Bespoke layout for /about-diet/ (CMS restructure plan, Tier 3 phase 6).
+  Real shape: 3 top-level bilingual <h2> sections (What is DIET? / The Need
+  for DIET / Importance of DIET), the third of which has 4 nested <h3>
+  sub-headings inside its own body -- kept together as one HTML block per
+  section rather than split further, matching the original markup.
+
+  Content was migrated programmatically (the same Python
+  extract-split-round-trip-verify approach used for
+  about-diet-chennai.njk) rather than hand-retyped, to rule out
+  transcription drift on the page's real Tamil translation (added in an
+  earlier session, 433b684). A 4th, commented-out English-only section
+  ("DIET Chennai's Commitment") existed in the raw HTML inside an HTML
+  comment -- never rendered, so nothing visible was there to migrate; it
+  was left out rather than resurrected, since resurrecting it would be
+  adding content, not preserving it.
+
+  Breadcrumb/<h1> metadata comes from src/_data/simpleInfoPages.js, same
+  reasoning as every other layout in this family.
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+
+        <section class="wrapper banner-wrapper">
+            <div id="flexSlider" class="flexslider">
+                <div class="inner-banner"><img width="1800" height="288" src="/images/page-banner.png" alt="Page demo Banner"></div>
+            </div>
+        </section>
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp></h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <section id="paragraph" class="wrapper paragraph-wrapper">
+                <div class="container common-container four_content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="custompara englishparagraph">
+                                {% for section in sections %}
+                                <h2>{{ section.heading_en | safe }}</h2>
+                                {{ section.body_en | safe }}
+                                {% endfor %}
+                            </div>
+                            <div class="custompara tamilparagraph tamilmarutham">
+                                {% for section in sections %}
+                                <h2>{{ section.heading_ta | safe }}</h2>
+                                {{ section.body_ta | safe }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            {% for img in side_images %}
+                            <img width="1000" height="562" loading="lazy" src="{{ img.image }}" alt="{{ img.alt }}" style="{{ 'padding-top: 5%;' if loop.first }}">
+                            {% if not loop.last %}<hr>{% endif %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <hr />
+                </div>
+            </section>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

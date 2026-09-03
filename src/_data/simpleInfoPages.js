@@ -14,6 +14,10 @@
 // src/_layouts/simple-info.njk looks this up via
 // simpleInfoPages[page.fileSlug].
 module.exports = {
+  "about-diet": {
+    i18nKey: "aboutdiet", label: "About DIET",
+    parent: { href: "#", i18n: "aboutus", label: "About Us" },
+  },
   "about-diet-chennai": {
     i18nKey: "introduction", label: "About DIET Chennai",
     parent: { href: "#", i18n: "aboutus", label: "About Us" },
