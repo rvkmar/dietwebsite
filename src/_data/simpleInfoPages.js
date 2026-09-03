@@ -21,7 +21,7 @@ module.exports = {
   feedback: { i18nKey: "feedback", label: "feedback" },
   "important-links": { i18nKey: "important_links", label: "Important links" },
   "web-manager": { i18nKey: "webmanager", label: "Web manager" },
-  media: { i18nKey: "media", label: "media" },
+  newsletters: { i18nKey: "newsletters", label: "newsletters" },
   rti: {
     i18nKey: "rti", label: "RTI",
     parent: { href: "#", i18n: "actsrules", label: "Acts and Rules" },

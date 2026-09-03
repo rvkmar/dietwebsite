@@ -56,9 +56,9 @@
         label: "Web Information Manager"
         file: "src/web-manager/index.njk"
         fields: *simple_page_fields
-      - name: "media"
-        label: "Media"
-        file: "src/media/index.njk"
+      - name: "newsletters"
+        label: "Newsletters"
+        file: "src/newsletters/index.njk"
         fields: *simple_page_fields
       - name: "rti"
         label: "RTI"

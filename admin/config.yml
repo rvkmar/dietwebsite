@@ -436,8 +436,8 @@ collections:
             - label: circulars
               name: circulars
               widget: text
-            - label: media
-              name: media
+            - label: newsletters
+              name: newsletters
               widget: text
             - label: downloads
               name: downloads
@@ -747,10 +747,10 @@ collections:
               name: circulars
               widget: text
               hint: 'EN: Circulars'
-            - label: media
-              name: media
+            - label: newsletters
+              name: newsletters
               widget: text
-              hint: 'EN: News'
+              hint: 'EN: Newsletters'
             - label: downloads
               name: downloads
               widget: text
@@ -923,9 +923,9 @@ collections:
         label: "Web Information Manager"
         file: "src/web-manager/index.njk"
         fields: *simple_page_fields
-      - name: "media"
-        label: "Media"
-        file: "src/media/index.njk"
+      - name: "newsletters"
+        label: "Newsletters"
+        file: "src/newsletters/index.njk"
         fields: *simple_page_fields
       - name: "rti"
         label: "RTI"
@@ -946,6 +946,54 @@ collections:
       - name: "library"
         label: "Library"
         file: "src/library/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-pste"
+        label: "Department: PSTE"
+        file: "src/dept-pste/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-tpd"
+        label: "Department: TPD"
+        file: "src/dept-tpd/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-etmd"
+        label: "Department: ETMD"
+        file: "src/dept-etmd/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-ae"
+        label: "Department: AE"
+        file: "src/dept-ae/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-fiar"
+        label: "Department: FIAR"
+        file: "src/dept-fiar/index.njk"
+        fields: *simple_page_fields
+      - name: "departments"
+        label: "Departments (index)"
+        file: "src/departments/index.njk"
+        fields: *simple_page_fields
+      - name: "courses"
+        label: "Courses (index)"
+        file: "src/courses/index.njk"
+        fields: *simple_page_fields
+      - name: "coursetpd"
+        label: "Courses: TPD"
+        file: "src/coursetpd/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-calendar"
+        label: "Activities: Academic Training Calendar"
+        file: "src/activ-calendar/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-current"
+        label: "Activities: Current Activities"
+        file: "src/activ-current/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-archive"
+        label: "Activities: Activity Archive"
+        file: "src/activ-archive/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-alumni"
+        label: "Activities: Alumni Association"
+        file: "src/activ-alumni/index.njk"
         fields: *simple_page_fields
   - name: "pages"
     label: "All Website Pages (page source)"
@@ -987,50 +1035,6 @@ collections:
       - name: "academic-faculty"
         label: "Academic Faculty (raw HTML)"
         file: "src/academic-faculty/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "activ-alumni"
-        label: "Activ Alumni (raw HTML)"
-        file: "src/activ-alumni/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "activ-archive"
-        label: "Activ Archive (raw HTML)"
-        file: "src/activ-archive/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "activ-calendar"
-        label: "Activ Calendar (raw HTML)"
-        file: "src/activ-calendar/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "activ-current"
-        label: "Activ Current (raw HTML)"
-        file: "src/activ-current/index.njk"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1138,28 +1142,6 @@ collections:
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "courses"
-        label: "Courses (raw HTML)"
-        file: "src/courses/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "coursetpd"
-        label: "Coursetpd (raw HTML)"
-        file: "src/coursetpd/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "default"
         label: "Default (raw HTML)"
         file: "default.html"
@@ -1171,72 +1153,6 @@ collections:
             allow_language_selection: false
             output_code_only: true
             hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "departments"
-        label: "Departments (raw HTML)"
-        file: "src/departments/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "dept-ae"
-        label: "Dept Ae (raw HTML)"
-        file: "src/dept-ae/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "dept-etmd"
-        label: "Dept Etmd (raw HTML)"
-        file: "src/dept-etmd/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "dept-fiar"
-        label: "Dept Fiar (raw HTML)"
-        file: "src/dept-fiar/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "dept-pste"
-        label: "Dept Pste (raw HTML)"
-        file: "src/dept-pste/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "dept-tpd"
-        label: "Dept Tpd (raw HTML)"
-        file: "src/dept-tpd/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "district-statistics"
         label: "District Statistics (raw HTML)"
         file: "src/district-statistics/index.njk"
