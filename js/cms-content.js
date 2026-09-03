@@ -27,6 +27,23 @@
     });
   }
 
+  var MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+  // Formats a CMS date ("YYYY-MM-DD", as the date widget stores it) into the
+  // site's existing display convention ("18-APR-2025", matching the
+  // last_updated field). Returns "" for anything that doesn't parse, so a
+  // malformed or missing date just omits the date span rather than showing
+  // "Invalid Date".
+  function formatDate(iso) {
+    if (!iso) { return ""; }
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+    if (!m) { return ""; }
+    var day = parseInt(m[3], 10);
+    var month = MONTHS[parseInt(m[2], 10) - 1];
+    if (!day || !month) { return ""; }
+    return (day < 10 ? "0" + day : day) + "-" + month + "-" + m[1];
+  }
+
   function fetchJSON(name, cb) {
     if (cache.hasOwnProperty(name)) { cb(cache[name]); return; }
     if (!inflight[name]) {
@@ -49,8 +66,10 @@
       (isDoc ? ' target="_blank" title="Opens document in a new window"'
              : ' target="_blank" title="External link that opens in a new window"');
     var icon = isDoc ? ' <i class="fa fa-file-pdf-o"></i>' : "";
+    var dateText = formatDate(item.date);
+    var dateHtml = dateText ? ' <span class="content_list_date">' + esc(dateText) + '</span>' : "";
     return '<li><i class="fa fa-arrow-right" aria-hidden="true"></i>' +
-      '<a href="' + esc(href) + '"' + attrs + '>' + esc(item.title) + icon + '</a></li>';
+      '<a href="' + esc(href) + '"' + attrs + '>' + esc(item.title) + icon + '</a>' + dateHtml + '</li>';
   }
 
   function fallback(el) {

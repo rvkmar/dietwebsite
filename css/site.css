@@ -5901,6 +5901,42 @@ i.fa.fa-arrow-right {
     float: left;
     padding-right: 10px;
 }
+
+/* The bare "i.fa.fa-arrow-right { color: #fff }" rule above was written for
+ * the homepage's tab widget, which sits on a dark/colored background
+ * (.resp-tabs-container). Standalone list pages built from the same
+ * data-cms-list markup (announcements, circulars, downloads, doc-forms,
+ * doc-publications, reports) render that same <ul class="content_list">
+ * directly on the page's plain white background, so the white icon was
+ * invisible there -- and with no spacing between items, the list read as a
+ * cramped, undifferentiated block of text. Scoped to .main_content so the
+ * tab widget (which lives outside .main_content) is unaffected. */
+.main_content .content_list {
+    padding-left: 0;
+}
+.main_content .content_list li {
+    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden; /* clearfix for the floated icon below */
+}
+.main_content .content_list li:last-child {
+    border-bottom: none;
+}
+.main_content .content_list li i.fa.fa-arrow-right {
+    color: #0a4168;
+    padding-top: 2px;
+}
+.main_content .content_list li a {
+    display: inline-block;
+    margin-left: 8px;
+}
+.main_content .content_list li .content_list_date {
+    display: block;
+    margin-left: 30px; /* aligns under the link text, past the floated icon */
+    color: #666;
+    font-size: 0.85em;
+}
 p.showhide.close em:first-child {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px);
     transform: rotate(-45deg) translate(-9px, 6px);
