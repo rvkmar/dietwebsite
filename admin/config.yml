@@ -94,7 +94,7 @@ collections:
       - name: "downloads"
         label: "Downloads, Forms, Publications & Reports"
         file: "assets/content/data/downloads.json"
-        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /doc-reports/. Use Category to route an entry to the right page."
+        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /reports/. Use Category to route an entry to the right page."
         fields:
           - label: "Documents"
             name: "items"
@@ -107,7 +107,7 @@ collections:
                 name: "category"
                 widget: "select"
                 options: ["forms", "publications", "reports"]
-                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /doc-reports/. It always also appears on /downloads/."
+                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /reports/. It always also appears on /downloads/."
               - { label: "External Link (optional)", name: "link", widget: "string", required: false }
               - label: "Attach Document (optional)"
                 name: "file"
@@ -1205,9 +1205,9 @@ collections:
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "doc-reports"
-        label: "Doc Reports (raw HTML)"
-        file: "src/doc-reports/index.njk"
+      - name: "reports"
+        label: "Reports (page source)"
+        file: "src/reports/index.njk"
         fields:
           - label: "Full page HTML source"
             name: "body"

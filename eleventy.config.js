@@ -21,7 +21,7 @@
 module.exports = function (eleventyConfig) {
   const passthroughDirs = [
     "admin", "assets", "css", "js", "fonts", "images", "languages",
-    "theme", "less", "scss", "reports", "z_development",
+    "theme", "less", "scss",
   ];
   for (const dir of passthroughDirs) {
     eleventyConfig.addPassthroughCopy(dir);
