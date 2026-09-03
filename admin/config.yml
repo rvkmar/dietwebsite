@@ -26,6 +26,11 @@ backend:
   branch: main # Change to master if your default branch is master
   site_domain: dietchennai.org # Directs Decap to publish cleanly to your custom domain
 
+# Adds a "View Site" link in the CMS's own top bar so you can jump straight
+# to the live site without leaving /admin and typing the URL by hand.
+site_url: https://dietchennai.org
+display_url: https://dietchennai.org
+
 # Media File Paths (default — used by the raw HTML pages and anywhere a
 # field below doesn't override it)
 media_folder: "images"
