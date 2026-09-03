@@ -1,0 +1,18 @@
+  - name: "gallery"
+    label: "Photo Gallery"
+    files:
+      - name: "gallery"
+        label: "Gallery Images"
+        file: "assets/content/gallery/gallery.json"
+        description: "Photos shown on the /gallery/ page."
+        fields:
+          - label: "Photos"
+            name: "images"
+            widget: "list"
+            field:
+              label: "Photo"
+              name: "image"
+              widget: "image"
+              media_folder: "/assets/content/gallery"
+              public_folder: "/assets/content/gallery"
+

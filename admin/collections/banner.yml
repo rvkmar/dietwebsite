@@ -1,0 +1,27 @@
+  - name: "banner"
+    label: "Homepage Banner"
+    files:
+      - name: "banner"
+        label: "Banner Slides"
+        file: "assets/content/data/banner.json"
+        description: "Images shown in the rotating banner at the top of the homepage."
+        fields:
+          - label: "Slides"
+            name: "items"
+            widget: "list"
+            summary: "{{alt}}"
+            fields:
+              - label: "Image (English / default)"
+                name: "image"
+                widget: "image"
+                media_folder: "/images/banner"
+                public_folder: "/images/banner"
+              - label: "Image (Tamil version, optional)"
+                name: "image_ta"
+                widget: "image"
+                required: false
+                media_folder: "/images/banner"
+                public_folder: "/images/banner"
+                hint: "If set, this replaces the English image above when a visitor switches the site to Tamil."
+              - { label: "Alt Text", name: "alt", widget: "string", required: false }
+

@@ -1,0 +1,38 @@
+# Decap CMS configuration for dietchennai.org
+# Structured content (announcements, circulars, downloads, banner images,
+# the last-updated date, and the photo gallery) lives in small JSON data
+# files under assets/content/data/ and assets/content/gallery/, fetched and
+# rendered at runtime by /js/cms-content.js. Editing those collections below
+# is safe and will never break page layout.
+#
+# As of the Phase 2 Eleventy migration, every other page's content lives as
+# an Eleventy template under src/<page>/index.njk (src/index.njk for the
+# homepage, src/404.njk for 404), built to the page actually served on
+# dietchennai.org. The shared header, navigation, and footer are NOT part of
+# any individual page file any more -- they live once in src/_includes/ and
+# apply to every page automatically, so editing a page here can no longer
+# break the site-wide nav or footer the way editing the old flat HTML files
+# could. Each entry in "All Website Pages" below points at the page's
+# src/*.njk source (bottom of this file) as a raw-text fallback for content
+# not covered by a structured collection above -- use carefully, and prefer
+# the structured collections when the content you want to change is an
+# announcement, circular, document, banner image, or the last-updated date.
+# This CMS/admin pipeline is intended for dietchennai.org only -- the
+# diet.ac.in mirror is a read-only replica and blocks /admin at Cloudflare.
+
+backend:
+  name: github
+  repo: rvkmar/dietwebsite
+  branch: main # Change to master if your default branch is master
+  site_domain: dietchennai.org # Directs Decap to publish cleanly to your custom domain
+
+# Adds a "View Site" link in the CMS's own top bar so you can jump straight
+# to the live site without leaving /admin and typing the URL by hand.
+site_url: https://dietchennai.org
+display_url: https://dietchennai.org
+
+# Media File Paths (default — used by the raw HTML pages and anywhere a
+# field below doesn't override it)
+media_folder: "images"
+public_folder: "/images"
+

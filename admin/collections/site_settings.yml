@@ -1,0 +1,10 @@
+  - name: "site_settings"
+    label: "Site Settings"
+    files:
+      - name: "settings"
+        label: "General Settings"
+        file: "assets/content/data/site-settings.json"
+        description: "Controls the 'Last Updated' date shown in the footer of every page."
+        fields:
+          - { label: "Last Updated (e.g. 18-APR-2025)", name: "last_updated", widget: "string" }
+

@@ -1,0 +1,601 @@
+  - name: "translations"
+    label: "Site Translations"
+    files:
+      - name: "strings_en"
+        label: "All Site Text (English)"
+        file: "languages/en.json"
+        description: "Every piece of translatable text on the site (nav labels, headings, button text, the Principal's name/designation, etc.) — 83 keys, all shown here. Edit the Tamil equivalent of each one in 'All Site Text (Tamil)' below; each field there shows the current English text as a hint so you can match them up."
+        fields:
+            - label: home
+              name: home
+              widget: text
+            - label: government
+              name: government
+              widget: text
+            - label: scert
+              name: scert
+              widget: text
+            - label: address
+              name: address
+              widget: text
+            - label: skip
+              name: skip
+              widget: text
+            - label: search
+              name: search
+              widget: text
+            - label: web
+              name: web
+              widget: text
+            - label: diet
+              name: diet
+              widget: text
+            - label: more
+              name: more
+              widget: text
+            - label: aboutus
+              name: aboutus
+              widget: text
+            - label: aboutdiet
+              name: aboutdiet
+              widget: text
+            - label: introduction
+              name: introduction
+              widget: text
+            - label: missionvision
+              name: missionvision
+              widget: text
+            - label: rolefunction
+              name: rolefunction
+              widget: text
+            - label: organization
+              name: organization
+              widget: text
+            - label: districtprofile
+              name: districtprofile
+              widget: text
+            - label: districtstatistics
+              name: districtstatistics
+              widget: text
+            - label: principalsdesk
+              name: principalsdesk
+              widget: text
+            - label: staff
+              name: staff
+              widget: text
+            - label: academicstaff
+              name: academicstaff
+              widget: text
+            - label: adminstaff
+              name: adminstaff
+              widget: text
+            - label: courses
+              name: courses
+              widget: text
+            - label: coursedeled
+              name: coursedeled
+              widget: text
+            - label: coursetpd
+              name: coursetpd
+              widget: text
+            - label: departments
+              name: departments
+              widget: text
+            - label: pste
+              name: pste
+              widget: text
+            - label: tpd
+              name: tpd
+              widget: text
+            - label: etmd
+              name: etmd
+              widget: text
+            - label: ae
+              name: ae
+              widget: text
+            - label: fiar
+              name: fiar
+              widget: text
+            - label: library
+              name: library
+              widget: text
+            - label: actsrules
+              name: actsrules
+              widget: text
+            - label: rti
+              name: rti
+              widget: text
+            - label: dietrules
+              name: dietrules
+              widget: text
+            - label: activities
+              name: activities
+              widget: text
+            - label: calendar
+              name: calendar
+              widget: text
+            - label: current_activities
+              name: current_activities
+              widget: text
+            - label: activity_archive
+              name: activity_archive
+              widget: text
+            - label: alumni
+              name: alumni
+              widget: text
+            - label: textbookmodules
+              name: textbookmodules
+              widget: text
+            - label: textbook
+              name: textbook
+              widget: text
+            - label: modules
+              name: modules
+              widget: text
+            - label: contact-us
+              name: contact-us
+              widget: text
+            - label: documents
+              name: documents
+              widget: text
+            - label: publications
+              name: publications
+              widget: text
+            - label: reports
+              name: reports
+              widget: text
+            - label: forms
+              name: forms
+              widget: text
+            - label: important_links
+              name: important_links
+              widget: text
+            - label: dietfullname
+              name: dietfullname
+              widget: text
+            - label: readmore
+              name: readmore
+              widget: text
+            - label: principalname
+              name: principalname
+              widget: text
+              hint: This value is NOT read anywhere on the site anymore \u2014 the Principal's name is now controlled entirely by the Principal collection, so it stays in sync across every page. Left here only so nothing in the translation file goes unmapped.
+            - label: principaldesignation
+              name: principaldesignation
+              widget: text
+              hint: This value is NOT read anywhere on the site anymore \u2014 use the Principal collection's "Designation (full title...)" field instead.
+            - label: announcements
+              name: announcements
+              widget: text
+            - label: circulars
+              name: circulars
+              widget: text
+            - label: media
+              name: media
+              widget: text
+            - label: downloads
+              name: downloads
+              widget: text
+            - label: careers
+              name: careers
+              widget: text
+            - label: gallery
+              name: gallery
+              widget: text
+            - label: feedback
+              name: feedback
+              widget: text
+            - label: policies
+              name: policies
+              widget: text
+            - label: termsconditions
+              name: termsconditions
+              widget: text
+            - label: help
+              name: help
+              widget: text
+            - label: webmanager
+              name: webmanager
+              widget: text
+            - label: sitemap
+              name: sitemap
+              widget: text
+            - label: disclaimer
+              name: disclaimer
+              widget: text
+            - label: date1
+              name: date1
+              widget: text
+            - label: monthyear1
+              name: monthyear1
+              widget: text
+            - label: announcement1
+              name: announcement1
+              widget: text
+            - label: date2
+              name: date2
+              widget: text
+            - label: monthyear2
+              name: monthyear2
+              widget: text
+            - label: announcement2
+              name: announcement2
+              widget: text
+            - label: date3
+              name: date3
+              widget: text
+            - label: monthyear3
+              name: monthyear3
+              widget: text
+            - label: announcement3
+              name: announcement3
+              widget: text
+            - label: circular1
+              name: circular1
+              widget: text
+            - label: news1
+              name: news1
+              widget: text
+            - label: downloads1
+              name: downloads1
+              widget: text
+            - label: careers1
+              name: careers1
+              widget: text
+            - label: contentmanager
+              name: contentmanager
+              widget: text
+            - label: designedby
+              name: designedby
+              widget: text
+            - label: designer
+              name: designer
+              widget: text
+            - label: updation
+              name: updation
+              widget: text
+            - label: dateupdated
+              name: dateupdated
+              widget: text
+              hint: This value is NOT what controls the footer's actual displayed date anymore — use the Site Settings collection for that. This key is effectively unused now; left here only so nothing in the translation file goes unmapped.
+      - name: "strings_ta"
+        label: "All Site Text (Tamil)"
+        file: "languages/ta.json"
+        description: "The Tamil translation for every key in 'All Site Text (English)' above. Field order matches exactly; each field's hint shows the current English text for that key so you can translate it without switching tabs. Keep every key present in both files — a key missing from this file will show blank when a visitor switches the site to Tamil."
+        fields:
+            - label: home
+              name: home
+              widget: text
+              hint: 'EN: Home'
+            - label: government
+              name: government
+              widget: text
+              hint: 'EN: Government of Tamil Nadu'
+            - label: scert
+              name: scert
+              widget: text
+              hint: 'EN: SCERT Tamil Nadu'
+            - label: address
+              name: address
+              widget: text
+              hint: 'EN: (A government educational institution under the Department of School Education, Government of Tamil Nadu)'
+            - label: skip
+              name: skip
+              widget: text
+              hint: 'EN: Skip to main content'
+            - label: search
+              name: search
+              widget: text
+              hint: 'EN: Search'
+            - label: web
+              name: web
+              widget: text
+              hint: 'EN: The Web'
+            - label: diet
+              name: diet
+              widget: text
+              hint: 'EN: DIET, Chennai'
+            - label: more
+              name: more
+              widget: text
+              hint: 'EN: More'
+            - label: aboutus
+              name: aboutus
+              widget: text
+              hint: 'EN: About Us'
+            - label: aboutdiet
+              name: aboutdiet
+              widget: text
+              hint: 'EN: About DIET'
+            - label: introduction
+              name: introduction
+              widget: text
+              hint: 'EN: About DIET Chennai'
+            - label: missionvision
+              name: missionvision
+              widget: text
+              hint: 'EN: Mission and Vision'
+            - label: rolefunction
+              name: rolefunction
+              widget: text
+              hint: 'EN: Roles and Functions'
+            - label: organization
+              name: organization
+              widget: text
+              hint: 'EN: Organization Structure'
+            - label: districtprofile
+              name: districtprofile
+              widget: text
+              hint: 'EN: District Profile'
+            - label: districtstatistics
+              name: districtstatistics
+              widget: text
+              hint: 'EN: District Statistics'
+            - label: principalsdesk
+              name: principalsdesk
+              widget: text
+              hint: 'EN: Principal''s Desk'
+            - label: staff
+              name: staff
+              widget: text
+              hint: 'EN: Faculty and Staff'
+            - label: academicstaff
+              name: academicstaff
+              widget: text
+              hint: 'EN: Academic Faculty'
+            - label: adminstaff
+              name: adminstaff
+              widget: text
+              hint: 'EN: Administrative Staff'
+            - label: courses
+              name: courses
+              widget: text
+              hint: 'EN: Courses'
+            - label: coursedeled
+              name: coursedeled
+              widget: text
+              hint: 'EN: Diploma in Elementary Education (D.El.Ed.,)'
+            - label: coursetpd
+              name: coursetpd
+              widget: text
+              hint: 'EN: Teachers'' Professional Development (TPD)'
+            - label: departments
+              name: departments
+              widget: text
+              hint: 'EN: Departments'
+            - label: pste
+              name: pste
+              widget: text
+              hint: 'EN: Pre-service Teacher Education'
+            - label: tpd
+              name: tpd
+              widget: text
+              hint: 'EN: Teacher Professional Development'
+            - label: etmd
+              name: etmd
+              widget: text
+              hint: 'EN: Education Technology & Material Development'
+            - label: ae
+              name: ae
+              widget: text
+              hint: 'EN: Assessment & Evaluation'
+            - label: fiar
+              name: fiar
+              widget: text
+              hint: 'EN: Field Interaction & Action Research'
+            - label: library
+              name: library
+              widget: text
+              hint: 'EN: Library'
+            - label: actsrules
+              name: actsrules
+              widget: text
+              hint: 'EN: Acts and Rules'
+            - label: rti
+              name: rti
+              widget: text
+              hint: 'EN: Right to Information Act'
+            - label: dietrules
+              name: dietrules
+              widget: text
+              hint: 'EN: DIET Acts & Rules'
+            - label: activities
+              name: activities
+              widget: text
+              hint: 'EN: Activities'
+            - label: calendar
+              name: calendar
+              widget: text
+              hint: 'EN: Academic Training Calendar'
+            - label: current_activities
+              name: current_activities
+              widget: text
+              hint: 'EN: Current Activities'
+            - label: activity_archive
+              name: activity_archive
+              widget: text
+              hint: 'EN: Activity Archive'
+            - label: alumni
+              name: alumni
+              widget: text
+              hint: 'EN: Alumni Association'
+            - label: textbookmodules
+              name: textbookmodules
+              widget: text
+              hint: 'EN: Textbook and Modules'
+            - label: textbook
+              name: textbook
+              widget: text
+              hint: 'EN: Textbooks'
+            - label: modules
+              name: modules
+              widget: text
+              hint: 'EN: Modules'
+            - label: contact-us
+              name: contact-us
+              widget: text
+              hint: 'EN: Contact Us'
+            - label: documents
+              name: documents
+              widget: text
+              hint: 'EN: Documents'
+            - label: publications
+              name: publications
+              widget: text
+              hint: 'EN: Publications'
+            - label: reports
+              name: reports
+              widget: text
+              hint: 'EN: Reports'
+            - label: forms
+              name: forms
+              widget: text
+              hint: 'EN: Forms'
+            - label: important_links
+              name: important_links
+              widget: text
+              hint: 'EN: Important Links'
+            - label: dietfullname
+              name: dietfullname
+              widget: text
+              hint: 'EN: District Institute of Education and Training (DIET), Chennai'
+            - label: readmore
+              name: readmore
+              widget: text
+              hint: 'EN: Read More '
+            - label: principalname
+              name: principalname
+              widget: text
+              hint: 'EN: Dr. S. Shameem'
+              # NOT read anywhere anymore \u2014 use the Principal collection's Name (Tamil) field instead.
+            - label: principaldesignation
+              name: principaldesignation
+              widget: text
+              hint: 'EN: Principal, DIET Chennai'
+              # NOT read anywhere anymore \u2014 use the Principal collection's Designation (full title, Tamil) field instead.
+            - label: announcements
+              name: announcements
+              widget: text
+              hint: 'EN: Announcements'
+            - label: circulars
+              name: circulars
+              widget: text
+              hint: 'EN: Circulars'
+            - label: media
+              name: media
+              widget: text
+              hint: 'EN: News'
+            - label: downloads
+              name: downloads
+              widget: text
+              hint: 'EN: Downloads'
+            - label: careers
+              name: careers
+              widget: text
+              hint: 'EN: Careers'
+            - label: gallery
+              name: gallery
+              widget: text
+              hint: 'EN: Gallery'
+            - label: feedback
+              name: feedback
+              widget: text
+              hint: 'EN: Feedback'
+            - label: policies
+              name: policies
+              widget: text
+              hint: 'EN: Website Policies'
+            - label: termsconditions
+              name: termsconditions
+              widget: text
+              hint: 'EN: Terms and Conditions'
+            - label: help
+              name: help
+              widget: text
+              hint: 'EN: Help'
+            - label: webmanager
+              name: webmanager
+              widget: text
+              hint: 'EN: Web Information Manager'
+            - label: sitemap
+              name: sitemap
+              widget: text
+              hint: 'EN: Sitemap'
+            - label: disclaimer
+              name: disclaimer
+              widget: text
+              hint: 'EN: Disclaimer'
+            - label: date1
+              name: date1
+              widget: text
+              hint: 'EN: 26'
+            - label: monthyear1
+              name: monthyear1
+              widget: text
+              hint: 'EN: FEB 2025'
+            - label: announcement1
+              name: announcement1
+              widget: text
+              hint: 'EN: Prevention of child sexual abuse: In-service teacher training for primary teachers'
+            - label: date2
+              name: date2
+              widget: text
+              hint: 'EN: 12'
+            - label: monthyear2
+              name: monthyear2
+              widget: text
+              hint: 'EN: FEB 2025'
+            - label: announcement2
+              name: announcement2
+              widget: text
+              hint: 'EN: Educational video creation for Manarkeni app.'
+            - label: date3
+              name: date3
+              widget: text
+              hint: 'EN: 21'
+            - label: monthyear3
+              name: monthyear3
+              widget: text
+              hint: 'EN: JAN 2025'
+            - label: announcement3
+              name: announcement3
+              widget: text
+              hint: 'EN: Conduct of State Leve Achievement Survey (SLAS) in Chennai District'
+            - label: circular1
+              name: circular1
+              widget: text
+              hint: 'EN: Circular on NCTE Draft regulations 2025'
+            - label: news1
+              name: news1
+              widget: text
+              hint: 'EN: To be updated soon'
+            - label: downloads1
+              name: downloads1
+              widget: text
+              hint: 'EN: Research compendium: Chennai district (2023-24)'
+            - label: careers1
+              name: careers1
+              widget: text
+              hint: 'EN: To be updated soon'
+            - label: contentmanager
+              name: contentmanager
+              widget: text
+              hint: 'EN: Website Content Managed by'
+            - label: designedby
+              name: designedby
+              widget: text
+              hint: 'EN: Developed by'
+            - label: designer
+              name: designer
+              widget: text
+              hint: 'EN: Ravikumar Rajabhather'
+            - label: updation
+              name: updation
+              widget: text
+              hint: 'EN: Last Updated on: '
+            - label: dateupdated
+              name: dateupdated
+              widget: text
+              hint: 'EN: 21-JUNE-2025'
+              # Not what controls the footer's actual date; see the note on the English side.
+

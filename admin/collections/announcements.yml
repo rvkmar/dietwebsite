@@ -1,0 +1,23 @@
+  - name: "announcements"
+    label: "Announcements"
+    files:
+      - name: "announcements"
+        label: "Announcements List"
+        file: "assets/content/data/announcements.json"
+        description: "Shown on the homepage 'Announcements' tab and on the /announcements/ page."
+        fields:
+          - label: "Announcements"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
+              - { label: "External Link (optional)", name: "link", widget: "string", required: false }
+              - label: "Attach Document (optional)"
+                name: "file"
+                widget: "file"
+                required: false
+                media_folder: "/assets/docs"
+                public_folder: "/assets/docs"
+

@@ -1,0 +1,14 @@
+  - name: "about_fragments"
+    label: "About / Roles Content"
+    files:
+      - name: "about_mission"
+        label: "Mission & Vision content (embedded on /mission-vision/)"
+        file: "assets/content/about_mission.html"
+        fields:
+          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
+      - name: "about_roles"
+        label: "Roles & Functions content (embedded on /roles-functions/)"
+        file: "assets/content/about_roles.html"
+        fields:
+          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
+

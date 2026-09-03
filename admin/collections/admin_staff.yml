@@ -1,0 +1,25 @@
+  - name: "admin_staff"
+    label: "Non-Academic Staff"
+    files:
+      - name: "admin_staff"
+        label: "Non-Academic Staff List"
+        file: "assets/content/data/admin-staff.json"
+        description: "Shown on the /admin-staff/ page (flip-cards with photo, name, designation, qualification, experience, email, phone). Reorder entries here to reorder the page; delete an entry to remove someone; add one for a new hire."
+        fields:
+          - label: "Staff Members"
+            name: "items"
+            widget: "list"
+            summary: "{{name}} — {{designation}}"
+            fields:
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                media_folder: "/assets/staff"
+                public_folder: "/assets/staff"
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Designation", name: "designation", widget: "string" }
+              - { label: "Qualification", name: "qualification", widget: "text", required: false }
+              - { label: "Experience", name: "experience", widget: "string", required: false, hint: "e.g. '9 years'" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Phone", name: "phone", widget: "string", required: false }
+

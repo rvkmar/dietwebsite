@@ -1,0 +1,28 @@
+  - name: "downloads"
+    label: "Downloads / Documents"
+    files:
+      - name: "downloads"
+        label: "Downloads, Forms, Publications & Reports"
+        file: "assets/content/data/downloads.json"
+        description: "Shown on the homepage 'Downloads' tab and on /downloads/, /doc-forms/, /doc-publications/, /reports/. Use Category to route an entry to the right page."
+        fields:
+          - label: "Documents"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} ({{category}})"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", date_format: "YYYY-MM-DD", required: false }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["forms", "publications", "reports"]
+                hint: "Determines whether this appears on /doc-forms/, /doc-publications/, or /reports/. It always also appears on /downloads/."
+              - { label: "External Link (optional)", name: "link", widget: "string", required: false }
+              - label: "Attach Document (optional)"
+                name: "file"
+                widget: "file"
+                required: false
+                media_folder: "/assets/docs"
+                public_folder: "/assets/docs"
+

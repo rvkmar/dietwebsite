@@ -1,0 +1,34 @@
+  - name: "principal"
+    label: "Principal"
+    files:
+      - name: "principal_profile"
+        label: "Principal's Photo & Profile"
+        file: "assets/content/data/principal.json"
+        description: "The Principal's photo, name, and designation — used on the Academic Faculty card, the homepage, the Principal's Desk page, and the Mandatory Disclosure document. Edit it here once and it updates everywhere; no other collection controls this anymore."
+        fields:
+          - label: "Photo"
+            name: "photo"
+            widget: "image"
+            media_folder: "/images"
+            public_folder: "/images"
+          - { label: "Name", name: "name", widget: "string", hint: "Used everywhere: this card, the homepage, Principal's Desk page, and the Mandatory Disclosure document." }
+          - { label: "Name (Tamil)", name: "name_ta", widget: "string", required: false, hint: "Shown on the homepage and Principal's Desk page when a visitor switches to Tamil. Leave blank to just keep showing the English name in Tamil mode too." }
+          - { label: "Designation (short, for this card)", name: "designation", widget: "string", hint: "Shown only on this Academic Faculty card, e.g. 'Principal' \u2014 matches the style of every other faculty member's card." }
+          - { label: "Designation (full title, for homepage/desk/disclosure)", name: "designation_long", widget: "string", hint: "e.g. 'Principal, DIET Chennai' \u2014 shown on the homepage, Principal's Desk page, and the Mandatory Disclosure document." }
+          - { label: "Designation (full title, Tamil)", name: "designation_long_ta", widget: "string", required: false }
+          - { label: "Qualification", name: "qualification", widget: "text", required: false }
+          - { label: "Teaching Experience", name: "experience", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Phone", name: "phone", widget: "string", required: false }
+      # Note: the Principal's Name & Designation (principalname /
+      # principaldesignation keys, English + Tamil) are edited via the
+      # "Site Translations" collection instead of here, since that
+      # collection now covers every key in languages/en.json and
+      # languages/ta.json, including these two.
+      - name: "principal_disclosure"
+        label: "Mandatory Disclosure Document (raw HTML)"
+        file: "assets/docs/mandatory_disclosure.html"
+        description: "The Principal's name appears TWICE in this legal/RTI document (as a listed detail and as a signature line) and is plain static text, not linked to the fields above — you must update both occurrences yourself if the Principal changes."
+        fields:
+          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
+

@@ -1,0 +1,25 @@
+  - name: "academic_faculty"
+    label: "Academic Faculty"
+    files:
+      - name: "academic_faculty"
+        label: "Academic Faculty List"
+        file: "assets/content/data/academic-faculty.json"
+        description: "Shown on the /academic-faculty/ page (flip-cards with photo, name, designation, qualification, experience, email, phone). Reorder entries here to reorder the page; delete an entry to remove someone; add one for a new hire. The Principal is NOT listed here — edit the Principal collection below instead; their card is added to this page automatically."
+        fields:
+          - label: "Faculty Members"
+            name: "items"
+            widget: "list"
+            summary: "{{name}} — {{designation}}"
+            fields:
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                media_folder: "/assets/staff"
+                public_folder: "/assets/staff"
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Designation", name: "designation", widget: "string" }
+              - { label: "Qualification", name: "qualification", widget: "text", required: false }
+              - { label: "Teaching Experience", name: "experience", widget: "string", required: false, hint: "e.g. '24 years'" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Phone", name: "phone", widget: "string", required: false }
+
