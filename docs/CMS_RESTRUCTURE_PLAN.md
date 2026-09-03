@@ -49,10 +49,12 @@ CMS-editable instead of being the one fragment with no admin coverage at all.
 For families of pages that share a content shape, define *one* Nunjucks partial and *one* CMS field
 schema, reused across every page in the family, instead of one bespoke raw-HTML box per page:
 - **Department pages** (dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, and `departments` as the
-  index): all five are currently identical empty stubs. One shared schema — department name, HOD,
-  faculty (list or link to the existing academic_faculty collection), activities (repeatable
-  heading+body), downloads (link into the existing downloads collection filtered by department) —
-  rendered by one shared partial. Five CMS entries of the same type instead of five raw-HTML boxes.
+  index): all five are currently identical empty stubs. One shared schema — department name, an
+  optional department photo/banner image, HOD, faculty (list or link to the existing
+  academic_faculty collection, which already carries staff photos), activities (repeatable
+  heading+body+optional image, per the image-field pattern below), downloads (link into the existing
+  downloads collection filtered by department) — rendered by one shared partial. Five CMS entries of
+  the same type instead of five raw-HTML boxes.
 - **Simple info/policy pages** (disclaimer, terms-conditions, website-policies, help, feedback,
   important-links, web-manager, media, rti, tb-module, tb-textbook, sitemap, library,
   district_profile): intro paragraph (markdown), optional image, optional embedded-PDF/external-link
@@ -104,6 +106,35 @@ org-structure/principals-desk pages already do:
 the reader's selected language — no JS changes needed, this is purely extending a convention that's
 already live in production to every page and every Tier 2/3 field, rather than introducing a second,
 different translation mechanism alongside the `data-i18n` one that already handles nav/UI chrome.
+
+### Every section also gets an optional image field
+
+Confirmed: any repeatable "section" (Tier 2's info/policy sections, Tier 2's department activities,
+Tier 3's bespoke sections) gets an **optional image** alongside its bilingual text, not just text:
+
+```yaml
+- label: "Section"
+  name: "sections"
+  widget: "list"
+  fields:
+    - { label: "Heading (English)", name: "heading_en", widget: "string" }
+    - { label: "Heading (Tamil)", name: "heading_ta", widget: "string" }
+    - label: "Body"
+      name: "body"
+      widget: "object"
+      fields:
+        - { label: "English", name: "en", widget: "markdown" }
+        - { label: "Tamil", name: "ta", widget: "markdown" }
+    - { label: "Image (optional)", name: "image", widget: "image", required: false }
+    - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
+```
+
+One `widget: image` field is language-agnostic (the same photo for both languages) unless a page
+specifically needs different images per language, in which case that field becomes an object with
+`en`/`ta` sub-fields the same way text does. The template renders the image inside the section,
+sized/positioned the way `org-structure`'s existing org-chart images already are (`class="img-fluid"`,
+explicit width/height per the Lighthouse fix from earlier in this project) — not as a second,
+different image-handling convention.
 
 ## 3. Translations: collapse ~600 lines to a real i18n structure
 
