@@ -31,6 +31,13 @@ backend:
 site_url: https://dietchennai.org
 display_url: https://dietchennai.org
 
+# Editorial workflow: every save now goes through a draft -> in review ->
+# ready to publish pipeline (with a preview link) instead of committing
+# straight to main. See CMS_RESTRUCTURE_PLAN.md Section 5/6 phase 8. Cheap
+# insurance even with a single editor today; easy to turn off again by
+# removing this line and regenerating admin/config.yml.
+publish_mode: editorial_workflow
+
 # Media File Paths (default — used by the raw HTML pages and anywhere a
 # field below doesn't override it)
 media_folder: "images"

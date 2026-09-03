@@ -305,7 +305,8 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
 7. **Activities family** (activ-alumni/archive/calendar/current) — structured as a JSON list
    collection like announcements/circulars (see confirmed approach below), wired up now even though
    empty, same as every other stub page.
-8. **Editorial workflow toggle** (Section 5) — independent, can happen anytime.
+8. **Editorial workflow toggle.** DONE (September 2026), done out of strict order since the plan itself flagged it as independent. Added `publish_mode: editorial_workflow` to `admin/config.template.yml` (confirmed against Decap's actual configuration docs before writing it — `publish_mode`, not an `editorial_workflow: true` flag, was the risk the plan called out explicitly). Every CMS save now goes through Decap's draft -> in review -> ready to publish pipeline (each with its own preview) instead of committing straight to `main`, at no cost to the single-editor workflow in use today.
+   Verified: `admin/config.yml` regenerated via `scripts/build-cms-config.js`, parses clean, and confirmed to contain `publish_mode: editorial_workflow`; `npx eleventy` full rebuild succeeds with zero errors (this is a CMS-only config change with no effect on the built site, but the full verification pass was still run); `npm run check:links` reports 0 broken internal links.
 
 Each phase gets the same treatment as everything else this session: build, verify against the local
 `_site/` output (and ideally the Netlify preview), commit, then it's your call when to push.
