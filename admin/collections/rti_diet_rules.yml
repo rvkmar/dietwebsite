@@ -1,0 +1,29 @@
+  - name: "rti_diet_rules"
+    label: "DIET Rules (RTI)"
+    delete: false
+    files:
+      - name: "rti-diet-rules"
+        label: "DIET Rules"
+        file: "src/rti-diet-rules/index.njk"
+        fields:
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "rti-diet-rules.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - { label: "Table heading", name: "table_heading", widget: "string", required: false }
+          - label: "Government Orders"
+            name: "orders"
+            widget: "list"
+            required: false
+            hint: "Each row is one Government Order / directive. Date, title, and source are plain facts (not translated); Description is bilingual since it's the one field with real explanatory prose."
+            fields:
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Order / Directive title", name: "title", widget: "string" }
+              - label: "Description"
+                name: "description"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "text" }
+                  - { label: "Tamil", name: "ta", widget: "text", required: false }
+              - { label: "Source document URL", name: "source_url", widget: "string" }
+              - { label: "Source label", name: "source_label", widget: "string", hint: "e.g. 'GO Ms No.92 School Education (ERT) Department, Government of Tamil Nadu'" }

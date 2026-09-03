@@ -1,0 +1,126 @@
+---
+layout: base.njk
+---
+{#
+  Bespoke layout for /rti-diet-rules/ (CMS restructure plan, Tier 3 phase
+  6). Real shape: a legal/reference table of Government Orders (date,
+  order/directive title, description, source document link) -- not prose
+  sections, so this uses a repeatable `orders` list instead of the
+  intro/sections shape every other Tier 2/3 page uses.
+
+  date/title/source_label are kept as plain (non-bilingual) strings --
+  they're GO numbers, department names, and dates, i.e. facts/citations
+  rather than editorial prose, the same reasoning applied to
+  department.njk's `downloads` list. `description` is the one field with
+  real explanatory prose, so it follows the site's usual bilingual
+  convention; no Tamil translation of these descriptions exists anywhere
+  on the site today, so `ta` is left blank on all three rows rather than
+  invented.
+
+  Two of the three source links used a literal backslash path
+  (\assets\files\...) in the original raw HTML -- a pre-existing encoding
+  bug, not content -- corrected to a normal forward-slash /assets/files/...
+  URL here; the link target and label text are unchanged.
+
+  Breadcrumb/<h1> metadata comes from src/_data/simpleInfoPages.js, same
+  reasoning as every other layout in this family.
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+<style>
+    .table-container {
+        width: 85%;
+        margin: 0 auto;
+    }
+    .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .table-container th,
+    .table-container td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    .table-container th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .table-container tr:hover {
+        background-color: #f1f1f1;
+    }
+    .table-container a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
+    .table-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            {% if orders and orders.length %}
+            <div class="table-container">
+                {% if table_heading %}<h3>{{ table_heading }}</h3>{% endif %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Order/Directive</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{ order.date }}</td>
+                            <td>{{ order.title }}</td>
+                            <td>
+                                {% if order.description.en %}<span class="englishparagraph">{{ order.description.en }}</span>{% endif %}
+                                {% if order.description.ta %}<span class="tamilparagraph">{{ order.description.ta }}</span>{% endif %}
+                            </td>
+                            <td><a href="{{ order.source_url }}" target="_blank"><i class="fa fa-file-pdf-o"></i> {{ order.source_label }}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="container common-container four_content" style="padding: 40px 0; text-align: center; color: #666;">
+                <p><i>Content for this page will be added soon.</i></p>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

@@ -14,6 +14,10 @@
 // src/_layouts/simple-info.njk looks this up via
 // simpleInfoPages[page.fileSlug].
 module.exports = {
+  "rti-diet-rules": {
+    i18nKey: "dietrules", label: "DIET rules",
+    parent: { href: "#", i18n: "actsrules", label: "Acts and Rules" },
+  },
   "about-diet": {
     i18nKey: "aboutdiet", label: "About DIET",
     parent: { href: "#", i18n: "aboutus", label: "About Us" },
