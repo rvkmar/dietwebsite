@@ -5937,6 +5937,18 @@ i.fa.fa-arrow-right {
     color: #666;
     font-size: 0.85em;
 }
+/* The date span above is only meant for the standalone list pages
+ * (.main_content). renderListItem() in cms-content.js is shared code, so it
+ * also appends the same <span class="content_list_date"> inside the
+ * homepage's dark tab-preview widget (.resp-tabs-container) -- there, the
+ * preceding <a> is display:block (see rule above), which pushes the
+ * unstyled date span onto its own line by normal block flow even without
+ * any CSS targeting it, adding an extra line to every item and visibly
+ * growing that box's height. That widget was never meant to show dates
+ * (it didn't before), so hide it there explicitly rather than styling it. */
+.resp-tabs-container ul.content_list .content_list_date {
+    display: none;
+}
 p.showhide.close em:first-child {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px);
     transform: rotate(-45deg) translate(-9px, 6px);
