@@ -236,20 +236,25 @@ $(document).ready(function(){
 // with try and catch block
 $(window).scroll(function() {
   try {
-    var oTop = $('#counter').offset().top - window.innerHeight;
-    if (a == 0 && $(window).scrollTop() > oTop) {
-      $('.count').each(function () {
-        $(this).prop('Counter', 0).animate({
-          Counter: $(this).text()
-        }, {
-          duration: 4000,
-          easing: 'swing',
-          step: function (now) {
-            $(this).text(Math.ceil(now));
-          }
+    var counterEl = $('#counter');
+    // No page currently has a #counter element -- guard instead of
+    // letting .offset() throw on every scroll tick when it's absent.
+    if (counterEl.length) {
+      var oTop = counterEl.offset().top - window.innerHeight;
+      if (a == 0 && $(window).scrollTop() > oTop) {
+        $('.count').each(function () {
+          $(this).prop('Counter', 0).animate({
+            Counter: $(this).text()
+          }, {
+            duration: 4000,
+            easing: 'swing',
+            step: function (now) {
+              $(this).text(Math.ceil(now));
+            }
+          });
         });
-      });
-      a = 1;
+        a = 1;
+      }
     }
   } catch (error) {
     console.log('Scroll animation error:', error);
@@ -297,7 +302,8 @@ $(document).ready(function() {
         video = document.getElementsByTagName('video')[0],
         videoMethods = {
             renderVideoPlayButton: function() {
-                    if (videoWrapper.contains(video)) {
+                    // Guard: most pages have no .video-division element at all.
+                    if (videoWrapper && videoWrapper.contains(video)) {
                     this.formatVideoPlayButton()
                     video.classList.add('has-media-controls-hidden')
                     videoPlayButton = document.getElementsByClassName('video-overlay-play-button')[0]

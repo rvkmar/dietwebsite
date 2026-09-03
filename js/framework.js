@@ -138,14 +138,13 @@ function dropdown1(dropdownId, hoverClass, mouseOffDelay) {
 			}
 			var anchor = listItems[i].getElementsByTagName('a');
 
-			// using try catch to avoid error in IE
-			try {
+			// Guard: not every <li> in every menu has a nested <a> (e.g.
+			// section headers used as plain list items), so skip quietly
+			// instead of throwing on the assignment below.
+			if (anchor.length) {
 				anchor = anchor[0];
 				anchor.onfocus = function() { tabOn(this.parentNode); }
 				anchor.onblur = function() { tabOff(this.parentNode); }
-			} catch (e) {
-				console.log(e);
-				// do nothing
 			}
 			// using try catch to avoid error in IE
 		}
