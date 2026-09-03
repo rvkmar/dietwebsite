@@ -1,0 +1,336 @@
+---
+layout: base.njk
+title: "D.El.Ed., | District Institute of Education and Training, Chennai | DIET Chennai"
+description: "The details of Diploma in Elementary Education (D.El.Ed.,) course offered by DIET Chennai is available here."
+last_updated: "18-APR-2025"
+extraHead: |
+      <style>
+          /* Centered button container */
+          .img-container {
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              align-items: center;
+          }
+
+          /* Centered button container */
+          .button-container {
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              align-items: center;
+          }
+
+          .modal {
+              display: none;
+              position: fixed;
+              z-index: 9999;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background-color: rgba(0, 0, 0, 0.6);
+          }
+
+          .modal-content {
+              background-color: #fff;
+              margin: 4% auto;
+              padding: 0;
+              border-radius: 8px;
+              width: 90%;
+              max-width: 80vw;
+              height: 90vh;
+              display: flex;
+              flex-direction: column;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          }
+
+          .close {
+              position: absolute;
+              top: 12px;
+              right: 16px;
+              font-size: 28px;
+              font-weight: bold;
+              color: #ffffff;
+              background-color: rgba(0, 0, 0, 0.6);
+              padding: 4px 10px;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: background-color 0.3s ease, transform 0.2s ease;
+              z-index: 10000;
+              line-height: 1;
+              border: none;
+              font-family: inherit;
+          }
+
+          .close:hover {
+              background-color: rgba(255, 0, 0, 0.8);
+              transform: scale(1.1);
+          }
+
+          .apply-btn {
+              background-color: #0056b3;
+              color: white;
+              padding: 12px 24px;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 16px;
+              margin: 10px;
+          }
+
+          .apply-btn:hover {
+              background-color: #003d80;
+          }
+
+          .button-overlay {
+              position: absolute;
+              top: 53%;
+              left: 50%;
+              transform: translateX(-50%);
+              display: flex;
+              gap: 12px;
+              z-index: 10;
+          }
+
+          iframe {
+              width: 100%;
+              height: 100%;
+              border: none;
+          }
+
+          .confirm-box {
+              background-color: #fff;
+              padding: 20px;
+              max-width: 400px;
+              width: 90%;
+              margin: 20% auto;
+              border-radius: 8px;
+              text-align: center;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+              color: #333;
+              /* Make sure text is visible */
+              font-size: 16px;
+              /* Ensure it’s readable */
+          }
+      </style>
+
+extraScript: |
+      <script>
+          function openModal(type) {
+              document.getElementById(type + "Modal").style.display = "block";
+          }
+
+          function closeModal(type) {
+              document.getElementById(type + "Modal").style.display = "none";
+          }
+
+          function showConfirmModal() {
+              document.getElementById("confirmModal").style.display = "block";
+          }
+
+          function closeConfirmModal() {
+              document.getElementById("confirmModal").style.display = "none";
+          }
+
+          function forceCloseApply() {
+              closeConfirmModal();
+              closeModal('apply');
+          }
+
+          // Only Instructions modal closes on outside click
+          window.onclick = function (event) {
+              const instructionsModal = document.getElementById("instructionsModal");
+              const confirmModal = document.getElementById("confirmModal");
+              if (event.target === instructionsModal) {
+                  closeModal("instructions");
+              }
+              if (event.target === confirmModal) {
+                  closeConfirmModal();
+              }
+          };
+
+          // Prevent outside click from closing Apply modal
+          function ignoreOutsideClick(event, type) {
+              if (type === 'apply' && event.target.id === "applyModal") {
+                  // Do nothing
+              }
+          }
+
+          // Disable Esc key for Apply and Confirm modals
+          window.addEventListener("keydown", function (event) {
+              if (event.key === "Escape") {
+                  const applyModal = document.getElementById("applyModal");
+                  const confirmModal = document.getElementById("confirmModal");
+                  const instructionsModal = document.getElementById("instructionsModal");
+
+                  if (confirmModal.style.display === "block" || applyModal.style.display === "block") {
+                      event.preventDefault();
+                  } else if (instructionsModal.style.display === "block") {
+                      closeModal("instructions");
+                  }
+              }
+          });
+      </script>
+
+
+---
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+
+        <!-- <section class="wrapper banner-wrapper">
+            <div id="flexSlider" class="flexslider">
+                <div class="inner-banner"><img width="1800" height="288" src="/images/diet_chennai_banner.png" alt="DIET Chennai Banner"></div>
+            </div>
+        </section> -->
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            <li><a href="#" data-i18n="courses">Courses</a></li>
+                            <li><a href="/coursedeled/" data-i18n="coursedeled">D.El.Ed.,</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp
+                            data-i18n="coursedeled">D.El.Ed.,</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <!-- <div class="main_content"> -->
+            <!-- TODO: Add D.El.Ed., course details -->
+            <div class="img-container">
+                <div class="image-container"
+                    style="position: relative; display: inline-block; width: 100%; max-width: 80vw;">
+                    <img width="851" height="315" loading="lazy" src="/images/banner/deled_banner.png" alt="Diploma banner"
+                        style="width: 100%; height: auto; display: block;">
+
+                    <!-- Button Overlay -->
+                    <div class="button-overlay">
+                        <button class="apply-btn" onclick="openModal('instructions')">View Instructions</button>
+                        <button class="apply-btn" onclick="openModal('apply')">Apply Now</button>
+                    </div>
+                    <p style="color: #db3b00; text-align: center; font-weight:600;">Online admission window is closed. Please visit our DIET directly for spot admission.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin: 1%; font-style: italic;">For more info, please visit the <a
+                    href="https://scert.tnschools.gov.in" style="color: #0056b3; font-weight: 600;">Official SCERT Tamil
+                    Nadu website</a> </p>
+            <!-- Apply Modal -->
+            <div id="applyModal" class="modal" onclick="ignoreOutsideClick(event, 'apply')">
+                <button type="button" class="close" onclick="showConfirmModal()" aria-label="Close">&times;</button>
+                <div class="modal-content">
+                    <!-- <iframe src="https://scert.tnschools.gov.in/admission/diploma_elementary_education" -->
+                    <iframe src="https://scert.tnschools.gov.in/admission/instructions"
+                        title="Application Page"></iframe>
+                </div>
+            </div>
+
+            <!-- Instructions Modal -->
+            <div id="instructionsModal" class="modal">
+                <button type="button" class="close" onclick="closeModal('instructions')" aria-label="Close">&times;</button>
+                <div class="modal-content">
+                    <iframe
+                        src="https://d1wpyxz35bzzz4.cloudfront.net/2025_2026_D.El.Ed_Admission_Guidelines_for_Government_Institutions.pdf"
+                        title="Admission Guidelines PDF"></iframe>
+                </div>
+            </div>
+
+            <!-- Custom Confirm Modal -->
+            <div id="confirmModal" class="modal">
+                <div class="confirm-box">
+                    <p style="font-size: 16px; margin-bottom: 20px;">
+                        Are you sure you want to close the application window?
+                    </p>
+                    <div style="display: flex; justify-content: space-around;">
+                        <button
+                            style="margin: 5%; padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px;"
+                            onclick="forceCloseApply()">Yes, Close</button>
+                        <button
+                            style="margin: 5%; padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 4px;"
+                            onclick="closeConfirmModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+    <section class="wrapper carousel-wrapper">
+        <div class="container common-container four_content carousel-container">
+            <div id="flexCarousel" class="flexslider carousel">
+                <ul class="slides">
+                    <li><a target="_blank" href="https://tn.gov.in"
+                            title="Government of Tamil Nadu, External Link that opens in a new window">
+                            <img width="300" height="330" loading="lazy" src="/images/logos/TamilNadu_Logo.png" alt="Government of Tamil Nadu"
+                                style="margin: auto; padding-top: 10%; width: 50%; justify-content: center; align-items: center;"></a>
+                    </li>
+                    <li><a target="_blank" href="https://tnschools.gov.in/scert"
+                            title="SCERT Tamil Nadu, External Link that opens in a new window">
+                            <img width="300" height="295" loading="lazy" src="/images/logos/scert.png" alt="SCERT Tamil Nadu"
+                                style="margin: auto; padding-top: 10%; width: 60%; justify-content: center; align-items: center;"></a>
+                    </li>
+                    <li><a target="_blank" href="https://www.education.gov.in/"
+                            title="Ministry of Education, External Link that opens in a new window">
+                            <img width="200" height="150" loading="lazy" src="/images/logos/moe.png" alt="Ministry of Education"></a>
+                    </li>
+                    <li><a target="_blank" href="https://ncert.nic.in/"
+                            title="NCERT India, External Link that opens in a new window">
+                            <img loading="lazy" src="/images/logos/NCERT.svg" alt="NCERT India"
+                                style="margin: auto; padding-top: 10%; width: 40%; justify-content: center; align-items: center;"></a>
+                    </li>
+                    <li><a target="_blank" href="https://ncte.gov.in/website/index.aspx"
+                            title="National Council for Teacher Education, External Link that opens in a new window">
+                            <img width="200" height="150" loading="lazy" src="/images/logos/ncte.png" alt="National Council for Teacher Education"></a>
+                    </li>
+
+                    <li><a target="_blank" href="https://www.niepa.ac.in/"
+                            title="NIEPA, External Link that opens in a new window">
+                            <img width="300" height="271" loading="lazy" src="/images/logos/niepa_logo.png" alt="NIEPA"
+                                style="margin: auto; padding-top: 10%; width: 60%; justify-content: center; align-items: center;"></a>
+                    </li>
+                    <li><a target="_blank" href="https://www.cbse.gov.in/"
+                            title="CBSE, External Link that opens in a new window">
+                            <img loading="lazy" src="/images/logos/CBSE_logo.svg" alt="CBSE"
+                                style="margin: auto; padding-top: 10%; width: 50%; justify-content: center; align-items: center;"></a>
+                    </li>
+
+                    <li><a target="_blank" href="https://www.g20.in/"
+                            title="G20, External Link that opens in a new window">
+                            <img width="200" height="150" loading="lazy" src="/images/logos/g20.png" alt="G20 Portal"></a>
+                    </li>
+                    <li><a target="_blank" href="https://digitalindia.gov.in/"
+                            title="Digital India, External Link that opens in a new window"><img width="200" height="150" loading="lazy"
+                                src="/images/logos/digital-india.png" alt="Digital India"></a></li>
+                    <li><a target="_blank" href="https://www.makeinindia.com/"
+                            title="Make In India, External Link that opens in a new window"> <img width="200" height="150" loading="lazy"
+                                src="/images/logos/makeinindia.png" alt="Make In India"></a></li>
+                    <li><a target="_blank" href="https://india.gov.in/"
+                            title="National Portal of India, External Link that opens in a new window"><img width="200" height="150" loading="lazy"
+                                src="/images/logos/india-gov.png" alt="National Portal of India"></a></li>
+                    <li><a target="_blank" href="https://goidirectory.nic.in/"
+                            title="GOI Web Directory, External Link that opens in a new window"><img width="200" height="150" loading="lazy"
+                                src="/images/logos/goidirectory.png" alt="GOI Web Directory"></a></li>
+                    <li><a target="_blank" href="https://https@data.gov.in/"
+                            title="Data portal, External Link that opens in a new window"><img width="200" height="150" loading="lazy"
+                                src="/images/logos/data-gov.png" alt="Data portal"></a></li>
+                    <li><a target="_blank" href="https://mygov.in/"
+                            title="MyGov, External Link that opens in a new window"><img width="200" height="150" loading="lazy" src="/images/logos/mygov.png"
+                                alt="MyGov Portal"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>

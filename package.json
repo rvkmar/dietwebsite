@@ -1,0 +1,26 @@
+{
+  "name": "dietchennai",
+  "version": "1.0.0",
+  "description": "www.dietchennai.org",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvkmar/dietwebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvkmar/dietwebsite/issues"
+  },
+  "homepage": "https://github.com/rvkmar/dietwebsite#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  },
+  "private": true
+}

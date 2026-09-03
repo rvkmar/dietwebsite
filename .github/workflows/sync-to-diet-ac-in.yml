@@ -1,18 +1,45 @@
 name: Sync to diet.ac.in
 
+# diet.ac.in is a read-only mirror of dietchennai.org (confirmed with
+# the site owner) -- it is not meant to run its own Decap CMS admin
+# pipeline (Cloudflare already blocks /admin on that domain at the
+# edge) and, as of the Phase 2 Eleventy migration, it should mirror
+# what dietchennai.org actually SERVES, not the Eleventy source files
+# used to build it. So this workflow builds the site the same way
+# deploy.yml does and rsyncs the build output (_site/), not the repo.
+#
+# Triggered by deploy.yml finishing, rather than by push directly, so
+# the mirror always reflects a build that actually succeeded and
+# deployed -- never a broken or stale one.
+
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types:
+      - completed
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout dietwebsite repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Eleventy
+        run: npx eleventy
 
       - name: Configure git
         run: |
@@ -30,9 +57,9 @@ jobs:
       - name: Save current CNAME file
         run: cp diet-repo/CNAME /tmp/CNAME.backup
 
-      - name: Sync files
+      - name: Sync built output
         run: |
-          rsync -av --exclude='.git' --exclude='CNAME' --exclude='.github' . diet-repo/
+          rsync -av --delete --exclude='.git' --exclude='CNAME' --exclude='.github' _site/ diet-repo/
           cp /tmp/CNAME.backup diet-repo/CNAME
 
       - name: Push to diet.ac.in
@@ -40,7 +67,7 @@ jobs:
           cd diet-repo
           git add .
           if ! git diff --cached --quiet; then
-            git commit -m "Sync from dietwebsite (CNAME preserved)"
+            git commit -m "Sync built site from dietwebsite (CNAME preserved)"
             git push origin main
           else
             echo "No changes to commit"

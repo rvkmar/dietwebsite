@@ -33,3 +33,6 @@ npm-debug.log*
 .netlify/
 
 # End of https://www.gitignore.io/api/visualstudiocode
+
+### Eleventy build output (Phase 2 scaffold) ###
+_site/
