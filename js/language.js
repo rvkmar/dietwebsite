@@ -105,7 +105,7 @@ function toggleTamilStylesheet(lang) {
     const newLink = document.createElement('link');
     newLink.id = 'styles-link';
     newLink.rel = 'stylesheet';
-    newLink.href = './css/tamil.css';
+    newLink.href = '/css/tamil.css';
     head.appendChild(newLink);
   }
 }
