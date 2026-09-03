@@ -32,24 +32,7 @@ extraHead: |
           }
       </style>
 extraScript: |
-  <script>
-          fetch('/assets/content/gallery/gallery.json')
-              .then(response => response.json())
-              .then(images => {
-                  const galleryDiv = document.getElementById('gallery');
-                  images.forEach(file => {
-                      const img = document.createElement('img');
-                      img.src = file.startsWith('/') ? file : `/assets/content/gallery/${file}`;
-                      img.alt = file;
-                      galleryDiv.appendChild(img);
-                  });
-              })
-              .catch(error => {
-                  console.error('Failed to load gallery images:', error);
-                  const fallback = document.getElementById('gallery');
-                  fallback.innerHTML = '<p style="color: red;">Failed to load gallery images.</p>';
-              });
-      </script>
+  <script src="/js/gallery-loader.min.js" defer></script>
 ---
 
     <!--/.nav-wrapper-->

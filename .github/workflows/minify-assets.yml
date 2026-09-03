@@ -53,7 +53,7 @@ env:
   JS_FILES: >-
     page-loader jquery-accessibleMegaMenu swithcer framework
     jquery.flexslider font-size ma5gallery megamenu
-    easyResponsiveTabs language custom cms-content modals
+    easyResponsiveTabs language custom cms-content modals gallery-loader
 
 jobs:
   minify:
