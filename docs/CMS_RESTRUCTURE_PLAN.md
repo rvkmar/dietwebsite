@@ -3,6 +3,15 @@
 Written after auditing every page's actual source (not assumptions) so the plan matches what's really
 there. This is a **plan only** — nothing here has been implemented yet.
 
+**Scope confirmed:** every one of the 47 pages gets a real, working CMS collection entry now —
+including the 26 pages that are currently empty placeholders — because all content, including filling
+in those placeholders for the first time, will happen through the CMS from here on, not by hand-editing
+`.njk` files. And every piece of page-body content is bilingual: the site already has a working
+EN/TA mechanism for exactly this (`.englishparagraph` / `.tamilparagraph` divs, toggled by
+`js/language.js`'s `showLang()`, used today on the homepage, about-diet-chennai, about-diet,
+org-structure, and principals-desk) — the restructure extends that existing, proven pattern to every
+page's CMS-authored content instead of inventing a new translation mechanism.
+
 ## 1. What's actually in the 47 pages today
 
 Grouping `src/*/index.njk` by real content shape, not by name:
@@ -10,16 +19,18 @@ Grouping `src/*/index.njk` by real content shape, not by name:
 | Group | Count | Pages | Current state |
 |---|---|---|---|
 | **Already fully data-driven** | 8 | announcements, circulars, downloads, doc-forms, doc-publications, reports, admin-staff, gallery | Page body is just a `data-cms-list`/`data-cms-grid` placeholder rendered at runtime by `cms-content.js`/`gallery-loader.js` from an existing structured JSON collection. Nothing to restructure here — these are the model to extend, not fix. |
-| **Empty placeholder stubs** | 26 | activ-alumni, activ-archive, activ-calendar, activ-current, courses, coursetpd, departments, dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, disclaimer, feedback, help, important-links, media, principals-desk, rti, sitemap, tb-module, tb-textbook, terms-conditions, web-manager, website-policies, academic-faculty | Literally `<iframe src="/default.html">` behind a `<!-- TODO -->` comment — no real content exists yet. Nothing to "convert" here; the job is designing the schema these pages *will* use once content is added, so nobody free-types raw HTML into them later. |
+| **Empty placeholder stubs** | 26 | activ-alumni, activ-archive, activ-calendar, activ-current, courses, coursetpd, departments, dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, disclaimer, feedback, help, important-links, media, principals-desk, rti, sitemap, tb-module, tb-textbook, terms-conditions, web-manager, website-policies, academic-faculty | Literally `<iframe src="/default.html">` behind a `<!-- TODO -->` comment — no real content exists yet. **Gets a real CMS collection entry now, not just a schema for later** — these are exactly the pages that will be filled in for the first time through the CMS, in both languages. |
 | **Legacy HTML fragments loaded via iframe** | 4 | mission-vision, roles-functions, org-structure (partial), district-statistics | Real content, but it lives outside `src/` entirely, in standalone files (`assets/content/about_mission.html`, `about_roles.html`, `statistics/index.html`) loaded into the page through an `<iframe>`. Two of these (`about_mission`, `about_roles`) are already CMS-editable, but only as a second raw-HTML code box — `statistics/index.html` isn't in the CMS at all today. |
 | **Simple static content, no iframe** | 3 | library, district_profile, org-structure (image half) | Short, genuinely simple: a paragraph or two, an image, maybe an embedded PDF or external link. Easy to model. |
 | **Bespoke long-form pages** | 5 | about-diet-chennai (9 `<h2>` sections), about-diet (4+4 headings), contact-us (address/map/form), coursedeled (course detail + the modal-based apply flow we built this session), rti-diet-rules | Each has its own real shape and deserves its own tailored schema rather than a generic one. |
 | **Already structured JSON collections** | — | site_settings, announcements, circulars, downloads, banner, gallery, academic_faculty, principal, admin_staff | Fine as-is; only the translations collection (below) needs work. |
 | **Translations** | — | languages/en.json / ta.json | 83 keys × 2 languages, each hand-declared individually — ~600 of the file's 1,448 lines. |
 
-The practical takeaway: **"structure all 47 pages" doesn't mean 47 bespoke schemas.** 8 pages need nothing.
-26 need a schema designed now but have no content to migrate. Only 9 pages (the fragment + simple +
-bespoke groups) have real existing content to actually move into structured fields.
+The practical takeaway: **"structure all 47 pages" doesn't mean 47 bespoke schemas, but it does mean
+47 real CMS entries.** 8 pages need no schema work (already data-driven). 26 need a schema built *and*
+wired up now, even though there's no existing content to migrate — they'll be authored from scratch
+through the CMS, bilingually. Only 9 pages (the fragment + simple + bespoke groups) have real existing
+content to actually move out of raw HTML and into structured, bilingual fields.
 
 ## 2. Target architecture — three tiers, not one
 
@@ -67,6 +78,33 @@ a fourth content layer. The template then renders named fields (`{{ intro }}`, `
 `widget: list` / `widget: object` fields are for — Decap can write structured front matter to any
 file, `.njk` included.
 
+### Every content field is bilingual, using the pattern that already exists
+
+Any field that holds real page-body content (an intro paragraph, a section body, a department's
+activities text) is an **object with `en` and `ta` sub-fields**, not a single string:
+
+```yaml
+- label: "Introduction"
+  name: "intro"
+  widget: "object"
+  fields:
+    - { label: "English", name: "en", widget: "markdown" }
+    - { label: "Tamil", name: "ta", widget: "markdown" }
+```
+
+The template renders both, exactly like the existing homepage/about-diet-chennai/about-diet/
+org-structure/principals-desk pages already do:
+
+```njk
+<div class="englishparagraph">{{ intro.en | safe }}</div>
+<div class="tamilparagraph">{{ intro.ta | safe }}</div>
+```
+
+`js/language.js`'s existing `showLang()` already toggles which of those two divs is visible based on
+the reader's selected language — no JS changes needed, this is purely extending a convention that's
+already live in production to every page and every Tier 2/3 field, rather than introducing a second,
+different translation mechanism alongside the `data-i18n` one that already handles nav/UI chrome.
+
 ## 3. Translations: collapse ~600 lines to a real i18n structure
 
 Decap CMS (the version already loaded, `^3.0.0`) supports a `keyvalue` widget and a top-level `i18n`
@@ -108,18 +146,23 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
    every subsequent phase adds more lines to the file we're about to split anyway.
 3. **Tier 2 "Simple info/policy" schema + partial**, applied to the 13 stub pages that clearly fit it
    (disclaimer, terms-conditions, website-policies, help, feedback, important-links, web-manager,
-   media, rti, tb-module, tb-textbook, sitemap) plus the 3 already-simple pages (library,
-   district_profile, org-structure's image half). Sixteen pages move off raw-HTML editing in one
-   pass, all using the same low-risk shared template.
+   media, rti, tb-module, tb-textbook, sitemap, academic-faculty) plus the 3 already-simple pages
+   (library, district_profile, org-structure's image half). Sixteen pages get a real bilingual CMS
+   entry in one pass, all using the same low-risk shared template — including the ones with no
+   content yet, so they're ready to be filled in through the CMS from day one.
 4. **Tier 2 "Department" schema + shared partial**, applied to dept-ae/etmd/fiar/pste/tpd +
-   `departments`. Six more pages, one more shared pattern.
+   `departments`. Six more pages wired up and CMS-ready, one more shared pattern, even though every
+   one of them starts out empty until content is entered through the CMS.
 5. **Retire the two iframe fragments** (mission-vision, roles-functions) into real structured
    front matter, plus bring `statistics/index.html` into a proper JSON collection.
 6. **Tier 3 bespoke schemas**, one page at a time, hardest/most custom first or last — your call:
    about-diet-chennai, about-diet, contact-us, coursedeled, rti-diet-rules, principals-desk,
-   org-structure (remainder).
-7. **Activities family** (activ-alumni/archive/calendar/current) — pending the open question in
-   Section 2 about what content actually belongs there.
+   org-structure (remainder). courses and coursetpd (currently empty, but the same "course" shape as
+   coursedeled) get a shared course schema alongside coursedeled rather than a generic one, so all
+   three course pages are the same entry type.
+7. **Activities family** (activ-alumni/archive/calendar/current) — structured as a JSON list
+   collection like announcements/circulars (see confirmed approach below), wired up now even though
+   empty, same as every other stub page.
 8. **Editorial workflow toggle** (Section 5) — independent, can happen anytime.
 
 Each phase gets the same treatment as everything else this session: build, verify against the local
@@ -127,12 +170,16 @@ Each phase gets the same treatment as everything else this session: build, verif
 
 ## 7. Open questions before implementation starts
 
-- **Activities pages**: free-form content, or a structured list like announcements/circulars? Depends
-  on what's actually meant to go on activ-alumni/archive/calendar/current.
+- **Activities pages content shape**: leaning toward a structured list like announcements/circulars
+  (event title, date, description) rather than free prose, since "alumni/archive/calendar/current"
+  reads as event-style listings — confirm before Phase 7 locks this in.
 - **Department pages**: what fields do you actually want per department beyond name/HOD/activities —
   e.g. faculty photos, contact email, specific course links?
 - **Translations approach**: `keyvalue` widget (simpler, faster) vs. native Decap `i18n` (nicer
-  editing UX, more setup)?
+  editing UX, more setup)? Note this is about the separate 83-key nav/UI-chrome file
+  (`languages/en.json`/`ta.json`), not the per-page bilingual content fields from Section 2, which
+  already have a confirmed approach (paired `en`/`ta` object fields, matching the existing
+  `.englishparagraph`/`.tamilparagraph` convention).
 - **Config.yml modularization**: confirm you're fine with a build step generating `admin/config.yml`
   from source fragments (mirrors the existing minify-assets.yml pattern) rather than one hand-edited
   file.
