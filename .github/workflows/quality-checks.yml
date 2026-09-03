@@ -35,10 +35,14 @@ name: Quality checks
 #
 # Every run also uploads the Eleventy build as a workflow artifact
 # (7-day retention) and, on PRs, links it from the job summary as a
-# downloadable preview -- see Phase 2 task 29. This is deliberately
-# not a hosted preview URL: that needs a decision on where to host
-# it (Cloudflare Pages, Netlify, ...), which is a call for the site
-# owner to make, not something to wire up unasked.
+# downloadable preview -- see Phase 2 task 29. The site owner also
+# runs a live Netlify deployment at https://dietchennai.netlify.app/
+# that rebuilds automatically from main; the job summary links to it
+# for context. If Netlify's own GitHub integration has per-PR deploy
+# previews enabled for this repo, Netlify posts its own separate
+# "Netlify" check/comment on the PR with a deploy-preview URL for
+# that PR's exact changes -- that isn't something this workflow
+# controls or needs to duplicate.
 
 on:
   pull_request:
@@ -82,7 +86,7 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "This PR's build is attached to this workflow run as the \`site-build\` artifact (Summary tab, bottom of the page). Download it, unzip, and open \`index.html\`, or serve the folder locally (e.g. \`npx http-server site-build\`) to preview these changes before merging." >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "This is a downloadable snapshot, not a live preview URL. A hosted PR-preview URL would need a decision on where to host it (e.g. Cloudflare Pages, Netlify) -- that's a separate, deliberate choice, not something wired up automatically here." >> "$GITHUB_STEP_SUMMARY"
+          echo "The live site also has a Netlify deployment at https://dietchennai.netlify.app/, which rebuilds automatically once this PR is merged to main -- it always reflects main, not this PR's unmerged changes. If Netlify's own per-PR deploy previews are enabled for this repo, look for a separate \`Netlify\` check further down this PR with a preview link built from this exact branch; otherwise use the downloadable artifact above to preview this PR before merging." >> "$GITHUB_STEP_SUMMARY"
 
   html-validate:
     needs: build

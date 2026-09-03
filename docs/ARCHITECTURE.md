@@ -201,16 +201,27 @@ a legacy government site whose content predates this migration:
 - ~600 html-validate findings in the shared includes and page bodies
   (see above) — a real accessibility/standards-compliance backlog,
   intentionally not bulk-fixed blind.
-- No staging/preview deploy environment yet — changes are verified
-  locally (Live Server against `_site/`) before merging to `main`.
 - No professional VAPT (vulnerability assessment / penetration test)
   has been run against the live site; that's a procurement decision,
   not something this pipeline can do for you.
-- The pre-Eleventy flat-HTML files at the repo root are still present
-  as a fallback and haven't been removed yet — planned for after a
-  full cutover verification across both domains once GitHub Pages is
-  switched to the Actions deployment source and the `eleventy` branch
-  is merged.
+
+## Resolved legacy debt
+
+- **Staging/preview deploys**: `quality-checks.yml` uploads every
+  build as a downloadable workflow artifact on PRs, and the site
+  owner separately runs a live Netlify deployment at
+  https://dietchennai.netlify.app/ that rebuilds automatically from
+  `main` (outside this repo's own workflows — no `netlify.toml`
+  here, configured directly in Netlify's dashboard against the
+  GitHub repo).
+- **Pre-Eleventy flat-HTML files at the repo root**: `index.html` and
+  `404.html` (the original hand-maintained static pages, superseded
+  by `src/index.njk` / `src/404.njk`) have been removed now that
+  GitHub Pages is confirmed deploying from GitHub Actions and the
+  `eleventy` branch is merged into `main`. `default.html` was
+  deliberately kept — see the passthrough-files comment in
+  `eleventy.config.js` — because `src/404.njk` actually loads it via
+  `<iframe src="/default.html">`; it isn't legacy debt.
 
 ## Making a change
 
