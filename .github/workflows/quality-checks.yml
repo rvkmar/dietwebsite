@@ -32,6 +32,13 @@ name: Quality checks
 #
 # Runs on pull requests targeting main and on every push to eleventy
 # (the active development branch), plus manual dispatch.
+#
+# Every run also uploads the Eleventy build as a workflow artifact
+# (7-day retention) and, on PRs, links it from the job summary as a
+# downloadable preview -- see Phase 2 task 29. This is deliberately
+# not a hosted preview URL: that needs a decision on where to host
+# it (Cloudflare Pages, Netlify, ...), which is a call for the site
+# owner to make, not something to wire up unasked.
 
 on:
   pull_request:
@@ -66,7 +73,16 @@ jobs:
         with:
           name: site-build
           path: _site
-          retention-days: 1
+          retention-days: 7
+
+      - name: Link the build as a downloadable preview
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "## Preview build" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "This PR's build is attached to this workflow run as the \`site-build\` artifact (Summary tab, bottom of the page). Download it, unzip, and open \`index.html\`, or serve the folder locally (e.g. \`npx http-server site-build\`) to preview these changes before merging." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "This is a downloadable snapshot, not a live preview URL. A hosted PR-preview URL would need a decision on where to host it (e.g. Cloudflare Pages, Netlify) -- that's a separate, deliberate choice, not something wired up automatically here." >> "$GITHUB_STEP_SUMMARY"
 
   html-validate:
     needs: build
