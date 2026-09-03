@@ -582,7 +582,6 @@ a.read-more:hover {
 .principal img {
 	display: inline-block;
 	border: 1px solid #d8d8d8;
-	background-image: url(../images/profile-bg.html)
 }
 
 .principal .min-info {
@@ -669,7 +668,6 @@ a.read-more:hover {
 .minister img {
 	display: inline-block;
 	border: 1px solid #d8d8d8;
-	background-image: url(../images/profile-bg.html)
 }
 
 .minister .min-info {
@@ -1981,7 +1979,6 @@ em {
 }
 
 .resp-tabs-container ul.list li {
-	background: url(../images/list-bulet.html) no-repeat 0px 9px;
 	margin-bottom: 8px;
 }
 
@@ -2940,7 +2937,6 @@ a.read-more:hover {
 .minister img {
 	display: inline-block;
 	border: 1px solid #d8d8d8;
-	background-image: url(../images/profile-bg.html)
 }
 
 .minister .min-info {
