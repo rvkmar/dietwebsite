@@ -1,0 +1,116 @@
+---
+layout: base.njk
+---
+{#
+  Shared layout for the "Simple info/policy" page family (CMS restructure
+  plan, Tier 2). One partial replaces what used to be a separate raw-HTML
+  "code" field per page in admin/collections/pages.yml -- every page using
+  this layout is instead a plain front-matter file: title/description/
+  last_updated as before, plus an optional bilingual intro and an optional
+  list of bilingual sections. Adding a new page to this family is "set
+  layout: simple-info.njk and fill in front matter", not "write HTML".
+
+  Breadcrumb text and the <h1>/data-i18n key come from
+  src/_data/simpleInfoPages.js (looked up by page.fileSlug below), not from
+  front matter -- Decap's file-collection schema is authoritative for the
+  whole front-matter object on save, so anything structural that isn't
+  listed as a CMS field would get silently dropped the first time an
+  editor saved. Keeping it in a data file means the CMS schema only lists
+  fields an editor should actually touch.
+
+  Bilingual rendering follows the .englishparagraph/.tamilparagraph
+  convention already live on the homepage, about-diet-chennai, about-diet,
+  org-structure, and principals-desk -- js/language.js's showLang() toggles
+  which one is visible, so no JS changes were needed to support this.
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp
+                            data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <div>
+                {% if intro and (intro.en or intro.ta) %}
+                <div class="container common-container four_content">
+                    {% if intro.en %}
+                    <div class="englishparagraph">
+                        {% if intro_image %}
+                        <img src="{{ intro_image }}" alt="{{ intro_image_alt or pageMeta.label }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ intro.en | safe }}
+                    </div>
+                    {% endif %}
+                    {% if intro.ta %}
+                    <div class="tamilparagraph">
+                        {% if intro_image %}
+                        <img src="{{ intro_image }}" alt="{{ intro_image_alt or pageMeta.label }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ intro.ta | safe }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% for section in sections %}
+                <div class="container common-container four_content" style="padding: 20px 0;">
+                    {% if section.body_en %}
+                    <div class="englishparagraph">
+                        {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_en | safe }}
+                    </div>
+                    {% endif %}
+                    {% if section.body_ta %}
+                    <div class="tamilparagraph">
+                        {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_ta | safe }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if not (intro and (intro.en or intro.ta)) and not sections.length %}
+                <div class="container common-container four_content" style="padding: 40px 0; text-align: center; color: #666;">
+                    <p><i>Content for this page will be added soon.</i></p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

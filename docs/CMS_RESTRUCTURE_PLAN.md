@@ -18,8 +18,8 @@ Grouping `src/*/index.njk` by real content shape, not by name:
 
 | Group | Count | Pages | Current state |
 |---|---|---|---|
-| **Already fully data-driven** | 8 | announcements, circulars, downloads, doc-forms, doc-publications, reports, admin-staff, gallery | Page body is just a `data-cms-list`/`data-cms-grid` placeholder rendered at runtime by `cms-content.js`/`gallery-loader.js` from an existing structured JSON collection. Nothing to restructure here — these are the model to extend, not fix. |
-| **Empty placeholder stubs** | 26 | activ-alumni, activ-archive, activ-calendar, activ-current, courses, coursetpd, departments, dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, disclaimer, feedback, help, important-links, media, principals-desk, rti, sitemap, tb-module, tb-textbook, terms-conditions, web-manager, website-policies, academic-faculty | Literally `<iframe src="/default.html">` behind a `<!-- TODO -->` comment — no real content exists yet. **Gets a real CMS collection entry now, not just a schema for later** — these are exactly the pages that will be filled in for the first time through the CMS, in both languages. |
+| **Already fully data-driven** | 9 | announcements, circulars, downloads, doc-forms, doc-publications, reports, admin-staff, gallery, academic-faculty | Page body is just a `data-cms-list`/`data-cms-grid` placeholder rendered at runtime by `cms-content.js`/`gallery-loader.js` from an existing structured JSON collection. Nothing to restructure here — these are the model to extend, not fix. (academic-faculty was misclassified as an empty stub in this table's first draft — checked its actual source during Phase 3 and found it already renders `data-cms-grid="academic-faculty"` from the existing collection, so it needed no work and was left alone.) |
+| **Empty placeholder stubs** | 25 | activ-alumni, activ-archive, activ-calendar, activ-current, courses, coursetpd, departments, dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, disclaimer, feedback, help, important-links, media, principals-desk, rti, sitemap, tb-module, tb-textbook, terms-conditions, web-manager, website-policies | Literally `<iframe src="/default.html">` behind a `<!-- TODO -->` comment — no real content exists yet. **Gets a real CMS collection entry now, not just a schema for later** — these are exactly the pages that will be filled in for the first time through the CMS, in both languages. (academic-faculty was originally miscounted here — corrected below, it already renders live from the academic_faculty collection.) |
 | **Legacy HTML fragments loaded via iframe** | 4 | mission-vision, roles-functions, org-structure (partial), district-statistics | Real content, but it lives outside `src/` entirely, in standalone files (`assets/content/about_mission.html`, `about_roles.html`, `statistics/index.html`) loaded into the page through an `<iframe>`. Two of these (`about_mission`, `about_roles`) are already CMS-editable, but only as a second raw-HTML code box — `statistics/index.html` isn't in the CMS at all today. |
 | **Simple static content, no iframe** | 3 | library, district_profile, org-structure (image half) | Short, genuinely simple: a paragraph or two, an image, maybe an embedded PDF or external link. Easy to model. |
 | **Bespoke long-form pages** | 5 | about-diet-chennai (9 `<h2>` sections), about-diet (4+4 headings), contact-us (address/map/form), coursedeled (course detail + the modal-based apply flow we built this session), rti-diet-rules | Each has its own real shape and deserves its own tailored schema rather than a generic one. |
@@ -190,12 +190,50 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
 
 1. **Translations, auto-generated.** DONE — see Section 3.
 2. **Config.yml modularization** (Section 4). DONE — see Section 4.
-3. **Tier 2 "Simple info/policy" schema + partial**, applied to the 13 stub pages that clearly fit it
-   (disclaimer, terms-conditions, website-policies, help, feedback, important-links, web-manager,
-   media, rti, tb-module, tb-textbook, sitemap, academic-faculty) plus the 3 already-simple pages
-   (library, district_profile, org-structure's image half). Sixteen pages get a real bilingual CMS
-   entry in one pass, all using the same low-risk shared template — including the ones with no
-   content yet, so they're ready to be filled in through the CMS from day one.
+3. **Tier 2 "Simple info/policy" schema + partial.** DONE, with two adjustments made during
+   implementation:
+   - **academic-faculty dropped from the batch.** Checking its actual source (not just its name)
+     showed it already renders `data-cms-grid="academic-faculty"` from the existing collection —
+     it was never an empty stub, that was a miscount in Section 1's first draft (now corrected). No
+     work needed; left untouched.
+   - **district_profile dropped from the batch.** Unlike the other "already-simple" pages, its real
+     content (a map image, a two-line sourced-citation paragraph, and an embedded PDF via `<iframe>`)
+     doesn't fit the generic intro/sections shape without either bending the schema for one page or
+     adding fields (image + citation + PDF link) nothing else needs. Left on its Section 1 raw-HTML
+     entry for now; revisit as its own light Tier 3 schema alongside Section 6.6's bespoke pages
+     rather than forcing it into Tier 2.
+   That leaves 13 pages: disclaimer, terms-conditions, website-policies, help, feedback,
+   important-links, web-manager, media, rti, tb-module, tb-textbook, sitemap, and library (the one
+   genuinely simple page from the original three — its existing "Library Catalog" link/button is now
+   the page's `intro` field, content unchanged). Implementation:
+   - `src/_layouts/simple-info.njk` — the shared partial itself, chained onto `base.njk`. Renders an
+     optional bilingual `intro` (+ optional image) and an optional repeatable `sections` list (each
+     with its own bilingual heading/body/image), or a "content coming soon" placeholder when a page
+     has neither yet.
+   - `src/_includes/partner-carousel.njk` — the footer partner-logo carousel, previously copy-pasted
+     verbatim into every one of these pages' template files, extracted into its own include and
+     pulled in once by the shared layout.
+   - `src/_data/simpleInfoPages.js` — per-page breadcrumb text and the `data-i18n` key/`<h1>` label,
+     keyed by `page.fileSlug`. Deliberately **not** front-matter fields: Decap's file-collection
+     schema is authoritative for the whole front-matter object on save (confirmed via
+     [decaporg/decap-cms#1338](https://github.com/netlify/netlify-cms/issues/1338), an open issue
+     titled "Frontmatter should retain unknown fields") — anything structural left out of the CMS
+     schema would be silently deleted the first time an editor saved the page. Keeping breadcrumb/
+     i18n data in a lookup file instead means the CMS schema only lists fields an editor should
+     actually touch. `layout` has the same exposure and stays in front matter (Eleventy needs to read
+     it before any templating happens), so it's protected the other way: declared as a Decap
+     `hidden` field with a fixed default, present in every save without being shown to the editor.
+   - `admin/collections/simple_pages.yml` — one field schema (YAML anchor/alias, so it's declared
+     once and reused across all 13 file entries) — `layout` (hidden), `title`, `description`,
+     `last_updated`, `intro` (bilingual markdown + optional image), `sections` (repeatable, each
+     bilingual with its own optional image). Registered in `scripts/build-cms-config.js`'s
+     `COLLECTION_FRAGMENTS`. The 13 pages' old raw-HTML entries were removed from
+     `admin/collections/pages.yml` (verified no other collection still points at the same 13 files).
+   Verified: all 13 pages' front matter round-trips through `yaml.safe_load`; `npx eleventy` rebuilds
+   clean; every page's built breadcrumb/`<h1>` HTML diffed byte-for-byte identical to what the
+   hand-written raw-HTML version produced; `admin/config.yml` parses with no duplicate `file:` paths
+   introduced by this change (three pre-existing duplicates from the Section 6.5 iframe fragments are
+   unrelated and untouched).
 4. **Tier 2 "Department" schema + shared partial**, applied to dept-ae/etmd/fiar/pste/tpd +
    `departments`. Six more pages wired up and CMS-ready, one more shared pattern, even though every
    one of them starts out empty until content is entered through the CMS.

@@ -288,17 +288,6 @@
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "disclaimer"
-        label: "Disclaimer (raw HTML)"
-        file: "src/disclaimer/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "district-statistics"
         label: "District Statistics (raw HTML)"
         file: "src/district-statistics/index.njk"
@@ -365,17 +354,6 @@
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "feedback"
-        label: "Feedback (raw HTML)"
-        file: "src/feedback/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "gallery"
         label: "Gallery (raw HTML)"
         file: "src/gallery/index.njk"
@@ -387,53 +365,9 @@
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "help"
-        label: "Help (raw HTML)"
-        file: "src/help/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "important-links"
-        label: "Important Links (raw HTML)"
-        file: "src/important-links/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "index"
         label: "Index (raw HTML)"
         file: "src/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "library"
-        label: "Library (raw HTML)"
-        file: "src/library/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "media"
-        label: "Media (raw HTML)"
-        file: "src/media/index.njk"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -497,61 +431,6 @@
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "rti"
-        label: "Rti (raw HTML)"
-        file: "src/rti/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "sitemap"
-        label: "Sitemap (raw HTML)"
-        file: "src/sitemap/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "tb-module"
-        label: "Tb Module (raw HTML)"
-        file: "src/tb-module/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "tb-textbook"
-        label: "Tb Textbook (raw HTML)"
-        file: "src/tb-textbook/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "terms-conditions"
-        label: "Terms Conditions (raw HTML)"
-        file: "src/terms-conditions/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "theme-css-site-change"
         label: "Theme / Css / Site Change (raw HTML)"
         file: "theme/css/site-change.html"
@@ -563,25 +442,3 @@
             allow_language_selection: false
             output_code_only: true
             hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "web-manager"
-        label: "Web Manager (raw HTML)"
-        file: "src/web-manager/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "website-policies"
-        label: "Website Policies (raw HTML)"
-        file: "src/website-policies/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."

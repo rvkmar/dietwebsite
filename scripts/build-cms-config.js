@@ -55,6 +55,7 @@ const COLLECTION_FRAGMENTS = [
   "principal",
   "admin_staff",
   "about_fragments",
+  "simple_pages",
 ];
 const TRANSLATIONS_INSERT_AFTER = "about_fragments";
 const FINAL_FRAGMENT = "pages"; // always last, after translations
