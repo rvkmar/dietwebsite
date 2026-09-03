@@ -15,6 +15,10 @@
 // simpleInfoPages[page.fileSlug].
 module.exports = {
   "principals-desk": { i18nKey: "principalsdesk", label: "Principal's Desk" },
+  "org-structure": {
+    i18nKey: "organization", label: "Organization Structure",
+    parent: { href: "#", i18n: "aboutus", label: "About Us" },
+  },
   disclaimer: { i18nKey: "disclaimer", label: "Disclaimer" },
   "terms-conditions": { i18nKey: "termsconditions", label: "terms and conditions" },
   "website-policies": { i18nKey: "policies", label: "policies" },

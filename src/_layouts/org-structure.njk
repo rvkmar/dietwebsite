@@ -1,0 +1,112 @@
+---
+layout: base.njk
+---
+{#
+  Bespoke layout for /org-structure/ (CMS restructure plan, Tier 3 phase 6).
+  The page's real content today is just a pair of org-chart images -- one
+  per language (org-chart-english.png / org-chart-tamil.png), no body text
+  -- so unlike every other bilingual field on this site (a single
+  language-agnostic image with two text sub-fields), here the *image itself*
+  differs per language. org_chart.en / org_chart.ta hold the two image
+  paths directly, matching the plan's Section 2 note that an image field
+  becomes en/ta sub-fields "unless a page specifically needs different
+  images per language".
+
+  An optional bilingual intro + repeatable sections list (same shape as
+  simple-info.njk) is also available, in case explanatory text is ever
+  added alongside the charts -- currently empty since no such text exists
+  on the page today.
+
+  Breadcrumb/<h1> metadata comes from src/_data/simpleInfoPages.js, same
+  reasoning as every other layout in this family.
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp
+                            data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <div>
+                {% if intro and (intro.en or intro.ta) %}
+                <div class="container common-container four_content">
+                    {% if intro.en %}<div class="englishparagraph">{{ intro.en | safe }}</div>{% endif %}
+                    {% if intro.ta %}<div class="tamilparagraph">{{ intro.ta | safe }}</div>{% endif %}
+                </div>
+                {% endif %}
+
+                {% if org_chart and org_chart.en %}
+                <div class="container englishparagraph">
+                    <img width="1451" height="858" loading="lazy" src="{{ org_chart.en }}"
+                        sizes="(orientation: landscape) 100vw, (orientation: portrait) 100vh" alt="{{ org_chart.en_alt or 'Organization Chart' }}"
+                        class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
+                </div>
+                {% endif %}
+                {% if org_chart and org_chart.ta %}
+                <div class="container tamilparagraph">
+                    <img width="1451" height="858" loading="lazy" src="{{ org_chart.ta }}"
+                        sizes="(orientation: landscape) 100vw, (orientation: portrait) 100vh" alt="{{ org_chart.ta_alt or 'Organization Chart' }}"
+                        class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
+                </div>
+                {% endif %}
+
+                {% for section in sections %}
+                <div class="container common-container four_content" style="padding: 20px 0;">
+                    {% if section.body_en %}
+                    <div class="englishparagraph">
+                        {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_en | safe }}
+                    </div>
+                    {% endif %}
+                    {% if section.body_ta %}
+                    <div class="tamilparagraph">
+                        {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_ta | safe }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if not (intro and (intro.en or intro.ta)) and not sections.length and not (org_chart and (org_chart.en or org_chart.ta)) %}
+                <div class="container common-container four_content" style="padding: 40px 0; text-align: center; color: #666;">
+                    <p><i>Content for this page will be added soon.</i></p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

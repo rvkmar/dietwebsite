@@ -58,6 +58,7 @@ const COLLECTION_FRAGMENTS = [
   "department",
   "course",
   "principals_desk",
+  "org_structure",
 ];
 const TRANSLATIONS_INSERT_AFTER = "admin_staff";
 const FINAL_FRAGMENT = "pages"; // always last, after translations
