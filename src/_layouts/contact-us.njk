@@ -1,0 +1,146 @@
+---
+layout: base.njk
+---
+{#
+  Bespoke layout for /contact-us/ (CMS restructure plan, Tier 3 phase 6).
+
+  The institute name/address/email/phone data-cms-text/data-cms-source
+  mechanism (wired up in an earlier commit this session, fe6374a) is left
+  completely untouched here -- those facts are already CMS-editable via
+  Site Settings, not this page's own front matter.
+
+  What this pass structures is everything that was still hardcoded: the
+  page's inline <style> block (moved here from the page's own
+  extraHead front matter -- it's layout CSS, not editorial content, so it
+  belongs in the layout, not repeated in every save of the page) and the
+  Google Maps embed, whose src URL used to be hand-written directly in this
+  file. The map URL is now data-cms-iframe-src="map_embed_url" reading
+  from the same Site Settings file as the other contact facts (see
+  js/cms-content.js's renderIframeSrc) -- it describes the same physical
+  address as institute_name/address, so keeping it in the one place that
+  already tracks "where is DIET Chennai" seemed more consistent than
+  adding a second, page-only field a future address change could miss.
+  The src attribute keeps a matching literal fallback value for anyone
+  viewing the page before this script runs (or with it disabled).
+
+  This page has no other editorial content beyond title/description/
+  last_updated -- the "Send Us a Message"/"Find Us on Map" headings and
+  form markup are structural page furniture, not per-page content, so
+  they're written directly in this layout rather than exposed as CMS
+  fields (nothing here is a field admin/collections/contact_us.yml lists).
+#}
+<style>
+    .contact-details,
+    .contact-form {
+        margin-top: 20px;
+    }
+
+    .contact-details p {
+        margin: 10px 0;
+    }
+
+    .map {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .contact-form iframe,
+    .map iframe {
+        border: 0;
+        width: 100%;
+        height: 350px;
+    }
+
+    .contact-form form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .contact-form button {
+        background-color: #004080;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .contact-form button:hover {
+        background-color: #003060;
+    }
+
+    @media screen and (max-width: 600px) {
+        .contact-us-container {
+            padding: 10px;
+        }
+    }
+</style>
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            <li><a href="/contact-us/" data-i18n="contact-us">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp data-i18n="contact-us">Contact
+                            us</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <div class="container contact-us-container">
+                <div class="contact-details">
+                    <p><strong data-cms-text="institute_name" data-cms-source="site-settings">District Institute of Education and Training (DIET), Chennai</strong></p>
+                    <p data-cms-text="address" data-cms-source="site-settings">Kamarajar Salai, Triplicane, Chennai – 600005, Tamil Nadu, India</p>
+                    <p><strong>Email:</strong> <span data-cms-text="email" data-cms-source="site-settings">dietchn@nic.in</span></p>
+                    <p><strong>Phone:</strong> <span data-cms-text="phone" data-cms-source="site-settings">+91 (044) 28445582</span></p>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form action="mailto:dietchn@nic.in" method="POST" enctype="text/plain" data-cms-mailto="email" data-cms-source="site-settings">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+
+                <div class="map">
+                    <h2>Find Us on Map</h2>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3890.056142866214!2d80.2791785!3d13.0476688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzUxLjYiTiA4MMKwMTYnNDUuMCJF!5e0!3m2!1sen!2sin!4v1718012345678"
+                        data-cms-iframe-src="map_embed_url" data-cms-source="site-settings"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

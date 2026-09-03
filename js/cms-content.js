@@ -10,6 +10,7 @@
  *   <strong data-cms-field="last_updated">18-APR-2025</strong>
  *   <span data-cms-text="email" data-cms-source="site-settings">dietchn@nic.in</span>
  *   <form data-cms-mailto="email" data-cms-source="site-settings" action="mailto:...">
+ *   <iframe data-cms-iframe-src="map_embed_url" data-cms-source="site-settings" src="...">
  */
 (function () {
   var DATA_BASE = "/assets/content/data/";
@@ -225,6 +226,21 @@
     });
   }
 
+  function renderIframeSrc(el) {
+    // <iframe data-cms-iframe-src="map_embed_url" data-cms-source="site-settings" src="...">
+    // Sets the element's src from an arbitrary flat JSON field, same source
+    // convention as renderImage()/renderText()/renderMailto(). Used for the
+    // Contact Us page's Google Maps embed, so the map location stays in
+    // sync with the CMS-edited address instead of needing a hand-edited
+    // iframe src. The existing src attribute is left in the markup as a
+    // fallback shown before this script runs (or if it fails to load).
+    var key = el.getAttribute("data-cms-iframe-src");
+    var source = el.getAttribute("data-cms-source") || "site-settings";
+    fetchJSON(source, function (data) {
+      if (data && data[key]) { el.src = data[key]; }
+    });
+  }
+
   function init() {
     var lists = document.querySelectorAll("[data-cms-list]");
     for (var i = 0; i < lists.length; i++) {
@@ -242,6 +258,8 @@
     for (var n = 0; n < texts.length; n++) { renderText(texts[n]); }
     var mailtos = document.querySelectorAll("[data-cms-mailto]");
     for (var p = 0; p < mailtos.length; p++) { renderMailto(mailtos[p]); }
+    var iframeSrcs = document.querySelectorAll("[data-cms-iframe-src]");
+    for (var q = 0; q < iframeSrcs.length; q++) { renderIframeSrc(iframeSrcs[q]); }
   }
 
   if (document.readyState === "loading") {
