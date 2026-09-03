@@ -1,0 +1,158 @@
+name: Quality checks
+
+# CI quality gate for the Eleventy build (Phase 2 of the August 2026
+# technical audit). Three independent checks, each scoped to what it
+# can actually verify reliably for a legacy government site that
+# predates this migration:
+#
+#   1. html-validate   -- structural/accessibility lint of the real
+#      page templates. Report-only (does not fail the job): the
+#      pre-existing legacy markup this migration preserved
+#      byte-for-byte has ~600 pre-existing findings (deprecated
+#      attributes, missing landmarks, etc.) that are not regressions
+#      from this migration and not safe to bulk-fix without a proper
+#      accessibility pass. Findings are written to the job summary so
+#      they're visible and trackable without blocking every PR.
+#
+#   2. linkinator       -- crawls the built site starting from the
+#      homepage and fails the job on any BROKEN INTERNAL link (a real
+#      defect regardless of legacy status). External links are
+#      excluded from this gate: checking them from a CI runner is
+#      inherently flaky (bot detection, rate limits, transient
+#      outages on third-party gov.in sites) and a false failure there
+#      would block unrelated content changes.
+#
+#   3. Lighthouse CI    -- performance/accessibility/best-practices/SEO
+#      budget against the homepage and two representative inner
+#      pages. Runs at "warn" severity (via lighthouserc.json) rather
+#      than "error": this is the first time these pages have been
+#      budgeted, so initial thresholds are deliberately generous.
+#      Tighten them in lighthouserc.json once a few real runs
+#      establish a genuine baseline.
+#
+# Runs on pull requests targeting main and on every push to eleventy
+# (the active development branch), plus manual dispatch.
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - eleventy
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Eleventy
+        run: npx eleventy
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: _site
+          retention-days: 1
+
+  html-validate:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build output
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: _site
+
+      - name: Validate real page templates (report-only)
+        run: |
+          PAGES=""
+          for d in $(ls src/ | grep -v '^_' | grep -v '^assets$' | grep -v '\.njk$'); do
+            PAGES="$PAGES _site/$d/index.html"
+          done
+          PAGES="$PAGES _site/index.html _site/404.html"
+          echo "## html-validate findings (report-only, does not block merge)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          npx html-validate --config .htmlvalidate.json $PAGES >> "$GITHUB_STEP_SUMMARY" 2>&1 || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+
+  broken-links:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build output
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: _site
+
+      - name: Check internal links (blocking)
+        run: npm run check:links
+
+  lighthouse:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build output
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: _site
+
+      - name: Run Lighthouse CI (warn-level budgets)
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

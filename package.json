@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "eleventy",
-    "serve": "eleventy --serve"
+    "serve": "eleventy --serve",
+    "lint:html": "html-validate --config .htmlvalidate.json",
+    "check:links": "linkinator _site/index.html --recurse --skip \"(facebook\\.com|twitter\\.com|youtube\\.com|g20\\.in|mygov\\.in|data\\.gov\\.in|cloudflareinsights\\.com|goidirectory\\.nic\\.in|digitalindia\\.gov\\.in|india\\.gov\\.in|cbse\\.gov\\.in|niepa\\.ac\\.in|makeinindia\\.com|education\\.gov\\.in|ncert\\.nic\\.in|ncte\\.gov\\.in|tn\\.gov\\.in|tnschools\\.gov\\.in|cooperation\\.gov\\.in|dietchennai\\.org|scert)\""
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,9 @@
   },
   "homepage": "https://github.com/rvkmar/dietwebsite#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.6"
+    "@11ty/eleventy": "^3.1.6",
+    "html-validate": "^11.12.0",
+    "linkinator": "^6.1.2"
   },
   "private": true
 }
