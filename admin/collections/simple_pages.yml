@@ -80,3 +80,51 @@
         label: "Library"
         file: "src/library/index.njk"
         fields: *simple_page_fields
+      - name: "dept-pste"
+        label: "Department: PSTE"
+        file: "src/dept-pste/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-tpd"
+        label: "Department: TPD"
+        file: "src/dept-tpd/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-etmd"
+        label: "Department: ETMD"
+        file: "src/dept-etmd/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-ae"
+        label: "Department: AE"
+        file: "src/dept-ae/index.njk"
+        fields: *simple_page_fields
+      - name: "dept-fiar"
+        label: "Department: FIAR"
+        file: "src/dept-fiar/index.njk"
+        fields: *simple_page_fields
+      - name: "departments"
+        label: "Departments (index)"
+        file: "src/departments/index.njk"
+        fields: *simple_page_fields
+      - name: "courses"
+        label: "Courses (index)"
+        file: "src/courses/index.njk"
+        fields: *simple_page_fields
+      - name: "coursetpd"
+        label: "Courses: TPD"
+        file: "src/coursetpd/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-calendar"
+        label: "Activities: Academic Training Calendar"
+        file: "src/activ-calendar/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-current"
+        label: "Activities: Current Activities"
+        file: "src/activ-current/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-archive"
+        label: "Activities: Activity Archive"
+        file: "src/activ-archive/index.njk"
+        fields: *simple_page_fields
+      - name: "activ-alumni"
+        label: "Activities: Alumni Association"
+        file: "src/activ-alumni/index.njk"
+        fields: *simple_page_fields

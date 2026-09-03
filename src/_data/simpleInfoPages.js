@@ -39,4 +39,46 @@ module.exports = {
     i18nKey: "library", label: "Library",
     parent: { href: "#", i18n: "departments", label: "Departments" },
   },
+  "dept-pste": {
+    i18nKey: "pste", label: "PSTE",
+    parent: { href: "#", i18n: "departments", label: "Departments" },
+  },
+  "dept-tpd": {
+    i18nKey: "tpd", label: "TPD",
+    parent: { href: "#", i18n: "departments", label: "Departments" },
+  },
+  "dept-etmd": {
+    i18nKey: "etmd", label: "ETMD",
+    parent: { href: "#", i18n: "departments", label: "Departments" },
+  },
+  "dept-ae": {
+    i18nKey: "ae", label: "AE",
+    parent: { href: "#", i18n: "departments", label: "Departments" },
+  },
+  "dept-fiar": {
+    i18nKey: "fiar", label: "FIAR",
+    parent: { href: "#", i18n: "departments", label: "Departments" },
+  },
+  departments: { i18nKey: "departments", label: "Departments" },
+  courses: { i18nKey: "courses", label: "Courses" },
+  coursetpd: {
+    i18nKey: "coursetpd", label: "TPD",
+    parent: { href: "#", i18n: "courses", label: "Courses" },
+  },
+  "activ-calendar": {
+    i18nKey: "calendar", label: "calendar",
+    parent: { href: "#", i18n: "activities", label: "Activities" },
+  },
+  "activ-current": {
+    i18nKey: "current_activities", label: "current activities",
+    parent: { href: "#", i18n: "activities", label: "Activities" },
+  },
+  "activ-archive": {
+    i18nKey: "activity_archive", label: "activities archive",
+    parent: { href: "#", i18n: "activities", label: "Activities" },
+  },
+  "activ-alumni": {
+    i18nKey: "alumni", label: "Alumni",
+    parent: { href: "#", i18n: "activities", label: "Activities" },
+  },
 };
