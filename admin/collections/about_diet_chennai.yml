@@ -1,0 +1,35 @@
+  - name: "about_diet_chennai"
+    label: "About DIET Chennai"
+    delete: false
+    files:
+      - name: "about-diet-chennai"
+        label: "About DIET Chennai"
+        file: "src/about-diet-chennai/index.njk"
+        description: "The 'Mandatory Disclosure' button always links to the document edited under the Principal collection (principal_disclosure) -- it isn't a field here."
+        fields:
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "about-diet-chennai.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - label: "History sections"
+            name: "sections"
+            widget: "list"
+            hint: "Each section is a bilingual heading + body shown side-by-side with the images. Content stores as HTML (this codebase renders these fields with a plain pass-through, not a markdown-to-HTML step)."
+            fields:
+              - { label: "Heading (English)", name: "heading_en", widget: "string" }
+              - { label: "Heading (Tamil)", name: "heading_ta", widget: "string" }
+              - { label: "Body (English, HTML)", name: "body_en", widget: "markdown" }
+              - { label: "Body (Tamil, HTML)", name: "body_ta", widget: "markdown" }
+          - label: "Side images"
+            name: "side_images"
+            widget: "list"
+            hint: "Shown stacked in the right-hand column, in order, separated by a divider line."
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt text", name: "alt", widget: "string" }
+          - { label: "References heading", name: "references_heading", widget: "string", required: false, default: "References" }
+          - label: "References (bibliography)"
+            name: "references_html"
+            widget: "markdown"
+            required: false
+            hint: "The full citation list as HTML (a <ul> of <li> items). English-only by design -- shown regardless of the visitor's selected language, same as the original page, since academic citations aren't translated."

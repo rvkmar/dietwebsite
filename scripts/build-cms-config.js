@@ -60,6 +60,7 @@ const COLLECTION_FRAGMENTS = [
   "principals_desk",
   "org_structure",
   "contact_us",
+  "about_diet_chennai",
 ];
 const TRANSLATIONS_INSERT_AFTER = "admin_staff";
 const FINAL_FRAGMENT = "pages"; // always last, after translations
