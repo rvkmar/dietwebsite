@@ -1,0 +1,85 @@
+  - name: "department"
+    label: "Department Pages"
+    delete: false
+    files:
+      - name: "dept-pste"
+        label: "Department: PSTE"
+        file: "src/dept-pste/index.njk"
+        fields: &department_fields
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "department.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - { label: "Banner / photo image (optional)", name: "banner_image", widget: "image", required: false }
+          - { label: "Banner image alt text", name: "banner_image_alt", widget: "string", required: false }
+          - label: "Overview"
+            name: "intro"
+            widget: "object"
+            required: false
+            hint: "The department's main description -- vision, objectives, functions. Leave both languages blank for a page with no overview text yet (e.g. the Departments index, which instead lists each department below)."
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Head of Department (HOD)"
+            name: "hod"
+            widget: "object"
+            required: false
+            hint: "Plain name/designation fields, not linked to the Academic Faculty collection -- keeps this simple to fill in and edit. Leave blank if not applicable (e.g. the Departments index page)."
+            fields:
+              - { label: "Name", name: "name", widget: "string", required: false }
+              - { label: "Designation", name: "designation", widget: "string", required: false }
+          - label: "Faculty"
+            name: "faculty"
+            widget: "list"
+            required: false
+            summary: "{{name}} — {{designation}}"
+            hint: "Department faculty, name and designation. NOTE: this is a plain repeatable list, not a link into the Academic Faculty collection -- Decap's relation widget can only search across separate entries of a folder collection, and Academic Faculty is a single-file collection (one JSON file holding one 'items' list), so a relation widget here would only ever be able to match that one file, not the individual staff members inside it. A plain list lets an editor type the names actually assigned to this department instead."
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Designation", name: "designation", widget: "string", required: false }
+          - label: "Activities"
+            name: "activities"
+            widget: "list"
+            required: false
+            hint: "Repeatable content blocks -- department activities/functions, each with its own heading, bilingual body, and an optional image. On the Departments index page, one entry per department (heading = department name, body = short description linking to its page) instead."
+            fields:
+              - { label: "Heading (English)", name: "heading_en", widget: "string", required: false }
+              - { label: "Heading (Tamil)", name: "heading_ta", widget: "string", required: false }
+              - label: "Body"
+                name: "body"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "English", name: "en", widget: "markdown", required: false }
+                  - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
+          - label: "Downloads"
+            name: "downloads"
+            widget: "list"
+            required: false
+            summary: "{{title}}"
+            hint: "Documents relevant to this department (syllabus, forms, circulars). NOTE: a plain repeatable {title, link} list rather than a relation into the Downloads collection, for the same reason as Faculty above -- Downloads/Forms/Publications/Reports are each single-file collections (one JSON file per category holding one 'items' list), so a relation widget could only match the file itself, not an individual document inside it. For a document already uploaded to one of those collections, paste its file/link URL here."
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Link / file path", name: "link", widget: "string", hint: "URL, or the /assets/docs/... path of a file uploaded via the Downloads collection." }
+      - name: "dept-tpd"
+        label: "Department: TPD"
+        file: "src/dept-tpd/index.njk"
+        fields: *department_fields
+      - name: "dept-etmd"
+        label: "Department: ETMD"
+        file: "src/dept-etmd/index.njk"
+        fields: *department_fields
+      - name: "dept-ae"
+        label: "Department: AE"
+        file: "src/dept-ae/index.njk"
+        fields: *department_fields
+      - name: "dept-fiar"
+        label: "Department: FIAR"
+        file: "src/dept-fiar/index.njk"
+        fields: *department_fields
+      - name: "departments"
+        label: "Departments (index)"
+        file: "src/departments/index.njk"
+        fields: *department_fields

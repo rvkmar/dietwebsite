@@ -234,9 +234,37 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
    hand-written raw-HTML version produced; `admin/config.yml` parses with no duplicate `file:` paths
    introduced by this change (three pre-existing duplicates from the Section 6.5 iframe fragments are
    unrelated and untouched).
-4. **Tier 2 "Department" schema + shared partial**, applied to dept-ae/etmd/fiar/pste/tpd +
-   `departments`. Six more pages wired up and CMS-ready, one more shared pattern, even though every
-   one of them starts out empty until content is entered through the CMS.
+4. **Tier 2 "Department" schema + shared partial.** DONE (September 2026). Built
+   `admin/collections/department.yml` (registered in `scripts/build-cms-config.js`'s
+   `COLLECTION_FRAGMENTS`) and `src/_layouts/department.njk` (chained on `base.njk`, modeled directly
+   on `simple-info.njk`'s breadcrumb/data-file/bilingual-rendering pattern). Fields: `title`,
+   `description`, `last_updated`, optional `banner_image`, bilingual `intro` (renamed "Overview" in
+   the CMS UI), `hod` (plain name/designation object), `faculty` (plain repeatable {name, designation}
+   list), `activities` (repeatable heading + bilingual body + optional image, same shape as
+   `simple_pages`' `sections`), and `downloads` (plain repeatable {title, link} list). **Relation
+   widget decision**: the plan called for testing whether Decap's `relation` widget could point
+   `faculty`/`downloads` at the existing `academic_faculty`/`downloads` collections. It cannot, cleanly
+   — both are single-file collections (one JSON file holding one `items` array), so Decap's relation
+   widget, which searches across separate *entries* of a collection, would only ever be able to match
+   the one file itself, not an individual staff member or document inside its `items` list. Fell back
+   to plain repeatable text lists for both, as the plan's own fallback clause anticipated, with the
+   reasoning documented inline in `department.yml`'s field hints.
+   Migrated all six pages (dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, departments) from
+   `simple_pages` to `department`: each dept-* page's existing NCTE-grounded bilingual `intro` content
+   carried over unchanged into the new schema's `intro`/"Overview" field (same field name, no data
+   loss); `departments`' five `sections` list entries (each `heading_en/ta` + `body_en/ta`) were
+   reshaped into the new `activities` list's `heading_en/ta` + `body.en/ta` object shape, content
+   unchanged. `hod`/`faculty`/`downloads` are left empty on all six — no verifiable HOD names/faculty
+   rosters/documents exist anywhere else on the site to migrate, and the plan's rule against
+   fabricating institutional facts (staff names) applies directly here; these fields are ready for the
+   site owner to fill in through the CMS. Removed the six pages' old entries from
+   `admin/collections/simple_pages.yml`; `src/_data/simpleInfoPages.js` was left as-is since
+   `department.njk` reads the same generic breadcrumb/`<h1>` metadata from it by `page.fileSlug`, same
+   as `simple-info.njk` does.
+   Verified: all six pages' front matter round-trips through `yaml.safe_load`; `admin/config.yml`
+   regenerated via `scripts/build-cms-config.js` and parses clean; `npx eleventy` full rebuild
+   succeeded with zero errors (47 pages written); `npm run check:links` reports 0 broken internal
+   links.
 5. **Retire the two iframe fragments** (mission-vision, roles-functions) into real structured
    front matter, plus bring `statistics/index.html` into a proper JSON collection.
 6. **Tier 3 bespoke schemas**, one page at a time, hardest/most custom first or last — your call:
