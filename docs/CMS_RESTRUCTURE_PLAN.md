@@ -265,8 +265,38 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
    regenerated via `scripts/build-cms-config.js` and parses clean; `npx eleventy` full rebuild
    succeeded with zero errors (47 pages written); `npm run check:links` reports 0 broken internal
    links.
-5. **Retire the two iframe fragments** (mission-vision, roles-functions) into real structured
-   front matter, plus bring `statistics/index.html` into a proper JSON collection.
+5. **Retire the two iframe fragments + statistics.html.** DONE (September 2026).
+   `mission-vision` and `roles-functions` no longer load `<iframe src="/assets/content/about_mission.html">`
+   / `about_roles.html` — their real content (read from those two fragment files, which have been
+   deleted along with their `admin/collections/about_fragments.yml` CMS entries) is now front matter
+   on `src/mission-vision/index.njk` / `src/roles-functions/index.njk`, reusing the `simple_pages`
+   `intro`/`sections` shape (it fit cleanly: each fragment was already an accordion of heading + body
+   blocks — Mission/Vision/Core Values/Objectives, and six roles-and-functions areas — which map
+   directly onto `sections`' heading + markdown body). Both pages added to
+   `admin/collections/simple_pages.yml` and `src/_data/simpleInfoPages.js` (breadcrumb/`<h1>` metadata,
+   same as every other page on this layout). `about_fragments.yml` is now gone entirely — it held only
+   these two entries — so it was removed from `scripts/build-cms-config.js`'s `COLLECTION_FRAGMENTS`
+   and `TRANSLATIONS_INSERT_AFTER` was repointed at `admin_staff` (the fragment now immediately before
+   where translations get inserted).
+   **Content note:** neither fragment had an existing Tamil translation (the `about_mission.html`/
+   `about_roles.html` source was English-only, no `<div class="tamilparagraph">` counterpart anywhere),
+   so each new bilingual field's `ta` sub-field was left blank rather than invented — consistent with
+   how every other not-yet-translated page on the site already degrades (English shows, Tamil toggle
+   shows nothing) rather than fabricating a translation.
+   **`statistics/index.html` was left as-is, not migrated to JSON** — checked its actual content and
+   it is not a stats table with figures/labels at all: it's a qgis2web-generated interactive GIS map
+   (OpenLayers, `layers/Districts_1.js`, `styles/Districts_1_style.js`, etc.), with a page `<title>`
+   ("Schools in Chennai District, Tamil Nadu") and one legend string ("Schools in Chennai") as its only
+   text content — both are map-UI chrome, not discrete editorial data a JSON collection would model
+   usefully. This matches the plan's own anticipated escape hatch ("leaving the map/GIS machinery
+   as-is"). No CMS work was done on it this pass; it stays exactly as before, still loaded via iframe
+   on `/district-statistics/`, unrelated to and unaffected by this phase's `about_fragments` removal.
+   Verified: both migrated pages' front matter round-trips through `yaml.safe_load`; `admin/config.yml`
+   regenerates and parses clean; `npx eleventy` full rebuild succeeds with zero errors (47 pages);
+   rendered HTML for both pages confirmed heading-count-equivalent to the pre-migration accordion
+   content (4 `<h2>`s on mission-vision, 6 on roles-functions, matching the original fragments' 4 and 6
+   accordion items) with no `<iframe>` remaining on either page; `npm run check:links` reports 0
+   broken internal links.
 6. **Tier 3 bespoke schemas**, one page at a time, hardest/most custom first or last — your call:
    about-diet-chennai, about-diet, contact-us, coursedeled, rti-diet-rules, principals-desk,
    org-structure (remainder). courses and coursetpd (currently empty, but the same "course" shape as

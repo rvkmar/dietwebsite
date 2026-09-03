@@ -60,6 +60,14 @@ module.exports = {
     parent: { href: "#", i18n: "departments", label: "Departments" },
   },
   departments: { i18nKey: "departments", label: "Departments" },
+  "mission-vision": {
+    i18nKey: "missionvision", label: "Mission and Vision",
+    parent: { href: "#", i18n: "aboutus", label: "About Us" },
+  },
+  "roles-functions": {
+    i18nKey: "rolefunction", label: "Roles and Functions",
+    parent: { href: "#", i18n: "aboutus", label: "About Us" },
+  },
   courses: { i18nKey: "courses", label: "Courses" },
   coursetpd: {
     i18nKey: "coursetpd", label: "TPD",

@@ -80,6 +80,14 @@
         label: "Library"
         file: "src/library/index.njk"
         fields: *simple_page_fields
+      - name: "mission-vision"
+        label: "Mission and Vision"
+        file: "src/mission-vision/index.njk"
+        fields: *simple_page_fields
+      - name: "roles-functions"
+        label: "Roles and Functions"
+        file: "src/roles-functions/index.njk"
+        fields: *simple_page_fields
       - name: "courses"
         label: "Courses (index)"
         file: "src/courses/index.njk"

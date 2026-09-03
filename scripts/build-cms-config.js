@@ -54,11 +54,10 @@ const COLLECTION_FRAGMENTS = [
   "academic_faculty",
   "principal",
   "admin_staff",
-  "about_fragments",
   "simple_pages",
   "department",
 ];
-const TRANSLATIONS_INSERT_AFTER = "about_fragments";
+const TRANSLATIONS_INSERT_AFTER = "admin_staff";
 const FINAL_FRAGMENT = "pages"; // always last, after translations
 
 function readFragment(name) {

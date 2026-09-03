@@ -262,20 +262,6 @@ collections:
               - { label: "Email", name: "email", widget: "string", required: false }
               - { label: "Phone", name: "phone", widget: "string", required: false }
 
-  - name: "about_fragments"
-    label: "About / Roles Content"
-    files:
-      - name: "about_mission"
-        label: "Mission & Vision content (embedded on /mission-vision/)"
-        file: "assets/content/about_mission.html"
-        fields:
-          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
-      - name: "about_roles"
-        label: "Roles & Functions content (embedded on /roles-functions/)"
-        file: "assets/content/about_roles.html"
-        fields:
-          - { label: "Full page HTML source", name: "body", widget: "code", default_language: "html", allow_language_selection: false, output_code_only: true }
-
   - name: "translations"
     label: "Site Translations"
     files:
@@ -958,6 +944,14 @@ collections:
       - name: "library"
         label: "Library"
         file: "src/library/index.njk"
+        fields: *simple_page_fields
+      - name: "mission-vision"
+        label: "Mission and Vision"
+        file: "src/mission-vision/index.njk"
+        fields: *simple_page_fields
+      - name: "roles-functions"
+        label: "Roles and Functions"
+        file: "src/roles-functions/index.njk"
         fields: *simple_page_fields
       - name: "courses"
         label: "Courses (index)"
