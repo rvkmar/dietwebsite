@@ -88,14 +88,6 @@
         label: "Roles and Functions"
         file: "src/roles-functions/index.njk"
         fields: *simple_page_fields
-      - name: "courses"
-        label: "Courses (index)"
-        file: "src/courses/index.njk"
-        fields: *simple_page_fields
-      - name: "coursetpd"
-        label: "Courses: TPD"
-        file: "src/coursetpd/index.njk"
-        fields: *simple_page_fields
       - name: "activ-calendar"
         label: "Activities: Academic Training Calendar"
         file: "src/activ-calendar/index.njk"

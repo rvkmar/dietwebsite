@@ -1,0 +1,143 @@
+  - name: "course"
+    label: "Courses"
+    delete: false
+    files:
+      - name: "courses"
+        label: "Courses (index)"
+        file: "src/courses/index.njk"
+        fields: &course_common_fields
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - label: "Introduction"
+            name: "intro"
+            widget: "object"
+            required: false
+            hint: "Optional opening text shown above eligibility/duration/sections. Leave both languages blank to skip it."
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Eligibility"
+            name: "eligibility"
+            widget: "object"
+            required: false
+            hint: "Optional. Who can apply / entry qualifications. Leave both languages blank to skip it."
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Duration"
+            name: "duration"
+            widget: "object"
+            required: false
+            hint: "Optional. e.g. course length in years. Leave both languages blank to skip it."
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            required: false
+            hint: "Optional repeatable content blocks (e.g. syllabus, course details), each with its own heading, bilingual body text, and an optional image."
+            fields:
+              - { label: "Heading (English)", name: "heading_en", widget: "string", required: false }
+              - { label: "Heading (Tamil)", name: "heading_ta", widget: "string", required: false }
+              - { label: "Body (English)", name: "body_en", widget: "markdown", required: false }
+              - { label: "Body (Tamil)", name: "body_ta", widget: "markdown", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
+      - name: "coursetpd"
+        label: "Courses: TPD"
+        file: "src/coursetpd/index.njk"
+        fields: *course_common_fields
+      - name: "coursedeled"
+        label: "Courses: D.El.Ed."
+        file: "src/coursedeled/index.njk"
+        fields:
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - { label: "Banner image", name: "banner_image", widget: "image", required: false }
+          - { label: "Banner image alt text", name: "banner_image_alt", widget: "string", required: false }
+          - label: "Admission-closed notice"
+            name: "closed_notice"
+            widget: "object"
+            required: false
+            hint: "Optional short notice shown under the banner, e.g. when online admission is closed. Leave both languages blank to hide it."
+            fields:
+              - { label: "English", name: "en", widget: "string", required: false }
+              - { label: "Tamil", name: "ta", widget: "string", required: false }
+          - label: "Official website link"
+            name: "official_link"
+            widget: "object"
+            required: false
+            hint: "Optional 'for more info, visit...' line shown under the banner."
+            fields:
+              - { label: "Lead-in text (English)", name: "text_en", widget: "string", required: false }
+              - { label: "Lead-in text (Tamil)", name: "text_ta", widget: "string", required: false }
+              - { label: "Link label (English)", name: "link_label_en", widget: "string", required: false }
+              - { label: "Link label (Tamil)", name: "link_label_ta", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string", required: false }
+          - label: "Introduction"
+            name: "intro"
+            widget: "object"
+            required: false
+            hint: "Optional opening text. Leave both languages blank to skip it."
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Eligibility"
+            name: "eligibility"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Duration"
+            name: "duration"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "English", name: "en", widget: "markdown", required: false }
+              - { label: "Tamil", name: "ta", widget: "markdown", required: false }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Heading (English)", name: "heading_en", widget: "string", required: false }
+              - { label: "Heading (Tamil)", name: "heading_ta", widget: "string", required: false }
+              - { label: "Body (English)", name: "body_en", widget: "markdown", required: false }
+              - { label: "Body (Tamil)", name: "body_ta", widget: "markdown", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
+          - label: "Apply-now flow"
+            name: "apply_modal"
+            widget: "object"
+            required: false
+            hint: "Optional. Powers the 'View Instructions' / 'Apply Now' buttons and their popup modals (built on js/modals.min.js). Leave blank to hide the buttons entirely."
+            fields:
+              - label: "'View Instructions' button label"
+                name: "instructions_button_label"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "English", name: "en", widget: "string", required: false }
+                  - { label: "Tamil", name: "ta", widget: "string", required: false }
+              - label: "'Apply Now' button label"
+                name: "apply_button_label"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "English", name: "en", widget: "string", required: false }
+                  - { label: "Tamil", name: "ta", widget: "string", required: false }
+              - { label: "Apply form iframe URL", name: "apply_iframe_url", widget: "string", required: false }
+              - { label: "Instructions PDF iframe URL", name: "instructions_iframe_url", widget: "string", required: false }
+              - label: "'Close application?' confirm text"
+                name: "confirm_text"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "English", name: "en", widget: "string", required: false }
+                  - { label: "Tamil", name: "ta", widget: "string", required: false }

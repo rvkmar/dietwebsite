@@ -73,6 +73,10 @@ module.exports = {
     i18nKey: "coursetpd", label: "TPD",
     parent: { href: "#", i18n: "courses", label: "Courses" },
   },
+  coursedeled: {
+    i18nKey: "coursedeled", label: "D.El.Ed.,",
+    parent: { href: "#", i18n: "courses", label: "Courses" },
+  },
   "activ-calendar": {
     i18nKey: "calendar", label: "calendar",
     parent: { href: "#", i18n: "activities", label: "Activities" },

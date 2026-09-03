@@ -1,0 +1,219 @@
+---
+layout: base.njk
+---
+{#
+  Shared layout for the "course" page family (CMS restructure plan, Tier 3
+  phase 6): courses (index), coursetpd, and coursedeled. All three describe
+  a course/programme with the same core shape (an optional bilingual intro,
+  optional bilingual eligibility/duration facts, and repeatable bilingual
+  sections for syllabus/details) -- modeled on src/_layouts/simple-info.njk's
+  breadcrumb/data-file lookup and bilingual .englishparagraph/.tamilparagraph
+  convention.
+
+  coursedeled additionally carries a real "apply now" flow (banner image,
+  admission-closed notice, and a button-triggered modal pair built earlier
+  this project on top of js/modals.min.js) that courses/coursetpd don't have
+  -- admin/collections/course.yml gives coursedeled's file entry extra
+  fields for this on top of the fields shared with the other two, and this
+  template renders that block only when `apply_modal` is present in front
+  matter.
+
+  Breadcrumb text and the <h1>/data-i18n key come from
+  src/_data/simpleInfoPages.js (looked up by page.fileSlug), same reasoning
+  as simple-info.njk/department.njk: Decap's file-collection schema is
+  authoritative for the whole front-matter object on save, so structural
+  data not listed as a CMS field has to live outside front matter or it
+  would be silently dropped on the next editor save.
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+{% if apply_modal %}
+<style>
+    .course-img-container { display: flex; justify-content: center; gap: 20px; align-items: center; }
+    .course-button-overlay {
+        position: absolute; top: 53%; left: 50%; transform: translateX(-50%);
+        display: flex; gap: 12px; z-index: 10;
+    }
+    .course-apply-btn {
+        background-color: #0056b3; color: white; padding: 12px 24px; border: none;
+        border-radius: 6px; cursor: pointer; font-size: 16px; margin: 10px;
+    }
+    .course-apply-btn:hover { background-color: #003d80; }
+    .modal {
+        display: none; position: fixed; z-index: 9999; left: 0; top: 0;
+        width: 100%; height: 100%; overflow: hidden; background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modal-content {
+        background-color: #fff; margin: 4% auto; padding: 0; border-radius: 8px;
+        width: 90%; max-width: 80vw; height: 90vh; display: flex; flex-direction: column;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .modal-content iframe { width: 100%; height: 100%; border: none; }
+    .close {
+        position: absolute; top: 12px; right: 16px; font-size: 28px; font-weight: bold;
+        color: #ffffff; background-color: rgba(0, 0, 0, 0.6); padding: 4px 10px;
+        border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
+        z-index: 10000; line-height: 1; border: none; font-family: inherit;
+    }
+    .close:hover { background-color: rgba(255, 0, 0, 0.8); transform: scale(1.1); }
+    .confirm-box {
+        background-color: #fff; padding: 20px; max-width: 400px; width: 90%; margin: 20% auto;
+        border-radius: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        color: #333; font-size: 16px;
+    }
+</style>
+{% endif %}
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp
+                            data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <div>
+                {% if banner_image %}
+                <div class="course-img-container">
+                    <div class="image-container" style="position: relative; display: inline-block; width: 100%; max-width: 80vw;">
+                        <img width="851" height="315" loading="lazy" src="{{ banner_image }}" alt="{{ banner_image_alt or pageMeta.label }}"
+                            style="width: 100%; height: auto; display: block;">
+                        {% if apply_modal %}
+                        <div class="course-button-overlay">
+                            {% if apply_modal.instructions_button_label.en or apply_modal.instructions_button_label.ta %}
+                            <button class="course-apply-btn" data-modal-open="instructions">{{ apply_modal.instructions_button_label.en or apply_modal.instructions_button_label.ta }}</button>
+                            {% endif %}
+                            {% if apply_modal.apply_button_label.en or apply_modal.apply_button_label.ta %}
+                            <button class="course-apply-btn" data-modal-open="apply">{{ apply_modal.apply_button_label.en or apply_modal.apply_button_label.ta }}</button>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if closed_notice and (closed_notice.en or closed_notice.ta) %}
+                        {% if closed_notice.en %}
+                        <p class="englishparagraph" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.en | safe }}</p>
+                        {% endif %}
+                        {% if closed_notice.ta %}
+                        <p class="tamilparagraph" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.ta | safe }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if official_link and official_link.url %}
+                <p style="text-align: center; margin: 1%; font-style: italic;">
+                    {% if official_link.text_en %}<span class="englishparagraph">{{ official_link.text_en }} <a href="{{ official_link.url }}" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                    {% if official_link.text_ta %}<span class="tamilparagraph">{{ official_link.text_ta }} <a href="{{ official_link.url }}" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_ta or official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                </p>
+                {% endif %}
+
+                {% if intro and (intro.en or intro.ta) %}
+                <div class="container common-container four_content">
+                    {% if intro.en %}<div class="englishparagraph">{{ intro.en | safe }}</div>{% endif %}
+                    {% if intro.ta %}<div class="tamilparagraph">{{ intro.ta | safe }}</div>{% endif %}
+                </div>
+                {% endif %}
+
+                {% if eligibility and (eligibility.en or eligibility.ta) %}
+                <div class="container common-container four_content" style="padding: 10px 0;">
+                    {% if eligibility.en %}<div class="englishparagraph"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.en | safe }}</div>{% endif %}
+                    {% if eligibility.ta %}<div class="tamilparagraph"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.ta | safe }}</div>{% endif %}
+                </div>
+                {% endif %}
+
+                {% if duration and (duration.en or duration.ta) %}
+                <div class="container common-container four_content" style="padding: 10px 0;">
+                    {% if duration.en %}<div class="englishparagraph"><h2 data-i18n="duration">Duration</h2>{{ duration.en | safe }}</div>{% endif %}
+                    {% if duration.ta %}<div class="tamilparagraph"><h2 data-i18n="duration">Duration</h2>{{ duration.ta | safe }}</div>{% endif %}
+                </div>
+                {% endif %}
+
+                {% for section in sections %}
+                <div class="container common-container four_content" style="padding: 20px 0;">
+                    {% if section.body_en %}
+                    <div class="englishparagraph">
+                        {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_en | safe }}
+                    </div>
+                    {% endif %}
+                    {% if section.body_ta %}
+                    <div class="tamilparagraph">
+                        {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
+                        {% if section.image %}
+                        <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"
+                            class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        {% endif %}
+                        {{ section.body_ta | safe }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if not (intro and (intro.en or intro.ta)) and not sections.length and not (eligibility and (eligibility.en or eligibility.ta)) and not banner_image %}
+                <div class="container common-container four_content" style="padding: 40px 0; text-align: center; color: #666;">
+                    <p><i>Content for this page will be added soon.</i></p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+
+    {% if apply_modal %}
+    <!-- Apply Modal -->
+    <div id="applyModal" class="modal">
+        <button type="button" class="close" data-modal-action="show-confirm" aria-label="Close">&times;</button>
+        <div class="modal-content">
+            <iframe src="{{ apply_modal.apply_iframe_url }}" title="Application Page"></iframe>
+        </div>
+    </div>
+
+    <!-- Instructions Modal -->
+    <div id="instructionsModal" class="modal">
+        <button type="button" class="close" data-modal-close="instructions" aria-label="Close">&times;</button>
+        <div class="modal-content">
+            <iframe src="{{ apply_modal.instructions_iframe_url }}" title="Admission Guidelines PDF"></iframe>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="confirm-box">
+            {% if apply_modal.confirm_text.en %}<p class="englishparagraph" style="font-size: 16px; margin-bottom: 20px;">{{ apply_modal.confirm_text.en }}</p>{% endif %}
+            {% if apply_modal.confirm_text.ta %}<p class="tamilparagraph" style="font-size: 16px; margin-bottom: 20px;">{{ apply_modal.confirm_text.ta }}</p>{% endif %}
+            <div style="display: flex; justify-content: space-around;">
+                <button style="margin: 5%; padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px;"
+                    data-modal-action="force-close-apply">Yes, Close</button>
+                <button style="margin: 5%; padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 4px;"
+                    data-modal-action="close-confirm">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/modals.min.js" defer></script>
+    {% endif %}
+{% include "partner-carousel.njk" %}
