@@ -293,3 +293,36 @@ Tier 2/3 raw-HTML-to-structured-fields work in Sections 4–7 above (department 
 retiring the mission-vision/roles-functions iframes, Tier 3 bespoke schemas for about-diet-chennai,
 about-diet, coursedeled, rti-diet-rules, principals-desk, org-structure) is still open, phased as
 originally planned.
+
+## 9. Reality check before resuming Sections 4–7 (September 2026)
+
+Between Section 8 and now, a separate content-filling pass ("fill every page that has no content")
+gave every page in Sections 6.4's Department family, 6.6's `courses`/`coursetpd`, and 6.7's Activities
+family a **real, working CMS entry already** — but via the generic Tier 2 `simple_pages` schema
+(`admin/collections/simple_pages.yml`, the same `layout`/`title`/`description`/`last_updated`/`intro`/
+`sections` shape as disclaimer/help/rti/etc.), each with real researched bilingual content written in,
+not the dedicated schemas Sections 6.4/6.6/6.7 called for. Concretely, as of today:
+
+- **Departments** (dept-ae, dept-etmd, dept-fiar, dept-pste, dept-tpd, `departments`): on
+  `simple_pages`, with real NCTE-grounded bilingual intro content already written (not empty stubs
+  any more). Still missing the richer fields Section 2/7 confirmed: HOD, a faculty link into
+  `academic_faculty`, repeatable activities, a downloads link. Resuming Section 6 phase 4 now means
+  *upgrading* these six from generic to the dedicated Department schema and migrating their existing
+  intro text into it, not building from scratch.
+- **courses, coursetpd**: same situation — real content on `simple_pages` already, referencing the
+  real `/coursedeled/` page. Section 6 phase 6 called for a shared "course" schema across
+  coursedeled/courses/coursetpd; resuming that now means building the shared schema and folding these
+  two in alongside coursedeled (which is still a Tier 3 bespoke raw-HTML page today), not starting
+  from empty.
+- **Activities family** (activ-alumni, activ-archive, activ-calendar, activ-current): also on
+  `simple_pages`, with honest "content is being compiled, see Announcements/Circulars" placeholder
+  text rather than fabricated events. Section 6 phase 7 called for a structured JSON list collection
+  like announcements/circulars instead. That's a bigger shape change (prose page → list collection)
+  than the other two groups, and only makes sense once there's real event/alumni data to list — worth
+  confirming with the site owner whether to build the list-collection plumbing now (empty, ready for
+  data) or leave the honest placeholder in place until there's real content to migrate to it.
+
+Still exactly as originally planned, untouched since Section 6 was written: the two iframe fragments
+(mission-vision, roles-functions) and `statistics/index.html` (phase 5); the Tier 3 bespoke schemas
+for about-diet-chennai, about-diet, contact-us, coursedeled, rti-diet-rules, principals-desk, and the
+rest of org-structure (phase 6); and the editorial workflow toggle (phase 8, Section 5).
