@@ -1,0 +1,97 @@
+---
+layout: base.njk
+---
+{#
+  Bespoke layout for /principals-desk/ (CMS restructure plan, Tier 3 phase 6).
+  The photo/name/designation block keeps its existing
+  data-cms-image/data-cms-text/data-cms-source="principal" runtime mechanism
+  untouched -- those three facts are already sourced live from the
+  `principal` JSON collection (same pattern used elsewhere on the site), not
+  from this page's own front matter, and this migration doesn't change that.
+
+  What *is* new front matter here is the Principal's actual message text --
+  previously hand-written raw HTML with a quote-style heading, several
+  paragraphs, and a closing signature, in English and Tamil -- now three
+  bilingual fields (message_heading, message_body, closing_signature)
+  instead of one opaque HTML blob.
+
+  Breadcrumb/<h1> metadata comes from src/_data/simpleInfoPages.js (same
+  reasoning as simple-info.njk/department.njk/course.njk: Decap's
+  file-collection schema is authoritative for the whole front-matter object
+  on save, so structural, non-editorial data lives outside front matter).
+#}
+{% set pageMeta = simpleInfoPages[page.fileSlug] %}
+    <!--/.nav-wrapper-->
+    <!-- Main and modifiable content starts here -->
+    <!-- ---------------------------------------------- -->
+    <div class="main_content">
+        <div class="wrapper" id="skipCont"></div>
+        <!--/#skipCont-->
+        <section id="fontSize" class="wrapper body-wrapper ">
+            <div class="bg-wrapper inner-wrapper">
+                <div class="breadcam-bg breadcam">
+                    <div class="container common-container four_content">
+                        <ul>
+                            <li><a href="/" data-i18n="home">Home </a></li>
+                            {% if pageMeta.parent %}
+                            <li><a href="{{ pageMeta.parent.href }}" data-i18n="{{ pageMeta.parent.i18n }}">{{ pageMeta.parent.label }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ page.url }}" data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <section id="page-head" class="wrapper headings-wrapper">
+                <div class="container common-container four_content">
+                    <h1><i class="fa fa-info-circle" aria-hidden="true">&nbsp;</i><samp
+                            data-i18n="{{ pageMeta.i18nKey }}">{{ pageMeta.label }}</samp>
+                    </h1>
+                    <hr />
+                </div>
+            </section>
+            <!--/#page-head-->
+            <div class="container my-5">
+                <div class="row align-items-center">
+
+                    <!-- Principal's Image -->
+                    <div class="col-md-4 text-center mb-4 mb-md-0" style="text-align: center; font-weight: bold;">
+                        <img width="400" height="400" loading="lazy" src="/images/principal.png" alt="Principal DIET Chennai" class="img-fluid rounded shadow"
+                            style="max-width: 250px;" data-cms-image="photo" data-cms-source="principal">
+                        <h2 class="mt-3 mb-0 fw-bold" data-cms-text="name" data-cms-text-ta="name_ta" data-cms-source="principal">Dr. [Principal's Name]</h2>
+                        <p class="text-muted small" data-cms-text="designation_long" data-cms-text-ta="designation_long_ta" data-cms-source="principal">Principal, DIET Chennai</p>
+                    </div>
+
+                    <!-- Principal's Message -->
+                    {% if message_body.en %}
+                    <div class="col-md-8">
+                        <div class="custompara englishparagraph">
+                            {% if message_heading.en %}<h2 class="text-primary">{{ message_heading.en }}</h2>{% endif %}
+                            {{ message_body.en | safe }}
+                            {% if closing_signature.en %}<p class="mt-4"><strong>{{ closing_signature.en | safe }}</strong></p>{% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if message_body.ta %}
+                    <div class="col-md-8">
+                        <div class="custompara tamilparagraph tamilmarutham">
+                            {% if message_heading.ta %}<h2 class="text-primary">{{ message_heading.ta }}</h2>{% endif %}
+                            {{ message_body.ta | safe }}
+                            {% if closing_signature.ta %}<p class="mt-4"><strong>{{ closing_signature.ta | safe }}</strong></p>{% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if not message_body.en and not message_body.ta %}
+                    <div class="col-md-8">
+                        <p style="color:#666;"><i>The Principal's message will be added soon.</i></p>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <!-- Main and modifiable content ends here -->
+    <!-- ---------------------------------------------- -->
+    <!--/.body-wrapper-->
+{% include "partner-carousel.njk" %}

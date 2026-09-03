@@ -14,6 +14,7 @@
 // src/_layouts/simple-info.njk looks this up via
 // simpleInfoPages[page.fileSlug].
 module.exports = {
+  "principals-desk": { i18nKey: "principalsdesk", label: "Principal's Desk" },
   disclaimer: { i18nKey: "disclaimer", label: "Disclaimer" },
   "terms-conditions": { i18nKey: "termsconditions", label: "terms and conditions" },
   "website-policies": { i18nKey: "policies", label: "policies" },
