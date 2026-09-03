@@ -353,7 +353,7 @@ retiring the mission-vision/roles-functions iframes, Tier 3 bespoke schemas for 
 about-diet, coursedeled, rti-diet-rules, principals-desk, org-structure) is still open, phased as
 originally planned.
 
-## 10. Session status (September 2026): Phases 4, 5, 8 done; 6 and 7 deferred
+## 10. Session status (September 2026): Phases 4, 5, 8 done; 6 and 7 deferred (Phase 6 completed in a later session -- see Section 11)
 
 Phases 4 (Department schema), 5 (mission-vision/roles-functions iframe retirement +
 statistics.html decision), and 8 (editorial workflow toggle) were completed and committed this
@@ -411,3 +411,112 @@ Still exactly as originally planned, untouched since Section 6 was written: the 
 (mission-vision, roles-functions) and `statistics/index.html` (phase 5); the Tier 3 bespoke schemas
 for about-diet-chennai, about-diet, contact-us, coursedeled, rti-diet-rules, principals-desk, and the
 rest of org-structure (phase 6); and the editorial workflow toggle (phase 8, Section 5).
+
+## 11. Phase 6 complete (September 2026): all eight Tier 3 pages migrated
+
+All eight Tier 3 pages Section 10 listed as deferred were completed this session, one page (or
+tightly-related group) at a time, each with its own commit, verified individually per the plan's own
+requirement (rebuild clean, `check:links` clean, YAML/JSON valid, rendered-output spot-check for
+heading/paragraph/image/link counts against the pre-migration source) before moving to the next:
+
+1. **courses, coursetpd, coursedeled -- shared "course" schema.** New `src/_layouts/course.njk` +
+   `admin/collections/course.yml`. courses/coursetpd moved off the generic `simple_pages` schema onto
+   `course` with their existing real bilingual intro/sections content carried over unchanged (same
+   field names, same content). coursedeled moved off raw HTML into real front matter: `banner_image`,
+   `closed_notice` (the "online admission window is closed" text), `official_link` (the SCERT website
+   reference), and an `apply_modal` object driving the "View Instructions"/"Apply Now" buttons and
+   their three popup modals (built on the existing `js/modals.min.js` from an earlier session,
+   unchanged -- only its markup is now templated). The modal CSS/JS wiring moved from the page's own
+   `extraHead`/`extraScript` front matter into `course.njk` itself (rendered only when `apply_modal`
+   is present), since it's layout machinery, not editorial content. coursedeled gets its own field
+   list in `course.yml` (not the shared `*course_common_fields` anchor) since only it needs the
+   banner/modal fields; courses/coursetpd share the anchor. No Tamil text existed anywhere on the
+   original coursedeled page, so every new bilingual field's `ta` sub-field was left blank.
+2. **principals-desk -- bespoke schema.** New `src/_layouts/principals-desk.njk` +
+   `admin/collections/principals_desk.yml`. The photo/name/designation block's existing
+   `data-cms-image`/`data-cms-text`/`data-cms-source="principal"` runtime mechanism was left
+   completely untouched. The Principal's actual message (a bilingual quote-style heading, a
+   multi-paragraph message, and a closing signature) moved into front matter as `message_heading`,
+   `message_body`, and `closing_signature`. `message_body` is stored as literal HTML (`<p>` tags per
+   paragraph) rather than plain prose, because this codebase's markdown-widget fields render with a
+   plain `| safe` pass-through (confirmed by inspecting how courses/coursetpd's intro fields render --
+   markdown link syntax and blank lines pass through completely literally, with no
+   markdown-to-HTML step) -- wrapping paragraphs in real `<p>` tags was the only way to preserve the
+   original visible paragraph breaks.
+3. **org-structure -- bespoke schema.** New `src/_layouts/org-structure.njk` +
+   `admin/collections/org_structure.yml`. The page's only real content was a pair of org-chart
+   images (English/Tamil), no body text -- no hidden "remainder" content was found beyond that.
+   `org_chart.en`/`org_chart.ta` hold two distinct image paths (the chart labels are drawn into each
+   PNG as text, so unlike every other bilingual image on this site, the image itself differs by
+   language here, not just the surrounding text) per the plan's own Section 2 escape hatch for this
+   case. Also added an optional bilingual `intro` + repeatable `sections` list, left empty, as unused
+   schema headroom matching every other Tier 2/3 page, in case explanatory text is ever added.
+4. **contact-us -- bespoke schema, map URL decision.** New `src/_layouts/contact-us.njk` +
+   `admin/collections/contact_us.yml`. The institute name/address/email/phone
+   `data-cms-text`/`data-cms-mailto`/`data-cms-source="site-settings"` mechanism (wired up earlier
+   this session, `fe6374a`) was left completely untouched. What moved: the page's inline `<style>`
+   block, from the page's own `extraHead` front matter into the layout itself (layout CSS, not
+   editorial content); and the Google Maps embed's iframe src, previously hand-written directly in
+   the file. **Decision:** the map URL is now `data-cms-iframe-src="map_embed_url"`, reading from
+   *Site Settings* (the same JSON file institute_name/address/email/phone already live in), not a
+   page-specific front-matter field -- because it describes the exact same physical address as those
+   other facts, and keeping every "where is DIET Chennai" fact in one place means a future address
+   change can't update the text but miss the map, or vice versa. This needed one small new runtime
+   mechanism, `js/cms-content.js`'s `renderIframeSrc()` (wired to `[data-cms-iframe-src]`), following
+   the same `fetchJSON(source)`-then-set-one-property shape as the existing
+   `renderImage`/`renderText`/`renderMailto` functions; `js/cms-content.min.js` regenerated via
+   terser. Added `map_embed_url` to `assets/content/data/site-settings.json` and
+   `admin/collections/site_settings.yml`.
+5. **about-diet-chennai -- bespoke schema, largest content-preservation risk in the phase.** New
+   `src/_layouts/about-diet-chennai.njk` + `admin/collections/about_diet_chennai.yml`. 9 real `<h2>`
+   sections total: 8 bilingual institutional-history sections (`sections` list) plus an English-only
+   References/bibliography list (`references_html` + `references_heading`), with a real Tamil
+   translation added in an earlier session (`433b684`). All bilingual body content was migrated
+   **programmatically, not hand-retyped**: a Python script parsed the original page's
+   `.englishparagraph`/`.tamilparagraph` divs, split each on its `<h2>` boundaries, and round-tripped
+   the resulting front matter back through `yaml.safe_load` -- comparing every extracted
+   heading/body string against the source -- before the file was written, specifically to rule out
+   transcription drift across ~22KB of bilingual HTML (dates, names, citations-in-prose, emoji list
+   markers, nested `<i>` tags). The References list is deliberately NOT wrapped in the bilingual
+   toggle -- it wasn't inside either language div in the original page either, so that placement is
+   preserved exactly. The "Mandatory Disclosure" button/modal is hardcoded in the layout (not a CMS
+   field) since it always points at `/assets/docs/mandatory_disclosure.html`, already independently
+   CMS-editable via the `principal` collection's `principal_disclosure` entry.
+6. **about-diet -- bespoke schema.** New `src/_layouts/about-diet.njk` +
+   `admin/collections/about_diet.yml`. 3 bilingual `<h2>` sections (What is DIET? / The Need for
+   DIET / Importance of DIET), the third carrying 4 nested `<h3>` sub-headings inside its own body,
+   kept together as one HTML block per section rather than split further, matching the original
+   markup. Same real Tamil translation risk as about-diet-chennai (`433b684`), so migrated with the
+   same programmatic extract-split-round-trip-verify approach. A 4th, English-only section
+   ("DIET Chennai's Commitment") existed in the raw HTML but entirely inside an HTML comment -- never
+   rendered on the live page -- so it was left out rather than resurrected; bringing back dead
+   commented content would be adding to the page, not preserving what was there.
+7. **rti-diet-rules -- bespoke schema.** New `src/_layouts/rti-diet-rules.njk` +
+   `admin/collections/rti_diet_rules.yml`. Real shape is a legal/reference table of Government Orders
+   (date, order/directive title, description, source document link), modeled as a repeatable `orders`
+   list rather than the intro/sections shape used everywhere else in this phase. date/title/
+   source_label are plain (non-bilingual) strings -- GO numbers, department names, and dates are
+   citations/facts, not editorial prose, the same reasoning `department.njk`'s `downloads` list
+   already applies; `description` is the one field with real explanatory prose per row, so it's
+   bilingual, with `ta` left blank on all three rows since no Tamil translation of these descriptions
+   exists anywhere on the site. Fixed one pre-existing bug while migrating (not a content change):
+   two of the three source links used a literal backslash path (`\assets\files\...`) in the raw
+   HTML, corrected to the normal forward-slash form pointing at the same, already-existing PDF files;
+   the source text's own pre-existing typo ("Tamil Ndu") was left as-is.
+
+Every page's front matter round-trips through `yaml.safe_load`, `admin/config.yml` regenerates via
+`scripts/build-cms-config.js` after each change and parses clean with no new duplicate `file:`
+registrations beyond the three pre-existing ones (`mandatory_disclosure.html`, `mission-vision`,
+`roles-functions`, all unrelated to and untouched by this phase), `rm -rf _site && npx eleventy`
+rebuilds clean with zero errors after every commit, and `npm run check:links` reports 0 broken
+internal links after every commit. Each page's rendered HTML was spot-checked against the
+pre-migration source for heading/paragraph/image/link counts and exact text content (including exact
+Tamil text) before its commit.
+
+Phase 7 (Activities family as a JSON list collection) remains the one open item from the original
+plan -- not attempted this session, no newly discovered risk, same low-risk well-scoped shape
+Section 10 already described.
+
+Nothing this session was pushed to `origin/main` -- all seven Phase 6 commits are local only, per
+this project's standing rule never to push automatically.
+
