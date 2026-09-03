@@ -55,6 +55,7 @@ const COLLECTION_FRAGMENTS = [
   "principal",
   "admin_staff",
   "simple_pages",
+  "activities",
   "department",
   "course",
   "principals_desk",

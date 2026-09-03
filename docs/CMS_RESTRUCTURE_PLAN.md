@@ -520,3 +520,35 @@ Section 10 already described.
 Nothing this session was pushed to `origin/main` -- all seven Phase 6 commits are local only, per
 this project's standing rule never to push automatically.
 
+## 12. Phase 7 — Activities family as a JSON list collection — DONE
+
+The four Activities pages (activ-alumni, activ-archive, activ-calendar, activ-current) had real,
+honest bilingual intro/explanation text already (written during the earlier content-fill pass,
+pointing readers at Announcements/Circulars for actual current updates) but sat on the generic
+`simple_pages` schema with an always-empty `sections: []`. Rather than discard that intro text to
+switch to a bare list collection like announcements/circulars, built a small dedicated layout,
+`src/_layouts/activities.njk`, that keeps the existing bilingual intro (same
+`.englishparagraph`/`.tamilparagraph` rendering as `simple-info.njk`) and adds a real structured event
+list below it, using `js/cms-content.js`'s existing generic `data-cms-list`/`fetchJSON` mechanism —
+no JS changes needed, just `data-cms-list="{{ page.fileSlug }}"` pointing each page at its own new
+JSON file (`assets/content/data/activ-alumni.json` etc., same shape as `announcements`/`circulars`:
+title, date, optional external link, optional attached file). All four JSON files start with an empty
+`items` list — no fabricated events — which `cms-content.js`'s existing fallback renders as "To be
+updated", the same graceful-empty behavior every other CMS list on the site already has.
+
+New collection `admin/collections/activities.yml`, registered in `scripts/build-cms-config.js`'s
+`COLLECTION_FRAGMENTS` (right after `simple_pages`): eight file entries — one page-content entry per
+page (title/description/last_updated/intro, via a new `&activity_page_fields` anchor) and one
+events-list entry per page (via `&activity_list_fields`), so an editor can tell "edit the intro text"
+and "add an event" apart in the CMS sidebar rather than one blob covering both. The four pages' old
+entries were removed from `admin/collections/simple_pages.yml`.
+
+Verified: `rm -rf _site && npx eleventy` rebuilds clean (47 files); `npm run check:links` reports 0
+broken internal links; confirmed all four pages render their intro text plus an empty (fallback-styled)
+event list in the built output, all four JSON files parse and are correctly passthrough-copied into
+`_site/assets/content/data/`, and `admin/config.yml` regenerates with each of the four pages
+registered exactly once (no duplicates against their prior `simple_pages` entries, which were removed
+in the same change).
+
+This closes out every phase in Section 6's original list. Nothing here was pushed — local commit only,
+same as everything else this session.

@@ -88,19 +88,3 @@
         label: "Roles and Functions"
         file: "src/roles-functions/index.njk"
         fields: *simple_page_fields
-      - name: "activ-calendar"
-        label: "Activities: Academic Training Calendar"
-        file: "src/activ-calendar/index.njk"
-        fields: *simple_page_fields
-      - name: "activ-current"
-        label: "Activities: Current Activities"
-        file: "src/activ-current/index.njk"
-        fields: *simple_page_fields
-      - name: "activ-archive"
-        label: "Activities: Activity Archive"
-        file: "src/activ-archive/index.njk"
-        fields: *simple_page_fields
-      - name: "activ-alumni"
-        label: "Activities: Alumni Association"
-        file: "src/activ-alumni/index.njk"
-        fields: *simple_page_fields
