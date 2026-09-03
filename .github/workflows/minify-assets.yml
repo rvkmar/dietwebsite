@@ -4,9 +4,16 @@ name: Minify CSS and JS
 # source files automatically. Runs only when a source .css/.js file
 # actually changes (the `paths` filter below excludes the .min.*
 # files themselves), so the commit this workflow makes - which only
-# touches .min.* files - does not re-trigger itself. The `if` guard
-# and the `[skip ci]` in the commit message are both extra safety
-# nets against that same infinite-loop risk.
+# touches .min.* files - does not re-trigger ITSELF. The `if` guard
+# is a second, independent safety net against that same loop risk.
+#
+# Deliberately NOT tagged [skip ci]: deploy.yml (Phase 2) also
+# triggers on every push to main, and we WANT this workflow's own
+# commit to trigger a fresh deploy -- otherwise a freshly re-minified
+# CSS/JS file would sit committed but undeployed until some unrelated
+# later push happened to trigger a build. The two anti-loop
+# mechanisms above are enough on their own; skip-ci was doing double
+# duty as an (unwanted, here) deploy-suppressor too.
 #
 # This intentionally only minifies (removes whitespace/comments) -
 # it does not concatenate files into fewer requests. This codebase's
@@ -96,7 +103,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add css/*.min.css js/*.min.js
           if ! git diff --cached --quiet; then
-            git commit -m "Auto-minify changed CSS/JS [skip ci]"
+            git commit -m "Auto-minify changed CSS/JS"
             git push
           else
             echo "No changes to commit"
