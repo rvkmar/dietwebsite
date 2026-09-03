@@ -136,29 +136,45 @@ sized/positioned the way `org-structure`'s existing org-chart images already are
 explicit width/height per the Lighthouse fix from earlier in this project) — not as a second,
 different image-handling convention.
 
-## 3. Translations: collapse ~600 lines to a real i18n structure
+## 3. Translations — DONE (auto-generated, not collapsed by widget)
 
-Decap CMS (the version already loaded, `^3.0.0`) supports a `keyvalue` widget and a top-level `i18n`
-config block designed for exactly this EN/TA duplication. Two options, to decide during
-implementation:
-- **`keyvalue` widget**: one field, editors see a live key → value table instead of 166 individually
-  declared `widget: text` blocks. Biggest line-count win, least template disruption.
-- **Native Decap `i18n`**: editors see EN and TA side-by-side for each key in one editing view instead
-  of two separate files. More editor-friendly, more setup (structured folder/file naming Decap
-  expects).
-Either collapses the 600-line block dramatically; recommend starting with `keyvalue` as the lower-risk
-first step, since it doesn't require restructuring `languages/en.json`/`ta.json`'s file layout.
+Two ideas from the original draft of this section turned out not to hold up once checked against
+Decap's actual docs, in order:
+- **Native Decap `i18n`** — file collections only support `structure: single_file`, which would have
+  meant consolidating `languages/en.json`/`ta.json` into one file and rewriting `js/language.js`'s
+  fetch logic against an unconfirmed wire format. Too much risk to a live production translation
+  loader for the payoff.
+- **`keyvalue` widget** — doesn't exist in real Decap CMS (`^3.0.0`); that's a Static CMS widget, a
+  different fork. This was an incorrect claim in the original draft, caught via the actual Decap
+  widgets doc before anything was built on it.
 
-## 4. Keeping config.yml itself maintainable
+**Implemented instead:** the field list itself is auto-generated from `languages/en.json`'s keys by
+`scripts/build-cms-config.js`, so the ~600 lines never have to be hand-declared *or* hand-kept-in-sync
+again — same file layout, same `js/language.js`, zero risk. Adding a new translatable string means
+adding it to `languages/en.json` and `languages/ta.json`; the CMS field list follows on the next
+build. See Section 4.
 
-At 1,448 lines today (and only growing as Tier 2/3 fields get added), a single flat file becomes the
-next maintenance problem even after the content model improves. Decap doesn't support native
-multi-file config, but the repo already has a precedent for assembling generated output from modular
-sources (`minify-assets.yml` does this for CSS/JS). Same idea here: keep the *source* as small
-per-domain YAML fragments under `admin/collections/*.yml` (e.g. `pages.yml`, `departments.yml`,
-`translations.yml`, `structured-data.yml`), and add a small Node script + GitHub Actions step that
-concatenates them into the actual `admin/config.yml` Decap loads — analogous to how minified JS/CSS
-are generated today, not committed by hand.
+## 4. Keeping config.yml itself maintainable — DONE
+
+`admin/config.yml` is now generated output, not a source file:
+- `admin/config.template.yml` — everything above `collections:` (backend, `site_url`, etc.), verbatim.
+- `admin/collections/*.yml` — one fragment per collection (`site_settings`, `announcements`,
+  `circulars`, `downloads`, `banner`, `gallery`, `academic_faculty`, `principal`, `admin_staff`,
+  `about_fragments`, `pages`), verbatim text from the original file.
+- `scripts/build-cms-config.js` concatenates the template + fragments, generates the `translations`
+  collection's field list from `languages/en.json` (Section 3), validates the result with `js-yaml`
+  before writing (so a broken fragment fails the build instead of shipping unparseable YAML to
+  Decap), and writes `admin/config.yml`.
+- `.github/workflows/build-cms-config.yml` runs this on every push to `main` that touches a source
+  fragment, `languages/en.json`/`ta.json`, or the script itself, and commits the regenerated file —
+  same pattern as `minify-assets.yml`, deliberately not `[skip ci]` since `deploy.yml` needs to
+  redeploy when `admin/config.yml` changes.
+
+Verified with a structural-equivalence check (parse old and new `config.yml`, compare every
+collection and field name in order) — no fields lost or reordered relative to the pre-split file.
+
+Tier 2/3 schemas (Sections 2 and 6 below) get added as new files under `admin/collections/` and a
+line in `COLLECTION_FRAGMENTS`, not as edits to a 1,400-line file.
 
 ## 5. Editorial workflow — optional, worth a light recommendation
 
@@ -172,9 +188,8 @@ it into the core restructure, since it's a workflow change independent of the co
 
 Given the real content distribution above, doing this roughly cheapest/highest-value first:
 
-1. **Translations → `keyvalue`.** Self-contained, no template risk, biggest immediate file-size win.
-2. **Config.yml modularization** (Section 4). Do this before adding more fields, not after — otherwise
-   every subsequent phase adds more lines to the file we're about to split anyway.
+1. **Translations, auto-generated.** DONE — see Section 3.
+2. **Config.yml modularization** (Section 4). DONE — see Section 4.
 3. **Tier 2 "Simple info/policy" schema + partial**, applied to the 13 stub pages that clearly fit it
    (disclaimer, terms-conditions, website-policies, help, feedback, important-links, web-manager,
    media, rti, tb-module, tb-textbook, sitemap, academic-faculty) plus the 3 already-simple pages
@@ -199,18 +214,13 @@ Given the real content distribution above, doing this roughly cheapest/highest-v
 Each phase gets the same treatment as everything else this session: build, verify against the local
 `_site/` output (and ideally the Netlify preview), commit, then it's your call when to push.
 
-## 7. Open questions before implementation starts
+## 7. Open questions — all resolved
 
-- **Activities pages content shape**: leaning toward a structured list like announcements/circulars
-  (event title, date, description) rather than free prose, since "alumni/archive/calendar/current"
-  reads as event-style listings — confirm before Phase 7 locks this in.
-- **Department pages**: what fields do you actually want per department beyond name/HOD/activities —
-  e.g. faculty photos, contact email, specific course links?
-- **Translations approach**: `keyvalue` widget (simpler, faster) vs. native Decap `i18n` (nicer
-  editing UX, more setup)? Note this is about the separate 83-key nav/UI-chrome file
-  (`languages/en.json`/`ta.json`), not the per-page bilingual content fields from Section 2, which
-  already have a confirmed approach (paired `en`/`ta` object fields, matching the existing
-  `.englishparagraph`/`.tamilparagraph` convention).
-- **Config.yml modularization**: confirm you're fine with a build step generating `admin/config.yml`
-  from source fragments (mirrors the existing minify-assets.yml pattern) rather than one hand-edited
-  file.
+- **Activities pages content shape**: confirmed — structured JSON list, same shape as
+  announcements/circulars.
+- **Department pages fields**: confirmed — name, optional photo/banner, HOD, faculty (linked to
+  `academic_faculty`), activities (heading + body + optional image), downloads (linked to
+  `downloads`), plus contact info, course links, and a vision/objectives block.
+- **Translations approach**: resolved — see Section 3 (auto-generated field list, not a widget
+  swap).
+- **Config.yml modularization**: confirmed and implemented — see Section 4.
