@@ -1485,42 +1485,9 @@ collections:
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "assets-content-about-mission"
-        label: "Assets / Content / About Mission (raw HTML)"
-        file: "assets/content/about_mission.html"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "assets-content-about-roles"
-        label: "Assets / Content / About Roles (raw HTML)"
-        file: "assets/content/about_roles.html"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
       - name: "assets-content-statistics"
         label: "Assets / Content / Statistics (raw HTML)"
         file: "assets/content/statistics/index.html"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "assets-docs-mandatory-disclosure"
-        label: "Assets / Docs / Mandatory Disclosure (raw HTML)"
-        file: "assets/docs/mandatory_disclosure.html"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1639,36 +1606,3 @@ collections:
             allow_language_selection: false
             output_code_only: true
             hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "mission-vision"
-        label: "Mission Vision (raw HTML)"
-        file: "src/mission-vision/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "roles-functions"
-        label: "Roles Functions (raw HTML)"
-        file: "src/roles-functions/index.njk"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits this page's content and metadata (title, description, last-updated date). The shared navigation, header, and footer are no longer part of this file (Phase 2 migration) — they live once in src/_includes/ and apply to every page automatically. For announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
-      - name: "theme-css-site-change"
-        label: "Theme / Css / Site Change (raw HTML)"
-        file: "theme/css/site-change.html"
-        fields:
-          - label: "Full page HTML source"
-            name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
-            output_code_only: true
-            hint: "This edits the ENTIRE raw HTML file, including navigation and footer. Use with care — for announcements, circulars, downloads, banners, and the last-updated date, use the dedicated sections above instead."
