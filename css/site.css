@@ -5859,6 +5859,23 @@ a:focus {
 .side-links .list-content{	
 	width: 78%;
 }
+/* .date and .list-content above are percentage-widthed, but their parent
+ * <a> (which wraps a <div class="date"> icon block + a <div
+ * class="list-content"> text block) was never given an explicit width. An
+ * <a> containing block-level children gets an anonymous inline-block box
+ * sized by shrink-to-fit, not by its <li>'s full width, so .date/.list-
+ * content's 20%/78% resolved against that shrunk box instead of the full
+ * row -- visibly: the "Courses / Publications / Gallery / Reports"
+ * quick-link tiles rendered as a small clickable strip on the left with a
+ * near-invisible icon (down to ~9x11px, vs. the icon's actual 30x36px) and
+ * a large dead empty area to the right of every row. Giving the <a> a
+ * real block width fixes both the icon size and the wasted space in one
+ * change, without touching any other .content_list usage (this selector
+ * only matches the side-links quick-link list). */
+.side-links ul.content_list.date-list li a {
+	display: block;
+	width: 100%;
+}
 .side-links ul.content_list.date-list{
 	
 	 /* WebKit */
