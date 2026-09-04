@@ -13,15 +13,19 @@ layout: base.njk
   page's inline <style> block (moved here from the page's own
   extraHead front matter -- it's layout CSS, not editorial content, so it
   belongs in the layout, not repeated in every save of the page) and the
-  Google Maps embed, whose src URL used to be hand-written directly in this
-  file. The map URL is now data-cms-iframe-src="map_embed_url" reading
-  from the same Site Settings file as the other contact facts (see
-  js/cms-content.js's renderIframeSrc) -- it describes the same physical
-  address as institute_name/address, so keeping it in the one place that
-  already tracks "where is DIET Chennai" seemed more consistent than
-  adding a second, page-only field a future address change could miss.
-  The src attribute keeps a matching literal fallback value for anyone
-  viewing the page before this script runs (or with it disabled).
+  Google Maps embed. This used to be an <iframe>, but Google Maps can't be
+  framed under this site's Content-Security-Policy (default-src 'self',
+  no frame-src for maps.google.com) -- confirmed live-broken the same way
+  the coursedeled apply-modal iframes were. Replaced with a plain "View on
+  Google Maps" link instead of widening the CSP, matching the coursedeled
+  fix. The link URL is data-cms-href="map_link_url" reading from the same
+  Site Settings file as the other contact facts (see js/cms-content.js's
+  renderHref) -- it describes the same physical address as
+  institute_name/address, so keeping it in the one place that already
+  tracks "where is DIET Chennai" seemed more consistent than adding a
+  second, page-only field a future address change could miss. The href
+  attribute keeps a matching literal fallback value for anyone viewing the
+  page before this script runs (or with it disabled).
 
   This page has no other editorial content beyond title/description/
   last_updated -- the "Send Us a Message"/"Find Us on Map" headings and
@@ -44,11 +48,20 @@ layout: base.njk
         text-align: center;
     }
 
-    .contact-form iframe,
-    .map iframe {
-        border: 0;
-        width: 100%;
-        height: 350px;
+    .map-link-btn {
+        display: inline-block;
+        background-color: #004080;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+    .map-link-btn:hover {
+        background-color: #003060;
+        color: white;
     }
 
     .contact-form form {
@@ -131,11 +144,10 @@ layout: base.njk
 
                 <div class="map">
                     <h2>Find Us on Map</h2>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3890.056142866214!2d80.2791785!3d13.0476688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzUxLjYiTiA4MMKwMTYnNDUuMCJF!5e0!3m2!1sen!2sin!4v1718012345678"
-                        data-cms-iframe-src="map_embed_url" data-cms-source="site-settings"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <a class="map-link-btn"
+                        href="https://www.google.com/maps/search/?api=1&query=13.0476688,80.2791785"
+                        data-cms-href="map_link_url" data-cms-source="site-settings"
+                        target="_blank" rel="noopener noreferrer">View on Google Maps</a>
                 </div>
             </div>
         </section>

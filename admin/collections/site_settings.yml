@@ -11,4 +11,4 @@
           - { label: "Address", name: "address", widget: "text", hint: "Shown on the Contact Us page. One field for the full address (street, city, PIN, state)." }
           - { label: "Email", name: "email", widget: "string", hint: "Shown on the Contact Us page and used as the 'Send Us a Message' form's destination address." }
           - { label: "Phone", name: "phone", widget: "string", hint: "Shown on the Contact Us page." }
-          - { label: "Map embed URL", name: "map_embed_url", widget: "string", hint: "The Google Maps 'Embed a map' iframe src URL, shown on the Contact Us page. Kept alongside the other contact facts since it describes the same address; update it if the address ever changes." }
+          - { label: "Map link URL", name: "map_link_url", widget: "string", hint: "The 'View on Google Maps' link shown on the Contact Us page (a plain link, not an iframe embed -- Google Maps can't be framed under this site's Content-Security-Policy). Kept alongside the other contact facts since it describes the same address; update it if the address ever changes." }
