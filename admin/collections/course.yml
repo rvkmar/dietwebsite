@@ -112,11 +112,11 @@
               - { label: "Body (Tamil)", name: "body_ta", widget: "markdown", required: false }
               - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
-          - label: "Apply-now flow"
-            name: "apply_modal"
+          - label: "Apply-now links"
+            name: "apply_links"
             widget: "object"
             required: false
-            hint: "Optional. Powers the 'View Instructions' / 'Apply Now' buttons and their popup modals (built on js/modals.min.js). Leave blank to hide the buttons entirely."
+            hint: "Optional. Powers the 'View Instructions' / 'Apply Now' buttons, shown as plain links that open in a new tab (no popup/iframe -- both destinations are on other domains, which browsers' Content-Security-Policy blocks from loading inside an iframe on this site). Leave blank to hide the buttons entirely."
             fields:
               - label: "'View Instructions' button label"
                 name: "instructions_button_label"
@@ -132,12 +132,5 @@
                 fields:
                   - { label: "English", name: "en", widget: "string", required: false }
                   - { label: "Tamil", name: "ta", widget: "string", required: false }
-              - { label: "Apply form iframe URL", name: "apply_iframe_url", widget: "string", required: false }
-              - { label: "Instructions PDF iframe URL", name: "instructions_iframe_url", widget: "string", required: false }
-              - label: "'Close application?' confirm text"
-                name: "confirm_text"
-                widget: "object"
-                required: false
-                fields:
-                  - { label: "English", name: "en", widget: "string", required: false }
-                  - { label: "Tamil", name: "ta", widget: "string", required: false }
+              - { label: "Apply page URL", name: "apply_url", widget: "string", required: false, hint: "Opens in a new tab." }
+              - { label: "Instructions PDF URL", name: "instructions_url", widget: "string", required: false, hint: "Opens in a new tab." }

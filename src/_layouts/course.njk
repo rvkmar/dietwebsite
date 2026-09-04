@@ -26,7 +26,7 @@ layout: base.njk
   would be silently dropped on the next editor save.
 #}
 {% set pageMeta = simpleInfoPages[page.fileSlug] %}
-{% if apply_modal %}
+{% if apply_links %}
 <style>
     .course-img-container { display: flex; justify-content: center; gap: 20px; align-items: center; }
     .course-button-overlay {
@@ -36,30 +36,9 @@ layout: base.njk
     .course-apply-btn {
         background-color: #0056b3; color: white; padding: 12px 24px; border: none;
         border-radius: 6px; cursor: pointer; font-size: 16px; margin: 10px;
+        display: inline-block; text-decoration: none;
     }
-    .course-apply-btn:hover { background-color: #003d80; }
-    .modal {
-        display: none; position: fixed; z-index: 9999; left: 0; top: 0;
-        width: 100%; height: 100%; overflow: hidden; background-color: rgba(0, 0, 0, 0.6);
-    }
-    .modal-content {
-        background-color: #fff; margin: 4% auto; padding: 0; border-radius: 8px;
-        width: 90%; max-width: 80vw; height: 90vh; display: flex; flex-direction: column;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    .modal-content iframe { width: 100%; height: 100%; border: none; }
-    .close {
-        position: absolute; top: 12px; right: 16px; font-size: 28px; font-weight: bold;
-        color: #ffffff; background-color: rgba(0, 0, 0, 0.6); padding: 4px 10px;
-        border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
-        z-index: 10000; line-height: 1; border: none; font-family: inherit;
-    }
-    .close:hover { background-color: rgba(255, 0, 0, 0.8); transform: scale(1.1); }
-    .confirm-box {
-        background-color: #fff; padding: 20px; max-width: 400px; width: 90%; margin: 20% auto;
-        border-radius: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        color: #333; font-size: 16px;
-    }
+    .course-apply-btn:hover { background-color: #003d80; color: white; }
 </style>
 {% endif %}
     <!--/.nav-wrapper-->
@@ -97,13 +76,13 @@ layout: base.njk
                     <div class="image-container" style="position: relative; display: inline-block; width: 100%; max-width: 80vw;">
                         <img width="851" height="315" loading="lazy" src="{{ banner_image }}" alt="{{ banner_image_alt or pageMeta.label }}"
                             style="width: 100%; height: auto; display: block;">
-                        {% if apply_modal %}
+                        {% if apply_links %}
                         <div class="course-button-overlay">
-                            {% if apply_modal.instructions_button_label.en or apply_modal.instructions_button_label.ta %}
-                            <button class="course-apply-btn" data-modal-open="instructions">{{ apply_modal.instructions_button_label.en or apply_modal.instructions_button_label.ta }}</button>
+                            {% if apply_links.instructions_url and (apply_links.instructions_button_label.en or apply_links.instructions_button_label.ta) %}
+                            <a class="course-apply-btn" href="{{ apply_links.instructions_url }}" target="_blank" rel="noopener noreferrer">{{ apply_links.instructions_button_label.en or apply_links.instructions_button_label.ta }}</a>
                             {% endif %}
-                            {% if apply_modal.apply_button_label.en or apply_modal.apply_button_label.ta %}
-                            <button class="course-apply-btn" data-modal-open="apply">{{ apply_modal.apply_button_label.en or apply_modal.apply_button_label.ta }}</button>
+                            {% if apply_links.apply_url and (apply_links.apply_button_label.en or apply_links.apply_button_label.ta) %}
+                            <a class="course-apply-btn" href="{{ apply_links.apply_url }}" target="_blank" rel="noopener noreferrer">{{ apply_links.apply_button_label.en or apply_links.apply_button_label.ta }}</a>
                             {% endif %}
                         </div>
                         {% endif %}
@@ -121,8 +100,8 @@ layout: base.njk
 
                 {% if official_link and official_link.url %}
                 <p style="text-align: center; margin: 1%; font-style: italic;">
-                    {% if official_link.text_en %}<span class="englishparagraph">{{ official_link.text_en }} <a href="{{ official_link.url }}" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_en or official_link.url }}</a></span>{% endif %}
-                    {% if official_link.text_ta %}<span class="tamilparagraph">{{ official_link.text_ta }} <a href="{{ official_link.url }}" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_ta or official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                    {% if official_link.text_en %}<span class="englishparagraph">{{ official_link.text_en }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                    {% if official_link.text_ta %}<span class="tamilparagraph">{{ official_link.text_ta }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_ta or official_link.link_label_en or official_link.url }}</a></span>{% endif %}
                 </p>
                 {% endif %}
 
@@ -184,36 +163,4 @@ layout: base.njk
     <!-- ---------------------------------------------- -->
     <!--/.body-wrapper-->
 
-    {% if apply_modal %}
-    <!-- Apply Modal -->
-    <div id="applyModal" class="modal">
-        <button type="button" class="close" data-modal-action="show-confirm" aria-label="Close">&times;</button>
-        <div class="modal-content">
-            <iframe src="{{ apply_modal.apply_iframe_url }}" title="Application Page"></iframe>
-        </div>
-    </div>
-
-    <!-- Instructions Modal -->
-    <div id="instructionsModal" class="modal">
-        <button type="button" class="close" data-modal-close="instructions" aria-label="Close">&times;</button>
-        <div class="modal-content">
-            <iframe src="{{ apply_modal.instructions_iframe_url }}" title="Admission Guidelines PDF"></iframe>
-        </div>
-    </div>
-
-    <!-- Custom Confirm Modal -->
-    <div id="confirmModal" class="modal">
-        <div class="confirm-box">
-            {% if apply_modal.confirm_text.en %}<p class="englishparagraph" style="font-size: 16px; margin-bottom: 20px;">{{ apply_modal.confirm_text.en }}</p>{% endif %}
-            {% if apply_modal.confirm_text.ta %}<p class="tamilparagraph" style="font-size: 16px; margin-bottom: 20px;">{{ apply_modal.confirm_text.ta }}</p>{% endif %}
-            <div style="display: flex; justify-content: space-around;">
-                <button style="margin: 5%; padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px;"
-                    data-modal-action="force-close-apply">Yes, Close</button>
-                <button style="margin: 5%; padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 4px;"
-                    data-modal-action="close-confirm">Cancel</button>
-            </div>
-        </div>
-    </div>
-    <script src="/js/modals.min.js" defer></script>
-    {% endif %}
 {% include "partner-carousel.njk" %}
