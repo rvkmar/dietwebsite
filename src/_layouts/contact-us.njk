@@ -9,6 +9,25 @@ layout: base.njk
   completely untouched here -- those facts are already CMS-editable via
   Site Settings, not this page's own front matter.
 
+  The email address (a real <a href="mailto:..."> now, not plain text --
+  see below) and the "Send Us a Message" form both had a real bug fixed
+  alongside the address update: a <form action="mailto:...">, even one
+  never actually submitted, makes Chrome log a "Mixed Content: ... form
+  that targets an insecure endpoint" console warning the moment the page
+  loads (mailto: isn't https, and Chrome flags any *form action* left in
+  a non-http(s) scheme -- a plain <a href="mailto:..."> link, which this
+  page also has, is never flagged the same way; only the declarative
+  <form action="mailto:"> pattern is). The form no longer carries a
+  static action attribute at all -- js/cms-content.js's renderMailto()
+  now composes the mailto: URL from the entered name/email/message on
+  submit and navigates to it via window.location.href instead, which
+  Chrome's mixed-content form check doesn't flag (it can't statically
+  analyze a JS-driven navigation). Both the visible email link and the
+  form now read from Site Settings' comma-separated "email" field
+  (currently admin@dietchennai.org, admin@dietchn.ac.in), so updating
+  the address(es) in one place keeps both in sync, same reasoning as
+  map_link_url below.
+
   What this pass structures is everything that was still hardcoded: the
   page's inline <style> block (moved here from the page's own
   extraHead front matter -- it's layout CSS, not editorial content, so it
@@ -128,13 +147,13 @@ layout: base.njk
                 <div class="contact-details">
                     <p><strong data-cms-text="institute_name" data-cms-source="site-settings">District Institute of Education and Training (DIET), Chennai</strong></p>
                     <p data-cms-text="address" data-cms-source="site-settings">Kamarajar Salai, Triplicane, Chennai – 600005, Tamil Nadu, India</p>
-                    <p><strong>Email:</strong> <span data-cms-text="email" data-cms-source="site-settings">dietchn@nic.in</span></p>
+                    <p><strong>Email:</strong> <a data-cms-text="email" data-cms-mailto="email" data-cms-source="site-settings" href="mailto:admin@dietchennai.org,admin@dietchn.ac.in">admin@dietchennai.org, admin@dietchn.ac.in</a></p>
                     <p><strong>Phone:</strong> <span data-cms-text="phone" data-cms-source="site-settings">+91 (044) 28445582</span></p>
                 </div>
 
                 <div class="contact-form">
                     <h2>Send Us a Message</h2>
-                    <form action="mailto:dietchn@nic.in" method="POST" enctype="text/plain" data-cms-mailto="email" data-cms-source="site-settings">
+                    <form data-cms-mailto="email" data-cms-source="site-settings">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
                         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>

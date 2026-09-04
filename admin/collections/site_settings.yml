@@ -9,6 +9,6 @@
           - { label: "Last Updated (e.g. 18-APR-2025)", name: "last_updated", widget: "string" }
           - { label: "Institute Name", name: "institute_name", widget: "string", hint: "Shown at the top of the Contact Us page's address block." }
           - { label: "Address", name: "address", widget: "text", hint: "Shown on the Contact Us page. One field for the full address (street, city, PIN, state)." }
-          - { label: "Email", name: "email", widget: "string", hint: "Shown on the Contact Us page and used as the 'Send Us a Message' form's destination address." }
+          - { label: "Email", name: "email", widget: "string", hint: "One or more addresses, comma-separated (e.g. 'admin@dietchennai.org, admin@dietchn.ac.in'). Shown as a clickable mailto link on the Contact Us page and used as the 'Send Us a Message' form's destination address(es)." }
           - { label: "Phone", name: "phone", widget: "string", hint: "Shown on the Contact Us page." }
           - { label: "Map link URL", name: "map_link_url", widget: "string", hint: "The 'View on Google Maps' link shown on the Contact Us page (a plain link, not an iframe embed -- Google Maps can't be framed under this site's Content-Security-Policy). Kept alongside the other contact facts since it describes the same address; update it if the address ever changes." }

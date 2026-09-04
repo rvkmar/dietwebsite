@@ -8,8 +8,10 @@
  *   <ul data-cms-list="forms" data-cms-limit="5"></ul>
  *   <ul data-cms-list="banner"></ul>
  *   <strong data-cms-field="last_updated">18-APR-2025</strong>
- *   <span data-cms-text="email" data-cms-source="site-settings">dietchn@nic.in</span>
- *   <form data-cms-mailto="email" data-cms-source="site-settings" action="mailto:...">
+ *   <span data-cms-text="email" data-cms-source="site-settings">admin@dietchennai.org, admin@dietchn.ac.in</span>
+ *   <a data-cms-mailto="email" data-cms-source="site-settings" href="mailto:...">
+ *   <form data-cms-mailto="email" data-cms-source="site-settings">  (no action attribute --
+ *     see renderMailto()'s note on why a static action="mailto:..." is avoided)
  *   <a data-cms-href="map_link_url" data-cms-source="site-settings" href="...">
  */
 (function () {
@@ -214,16 +216,54 @@
   }
 
   function renderMailto(el) {
-    // <form data-cms-mailto="email" data-cms-source="site-settings" action="mailto:...">
-    // Sets the form's action to "mailto:" + an arbitrary flat JSON field,
-    // same source convention as renderImage()/renderText(), so a contact
-    // form's destination address stays in sync with the visible email
-    // text instead of needing to be hand-edited in two places.
+    // <a data-cms-mailto="email" data-cms-source="site-settings" href="mailto:...">
+    // <form data-cms-mailto="email" data-cms-source="site-settings">
+    // Reads an arbitrary flat JSON field (a comma-separated address list,
+    // e.g. "admin@dietchennai.org, admin@dietchn.ac.in"), same source
+    // convention as renderImage()/renderText(). For an <a>, sets href to
+    // "mailto:" + the address list (whitespace stripped, since mailto:
+    // recipients are comma-separated with no spaces per RFC 6068). For a
+    // <form>, does NOT set a static action="mailto:..." attribute --
+    // Chrome logs a "Mixed Content: ... form that targets an insecure
+    // endpoint" console warning for any <form action="mailto:...">,
+    // triggered by the mere presence of a non-http(s) form action, not
+    // just by submitting it. A plain <a href="mailto:..."> link is never
+    // flagged this way, and neither is JS-driven navigation -- Chromium's
+    // mixed-content form check can't (and doesn't try to) analyze what a
+    // JS submit handler does. So instead, this attaches a submit listener
+    // that composes a mailto: URL from the form's name/email/message
+    // fields and navigates to it via window.location.href, functionally
+    // the same "opens your mail client with the message prefilled"
+    // behavior the old action="mailto:" + enctype="text/plain" pattern
+    // aimed for (that pattern was also inconsistently supported across
+    // browsers/mail clients), just without the console warning.
     var key = el.getAttribute("data-cms-mailto");
     var source = el.getAttribute("data-cms-source") || "site-settings";
+    var addressList = null;
     fetchJSON(source, function (data) {
-      if (data && data[key]) { el.action = "mailto:" + data[key]; }
+      if (!data || !data[key]) return;
+      addressList = String(data[key]).replace(/\s+/g, "");
+      if (el.tagName === "A") { el.href = "mailto:" + addressList; }
     });
+    if (el.tagName === "FORM") {
+      el.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!addressList) return;
+        var nameField = el.querySelector('[name="name"]');
+        var emailField = el.querySelector('[name="email"]');
+        var messageField = el.querySelector('[name="message"]');
+        var subject = "Message from " + (nameField && nameField.value ? nameField.value : "website visitor") + " (dietchennai.org contact form)";
+        var bodyLines = [];
+        if (nameField) { bodyLines.push("Name: " + nameField.value); }
+        if (emailField) { bodyLines.push("Reply-to email: " + emailField.value); }
+        bodyLines.push("");
+        if (messageField) { bodyLines.push(messageField.value); }
+        var mailto = "mailto:" + addressList
+          + "?subject=" + encodeURIComponent(subject)
+          + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+        window.location.href = mailto;
+      });
+    }
   }
 
   function renderHref(el) {
