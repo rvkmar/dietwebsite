@@ -43,3 +43,12 @@ publish_mode: editorial_workflow
 media_folder: "images"
 public_folder: "/images"
 
+# Cap uploads through the built-in media library at 2 MB so large photos
+# don't get committed straight into the git repo (which has no CDN/resizing
+# of its own). Applies to the global Media Library and every image/file
+# field that doesn't set its own media_library override.
+media_library:
+  name: default
+  config:
+    max_file_size: 2097152 # 2 MB, in bytes
+
