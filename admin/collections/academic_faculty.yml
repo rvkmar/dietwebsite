@@ -16,6 +16,9 @@
                 widget: "image"
                 media_folder: "/assets/staff"
                 public_folder: "/assets/staff"
+                media_library:
+                  config:
+                    max_file_size: 2097152 # 2 MB, in bytes
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Designation", name: "designation", widget: "string" }
               - { label: "Qualification", name: "qualification", widget: "text", required: false }

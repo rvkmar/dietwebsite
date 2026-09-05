@@ -235,6 +235,9 @@ collections:
                 widget: "image"
                 media_folder: "/assets/staff"
                 public_folder: "/assets/staff"
+                media_library:
+                  config:
+                    max_file_size: 2097152 # 2 MB, in bytes
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Designation", name: "designation", widget: "string" }
               - { label: "Qualification", name: "qualification", widget: "text", required: false }
@@ -255,6 +258,9 @@ collections:
             widget: "image"
             media_folder: "/images"
             public_folder: "/images"
+            media_library:
+              config:
+                max_file_size: 2097152 # 2 MB, in bytes
           - { label: "Name", name: "name", widget: "string", hint: "Used everywhere: this card, the homepage, Principal's Desk page, and the Mandatory Disclosure document." }
           - { label: "Name (Tamil)", name: "name_ta", widget: "string", required: false, hint: "Shown on the homepage and Principal's Desk page when a visitor switches to Tamil. Leave blank to just keep showing the English name in Tamil mode too." }
           - { label: "Designation (short, for this card)", name: "designation", widget: "string", hint: "Shown only on this Academic Faculty card, e.g. 'Principal' \u2014 matches the style of every other faculty member's card." }
@@ -294,6 +300,9 @@ collections:
                 widget: "image"
                 media_folder: "/assets/staff"
                 public_folder: "/assets/staff"
+                media_library:
+                  config:
+                    max_file_size: 2097152 # 2 MB, in bytes
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Designation", name: "designation", widget: "string" }
               - { label: "Qualification", name: "qualification", widget: "text", required: false }
