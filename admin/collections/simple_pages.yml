@@ -40,6 +40,10 @@
         label: "Website Policies"
         file: "src/website-policies/index.njk"
         fields: *simple_page_fields
+      - name: "accessibility-statement"
+        label: "Accessibility Statement"
+        file: "src/accessibility-statement/index.njk"
+        fields: *simple_page_fields
       - name: "help"
         label: "Help"
         file: "src/help/index.njk"

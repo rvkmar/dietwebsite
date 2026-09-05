@@ -316,7 +316,7 @@ collections:
       - name: "strings_en"
         label: "All Site Text (English)"
         file: "languages/en.json"
-        description: "Every piece of translatable text on the site (nav labels, headings, button text, the Principal's name/designation, etc.) — 84 keys, all shown here. Edit the Tamil equivalent of each one in 'All Site Text (Tamil)' below; each field there shows the current English text as a hint so you can match them up. This field list is GENERATED from languages/en.json's actual keys by scripts/build-cms-config.js -- to add a new translatable string, add it to both languages/en.json and languages/ta.json, then regenerate admin/config.yml. Do not hand-edit this block."
+        description: "Every piece of translatable text on the site (nav labels, headings, button text, the Principal's name/designation, etc.) — 85 keys, all shown here. Edit the Tamil equivalent of each one in 'All Site Text (Tamil)' below; each field there shows the current English text as a hint so you can match them up. This field list is GENERATED from languages/en.json's actual keys by scripts/build-cms-config.js -- to add a new translatable string, add it to both languages/en.json and languages/ta.json, then regenerate admin/config.yml. Do not hand-edit this block."
         fields:
             - label: home
               name: home
@@ -499,6 +499,9 @@ collections:
               widget: text
             - label: policies
               name: policies
+              widget: text
+            - label: accessibilitystatement
+              name: accessibilitystatement
               widget: text
             - label: termsconditions
               name: termsconditions
@@ -820,6 +823,10 @@ collections:
               name: policies
               widget: text
               hint: 'EN: Website Policies'
+            - label: accessibilitystatement
+              name: accessibilitystatement
+              widget: text
+              hint: 'EN: Accessibility Statement'
             - label: termsconditions
               name: termsconditions
               widget: text
@@ -959,6 +966,10 @@ collections:
       - name: "website-policies"
         label: "Website Policies"
         file: "src/website-policies/index.njk"
+        fields: *simple_page_fields
+      - name: "accessibility-statement"
+        label: "Accessibility Statement"
+        file: "src/accessibility-statement/index.njk"
         fields: *simple_page_fields
       - name: "help"
         label: "Help"
