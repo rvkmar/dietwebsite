@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /languages/
 Allow: /
 
-Sitemap: https://dietchennai.org/sitemap.xml
+Sitemap: https://dietchn.ac.in/sitemap.xml

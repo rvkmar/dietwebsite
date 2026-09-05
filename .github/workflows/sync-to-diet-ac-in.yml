@@ -1,12 +1,17 @@
 name: Sync to diet.ac.in
 
-# diet.ac.in is a read-only mirror of dietchennai.org (confirmed with
-# the site owner) -- it is not meant to run its own Decap CMS admin
-# pipeline (Cloudflare already blocks /admin on that domain at the
-# edge) and, as of the Phase 2 Eleventy migration, it should mirror
-# what dietchennai.org actually SERVES, not the Eleventy source files
-# used to build it. So this workflow builds the site the same way
-# deploy.yml does and rsyncs the build output (_site/), not the repo.
+# dietchn.ac.in (this repo's rvkmar/diet.ac.in deployment target) is
+# the site's canonical public domain as of 2026-09-05 -- canonical
+# link tags, sitemap.xml and robots.txt in the built output all point
+# there. dietchennai.org keeps serving the identical content as a
+# working mirror/alias.
+#
+# Editing and the Decap CMS admin pipeline still live entirely in THIS
+# repo (dietwebsite) and stay on dietchennai.org -- dietchn.ac.in does
+# not run its own admin (Cloudflare already blocks /admin on that
+# domain at the edge). This workflow's job is only to keep dietchn.ac.in
+# in sync with what dietchennai.org actually SERVES, by rsyncing the
+# build output (_site/), not the Eleventy source files.
 #
 # Triggered by deploy.yml finishing, rather than by push directly, so
 # the mirror always reflects a build that actually succeeded and

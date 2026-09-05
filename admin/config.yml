@@ -66,14 +66,6 @@ collections:
             name: "favicon_image"
             widget: "image"
             hint: "The small icon shown in the browser tab and bookmarks for every page. Usually the same emblem as the Logo above, but kept as a separate field in case a simpler/square-cropped version ever works better as a tiny icon."
-          - label: "Right-side header logo"
-            name: "secondary_logo_image"
-            widget: "image"
-            hint: "The floating logo/badge shown on the right side of the header (currently an 'International Year of Cooperatives' badge)."
-          - label: "Right-side header logo link"
-            name: "secondary_logo_link"
-            widget: "string"
-            hint: "Where the right-side header logo links to. Opens in a new tab."
           - label: "Facebook page URL"
             name: "social_facebook"
             widget: "string"
@@ -596,7 +588,7 @@ collections:
             - label: address
               name: address
               widget: text
-              hint: 'EN: (A government educational institution under the Department of School Education, Government of Tamil Nadu)'
+              hint: 'EN: (A government educational institution jointly funded by the Government of India and the Government of Tamil Nadu, Department of School Education)'
             - label: skip
               name: skip
               widget: text
