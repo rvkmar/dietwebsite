@@ -10,6 +10,32 @@
   <title>DIET Chennai Content Manager</title>
 </head>
 <body>
+  <!-- Hide the global "Media" nav button. Decap has no config option to
+       disable it for the built-in media library (only external providers
+       like Cloudinary/Uploadcare can report enableStandalone: () => false
+       to hide it) -- this is a cosmetic UI hide, not an access control.
+       Every image/file field's own picker still works normally and is
+       already scoped to its own media_folder; this only removes the
+       standalone "browse/upload/delete anything, anywhere" entry point
+       from the header so editors don't reach it by accident. Runs before
+       Decap's script so the observer is watching from the very first
+       render. -->
+  <script>
+    (function () {
+      function hideMediaTab() {
+        document.querySelectorAll('nav li').forEach(function (li) {
+          if (li.textContent.trim().toLowerCase() === 'media') {
+            li.style.display = 'none';
+          }
+        });
+      }
+      new MutationObserver(hideMediaTab).observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+      });
+      hideMediaTab();
+    })();
+  </script>
   <!-- Decap CMS Core Script Engine -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
