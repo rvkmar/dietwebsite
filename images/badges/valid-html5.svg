@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="34" viewBox="0 0 110 34" role="img" aria-label="W3C HTML5 Valid">
+  <rect width="110" height="34" rx="4" fill="#12203a"/>
+  <rect x="4" y="4" width="30" height="26" rx="2" fill="#0a4168"/>
+  <text x="19" y="15" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#ffffff">W3C</text>
+  <text x="19" y="26" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#cfd8e3">markup</text>
+  <text x="70" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">HTML5</text>
+  <text x="70" y="27" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#cfd8e3">valid</text>
+  <circle cx="100" cy="17" r="8" fill="#12203a" stroke="#e2432b" stroke-width="1.5"/>
+  <path d="M96.5 17.2 L99 19.8 L103.5 14.2" fill="none" stroke="#e2432b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

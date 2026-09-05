@@ -5976,3 +5976,29 @@ p.showhide.close em:nth-child(3){
 .notification-mid .slides li{
 	overflow: hidden;
 }
+/* W3C HTML5/CSS validity badges, bottom-left of the footer. Absolutely
+ * positioned against .footer-bottom-wrapper (already position: relative
+ * for its own ::after bar) so they don't disturb the existing
+ * float/inline-block flow of .footer-content's children. Falls back to
+ * static, centered flow on narrow screens instead of overlapping the
+ * copyright/last-updated text. */
+.w3c-badges {
+    position: absolute;
+    left: 15px;
+    bottom: 8px;
+    z-index: 11;
+    display: flex;
+    gap: 8px;
+}
+.w3c-badges img {
+    display: block;
+    height: 34px;
+    width: auto;
+}
+@media (max-width: 767px) {
+    .w3c-badges {
+        position: static;
+        justify-content: center;
+        padding: 10px 0 0;
+    }
+}
