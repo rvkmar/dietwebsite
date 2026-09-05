@@ -51,12 +51,12 @@ layout: base.njk
                 {% if intro and (intro.en or intro.ta) %}
                 <div class="container common-container four_content">
                     {% if intro.en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {{ intro.en | safe }}
                     </div>
                     {% endif %}
                     {% if intro.ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {{ intro.ta | safe }}
                     </div>
                     {% endif %}

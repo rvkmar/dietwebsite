@@ -59,10 +59,10 @@ layout: base.njk
                 {% if intro and (intro.en or intro.ta) %}
                 <div class="container common-container four_content">
                     {% if intro.en %}
-                    <div class="englishparagraph">{{ intro.en | safe }}</div>
+                    <div class="englishparagraph" lang="en">{{ intro.en | safe }}</div>
                     {% endif %}
                     {% if intro.ta %}
-                    <div class="tamilparagraph">{{ intro.ta | safe }}</div>
+                    <div class="tamilparagraph" lang="ta">{{ intro.ta | safe }}</div>
                     {% endif %}
                 </div>
                 {% endif %}
@@ -88,7 +88,7 @@ layout: base.njk
                 {% for activity in activities %}
                 <div class="container common-container four_content" style="padding: 20px 0;">
                     {% if activity.body.en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {% if activity.heading_en %}<h2>{{ activity.heading_en }}</h2>{% endif %}
                         {% if activity.image %}
                         <img src="{{ activity.image }}" alt="{{ activity.image_alt or activity.heading_en }}" loading="lazy"
@@ -98,7 +98,7 @@ layout: base.njk
                     </div>
                     {% endif %}
                     {% if activity.body.ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {% if activity.heading_ta %}<h2>{{ activity.heading_ta }}</h2>{% endif %}
                         {% if activity.image %}
                         <img src="{{ activity.image }}" alt="{{ activity.image_alt or activity.heading_ta }}" loading="lazy"

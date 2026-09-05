@@ -53,20 +53,20 @@ layout: base.njk
             <div>
                 {% if intro and (intro.en or intro.ta) %}
                 <div class="container common-container four_content">
-                    {% if intro.en %}<div class="englishparagraph">{{ intro.en | safe }}</div>{% endif %}
-                    {% if intro.ta %}<div class="tamilparagraph">{{ intro.ta | safe }}</div>{% endif %}
+                    {% if intro.en %}<div class="englishparagraph" lang="en">{{ intro.en | safe }}</div>{% endif %}
+                    {% if intro.ta %}<div class="tamilparagraph" lang="ta">{{ intro.ta | safe }}</div>{% endif %}
                 </div>
                 {% endif %}
 
                 {% if org_chart and org_chart.en %}
-                <div class="container englishparagraph">
+                <div class="container englishparagraph" lang="en">
                     <img width="1451" height="858" loading="lazy" src="{{ org_chart.en }}"
                         alt="{{ org_chart.en_alt or 'Organization Chart' }}"
                         class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
                 </div>
                 {% endif %}
                 {% if org_chart and org_chart.ta %}
-                <div class="container tamilparagraph">
+                <div class="container tamilparagraph" lang="ta">
                     <img width="1451" height="858" loading="lazy" src="{{ org_chart.ta }}"
                         alt="{{ org_chart.ta_alt or 'Organization Chart' }}"
                         class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
@@ -76,7 +76,7 @@ layout: base.njk
                 {% for section in sections %}
                 <div class="container common-container four_content" style="padding: 20px 0;">
                     {% if section.body_en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
@@ -86,7 +86,7 @@ layout: base.njk
                     </div>
                     {% endif %}
                     {% if section.body_ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"

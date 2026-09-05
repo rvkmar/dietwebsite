@@ -149,13 +149,13 @@ extraHead: |
                     <div class="container common-container four_content">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="custompara englishparagraph">
+                                <div class="custompara englishparagraph" lang="en">
                                     {% for section in sections %}
                                     <h2>{{ section.heading_en | safe }}</h2>
                                     {{ section.body_en | safe }}
                                     {% endfor %}
                                 </div>
-                                <div class="custompara tamilparagraph tamilmarutham">
+                                <div class="custompara tamilparagraph tamilmarutham" lang="ta">
                                     {% for section in sections %}
                                     <h2>{{ section.heading_ta | safe }}</h2>
                                     {{ section.body_ta | safe }}

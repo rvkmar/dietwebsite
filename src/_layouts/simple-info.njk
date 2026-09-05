@@ -57,7 +57,7 @@ layout: base.njk
                 {% if intro and (intro.en or intro.ta) %}
                 <div class="container common-container four_content">
                     {% if intro.en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {% if intro_image %}
                         <img src="{{ intro_image }}" alt="{{ intro_image_alt or pageMeta.label }}" loading="lazy"
                             class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
@@ -66,7 +66,7 @@ layout: base.njk
                     </div>
                     {% endif %}
                     {% if intro.ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {% if intro_image %}
                         <img src="{{ intro_image }}" alt="{{ intro_image_alt or pageMeta.label }}" loading="lazy"
                             class="img-fluid" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
@@ -80,7 +80,7 @@ layout: base.njk
                 {% for section in sections %}
                 <div class="container common-container four_content" style="padding: 20px 0;">
                     {% if section.body_en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
@@ -90,7 +90,7 @@ layout: base.njk
                     </div>
                     {% endif %}
                     {% if section.body_ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"

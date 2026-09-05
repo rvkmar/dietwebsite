@@ -64,7 +64,7 @@ layout: base.njk
                     <!-- Principal's Message -->
                     {% if message_body.en %}
                     <div class="col-md-8">
-                        <div class="custompara englishparagraph">
+                        <div class="custompara englishparagraph" lang="en">
                             {% if message_heading.en %}<h2 class="text-primary">{{ message_heading.en }}</h2>{% endif %}
                             {{ message_body.en | safe }}
                             {% if closing_signature.en %}<p class="mt-4"><strong>{{ closing_signature.en | safe }}</strong></p>{% endif %}
@@ -73,7 +73,7 @@ layout: base.njk
                     {% endif %}
                     {% if message_body.ta %}
                     <div class="col-md-8">
-                        <div class="custompara tamilparagraph tamilmarutham">
+                        <div class="custompara tamilparagraph tamilmarutham" lang="ta">
                             {% if message_heading.ta %}<h2 class="text-primary">{{ message_heading.ta }}</h2>{% endif %}
                             {{ message_body.ta | safe }}
                             {% if closing_signature.ta %}<p class="mt-4"><strong>{{ closing_signature.ta | safe }}</strong></p>{% endif %}

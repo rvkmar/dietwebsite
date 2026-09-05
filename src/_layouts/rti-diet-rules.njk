@@ -105,8 +105,8 @@ extraHead: |
                             <td>{{ order.date }}</td>
                             <td>{{ order.title }}</td>
                             <td>
-                                {% if order.description.en %}<span class="englishparagraph">{{ order.description.en }}</span>{% endif %}
-                                {% if order.description.ta %}<span class="tamilparagraph">{{ order.description.ta }}</span>{% endif %}
+                                {% if order.description.en %}<span class="englishparagraph" lang="en">{{ order.description.en }}</span>{% endif %}
+                                {% if order.description.ta %}<span class="tamilparagraph" lang="ta">{{ order.description.ta }}</span>{% endif %}
                             </td>
                             <td><a href="{{ order.source_url }}" target="_blank"><i class="fa fa-file-pdf-o"></i> {{ order.source_label }}</a></td>
                         </tr>

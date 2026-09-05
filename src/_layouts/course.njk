@@ -73,10 +73,10 @@ layout: base.njk
                         {% endif %}
                         {% if closed_notice and (closed_notice.en or closed_notice.ta) %}
                         {% if closed_notice.en %}
-                        <p class="englishparagraph" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.en | safe }}</p>
+                        <p class="englishparagraph" lang="en" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.en | safe }}</p>
                         {% endif %}
                         {% if closed_notice.ta %}
-                        <p class="tamilparagraph" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.ta | safe }}</p>
+                        <p class="tamilparagraph" lang="ta" style="color: #db3b00; text-align: center; font-weight:600;">{{ closed_notice.ta | safe }}</p>
                         {% endif %}
                         {% endif %}
                     </div>
@@ -85,36 +85,36 @@ layout: base.njk
 
                 {% if official_link and official_link.url %}
                 <p style="text-align: center; margin: 1%; font-style: italic;">
-                    {% if official_link.text_en %}<span class="englishparagraph">{{ official_link.text_en }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_en or official_link.url }}</a></span>{% endif %}
-                    {% if official_link.text_ta %}<span class="tamilparagraph">{{ official_link.text_ta }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_ta or official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                    {% if official_link.text_en %}<span class="englishparagraph" lang="en">{{ official_link.text_en }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_en or official_link.url }}</a></span>{% endif %}
+                    {% if official_link.text_ta %}<span class="tamilparagraph" lang="ta">{{ official_link.text_ta }} <a href="{{ official_link.url }}" target="_blank" rel="noopener noreferrer" style="color: #0056b3; font-weight: 600;">{{ official_link.link_label_ta or official_link.link_label_en or official_link.url }}</a></span>{% endif %}
                 </p>
                 {% endif %}
 
                 {% if intro and (intro.en or intro.ta) %}
                 <div class="container common-container four_content">
-                    {% if intro.en %}<div class="englishparagraph">{{ intro.en | safe }}</div>{% endif %}
-                    {% if intro.ta %}<div class="tamilparagraph">{{ intro.ta | safe }}</div>{% endif %}
+                    {% if intro.en %}<div class="englishparagraph" lang="en">{{ intro.en | safe }}</div>{% endif %}
+                    {% if intro.ta %}<div class="tamilparagraph" lang="ta">{{ intro.ta | safe }}</div>{% endif %}
                 </div>
                 {% endif %}
 
                 {% if eligibility and (eligibility.en or eligibility.ta) %}
                 <div class="container common-container four_content" style="padding: 10px 0;">
-                    {% if eligibility.en %}<div class="englishparagraph"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.en | safe }}</div>{% endif %}
-                    {% if eligibility.ta %}<div class="tamilparagraph"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.ta | safe }}</div>{% endif %}
+                    {% if eligibility.en %}<div class="englishparagraph" lang="en"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.en | safe }}</div>{% endif %}
+                    {% if eligibility.ta %}<div class="tamilparagraph" lang="ta"><h2 data-i18n="eligibility">Eligibility</h2>{{ eligibility.ta | safe }}</div>{% endif %}
                 </div>
                 {% endif %}
 
                 {% if duration and (duration.en or duration.ta) %}
                 <div class="container common-container four_content" style="padding: 10px 0;">
-                    {% if duration.en %}<div class="englishparagraph"><h2 data-i18n="duration">Duration</h2>{{ duration.en | safe }}</div>{% endif %}
-                    {% if duration.ta %}<div class="tamilparagraph"><h2 data-i18n="duration">Duration</h2>{{ duration.ta | safe }}</div>{% endif %}
+                    {% if duration.en %}<div class="englishparagraph" lang="en"><h2 data-i18n="duration">Duration</h2>{{ duration.en | safe }}</div>{% endif %}
+                    {% if duration.ta %}<div class="tamilparagraph" lang="ta"><h2 data-i18n="duration">Duration</h2>{{ duration.ta | safe }}</div>{% endif %}
                 </div>
                 {% endif %}
 
                 {% for section in sections %}
                 <div class="container common-container four_content" style="padding: 20px 0;">
                     {% if section.body_en %}
-                    <div class="englishparagraph">
+                    <div class="englishparagraph" lang="en">
                         {% if section.heading_en %}<h2>{{ section.heading_en }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_en }}" loading="lazy"
@@ -124,7 +124,7 @@ layout: base.njk
                     </div>
                     {% endif %}
                     {% if section.body_ta %}
-                    <div class="tamilparagraph">
+                    <div class="tamilparagraph" lang="ta">
                         {% if section.heading_ta %}<h2>{{ section.heading_ta }}</h2>{% endif %}
                         {% if section.image %}
                         <img src="{{ section.image }}" alt="{{ section.image_alt or section.heading_ta }}" loading="lazy"
