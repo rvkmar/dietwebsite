@@ -24,17 +24,17 @@ layout: base.njk
 {% set pageMeta = simpleInfoPages[page.fileSlug] %}
     <!--/.nav-wrapper-->
     <!-- Main and modifiable content starts here -->
-    <!-- ---------------------------------------------- -->
+    <!-- section divider -->
     <div class="main_content">
 
-        <section class="wrapper banner-wrapper">
+        <div class="wrapper banner-wrapper">
             <div id="flexSlider" class="flexslider">
                 <div class="inner-banner"><img width="1800" height="288" src="/images/page-banner.png" alt="Page demo Banner"></div>
             </div>
-        </section>
+        </div>
         <div class="wrapper" id="skipCont"></div>
         <!--/#skipCont-->
-        <section id="fontSize" class="wrapper body-wrapper ">
+        <div id="fontSize" class="wrapper body-wrapper ">
             <div class="bg-wrapper inner-wrapper">
                 <div class="breadcam-bg breadcam">
                     <div class="container common-container four_content">
@@ -83,9 +83,9 @@ layout: base.njk
                     <hr />
                 </div>
             </section>
-        </section>
+        </div>
     </div>
     <!-- Main and modifiable content ends here -->
-    <!-- ---------------------------------------------- -->
+    <!-- section divider -->
     <!--/.body-wrapper-->
 {% include "partner-carousel.njk" %}
