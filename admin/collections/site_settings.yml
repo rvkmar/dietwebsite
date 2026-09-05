@@ -12,3 +12,34 @@
           - { label: "Email", name: "email", widget: "string", hint: "One or more addresses, comma-separated (e.g. 'admin@dietchennai.org, admin@dietchn.ac.in'). Shown as a clickable mailto link on the Contact Us page and used as the 'Send Us a Message' form's destination address(es)." }
           - { label: "Phone", name: "phone", widget: "string", hint: "Shown on the Contact Us page." }
           - { label: "Map link URL", name: "map_link_url", widget: "string", hint: "The 'View on Google Maps' link shown on the Contact Us page (a plain link, not an iframe embed -- Google Maps can't be framed under this site's Content-Security-Policy). Kept alongside the other contact facts since it describes the same address; update it if the address ever changes." }
+          - label: "Logo"
+            name: "logo_image"
+            widget: "image"
+            hint: "The main DIET Chennai emblem shown at the top-left of every page's header, and as the animated mark on the page-loading screen."
+          - label: "Favicon"
+            name: "favicon_image"
+            widget: "image"
+            hint: "The small icon shown in the browser tab and bookmarks for every page. Usually the same emblem as the Logo above, but kept as a separate field in case a simpler/square-cropped version ever works better as a tiny icon."
+          - label: "Right-side header logo"
+            name: "secondary_logo_image"
+            widget: "image"
+            hint: "The floating logo/badge shown on the right side of the header (currently an 'International Year of Cooperatives' badge)."
+          - label: "Right-side header logo link"
+            name: "secondary_logo_link"
+            widget: "string"
+            hint: "Where the right-side header logo links to. Opens in a new tab."
+          - label: "Facebook page URL"
+            name: "social_facebook"
+            widget: "string"
+            required: false
+            hint: "Shown as the Facebook icon in the header's social-media menu. Opens in a new tab."
+          - label: "Twitter / X page URL"
+            name: "social_twitter"
+            widget: "string"
+            required: false
+            hint: "Shown as the Twitter/X icon in the header's social-media menu. Opens in a new tab."
+          - label: "YouTube channel URL"
+            name: "social_youtube"
+            widget: "string"
+            required: false
+            hint: "Shown as the YouTube icon in the header's social-media menu. Opens in a new tab."
