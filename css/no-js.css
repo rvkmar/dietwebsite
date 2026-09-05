@@ -48,8 +48,7 @@
     position: static !important;
     top: 0;
     width: 100%;
-    -webkit-box-shadow: 0px 0px;
-            box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
 }
 .ico-site-search .both-search .find{display:none!important;}
 .ico-site-search .both-search .google-find{display:block!important;}
@@ -136,8 +135,7 @@ height:auto;
 }
 .flexslider .slides > li {
     display: inline-block;
-    -webkit-backface-visibility: visible;
-}
+    }
 .megamenu-wraper .main-menu  * > ul > li.steel-home a.active, .megamenu-wraper .main-menu  * > ul > li.steel-home:hover a {
 	background-image:none;
 	padding:10px;

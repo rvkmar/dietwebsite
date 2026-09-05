@@ -7,9 +7,7 @@
     padding: 0;
 }
 html {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
+    }
 article,
 aside,
 details,
@@ -42,9 +40,7 @@ a {
     /*-- CSS3 Transition --*/
     
     transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-}
+    }
 a:focus,
 a:hover,
 a:active {
@@ -91,8 +87,7 @@ img {
     max-width: 100%;
     vertical-align: middle;
     border: 0;
-    -ms-interpolation-mode: bicubic;
-}
+    }
 del {
     text-decoration: line-through;
 }
@@ -186,39 +181,21 @@ input,
 select {
     vertical-align: middle;
 }
-/* Placeholder configaration*/
 
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-    color: #999999;
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    color: #999999;
-}
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    color: #999999;
-}
+
+
 /* make buttons play nice in IE */
 
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button;
     cursor: pointer;
     overflow: visible;
 	padding: 3px;
     margin-bottom: 5px;
 }
-/*Removes inner padding and border in Firefox 4+.*/
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
 /* hand cursor on clickable elements */
 
 .clickable,
@@ -250,9 +227,7 @@ textarea {
     margin: 0;
     vertical-align: top;
     transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-}
+    }
 input[type="radio"] {
     vertical-align: text-bottom;
     box-sizing: border-box;
@@ -265,14 +240,8 @@ input[type="checkbox"] {
 }
 input[type="search"] {
     box-sizing: content-box;
-    -webkit-appearance: textfield;
-}
-/* Removes inner padding and search cancel button in Safari 5 and Chrome*/
+    }
 
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-}
 h1,
 h2,
 h3,
@@ -288,10 +257,7 @@ h5 {
     background: rgba(0, 0, 0, .2);
     /* Safari */
 }
-::-moz-selection {
-    background: rgba(0, 0, 0, .2);
-    /* Firefox */
-}
+
 /*===========Usefull CSS===========*/
 
 .clear {
@@ -1114,25 +1080,21 @@ a:focus {
 .gtflag[title="Hindi"] {
     background-image: url("../images/hindi.png");
     background-position: 0 2px!important;
-    -webkit-transition: none;
     transition: none;
 }
 .gtflag[title="Hindi"]:hover {
     background-image: url("../images/hindi.png");
     background-position: 0 -18px!important;
-    -webkit-transition: none;
     transition: none;
 }
 .gtflag[title="English"] {
     background-image: url("../images/english.png");
     background-position: 0 3px!important;
-    -webkit-transition: none;
     transition: none;
 }
 .gtflag[title="English"]:hover {
     background-image: url("../images/english.png");
     background-position: 0 -17px!important;
-    -webkit-transition: none;
     transition: none;
 }
 .gtflag[title="Hindi"] img {

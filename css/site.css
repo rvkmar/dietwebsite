@@ -781,9 +781,7 @@ a.read-more:hover {
 
 .quick-links-section * {
 	transition: all .4s;
-	-moz-transition: all .4s;
-	-webkit-transition: all .4s
-}
+	}
 
 .quick-link {
 	background: #fff;
@@ -1261,7 +1259,6 @@ h2.resp-accordion {
 	bottom: 15px;
 	right: 15px;
 	background: #2a8981;
-	-webkit-border-radius: 3px 3px 3px 3px;
 	border-radius: 3px 3px 3px 3px;
 	color: #fff;
 	border: 0;
@@ -2772,9 +2769,7 @@ p.banner-content {
 	vertical-align: middle;
 }
 
-.video-wrapper>video.has-media-controls-hidden::-webkit-media-controls {
-	display: none;
-}
+
 
 .video-overlay-play-button {
 	box-sizing: border-box;
@@ -3063,9 +3058,7 @@ a.read-more:hover {
 
 .quick-links-section * {
 	transition: all .4s;
-	-moz-transition: all .4s;
-	-webkit-transition: all .4s
-}
+	}
 
 .quick-link {
 	background: #fff;
@@ -3634,7 +3627,6 @@ h2.resp-accordion {
 	bottom: 15px;
 	right: 15px;
 	background: #2a8981;
-	-webkit-border-radius: 3px 3px 3px 3px;
 	border-radius: 3px 3px 3px 3px;
 	color: #fff;
 	border: 0;
@@ -4109,9 +4101,6 @@ ul.ul-v>li a {
 	margin-top: 0;
 	margin-left: 0;
 	background: #0a4168;
-	-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-	-o-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
 	box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -5522,16 +5511,13 @@ p.banner-content {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
 	background: #8a8888;
 	z-index: 22;
 	width: 100%;
 	padding: 20px 30px;
 }
 
-.video-wrapper>video.has-media-controls-hidden::-webkit-media-controls {
-	display: none;
-}
+
 
 .video-overlay-play-button {
 	box-sizing: border-box;
@@ -5545,12 +5531,11 @@ p.banner-content {
 	opacity: 0.95;
 	cursor: pointer;
 	background-image: linear-gradient(transparent, #000);
-	background-image: -webkit-linear-gradient(transparent, #000); /* Chrome10+,Safari5.1+ */
-	background-image: -o-linear-gradient(transparent, #000); /* Opera 11.10+ */
+	/* Chrome10+,Safari5.1+ */
+	/* Opera 11.10+ */
 	background-image: linear-gradient(transparent, #000); /* W3C */
 	transition: opacity 150ms;
-	-webkit-transition: opacity 150ms;
-}
+	}
 
 .video-overlay-play-button:hover {
 	opacity: 1;
@@ -5569,10 +5554,7 @@ p.banner-content {
 	height: 5px;
 	width: 85px;
 	/* liniar gradient for all browsers */
-	background-image: -webkit-linear-gradient(0deg, #ec4933 50%, #ccc 50%);
-	background-image: -webkit-linear-gradient(0deg, #ec4933 50%, #ccc 50%);
-	background-image: -webkit-linear-gradient(0deg, #ec4933 50%, #ccc 50%);
-}
+	}
 
 a.portgolio-button {
 	border: 1px solid #000;
@@ -5632,47 +5614,25 @@ a.portgolio-button {
 	width: 100%;
 	height: 100%;
 	/* Starting position */
-	-moz-transform: translateY(100%);
-	-webkit-transform: translateY(100%);
 	transform: translateY(100%);
 	/* Apply animation to this element */
-	-moz-animation: scroll-left 10s linear infinite;
-	-webkit-animation: scroll-left 10s linear infinite;
 	animation: scroll-left 10s linear infinite;
 }
 
 /* Move it (define the animation) */
 
-@-moz-keyframes scroll-left {
-	0% {
-		-moz-transform: translateY(100%);
-	}
-	100% {
-		-moz-transform: translateY(-100%);
-	}
-}
 
-@-webkit-keyframes scroll-left {
-	0% {
-		-webkit-transform: translateY(100%);
-	}
-	100% {
-		-webkit-transform: translateY(-100%);
-	}
-}
+
+
 
 @keyframes scroll-left {
 	0% {
-		-moz-transform: translateY(100%);
 		/* Browser bug fix */
-		-webkit-transform: translateY(100%);
 		/* Browser bug fix */
 		transform: translateY(100%);
 	}
 	100% {
-		-moz-transform: translateY(-100%);
 		/* Browser bug fix */
-		-webkit-transform: translateY(-100%);
 		/* Browser bug fix */
 		transform: translateY(-100%);
 	}
@@ -5680,14 +5640,7 @@ a.portgolio-button {
 
 .scroll-pause {
 	cursor: pointer;
-	-webkit-animation-play-state: paused;
-	-moz-animation-play-state: paused;
-	-o-animation-play-state: paused;
 	animation-play-state: paused;
-	-webkit-transition: 3s;
-	-moz-transition: 3s;
-	-ms-transition: 3s;
-	-o-transition: 3s;
 	transition: 3s;
 }
 
@@ -5755,8 +5708,6 @@ a.portgolio-button {
     background-color: #0a4168;
     text-indent:-9999px;
     display:none;
-    -webkit-border-radius:60px;
-    -moz-border-radius:60px;
     border-radius:60px;
     z-index: 222;
 }
@@ -5963,14 +5914,12 @@ i.fa.fa-arrow-right {
     display: none;
 }
 p.showhide.close em:first-child {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
     transform: rotate(-45deg) translate(-9px, 6px);
 }
 p.showhide.close em:nth-child(2){
 	opacity: 0;
 }
 p.showhide.close em:nth-child(3){
-	-webkit-transform: rotate(45deg) translate(-8px, -8px);
 	transform: rotate(45deg) translate(-5px, -3px);
 }	
 .notification-mid .slides li{
