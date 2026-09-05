@@ -56,7 +56,36 @@
                     <div class="last-updated"><samp data-i18n="updation">Last Updated:</samp>
                         <strong data-cms-field="last_updated"> {{ last_updated }}</strong>
                     </div>
+                    <div class="visitor-count">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <samp data-i18n="visitorcount">Total Visitors: </samp>
+                        <strong id="visitor-count-value">&hellip;</strong>
+                    </div>
                 </div>
             </div>
         </div>
+        <script>
+            // Total visitor count, served by a Cloudflare Worker that reads
+            // this zone's own Cloudflare Analytics data (see
+            // /workers/visitor-counter/ in the repo). Fails silently -- if
+            // the endpoint is unreachable the counter block just hides
+            // itself rather than showing a stale or fake number.
+            (function () {
+                var valueEl = document.getElementById('visitor-count-value');
+                if (!valueEl) return;
+                fetch('https://dietchennai.org/api/visitor-count', { cache: 'no-store' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('visitor-count: bad response');
+                        return res.json();
+                    })
+                    .then(function (data) {
+                        if (typeof data.total !== 'number') throw new Error('visitor-count: bad payload');
+                        valueEl.textContent = data.total.toLocaleString('en-IN');
+                    })
+                    .catch(function () {
+                        var wrap = valueEl.closest('.visitor-count');
+                        if (wrap) wrap.style.display = 'none';
+                    });
+            })();
+        </script>
     </footer>

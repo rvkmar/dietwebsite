@@ -1,0 +1,33 @@
+name = "dietchennai-visitor-counter"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Runs 4x/day; each run only sums days it hasn't counted yet (see
+# src/index.js), so a missed run just gets caught up next time.
+[triggers]
+crons = ["0 */6 * * *"]
+
+[vars]
+# Zone ID for dietchennai.org -- Cloudflare dashboard > this domain's
+# Overview page > right sidebar, "Zone ID". Not secret, safe to commit.
+CF_ZONE_ID = "REPLACE_WITH_YOUR_ZONE_ID"
+
+# Origins allowed to fetch the counter cross-origin (the mirror domain
+# needs this; the primary domain will normally hit this via a same-zone
+# route and won't need CORS at all).
+ALLOWED_ORIGINS = "https://dietchennai.org,https://dietchn.ac.in"
+
+# Fill in the id returned by:
+#   wrangler kv namespace create VISITOR_KV
+[[kv_namespaces]]
+binding = "VISITOR_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Optional but recommended: serve this Worker on the main site's own domain
+# at /api/visitor-count, so the primary site's footer fetch is same-origin
+# (no CORS needed there) and the URL looks like part of the site. Requires
+# dietchennai.org to be on this same Cloudflare account/zone (it already
+# is, per this project). Uncomment once the zone above is filled in.
+# [[routes]]
+# pattern = "dietchennai.org/api/visitor-count*"
+# zone_id = "REPLACE_WITH_YOUR_ZONE_ID"
