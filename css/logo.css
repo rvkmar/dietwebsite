@@ -365,6 +365,25 @@ blockquote:before {
     opacity: 0;
 }
 
+/* Language icon (fa-language) sitting next to the EN/TA toggle in the
+   utility bar. It previously had no vertical-alignment rule of its own,
+   so at fa-2x size it sat noticeably higher/larger than the other
+   36px-tall icons in this row (site search, social, sitemap) and than
+   the toggle pill beside it. Flex-centering it in the same 36px row
+   height used by its siblings (.common-right ul li) and dropping it to
+   a size that fits that row fixes the mismatch without touching the
+   other icons. */
+.common-right ul li.ico-language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.common-right ul li.ico-language .fa-language {
+    font-size: 1.4em;
+    line-height: 1;
+}
+
 /* language switch */
 .language-switch {
     display: flex;
@@ -373,7 +392,22 @@ blockquote:before {
     font-weight: bold;
     font-family: sans-serif;
     margin-left: 5px;
-    padding: 6% 0 0 0;
+    /* Was "padding: 6% 0 0 0", which nudged the toggle down out of line
+       with the icon above (and with the other 36px-tall icons in this
+       row). Centering its parent <li> instead (see
+       .common-right ul li.list-inline-item below) keeps it level with
+       its neighbors regardless of viewport width, so this padding is no
+       longer needed. */
+    padding: 0;
+}
+
+/* Vertically center the toggle switch within the same 36px row height
+   as the other utility icons, instead of relying on top padding on
+   .language-switch (see above) to approximate the same effect. */
+.common-right ul li.list-inline-item {
+    display: flex;
+    align-items: center;
+    height: 36px;
 }
 
 .switch {
