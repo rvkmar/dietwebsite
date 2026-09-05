@@ -23,13 +23,31 @@
         </div>
         <div class="footer-bottom-wrapper">
             <div class="w3c-badges">
-                <a href="https://validator.w3.org/nu/?doc=https://dietchennai.org{{ page.url }}"
+                <a class="w3c-html-badge" data-page-path="{{ page.url }}"
+                    href="https://validator.w3.org/nu/?doc=https://dietchennai.org{{ page.url }}"
                     target="_blank" rel="noopener noreferrer" title="Check this page's HTML5 validity (opens validator.w3.org in a new tab)">
                     <img src="/images/badges/valid-html5.svg" alt="Valid HTML5" width="110" height="34" loading="lazy"></a>
-                <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://dietchennai.org{{ page.url }}"
+                <a class="w3c-css-badge" data-page-path="{{ page.url }}"
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https://dietchennai.org{{ page.url }}"
                     target="_blank" rel="noopener noreferrer" title="Check this page's CSS validity (opens jigsaw.w3.org in a new tab)">
                     <img src="/images/badges/valid-css.svg" alt="Valid CSS" width="110" height="34" loading="lazy"></a>
             </div>
+            <script>
+                // This site is mirrored on more than one domain. The badge
+                // links above default to dietchennai.org (for no-JS/crawlers);
+                // rewrite them to whichever domain is actually being viewed.
+                (function () {
+                    var origin = window.location.origin;
+                    var html = document.querySelector('.w3c-html-badge');
+                    var css = document.querySelector('.w3c-css-badge');
+                    if (html) {
+                        html.href = 'https://validator.w3.org/nu/?doc=' + origin + html.getAttribute('data-page-path');
+                    }
+                    if (css) {
+                        css.href = 'https://jigsaw.w3.org/css-validator/validator?uri=' + origin + css.getAttribute('data-page-path');
+                    }
+                })();
+            </script>
             <div class="container common-container four_content footer-bottom-container">
                 <div class="footer-content clearfix">
                     <div><i class="fa fa-clock-o" aria-hidden="true"></i>
