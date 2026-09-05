@@ -20,7 +20,11 @@
 
     <!-- Load Tamil font CSS first -->
     <link rel="stylesheet" href="/css/early-font.min.css">
-   <link rel="canonical" href="https://dietchn.ac.in{{ page.url }}">
+   <!-- canonical_url (front matter) overrides the default self-referencing
+        canonical -- used by pages that have been merged/redirected into
+        another page (e.g. /feedback/ into /disclaimer/) so search engines
+        consolidate on the surviving page instead of indexing both. -->
+   <link rel="canonical" href="https://dietchn.ac.in{{ canonical_url or page.url }}">
    <link href="/css/page-loader.min.css" rel="stylesheet" media="all">
 
     <link href="/css/base.min.css" rel="stylesheet" media="all">

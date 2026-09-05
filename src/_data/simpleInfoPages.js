@@ -36,7 +36,6 @@ module.exports = {
   "website-policies": { i18nKey: "policies", label: "policies" },
   "accessibility-statement": { i18nKey: "accessibilitystatement", label: "Accessibility Statement" },
   help: { i18nKey: "help", label: "Help" },
-  feedback: { i18nKey: "feedback", label: "feedback" },
   "important-links": { i18nKey: "important_links", label: "Important links" },
   "web-manager": { i18nKey: "webmanager", label: "Web manager" },
   newsletters: { i18nKey: "newsletters", label: "newsletters" },

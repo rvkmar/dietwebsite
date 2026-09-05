@@ -48,10 +48,6 @@
         label: "Help"
         file: "src/help/index.njk"
         fields: *simple_page_fields
-      - name: "feedback"
-        label: "Feedback"
-        file: "src/feedback/index.njk"
-        fields: *simple_page_fields
       - name: "important-links"
         label: "Important Links"
         file: "src/important-links/index.njk"
