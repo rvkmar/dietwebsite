@@ -6,7 +6,7 @@
       "designation": "Vice-Principal and Senior Lecturer",
       "qualification": "M.A., M.Ed., Ph.D.",
       "experience": "24 years",
-      "email": "sujatha@dietchennai.org",
+      "email": "",
       "phone": "+91 9941112112"
     },
     {
@@ -15,17 +15,8 @@
       "designation": "Senior Lecturer",
       "qualification": "M.Sc , M. Ed., M. Phil",
       "experience": "18 years",
-      "email": "punithasiva1973@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9445488994"
-    },
-    {
-      "photo": "/assets/staff/sathi.png",
-      "name": "Dr. N. Sathi",
-      "designation": "Senior Lecturer",
-      "qualification": "M.Sc., M.Ed., M.Phil., Ph.D.,",
-      "experience": "25 years",
-      "email": "nsathi@dietchennai.org",
-      "phone": "+91 9444520311"
     },
     {
       "photo": "/assets/staff/shanthi.jpeg",
@@ -33,7 +24,7 @@
       "designation": "Senior Lecturer",
       "qualification": "M.A., M.Ed., M.Phil., Ph.D.,",
       "experience": "28 years",
-      "email": "shanthiv@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9444757819"
     },
     {
@@ -42,17 +33,22 @@
       "designation": "Senior Lecturer",
       "qualification": "M.Sc.(Mathematics), M.Ed., M.Phil.(Mathematics)",
       "experience": "24 years",
-      "email": "subramanianbabu@dietchennai.org",
+      "email": "",
       "phone": "+91 8778637678"
     },
     {
       "photo": "/assets/staff/Female-Avatar.png",
-      "name": "Vacant",
-      "designation": "Senior Lecturer - Vacant position",
+      "name": "Dr. K. Manjula",
+      "designation": "Senior Lecturer",
       "qualification": "",
       "experience": "",
       "email": "",
       "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Male_Avatar.jpg",
+      "name": "Dr. D. Prabhakar",
+      "designation": "Senior Lecturer"
     },
     {
       "photo": "/assets/staff/pradeepkumar.jpg",
@@ -60,7 +56,7 @@
       "designation": "Lecturer in Physical Education",
       "qualification": "",
       "experience": "18 years",
-      "email": "pradeep@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9444453334"
     },
     {
@@ -69,7 +65,7 @@
       "designation": "Lecturer in History",
       "qualification": "M.A., M.Ed, M.Phil, Ph.D.",
       "experience": "20 years",
-      "email": "rekha@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9941103996"
     },
     {
@@ -78,7 +74,7 @@
       "designation": "Lecturer in Physics",
       "qualification": "M.Sc.,M.Ed.,M.Phil.(Education).,Ph.D(Physics)",
       "experience": "23 years",
-      "email": "sathyakumari2025@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9884723158"
     },
     {
@@ -87,17 +83,8 @@
       "designation": "Lecturer in Botany",
       "qualification": "M.Phil., M Ed., (PhD)",
       "experience": "12 years",
-      "email": "guruprasad@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9943519795"
-    },
-    {
-      "photo": "/assets/staff/angelineruby.png",
-      "name": "Ms. G. Angeline Ruby",
-      "designation": "Lecturer in Zoology",
-      "qualification": "M.Sc., M.Ed., M.Phil (Zoology)",
-      "experience": "14 years",
-      "email": "angelinerubyg@dietchn.ac.in",
-      "phone": "+91 9941188001"
     },
     {
       "photo": "/assets/staff/ravikumar.JPG",
@@ -105,7 +92,7 @@
       "designation": "Lecturer in Tamil",
       "qualification": "M.A.,(Tamil), M.Ed., UGC-NET (Tamil), UGC-NET (Education)",
       "experience": "13 years",
-      "email": "ravikumar@dietchennai.org",
+      "email": "",
       "phone": "+91 9710032229"
     },
     {
@@ -114,7 +101,7 @@
       "designation": "Lecturer in Mathematics",
       "qualification": "M.Sc (Mathematics), M.Ed, M.Phil (Education)",
       "experience": "8 years",
-      "email": "svragavan@dietchennai.org",
+      "email": "",
       "phone": "+91 9786506959"
     },
     {
@@ -123,7 +110,7 @@
       "designation": "Lecturer in English",
       "qualification": "M.A.,M.Ed.,M.Phil",
       "experience": "8 years",
-      "email": "vimaladevi@dietchennai.org",
+      "email": "",
       "phone": "+91 8925055513"
     },
     {
@@ -132,7 +119,7 @@
       "designation": "Lecturer in Mathematics",
       "qualification": "M.Sc. (Mathematics), M.Ed, M.Phil (Education)",
       "experience": "8 years",
-      "email": "nevetha@dietchn.ac.in",
+      "email": "",
       "phone": "+91 8248519234"
     },
     {
@@ -141,7 +128,7 @@
       "designation": "Lecturer in English",
       "qualification": "M.A., M.Phil., M.Ed",
       "experience": "8 years",
-      "email": "rajkamal@dietchn.ac.in",
+      "email": "",
       "phone": "+91 9994952816"
     },
     {
@@ -179,6 +166,18 @@
       "experience": "",
       "email": "",
       "phone": ""
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Vacant",
+      "designation": "Lecturer in Zoology - Vacant position"
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Tmt. S. Akilandeswari",
+      "designation": "Librarian",
+      "qualification": "M.A., M.L.I.S",
+      "experience": "9 years"
     }
   ]
 }
