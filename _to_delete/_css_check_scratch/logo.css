@@ -1,0 +1,516 @@
+@import url('https://fonts.googleapis.com/css2?family=Meera+Inimai&display=swap');
+
+.meera-inimai-regular {
+    font-family: "Meera Inimai", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tau-Marutham";
+    src: url("/fonts/TAU-Marutham.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.tamilmarutham {
+    font-family: "Tau-Marutham";
+}
+
+samp {
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media (max-width: 768px) {
+    /* #logo-scoped: a later, unscoped ".logo-img { width:22%; height:auto }"
+       rule further down this same file (line ~91, meant for desktop) has
+       equal specificity and comes after this block in source order, so it
+       was silently winning here and overriding both width and height --
+       which is why the mobile logo stayed tiny even with a rule that looked
+       like it should have sized it. Scoping with #logo settles that. */
+    #logo .logo-img {
+        width: auto;
+        /* Was a fixed 3em (~42-45px) here, which made the emblem hard to
+           read on a phone. clamp() keeps it legible on narrow phones
+           without letting it get oversized as the breakpoint approaches
+           768px. */
+        height: clamp(72px, 22vw, 110px);
+        max-width: 60%;
+        }
+
+    #logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .logo-text,
+    #logo p {
+        text-align: center;
+    }
+
+    /* Let the bilingual title, English title, and address wrap instead of
+       overflowing the viewport, and keep the whole logo block centered.
+       Scoped with the #logo ancestor so specificity beats the legacy
+       ".logo a span { white-space: nowrap }" rule in site.css (a class +
+       2 type selectors), which otherwise wins over a same-weight override
+       and keeps forcing the English title onto one long line that pushes
+       the block off-center and off-screen. */
+    #logo .logo-text,
+    #logo .logo-text > span,
+    #logo .tamilmarutham,
+    #logo .logo-text i {
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    #logo .logo-text {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    h2.logo {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* .logo a strong (the Tamil title) picks up padding-top: 22px from a
+       legacy desktop-oriented breakpoint in site-responsive.css (meant to
+       vertically align a small subtitle next to an inline logo in the old
+       layout). In this flex-column mobile layout that just leaves a large
+       empty gap under the emblem. #logo-scoped so it outweighs that rule's
+       equal specificity and wins regardless of stylesheet order. */
+    #logo .tamilmarutham {
+        padding-top: 6px;
+    }
+}
+
+.logo-img {
+    width: 22%;
+    height: auto;
+    max-width: 100%;
+    transition: all 0.3s ease;
+}
+
+.logo-text em {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.1rem;
+}
+
+.logo-text p {
+    font-style: italic;
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+.logo-text i {
+    font-style: italic;
+    font-weight: 100;
+    font-size: 0.6em;
+}
+
+/* if window is scaled to 125% */
+/* @media (max-resolution: 1.25dppx) {
+    body {
+        transform: scale(0.9);
+        transform-origin: top left;
+        width: 115%;  /* Counteract the shrinking caused by scale */
+        /* height: 100vh; */
+    /* } */
+/* } */
+
+/* If zoomed out to 80% */
+body.zoom-80 {
+    transform: scale(1.25);
+    transform-origin: top left;
+    width: 80%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* If zoom is 125% */
+body.zoom-125 {
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111.11%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Optional: default zoom (100%) */
+body.zoom-100 {
+    transform: none;
+    width: 100%;
+    height: auto;
+}
+
+/* Fallback for unhandled zooms */
+body.zoom-other {
+    transform: none;
+        width: 100%;
+        height: auto;
+    /* outline: 2px dashed red; */
+    /* for debugging */
+}
+
+.sw-logo img {
+    width: auto;
+    height: 5em;
+    /* Adjust height as needed */
+    max-width: 100%;
+    /* Scales up on smaller screens */
+    margin: 18px;
+    padding: 0%;
+}
+
+/* click outlines made transparent */
+a {
+    outline: transparent !important;
+}
+
+/* flexslider control menu visibility hidden after disabling in JavaScript */
+.flexslider .flex-pauseplay {
+    display: none !important;
+}
+
+#main_menu {
+    transition: all 0.3s ease;
+}
+
+.article68217830 body{
+        font-family: Georgia, serif;
+        line-height: 1.6;
+        margin: 2em;
+}
+
+.article68217830 h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.3em;
+}
+.article68217830 h3 {
+    color: #34495e;
+}
+.article68217830 p {
+    margin-bottom: 1em;
+    /* align-items: justify; */
+    text-align: justify;
+}
+.references li{
+    margin-top: 0.8em;
+    padding-left: 1%;
+}
+
+blockquote {
+    font-size: 35px;
+    line-height: 52px;
+    margin: 28px 0;
+    overflow: hidden;
+    padding: 0 0 0 26px;
+    font-weight: 100;
+    color: #CC6B39;
+    position: relative;
+}
+
+blockquote:before {
+    content: "";
+    border-left: 6px solid #39348F;
+    position: absolute;
+    bottom: 14px;
+    top: 13px;
+    left: 0;
+}
+
+/* Logo in small screen */
+@media screen and (max-width: 375px) {
+    .logo img {
+            max-width: 65px;
+            padding: 0 5px 0 5px;
+            /* height: 3.5em; */
+        }
+    .common-left ul li span.li_eng {
+            font-size: 106%;
+            text-align: center;
+        }
+    .white-bg {
+            margin-top: 0.2%;
+        }
+    }
+
+/* logo in medium screen */
+@media screen and (max-width: 767px) {
+    .logo img {
+        max-width: 65px;
+        padding: 0 5px 0 5px;
+        /* height: 3.5em; */
+    }
+    .common-left ul li span.li_eng {
+        font-size: 106%;
+        text-align: center;
+    }
+    .white-bg {
+        margin-top: 0.2%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .sw-logo img {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1260px) {
+    .main-menu a.btn-more,
+        .main-menu a.btn-more:hover,
+        .main-menu a.btn-more:focus {
+            position: absolute;
+            top: 0%;
+            right: -7%;
+            /* transition: all .4s; */
+            overflow: hidden;
+            /* padding: 7px 19px !important; */
+            font-size: 90%;
+            transition: none;
+        }
+    
+        /* Updated CSS for Center Alignment */
+        .main-menu {
+            display: flex;
+            justify-content: center;
+            /* Centers items horizontally */
+            align-items: center;
+            /* Centers items vertically */
+            flex-wrap: wrap;
+            /* Allows items to wrap to the next line if needed */
+            /* padding: 0.2rem; */
+            box-sizing: border-box;
+        }
+    
+        /* to ul and li elements */
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            right: 4%;
+        }
+}
+
+/* visual alignment while in full screen of pc */
+@media screen and (min-width: 1260px) and (max-width: 1920px){
+    .main-menu a.btn-more,
+    .main-menu a.btn-more:hover,
+    .main-menu a.btn-more:focus {
+        position: absolute;
+        top: 0%;
+        right: -10%;
+            /* transition: all .4s; */
+        overflow: hidden;
+            /* padding: 7px 19px !important; */
+        font-size: 90%;
+        transition: none;
+    }
+        /* Updated CSS for Center Alignment */
+    .main-menu {
+        display: flex;
+        justify-content: center;
+            /* Centers items horizontally */
+        align-items: center;
+            /* Centers items vertically */
+        flex-wrap: wrap;
+            /* Allows items to wrap to the next line if needed */
+            /* padding: 0.2rem; */
+        box-sizing: border-box;
+    }
+        /* to ul and li elements */
+    .main-menu ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        right: 3%;
+    }
+}
+
+/* transition while changing language fade and fade-out */
+.fade {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+/* language switch */
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-left: 5px;
+    padding: 6% 0 0 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    touch-action: manipulation; /* improves responsiveness */
+}
+
+.slider:before {
+    position: absolute;
+    content: "EN";
+    height: 24px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #4CAF50;
+}
+
+input:checked+.slider:before {
+    transform: translateX(30px);
+    content: "த";
+}
+
+/* menu hover colors and sub menu underline properties override */
+.main-menu .sub-nav ul li a:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    outline: none;
+}
+
+.main-menu>ul>li.active>a,
+.main-menu>ul>li>a:focus,
+.main-menu>ul>li:hover>a,
+.main-menu>ul>li>a:hover,
+.main-menu>ul>li>a.home,
+.nav-item>a.open {
+    /* background: #ee9858; */
+    background: #9d5722;
+    color: #fff !important;
+}
+
+.sub-nav {
+    /* background: #a46212; */
+    background: #a46212;
+    color: #fff !important;
+}
+
+.ico-site-search .search-drop {
+    background: #a46212;
+}
+
+.side-links {
+    background: #a46212;
+}
+
+.footer-top-wrapper {
+    background: #a46212;
+}
+
+/* footer change color */
+.footer-bottom-wrapper {
+    background-repeat: repeat;
+    background-color: #3c3c3c;
+    padding: 0px 0px;
+    color: #fff;
+    position: relative;
+    text-align: right;
+}
+
+.last-updated {
+    text-align: justify;
+}
+
+.footer-content {
+    padding: 0px 0px;
+    color: #fff;
+    position: relative;
+    text-align: left;
+}
+
+/* qgis image */
+.img-resolution {
+    text-align: center;
+}
+
+.img-resolution-img {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    /* width: 25vw; 
+    height: 110vh;  */
+    margin-bottom: 1rem;
+}
+
+/* spacing between paragraph in principal's desk */
+.custompara {
+    text-align: justify; 
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+    padding: 0 1em;
+    /* Optional: Add padding for better readability */
+    /* font-size: 1.2em; */
+}
+
+.custompara h2 {
+    color: #2c3e50;
+    /* border-bottom: 2px solid #ccc; */
+    padding-bottom: 1em;
+}
+.custompara p {
+    margin-bottom: 1em;
+    /* Optional: Add margin to paragraphs for spacing */
+}
