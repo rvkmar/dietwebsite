@@ -1,5 +1,71 @@
 ---
 layout: base.njk
+extraHead: |
+  <style>
+      .contact-details,
+      .contact-form {
+          margin-top: 20px;
+      }
+
+      .contact-details p {
+          margin: 10px 0;
+      }
+
+      .map {
+          margin-top: 20px;
+          text-align: center;
+      }
+
+      .map-link-btn {
+          display: inline-block;
+          background-color: #004080;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 4px;
+          font-size: 16px;
+          text-decoration: none;
+          margin-top: 10px;
+      }
+
+      .map-link-btn:hover {
+          background-color: #003060;
+          color: white;
+      }
+
+      .contact-form form {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+          padding: 10px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+      }
+
+      .contact-form button {
+          background-color: #004080;
+          color: white;
+          padding: 10px;
+          border: none;
+          border-radius: 4px;
+          font-size: 16px;
+          cursor: pointer;
+      }
+
+      .contact-form button:hover {
+          background-color: #003060;
+      }
+
+      @media screen and (max-width: 600px) {
+          .contact-us-container {
+              padding: 10px;
+          }
+      }
+  </style>
 ---
 {#
   Bespoke layout for /contact-us/ (CMS restructure plan, Tier 3 phase 6).
@@ -52,71 +118,6 @@ layout: base.njk
   they're written directly in this layout rather than exposed as CMS
   fields (nothing here is a field admin/collections/contact_us.yml lists).
 #}
-<style>
-    .contact-details,
-    .contact-form {
-        margin-top: 20px;
-    }
-
-    .contact-details p {
-        margin: 10px 0;
-    }
-
-    .map {
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .map-link-btn {
-        display: inline-block;
-        background-color: #004080;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-size: 16px;
-        text-decoration: none;
-        margin-top: 10px;
-    }
-
-    .map-link-btn:hover {
-        background-color: #003060;
-        color: white;
-    }
-
-    .contact-form form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 10px;
-        margin: 8px 0;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-    }
-
-    .contact-form button {
-        background-color: #004080;
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .contact-form button:hover {
-        background-color: #003060;
-    }
-
-    @media screen and (max-width: 600px) {
-        .contact-us-container {
-            padding: 10px;
-        }
-    }
-</style>
     <!--/.nav-wrapper-->
     <!-- Main and modifiable content starts here -->
     <!-- ---------------------------------------------- -->

@@ -61,14 +61,14 @@ layout: base.njk
                 {% if org_chart and org_chart.en %}
                 <div class="container englishparagraph">
                     <img width="1451" height="858" loading="lazy" src="{{ org_chart.en }}"
-                        sizes="(orientation: landscape) 100vw, (orientation: portrait) 100vh" alt="{{ org_chart.en_alt or 'Organization Chart' }}"
+                        alt="{{ org_chart.en_alt or 'Organization Chart' }}"
                         class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
                 </div>
                 {% endif %}
                 {% if org_chart and org_chart.ta %}
                 <div class="container tamilparagraph">
                     <img width="1451" height="858" loading="lazy" src="{{ org_chart.ta }}"
-                        sizes="(orientation: landscape) 100vw, (orientation: portrait) 100vh" alt="{{ org_chart.ta_alt or 'Organization Chart' }}"
+                        alt="{{ org_chart.ta_alt or 'Organization Chart' }}"
                         class="img-fluid" style="width: 100%; height: auto; margin-top: 1rem; margin-bottom: 1rem;" />
                 </div>
                 {% endif %}

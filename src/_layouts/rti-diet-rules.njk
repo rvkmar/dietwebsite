@@ -1,5 +1,38 @@
 ---
 layout: base.njk
+extraHead: |
+  <style>
+      .table-container {
+          width: 85%;
+          margin: 0 auto;
+      }
+      .table-container table {
+          width: 100%;
+          border-collapse: collapse;
+          background-color: #fff;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .table-container th,
+      .table-container td {
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          text-align: left;
+      }
+      .table-container th {
+          background-color: #4CAF50;
+          color: white;
+      }
+      .table-container tr:hover {
+          background-color: #f1f1f1;
+      }
+      .table-container a {
+          color: #1a73e8;
+          text-decoration: none;
+      }
+      .table-container a:hover {
+          text-decoration: underline;
+      }
+  </style>
 ---
 {#
   Bespoke layout for /rti-diet-rules/ (CMS restructure plan, Tier 3 phase
@@ -26,38 +59,6 @@ layout: base.njk
   reasoning as every other layout in this family.
 #}
 {% set pageMeta = simpleInfoPages[page.fileSlug] %}
-<style>
-    .table-container {
-        width: 85%;
-        margin: 0 auto;
-    }
-    .table-container table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .table-container th,
-    .table-container td {
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-    .table-container th {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .table-container tr:hover {
-        background-color: #f1f1f1;
-    }
-    .table-container a {
-        color: #1a73e8;
-        text-decoration: none;
-    }
-    .table-container a:hover {
-        text-decoration: underline;
-    }
-</style>
     <!--/.nav-wrapper-->
     <!-- Main and modifiable content starts here -->
     <!-- ---------------------------------------------- -->
@@ -88,7 +89,7 @@ layout: base.njk
             <!--/#page-head-->
             {% if orders and orders.length %}
             <div class="table-container">
-                {% if table_heading %}<h3>{{ table_heading }}</h3>{% endif %}
+                {% if table_heading %}<h2>{{ table_heading }}</h2>{% endif %}
                 <table>
                     <thead>
                         <tr>

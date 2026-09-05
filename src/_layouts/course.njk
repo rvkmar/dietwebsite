@@ -26,21 +26,6 @@ layout: base.njk
   would be silently dropped on the next editor save.
 #}
 {% set pageMeta = simpleInfoPages[page.fileSlug] %}
-{% if apply_links %}
-<style>
-    .course-img-container { display: flex; justify-content: center; gap: 20px; align-items: center; }
-    .course-button-overlay {
-        position: absolute; top: 53%; left: 50%; transform: translateX(-50%);
-        display: flex; gap: 12px; z-index: 10;
-    }
-    .course-apply-btn {
-        background-color: #0056b3; color: white; padding: 12px 24px; border: none;
-        border-radius: 6px; cursor: pointer; font-size: 16px; margin: 10px;
-        display: inline-block; text-decoration: none;
-    }
-    .course-apply-btn:hover { background-color: #003d80; color: white; }
-</style>
-{% endif %}
     <!--/.nav-wrapper-->
     <!-- Main and modifiable content starts here -->
     <!-- ---------------------------------------------- -->
