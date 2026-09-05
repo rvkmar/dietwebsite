@@ -5,6 +5,6 @@
   <text x="19" y="26" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#cfd8e3">markup</text>
   <text x="70" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">HTML5</text>
   <text x="70" y="27" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="#cfd8e3">valid</text>
-  <circle cx="100" cy="17" r="8" fill="#12203a" stroke="#e2432b" stroke-width="1.5"/>
-  <path d="M96.5 17.2 L99 19.8 L103.5 14.2" fill="none" stroke="#e2432b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="17" r="8" fill="#12203a" stroke="#2ecc71" stroke-width="1.5"/>
+  <path d="M96.5 17.2 L99 19.8 L103.5 14.2" fill="none" stroke="#2ecc71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
