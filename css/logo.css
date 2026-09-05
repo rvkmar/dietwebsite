@@ -94,8 +94,16 @@ samp {
 }
 
 .logo-img {
-    width: 22%;
-    height: auto;
+    /* Was a percentage of the header's width (22%), which let the logo
+       balloon far taller than the adjacent 3-line title/subtitle text
+       block on wide viewports -- the container width, not the text
+       height, was driving its size. Switched to a fixed height (same
+       pattern as .sw-logo img for the two government emblems) so the
+       logo's height tracks the text block instead of the header's width;
+       width follows automatically to keep the source image's aspect
+       ratio intact. */
+    width: auto;
+    height: 4.5em;
     max-width: 100%;
     transition: all 0.3s ease;
 }
