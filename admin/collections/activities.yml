@@ -4,6 +4,7 @@
       - name: "activ-calendar"
         label: "Academic Training Calendar — Page Content"
         file: "src/activ-calendar/index.njk"
+        format: "yaml-frontmatter"
         fields: &activity_page_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "activities.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -20,14 +21,17 @@
       - name: "activ-current"
         label: "Current Activities — Page Content"
         file: "src/activ-current/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-archive"
         label: "Activity Archive — Page Content"
         file: "src/activ-archive/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-alumni"
         label: "Alumni Association — Page Content"
         file: "src/activ-alumni/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-calendar-events"
         label: "Academic Training Calendar — Events List"

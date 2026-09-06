@@ -5,6 +5,7 @@
       - name: "home"
         label: "Home Page: About & Principal's Message"
         file: "src/index.njk"
+        format: "yaml-frontmatter"
         description: "The banner carousel, Announcements/Circulars/Newsletters/Downloads tabs, and the Principal's own photo/name/designation are edited under their own dedicated collections (Banner, Announcements, Circulars, Downloads, Principal) -- not here."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "home.njk" }

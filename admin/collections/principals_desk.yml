@@ -5,6 +5,7 @@
       - name: "principals-desk"
         label: "Principal's Desk"
         file: "src/principals-desk/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "principals-desk.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }

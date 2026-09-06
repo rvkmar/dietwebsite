@@ -88,6 +88,7 @@ collections:
       - name: "home"
         label: "Home Page: About & Principal's Message"
         file: "src/index.njk"
+        format: "yaml-frontmatter"
         description: "The banner carousel, Announcements/Circulars/Newsletters/Downloads tabs, and the Principal's own photo/name/designation are edited under their own dedicated collections (Banner, Announcements, Circulars, Downloads, Principal) -- not here."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "home.njk" }
@@ -970,6 +971,7 @@ collections:
       - name: "disclaimer"
         label: "Disclaimer"
         file: "src/disclaimer/index.njk"
+        format: "yaml-frontmatter"
         fields: &simple_page_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "simple-info.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1000,58 +1002,72 @@ collections:
       - name: "terms-conditions"
         label: "Terms and Conditions"
         file: "src/terms-conditions/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "website-policies"
         label: "Website Policies"
         file: "src/website-policies/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "accessibility-statement"
         label: "Accessibility Statement"
         file: "src/accessibility-statement/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "help"
         label: "Help"
         file: "src/help/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "important-links"
         label: "Important Links"
         file: "src/important-links/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "web-manager"
         label: "Web Information Manager"
         file: "src/web-manager/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "newsletters"
         label: "Newsletters"
         file: "src/newsletters/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "rti"
         label: "RTI"
         file: "src/rti/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "tb-module"
         label: "Textbooks and Modules: Modules"
         file: "src/tb-module/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "tb-textbook"
         label: "Textbooks and Modules: Textbooks"
         file: "src/tb-textbook/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "sitemap"
         label: "Sitemap"
         file: "src/sitemap/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "library"
         label: "Library"
         file: "src/library/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "mission-vision"
         label: "Mission and Vision"
         file: "src/mission-vision/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "roles-functions"
         label: "Roles and Functions"
         file: "src/roles-functions/index.njk"
+        format: "yaml-frontmatter"
         fields: *simple_page_fields
   - name: "activities"
     label: "Activities"
@@ -1059,6 +1075,7 @@ collections:
       - name: "activ-calendar"
         label: "Academic Training Calendar — Page Content"
         file: "src/activ-calendar/index.njk"
+        format: "yaml-frontmatter"
         fields: &activity_page_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "activities.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1075,14 +1092,17 @@ collections:
       - name: "activ-current"
         label: "Current Activities — Page Content"
         file: "src/activ-current/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-archive"
         label: "Activity Archive — Page Content"
         file: "src/activ-archive/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-alumni"
         label: "Alumni Association — Page Content"
         file: "src/activ-alumni/index.njk"
+        format: "yaml-frontmatter"
         fields: *activity_page_fields
       - name: "activ-calendar-events"
         label: "Academic Training Calendar — Events List"
@@ -1125,6 +1145,7 @@ collections:
       - name: "dept-pste"
         label: "Department: PSTE"
         file: "src/dept-pste/index.njk"
+        format: "yaml-frontmatter"
         fields: &department_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "department.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1186,22 +1207,27 @@ collections:
       - name: "dept-tpd"
         label: "Department: TPD"
         file: "src/dept-tpd/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-etmd"
         label: "Department: ETMD"
         file: "src/dept-etmd/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-ae"
         label: "Department: AE"
         file: "src/dept-ae/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-fiar"
         label: "Department: FIAR"
         file: "src/dept-fiar/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "departments"
         label: "Departments (index)"
         file: "src/departments/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
   - name: "course"
     label: "Courses"
@@ -1210,6 +1236,7 @@ collections:
       - name: "courses"
         label: "Courses (index)"
         file: "src/courses/index.njk"
+        format: "yaml-frontmatter"
         fields: &course_common_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1254,10 +1281,12 @@ collections:
       - name: "coursetpd"
         label: "Courses: TPD"
         file: "src/coursetpd/index.njk"
+        format: "yaml-frontmatter"
         fields: *course_common_fields
       - name: "coursedeled"
         label: "Courses: D.El.Ed."
         file: "src/coursedeled/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1346,6 +1375,7 @@ collections:
       - name: "principals-desk"
         label: "Principal's Desk"
         file: "src/principals-desk/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "principals-desk.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1382,6 +1412,7 @@ collections:
       - name: "org-structure"
         label: "Organization Structure"
         file: "src/org-structure/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "org-structure.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1424,6 +1455,7 @@ collections:
       - name: "contact-us"
         label: "Contact Us"
         file: "src/contact-us/index.njk"
+        format: "yaml-frontmatter"
         description: "The institute name, address, email, phone, and map location are edited under Site Settings, not here (they're shared with other pages that reference the same facts)."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "contact-us.njk" }
@@ -1437,6 +1469,7 @@ collections:
       - name: "about-diet-chennai"
         label: "About DIET Chennai"
         file: "src/about-diet-chennai/index.njk"
+        format: "yaml-frontmatter"
         description: "The 'Mandatory Disclosure' button always links to the document edited under the Principal collection (principal_disclosure) -- it isn't a field here."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "about-diet-chennai.njk" }
@@ -1472,6 +1505,7 @@ collections:
       - name: "about-diet"
         label: "About DIET"
         file: "src/about-diet/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "about-diet.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1500,6 +1534,7 @@ collections:
       - name: "rti-diet-rules"
         label: "DIET Rules"
         file: "src/rti-diet-rules/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "rti-diet-rules.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -1529,6 +1564,7 @@ collections:
       - name: "404"
         label: "404 (raw HTML)"
         file: "src/404.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1540,6 +1576,7 @@ collections:
       - name: "academic-faculty"
         label: "Academic Faculty (raw HTML)"
         file: "src/academic-faculty/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1551,6 +1588,7 @@ collections:
       - name: "admin-staff"
         label: "Admin Staff (raw HTML)"
         file: "src/admin-staff/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1562,6 +1600,7 @@ collections:
       - name: "announcements"
         label: "Announcements (raw HTML)"
         file: "src/announcements/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1584,6 +1623,7 @@ collections:
       - name: "circulars"
         label: "Circulars (raw HTML)"
         file: "src/circulars/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1606,6 +1646,7 @@ collections:
       - name: "district-statistics"
         label: "District Statistics (raw HTML)"
         file: "src/district-statistics/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1617,6 +1658,7 @@ collections:
       - name: "district-profile"
         label: "District Profile (raw HTML)"
         file: "src/district_profile/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1628,6 +1670,7 @@ collections:
       - name: "doc-forms"
         label: "Doc Forms (raw HTML)"
         file: "src/doc-forms/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1639,6 +1682,7 @@ collections:
       - name: "doc-publications"
         label: "Doc Publications (raw HTML)"
         file: "src/doc-publications/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1650,6 +1694,7 @@ collections:
       - name: "reports"
         label: "Reports (page source)"
         file: "src/reports/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1661,6 +1706,7 @@ collections:
       - name: "downloads"
         label: "Downloads (raw HTML)"
         file: "src/downloads/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -1672,6 +1718,7 @@ collections:
       - name: "gallery"
         label: "Gallery (raw HTML)"
         file: "src/gallery/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"

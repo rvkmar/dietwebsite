@@ -5,6 +5,7 @@
       - name: "dept-pste"
         label: "Department: PSTE"
         file: "src/dept-pste/index.njk"
+        format: "yaml-frontmatter"
         fields: &department_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "department.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -66,20 +67,25 @@
       - name: "dept-tpd"
         label: "Department: TPD"
         file: "src/dept-tpd/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-etmd"
         label: "Department: ETMD"
         file: "src/dept-etmd/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-ae"
         label: "Department: AE"
         file: "src/dept-ae/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "dept-fiar"
         label: "Department: FIAR"
         file: "src/dept-fiar/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields
       - name: "departments"
         label: "Departments (index)"
         file: "src/departments/index.njk"
+        format: "yaml-frontmatter"
         fields: *department_fields

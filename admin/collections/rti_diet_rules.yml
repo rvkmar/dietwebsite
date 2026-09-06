@@ -5,6 +5,7 @@
       - name: "rti-diet-rules"
         label: "DIET Rules"
         file: "src/rti-diet-rules/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "rti-diet-rules.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }

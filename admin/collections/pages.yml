@@ -5,6 +5,7 @@
       - name: "404"
         label: "404 (raw HTML)"
         file: "src/404.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -16,6 +17,7 @@
       - name: "academic-faculty"
         label: "Academic Faculty (raw HTML)"
         file: "src/academic-faculty/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -27,6 +29,7 @@
       - name: "admin-staff"
         label: "Admin Staff (raw HTML)"
         file: "src/admin-staff/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -38,6 +41,7 @@
       - name: "announcements"
         label: "Announcements (raw HTML)"
         file: "src/announcements/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -60,6 +64,7 @@
       - name: "circulars"
         label: "Circulars (raw HTML)"
         file: "src/circulars/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -82,6 +87,7 @@
       - name: "district-statistics"
         label: "District Statistics (raw HTML)"
         file: "src/district-statistics/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -93,6 +99,7 @@
       - name: "district-profile"
         label: "District Profile (raw HTML)"
         file: "src/district_profile/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -104,6 +111,7 @@
       - name: "doc-forms"
         label: "Doc Forms (raw HTML)"
         file: "src/doc-forms/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -115,6 +123,7 @@
       - name: "doc-publications"
         label: "Doc Publications (raw HTML)"
         file: "src/doc-publications/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -126,6 +135,7 @@
       - name: "reports"
         label: "Reports (page source)"
         file: "src/reports/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -137,6 +147,7 @@
       - name: "downloads"
         label: "Downloads (raw HTML)"
         file: "src/downloads/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"
@@ -148,6 +159,7 @@
       - name: "gallery"
         label: "Gallery (raw HTML)"
         file: "src/gallery/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - label: "Full page HTML source"
             name: "body"

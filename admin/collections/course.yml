@@ -5,6 +5,7 @@
       - name: "courses"
         label: "Courses (index)"
         file: "src/courses/index.njk"
+        format: "yaml-frontmatter"
         fields: &course_common_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -49,10 +50,12 @@
       - name: "coursetpd"
         label: "Courses: TPD"
         file: "src/coursetpd/index.njk"
+        format: "yaml-frontmatter"
         fields: *course_common_fields
       - name: "coursedeled"
         label: "Courses: D.El.Ed."
         file: "src/coursedeled/index.njk"
+        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "course.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }

@@ -5,6 +5,7 @@
       - name: "contact-us"
         label: "Contact Us"
         file: "src/contact-us/index.njk"
+        format: "yaml-frontmatter"
         description: "The institute name, address, email, phone, and map location are edited under Site Settings, not here (they're shared with other pages that reference the same facts)."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "contact-us.njk" }
