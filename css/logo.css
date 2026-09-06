@@ -619,21 +619,23 @@ input:checked+.slider:before {
     text-align: center;
     padding-top: 8px;
 }
-.leader-name {
+.leader-block .min-info .leader-name {
     font-size: 105%;
     font-weight: 700;
     color: #000;
-    margin: 0 0 4px;
+    margin: 0 0 2px;
+    padding: 0;
     line-height: 1.3;
 }
-.leader-cm .leader-name {
+.leader-cm .min-info .leader-name {
     font-size: 125%;
 }
-.leader-designation {
+.leader-block .min-info .leader-designation {
     font-size: 88%;
     font-weight: 600;
     color: #004193;
     margin: 0;
+    padding: 0;
     line-height: 1.3;
 }
 
