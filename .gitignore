@@ -2,9 +2,15 @@
 # Edit at https://www.gitignore.io/?templates=visualstudiocode
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
-ztest/*
+_to_delete
+_to_delete/*
+.claude
+workers
+workers/*
 push_both.bat
+
 # Maybe .vscode/**/* instead - see comments
 # !.vscode/settings.json
 .vscode/settings.json
