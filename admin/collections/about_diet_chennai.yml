@@ -1,11 +1,11 @@
   - name: "about_diet_chennai"
     label: "About DIET Chennai"
     delete: false
+    format: "yaml-frontmatter"
     files:
       - name: "about-diet-chennai"
         label: "About DIET Chennai"
         file: "src/about-diet-chennai/index.njk"
-        format: "yaml-frontmatter"
         description: "The 'Mandatory Disclosure' button always links to the document edited under the Principal collection (principal_disclosure) -- it isn't a field here."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "about-diet-chennai.njk" }

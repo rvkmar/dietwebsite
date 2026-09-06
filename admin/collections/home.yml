@@ -1,11 +1,11 @@
   - name: "home"
     label: "Home Page"
     delete: false
+    format: "yaml-frontmatter"
     files:
       - name: "home"
         label: "Home Page: About & Principal's Message"
         file: "src/index.njk"
-        format: "yaml-frontmatter"
         description: "The banner carousel, Announcements/Circulars/Newsletters/Downloads tabs, and the Principal's own photo/name/designation are edited under their own dedicated collections (Banner, Announcements, Circulars, Downloads, Principal) -- not here."
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "home.njk" }
@@ -28,6 +28,9 @@
             fields:
               - { label: "Body (English, HTML)", name: "body_en", widget: "markdown" }
               - { label: "Body (Tamil, HTML)", name: "body_ta", widget: "markdown" }
+  - name: "partner_logos"
+    label: "Partner / Government Logos"
+    files:
       - name: "partner-logos"
         label: "Partner / Government Logos"
         file: "src/_data/partnerLogos.json"

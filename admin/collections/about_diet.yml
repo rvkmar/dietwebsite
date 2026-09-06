@@ -1,11 +1,11 @@
   - name: "about_diet"
     label: "About DIET"
     delete: false
+    format: "yaml-frontmatter"
     files:
       - name: "about-diet"
         label: "About DIET"
         file: "src/about-diet/index.njk"
-        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "about-diet.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }

@@ -1,11 +1,11 @@
   - name: "org_structure"
     label: "Organization Structure"
     delete: false
+    format: "yaml-frontmatter"
     files:
       - name: "org-structure"
         label: "Organization Structure"
         file: "src/org-structure/index.njk"
-        format: "yaml-frontmatter"
         fields:
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "org-structure.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }

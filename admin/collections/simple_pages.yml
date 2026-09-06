@@ -1,11 +1,11 @@
   - name: "simple_pages"
     label: "Simple Info / Policy Pages"
     delete: false
+    format: "yaml-frontmatter"
     files:
       - name: "disclaimer"
         label: "Disclaimer"
         file: "src/disclaimer/index.njk"
-        format: "yaml-frontmatter"
         fields: &simple_page_fields
           - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "simple-info.njk" }
           - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
@@ -36,70 +36,56 @@
       - name: "terms-conditions"
         label: "Terms and Conditions"
         file: "src/terms-conditions/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "website-policies"
         label: "Website Policies"
         file: "src/website-policies/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "accessibility-statement"
         label: "Accessibility Statement"
         file: "src/accessibility-statement/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "help"
         label: "Help"
         file: "src/help/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "important-links"
         label: "Important Links"
         file: "src/important-links/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "web-manager"
         label: "Web Information Manager"
         file: "src/web-manager/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "newsletters"
         label: "Newsletters"
         file: "src/newsletters/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "rti"
         label: "RTI"
         file: "src/rti/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "tb-module"
         label: "Textbooks and Modules: Modules"
         file: "src/tb-module/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "tb-textbook"
         label: "Textbooks and Modules: Textbooks"
         file: "src/tb-textbook/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "sitemap"
         label: "Sitemap"
         file: "src/sitemap/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "library"
         label: "Library"
         file: "src/library/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "mission-vision"
         label: "Mission and Vision"
         file: "src/mission-vision/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
       - name: "roles-functions"
         label: "Roles and Functions"
         file: "src/roles-functions/index.njk"
-        format: "yaml-frontmatter"
         fields: *simple_page_fields
