@@ -556,3 +556,28 @@ input:checked+.slider:before {
     margin-bottom: 1em;
     /* Optional: Add margin to paragraphs for spacing */
 }
+/* Partner-logo carousel (#flexCarousel, homepage footer strip). Logos of
+   very different aspect ratios -- tall circular seals like CBSE/SCERT/
+   Tamil Nadu vs. flat rectangular ones like G20/Digital India -- were
+   each sized with ad-hoc inline width%/padding-top hacks (now removed
+   from partner-carousel.njk), so the row's height was set by whichever
+   logo happened to render tallest on that slide -- far more vertical
+   space than a logo strip needs. Giving every slide a fixed, modest
+   height and letting each logo's own aspect ratio decide its width
+   within that height keeps every logo legible and undistorted while
+   keeping the strip's height constant no matter which logos are
+   showing. */
+#flexCarousel .slides li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+
+#flexCarousel .slides li img {
+    width: auto;
+    height: auto;
+    max-height: 70px;
+    max-width: 90%;
+    object-fit: contain;
+}
