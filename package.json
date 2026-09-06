@@ -8,7 +8,7 @@
     "build": "eleventy",
     "serve": "eleventy --serve",
     "lint:html": "html-validate --config .htmlvalidate.json",
-    "check:links": "linkinator _site/index.html --recurse --skip \"(facebook\\.com|twitter\\.com|youtube\\.com|g20\\.in|mygov\\.in|data\\.gov\\.in|cloudflareinsights\\.com|goidirectory\\.nic\\.in|digitalindia\\.gov\\.in|india\\.gov\\.in|cbse\\.gov\\.in|niepa\\.ac\\.in|makeinindia\\.com|education\\.gov\\.in|ncert\\.nic\\.in|ncte\\.gov\\.in|tn\\.gov\\.in|tnschools\\.gov\\.in|cooperation\\.gov\\.in|dietchennai\\.org|scert)\""
+    "check:links": "linkinator _site/index.html --recurse --skip \"(facebook\\.com|twitter\\.com|youtube\\.com|g20\\.in|mygov\\.in|data\\.gov\\.in|cloudflareinsights\\.com|goidirectory\\.nic\\.in|digitalindia\\.gov\\.in|india\\.gov\\.in|cbse\\.gov\\.in|niepa\\.ac\\.in|makeinindia\\.com|education\\.gov\\.in|ncert\\.nic\\.in|ncte\\.gov\\.in|tn\\.gov\\.in|tnschools\\.gov\\.in|cooperation\\.gov\\.in|dietchennai\\.org|scert|validator\\.w3\\.org|jigsaw\\.w3\\.org)\""
   },
   "repository": {
     "type": "git",
