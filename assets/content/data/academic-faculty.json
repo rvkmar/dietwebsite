@@ -171,6 +171,13 @@
       "photo": "/assets/staff/Female-Avatar.png",
       "name": "Vacant",
       "designation": "Lecturer in Zoology - Vacant position"
+    },
+    {
+      "photo": "/assets/staff/Female-Avatar.png",
+      "name": "Tmt. S. Akilandeswari",
+      "designation": "Librarian",
+      "qualification": "M.A., M.L.I.S",
+      "experience": "9 years"
     }
   ]
 }
