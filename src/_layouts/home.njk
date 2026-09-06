@@ -38,11 +38,21 @@ layout: base.njk
             <div class="container common-container four_content body-container top-body-container padding-top-bott2">
                <div class="minister clearfix">
                   <div class="minister-box clearfix">
-                     <div class="minister-sub1">
-                        <div class="minister-image"><img width="900" height="450" src="{{ about.image_1 }}" alt="{{ about.image_1_alt }}"
+                     <div class="minister-sub1 leader-block leader-cm">
+                        <div class="minister-image"><img src="{{ about.cm_photo }}" alt="{{ about.cm_name_en }}, {{ about.cm_designation_en }}"
                               loading="lazy"></div>
-                        <div class="minister-image"><img width="900" height="450" src="{{ about.image_2 }}" alt="{{ about.image_2_alt }}"
+                        <div class="min-info">
+                           <h3 class="leader-name">{{ about.cm_name_en }}<br><span lang="ta" class="tamilmarutham">{{ about.cm_name_ta }}</span></h3>
+                           <p class="leader-designation">{{ about.cm_designation_en }}<br><span lang="ta" class="tamilmarutham">{{ about.cm_designation_ta }}</span></p>
+                        </div>
+                     </div>
+                     <div class="minister-sub1 leader-block leader-minister">
+                        <div class="minister-image"><img src="{{ about.minister_photo }}" alt="{{ about.minister_name_en }}, {{ about.minister_designation_en }}"
                               loading="lazy"></div>
+                        <div class="min-info">
+                           <h4 class="leader-name">{{ about.minister_name_en }}<br><span lang="ta" class="tamilmarutham">{{ about.minister_name_ta }}</span></h4>
+                           <p class="leader-designation">{{ about.minister_designation_en }}<br><span lang="ta" class="tamilmarutham">{{ about.minister_designation_ta }}</span></p>
+                        </div>
                      </div>
                   </div>
                </div>

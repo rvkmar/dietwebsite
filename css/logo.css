@@ -581,3 +581,78 @@ input:checked+.slider:before {
     max-width: 90%;
     object-fit: contain;
 }
+
+/* Homepage "About DIET Chennai" heading (src/_layouts/home.njk) --
+   base.css resets h1-h5 to font-size:100%/font-weight:normal site-wide,
+   and .left-block only had overrides for h2/h3, so this <h1> rendered
+   visually identical to the paragraph text below it. Give it its own
+   distinct weight/size, matching the visual scale already used for
+   .left-block h2. */
+.left-block h1 {
+    font-size: 160%;
+    font-weight: 700;
+    color: #000;
+    padding-bottom: 10px;
+}
+
+/* Homepage leader photos: Chief Minister of Tamil Nadu (larger) and
+   Minister for School Education (smaller), each with name + designation
+   shown in English and Tamil. Reuses the theme's existing .minister /
+   .minister-sub1 / .min-info wrapper classes (already used for the
+   photo column) but the .leader-* classes below are new -- the theme's
+   own .prime modifier was left half-finished (an empty ::after with no
+   border color set) so a fresh, minimal set of caption styles is used
+   here instead of relying on it. */
+.leader-block .minister-image img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    border: 1px solid #d8d8d8;
+}
+.leader-cm .minister-image img {
+    width: 62%;
+}
+.leader-minister .minister-image img {
+    width: 38%;
+}
+.leader-block .min-info {
+    text-align: center;
+    padding-top: 8px;
+}
+.leader-name {
+    font-size: 105%;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 4px;
+    line-height: 1.3;
+}
+.leader-cm .leader-name {
+    font-size: 125%;
+}
+.leader-designation {
+    font-size: 88%;
+    font-weight: 600;
+    color: #004193;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* The theme's narrow-viewport rules (site-responsive.css, several
+   breakpoints <=812px) float .minister-sub1 .minister-image left and
+   absolutely-position .minister-sub1 .min-info over it -- built for a
+   single side-by-side item, not two stacked .leader-block sections.
+   Without this override the Minister's caption overlaps the Chief
+   Minister's photo/caption on phones. Loads after site-responsive.min.css
+   so this wins on source order alone; !important is extra insurance
+   against any later/more-specific breakpoint rule. */
+.leader-block .minister-image {
+    float: none !important;
+    width: 100% !important;
+}
+.leader-block .min-info {
+    position: static !important;
+    width: 100% !important;
+    left: auto !important;
+    bottom: auto !important;
+    text-align: center !important;
+}
