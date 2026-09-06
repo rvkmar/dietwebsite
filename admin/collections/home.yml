@@ -15,18 +15,10 @@
           - label: "About DIET Chennai"
             name: "about"
             widget: "object"
-            hint: "The intro text shown under the DIET Chennai heading, plus the Chief Minister and School Education Minister photos shown alongside it, just below the top banner."
+            hint: "The intro text shown under the DIET Chennai heading, plus the Chief Minister and School Education Minister photos shown alongside it, just below the top banner. Their name and designation text is edited under Site Translations instead (cm_name, cm_designation, minister_name, minister_designation) since it's bilingual UI text, not page content -- that also makes the language toggle switch it properly."
             fields:
               - { label: "Chief Minister photo", name: "cm_photo", widget: "image" }
-              - { label: "Chief Minister name (English)", name: "cm_name_en", widget: "string" }
-              - { label: "Chief Minister name (Tamil)", name: "cm_name_ta", widget: "string" }
-              - { label: "Chief Minister designation (English)", name: "cm_designation_en", widget: "string" }
-              - { label: "Chief Minister designation (Tamil)", name: "cm_designation_ta", widget: "string" }
               - { label: "School Education Minister photo", name: "minister_photo", widget: "image" }
-              - { label: "School Education Minister name (English)", name: "minister_name_en", widget: "string" }
-              - { label: "School Education Minister name (Tamil)", name: "minister_name_ta", widget: "string" }
-              - { label: "School Education Minister designation (English)", name: "minister_designation_en", widget: "string" }
-              - { label: "School Education Minister designation (Tamil)", name: "minister_designation_ta", widget: "string" }
               - { label: "Body (English, HTML)", name: "body_en", widget: "markdown" }
               - { label: "Body (Tamil, HTML)", name: "body_ta", widget: "markdown" }
           - label: "Principal's Message (homepage summary)"

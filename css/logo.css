@@ -656,3 +656,13 @@ input:checked+.slider:before {
     bottom: auto !important;
     text-align: center !important;
 }
+
+/* The theme's .minister-sub1 wrapper (css/site.css) sets an opaque
+   white card background, which showed as a large white box behind the
+   Chief Minister/Minister photos, breaking out of the page's own
+   gray-bg section background (#e4e4e4, css/site.css .gray-bg). Blend
+   it in by making both wrappers transparent instead. */
+.minister,
+.minister-sub1 {
+    background: transparent;
+}
