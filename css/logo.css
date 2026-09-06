@@ -668,3 +668,48 @@ input:checked+.slider:before {
 .minister-sub1 {
     background: transparent;
 }
+
+/* Homepage leader photos on phones: stack-and-blow-up (the rules above)
+   reads fine on desktop/tablet where the 62%/38% image widths are a
+   fraction of a wide container, but on a narrow phone viewport each
+   wrapper is still 100% of the (now very narrow) container, so the two
+   photos end up full-width and very tall, one after another -- feeling
+   like they "take over the screen". Below this width, put the Chief
+   Minister photo on the left and the Minister photo on the right in a
+   single row instead, both capped to a small fixed size. Also caps the
+   Principal's homepage photo (src/_layouts/home.njk), which has no size
+   limit of its own and otherwise renders at the full width of its
+   now-full-bleed column on phones (see .col-xs-12 in src/_layouts/home.njk). */
+@media screen and (max-width: 767px) {
+    .minister-box {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 14px;
+    }
+    .leader-block {
+        float: none !important;
+        width: 50% !important;
+        max-width: 150px;
+    }
+    .leader-cm .minister-image img,
+    .leader-minister .minister-image img {
+        width: 100% !important;
+    }
+    .leader-block .min-info .leader-name {
+        font-size: 95%;
+    }
+    .leader-cm .min-info .leader-name {
+        font-size: 100%;
+    }
+    .leader-block .min-info .leader-designation {
+        font-size: 80%;
+    }
+
+    .principal-home-photo {
+        width: 150px !important;
+        max-width: 150px !important;
+        height: auto !important;
+    }
+}
