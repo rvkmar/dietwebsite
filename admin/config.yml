@@ -976,7 +976,7 @@ collections:
             - label: cm_name
               name: cm_name
               widget: text
-              hint: 'EN: Thiru. Vijay'
+              hint: 'EN: Thiru C. Joseph Vijay'
             - label: cm_designation
               name: cm_designation
               widget: text
