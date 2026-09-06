@@ -1,0 +1,46 @@
+  - name: "home"
+    label: "Home Page"
+    delete: false
+    files:
+      - name: "home"
+        label: "Home Page: About & Principal's Message"
+        file: "src/index.njk"
+        description: "The banner carousel, Announcements/Circulars/Newsletters/Downloads tabs, and the Principal's own photo/name/designation are edited under their own dedicated collections (Banner, Announcements, Circulars, Downloads, Principal) -- not here."
+        fields:
+          - { label: "Layout (do not change)", name: "layout", widget: "hidden", default: "home.njk" }
+          - { label: "Title (browser tab / SEO)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Last Updated", name: "last_updated", widget: "string", hint: "Format: DD-MMM-YYYY, e.g. 18-APR-2025" }
+          - label: "About DIET Chennai"
+            name: "about"
+            widget: "object"
+            hint: "The intro text and two photos shown under the DIET Chennai heading, just below the top banner."
+            fields:
+              - { label: "Photo 1", name: "image_1", widget: "image" }
+              - { label: "Photo 1 alt text", name: "image_1_alt", widget: "string" }
+              - { label: "Photo 2", name: "image_2", widget: "image" }
+              - { label: "Photo 2 alt text", name: "image_2_alt", widget: "string" }
+              - { label: "Body (English, HTML)", name: "body_en", widget: "markdown" }
+              - { label: "Body (Tamil, HTML)", name: "body_ta", widget: "markdown" }
+          - label: "Principal's Message (homepage summary)"
+            name: "principal_message"
+            widget: "object"
+            hint: "The summary paragraph shown next to the Principal's photo on the homepage. The Principal's own photo, name, and designation are edited under the Principal collection instead -- they're shared with the Principal's Desk page so they only need to be updated in one place."
+            fields:
+              - { label: "Body (English, HTML)", name: "body_en", widget: "markdown" }
+              - { label: "Body (Tamil, HTML)", name: "body_ta", widget: "markdown" }
+      - name: "partner-logos"
+        label: "Partner / Government Logos"
+        file: "src/_data/partnerLogos.json"
+        description: "The scrolling logo strip shown at the bottom of the homepage and every policy/info page (Disclaimer, Accessibility Statement, etc.) -- one shared list, not homepage-only."
+        fields:
+          - label: "Logos"
+            name: "items"
+            widget: "list"
+            summary: "{{label}}"
+            fields:
+              - { label: "Label (used as the image's alt text and link title)", name: "label", widget: "string" }
+              - { label: "Link URL", name: "href", widget: "string" }
+              - { label: "Logo image", name: "image", widget: "image" }
+              - { label: "Image width (px, optional)", name: "width", widget: "number", required: false, value_type: "int" }
+              - { label: "Image height (px, optional)", name: "height", widget: "number", required: false, value_type: "int" }

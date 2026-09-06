@@ -46,6 +46,7 @@ const TA_JSON_PATH = path.join(ROOT, "languages", "ta.json");
 // "translations" isn't listed here -- it's generated, not read from a file.
 const COLLECTION_FRAGMENTS = [
   "site_settings",
+  "home",
   "announcements",
   "circulars",
   "downloads",

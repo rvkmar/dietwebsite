@@ -1,0 +1,179 @@
+---
+layout: base.njk
+---
+{#
+  Homepage structural layout (CMS restructure, Tier 2). src/index.njk now
+  carries only front matter: title/description/last_updated as usual, plus
+  `about` (the intro text + two side images shown under the DIET Chennai
+  heading) and `principal_message` (the summary paragraph shown next to the
+  Principal's photo on the homepage -- separate from the Principal's own
+  name/photo/designation, which come from the "principal" data source via
+  data-cms-image/data-cms-text below, unchanged). The announcement/circular/
+  newsletter/download tabs and the banner carousel were already
+  CMS-editable (data-cms-list) before this migration and are untouched
+  here. The partner/government-logo strip at the bottom is a shared
+  include (src/_includes/partner-carousel.njk, itself backed by
+  src/_data/partnerLogos.json) also used by other page layouts -- this
+  replaces what used to be a second, separately-maintained copy of that
+  same 14-logo list hardcoded directly in this file.
+#}
+   <!--/.nav-wrapper-->
+   <!-- Main and modifiable content starts here -->
+   <!-- section divider -->
+   <div class="main_content">
+      <div class="wrapper banner-wrapper">
+         <div id="flexSlider" class="flexslider">
+            <ul class="slides" data-cms-list="banner">
+               <li>
+                  <img width="1600" height="444" src="/images/banner/carousel_banner.png" alt="DIET Chennai">
+               </li>
+            </ul>
+         </div>
+      </div>
+      <div class="wrapper" id="skipCont"></div>
+      <!--/#skipCont-->
+      <div id="fontSize" class="wrapper body-wrapper ">
+         <h2 style="display: none;">Body</h2>
+         <div class="bg-wrapper top-bg-wrapper gray-bg padding-top-bott">
+            <div class="container common-container four_content body-container top-body-container padding-top-bott2">
+               <div class="minister clearfix">
+                  <div class="minister-box clearfix">
+                     <div class="minister-sub1">
+                        <div class="minister-image"><img width="900" height="450" src="{{ about.image_1 }}" alt="{{ about.image_1_alt }}"
+                              loading="lazy"></div>
+                        <div class="minister-image"><img width="900" height="450" src="{{ about.image_2 }}" alt="{{ about.image_2_alt }}"
+                              loading="lazy"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="left-block">
+                  <!-- <h2>About DIET Chennai</h2> -->
+                  <h1 data-i18n="dietfullname">District Institute of Education and Training (DIET), Chennai</h1>
+                  <div class="column englishparagraph" lang="en">
+                     {{ about.body_en | safe }}
+                  </div>
+                  <div class="column tamilparagraph tamilmarutham" lang="ta">
+                     {{ about.body_ta | safe }}
+                  </div>
+                  <div class="view-footer"><a href="/about-diet-chennai/" title="Know More About DIET Chennai"><span
+                           data-i18n="readmore">Read More </span><i class="fa fa-angle-double-right"></i></a></div>
+               </div>
+            </div>
+         </div>
+
+         <div class="bg-wrapper top-bg-wrapper white-bg padding-top-bott">
+            <div class="container common-container four_content body-container top-body-container padding-top-bott2">
+               <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="text-align: center">
+                     <img width="400" height="400" src="/images/principal.png" alt="Dr. S. Shameem" data-cms-image="photo" data-cms-source="principal" loading="lazy">
+                     <h2 data-cms-text="name" data-cms-text-ta="name_ta" data-cms-source="principal">Dr. S. Shameem</h2>
+                     <h3 data-cms-text="designation_long" data-cms-text-ta="designation_long_ta" data-cms-source="principal">Principal, DIET Chennai</h3>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
+                     <h2 data-i18n="principalsdesk">Principal's Desk</h2>
+                     <div class="column englishparagraph" lang="en">
+                        {{ principal_message.body_en | safe }}
+                     </div>
+                     <div class="column tamilparagraph tamilmarutham" lang="ta">
+                        {{ principal_message.body_ta | safe }}
+                     </div>
+                     <div class="view-footer">
+                        <a href="/principals-desk/" title="Principal's Desk"><span data-i18n="readmore">Read More
+                           </span><i class="fa fa-angle-double-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Content end -->
+         <!-- Document, photo and video galleries -->
+         <div class="wrapper home-banner tab-section">
+            <div class="container common-container four_content">
+               <div class="page-tab clearfix">
+                  <div class="page-tab-res clearfix">
+                     <div id="parentHorizontalTab">
+                        <ul class="resp-tabs-list hor_1" id="tab-heading">
+                           <li><a href="/announcements/" id="tab-list-1" data-i18n="announcements">Announcements</a>
+                           </li>
+                           <li><a href="/circulars/" data-i18n="circulars">Circulars</a></li>
+                           <li><a href="/newsletters/" data-i18n="newsletters">Newsletters</a></li>
+                           <li><a href="/downloads/" data-i18n="downloads">Downloads</a></li>
+                        </ul>
+                        <div class="resp-tabs-container hor_1">
+                           <div class="clearfix" id="hor_1_tab_item-0">
+                              <ul class="content_list list" data-cms-list="announcements" data-cms-limit="5"></ul>
+                              <div class="view-footer-tab"> <a href="/announcements/" title="Click here to know more">
+                                    <span data-i18n="readmore">Read more
+                                    </span><i class="fa fa-angle-double-right"></i></a></div>
+                           </div>
+                           <div class="clearfix" id="hor_1_tab_item-1">
+                              <ul class="content_list tenders-list" data-cms-list="circulars" data-cms-limit="5"></ul>
+                              <div class="view-footer-tab"> <a href="/circulars/" title="Click here to know more">
+                                    <span data-i18n="readmore">Read more </span><i
+                                       class="fa fa-angle-double-right"></i></a></div>
+                           </div>
+                           <div class="clearfix" id="hor_1_tab_item-2">
+                              <ul class="content_list  list">
+                                 <li><i class="fa fa-arrow-right"></i><a href="#"><samp data-i18n="news1">To be
+                                          updated</samp></a></li>
+                              </ul>
+                              <div class="view-footer-tab"> <a href="/newsletters/" title="Click here to know more"> <span
+                                       data-i18n="readmore">Read more
+                                    </span><i class="fa fa-angle-double-right"></i></a></div>
+                           </div>
+                           <div class="clearfix" id="hor_1_tab_item-3">
+                              <ul class="content_list tenders-list" data-cms-list="downloads" data-cms-limit="5"></ul>
+                              <div class="view-footer-tab"> <a href="/downloads/" title="Click here to know more">
+                                    <span data-i18n="readmore">Read more
+                                    </span><i class="fa fa-angle-double-right"></i></a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="side-links clearfix">
+                  <ul class="content_list date-list">
+                     <li>
+                        <a href="/courses/" title="Courses">
+                           <div class="date"><span><img width="30" height="36" loading="lazy" src="/images/01.png" alt="Courses"></span></div>
+                           <div class="list-content">
+                              <p><b data-i18n="courses">Courses</b></p>
+                           </div>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="/doc-publications/" title="Publications">
+                           <div class="date"><span><img width="30" height="36" loading="lazy" src="/images/02.png" alt="Publications"></span></div>
+                           <div class="list-content">
+                              <p><b data-i18n="publications">Publications</b></p>
+                           </div>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="/gallery/" title="Gallery">
+                           <div class="date"><span><img width="30" height="36" loading="lazy" src="/images/03.png" alt="Gallery"></span></div>
+                           <div class="list-content">
+                              <p><b data-i18n="gallery">Gallery</b></p>
+                           </div>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="/reports/" title="Reports">
+                           <div class="date"><span><img width="30" height="36" loading="lazy" src="/images/04.png" alt="Reports"></span></div>
+                           <div class="list-content">
+                              <p><b data-i18n="reports">Reports</b></p>
+                           </div>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Main and modifiable content ends here -->
+   <!-- section divider -->
+   <!--/.body-wrapper-->
+
+{% include "partner-carousel.njk" %}

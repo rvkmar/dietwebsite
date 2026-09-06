@@ -1,0 +1,18 @@
+{
+  "items": [
+    { "label": "Government of Tamil Nadu", "href": "https://tn.gov.in", "image": "/images/logos/TamilNadu_Logo.png", "width": 300, "height": 330 },
+    { "label": "SCERT Tamil Nadu", "href": "https://tnschools.gov.in/scert", "image": "/images/logos/scert.png", "width": 300, "height": 295 },
+    { "label": "Ministry of Education", "href": "https://www.education.gov.in/", "image": "/images/logos/moe.png", "width": 200, "height": 150 },
+    { "label": "NCERT India", "href": "https://ncert.nic.in/", "image": "/images/logos/NCERT.svg", "width": 206, "height": 300 },
+    { "label": "National Council for Teacher Education", "href": "https://ncte.gov.in/website/index.aspx", "image": "/images/logos/ncte.png", "width": 200, "height": 150 },
+    { "label": "NIEPA", "href": "https://www.niepa.ac.in/", "image": "/images/logos/niepa_logo.png", "width": 300, "height": 271 },
+    { "label": "CBSE", "href": "https://www.cbse.gov.in/", "image": "/images/logos/CBSE_logo.svg", "width": 251, "height": 297 },
+    { "label": "G20 Portal", "href": "https://www.g20.in/", "image": "/images/logos/g20.png", "width": 200, "height": 150 },
+    { "label": "Digital India", "href": "https://digitalindia.gov.in/", "image": "/images/logos/digital-india.png", "width": 200, "height": 150 },
+    { "label": "Make In India", "href": "https://www.makeinindia.com/", "image": "/images/logos/makeinindia.png", "width": 200, "height": 150 },
+    { "label": "National Portal of India", "href": "https://india.gov.in/", "image": "/images/logos/india-gov.png", "width": 200, "height": 150 },
+    { "label": "GOI Web Directory", "href": "https://goidirectory.nic.in/", "image": "/images/logos/goidirectory.png", "width": 200, "height": 150 },
+    { "label": "Data portal", "href": "https://data.gov.in/", "image": "/images/logos/data-gov.png", "width": 200, "height": 150 },
+    { "label": "MyGov Portal", "href": "https://mygov.in/", "image": "/images/logos/mygov.png", "width": 200, "height": 150 }
+  ]
+}
