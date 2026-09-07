@@ -51,14 +51,20 @@ function _getCookieVal (offset) {
 	return unescape(document.cookie.substring(offset, endstr));
 }
 /*********Font size resize by redpanchi**********/
+/* Range/step restricted to +-15% (90-115%, 5% steps) rather than the
+   original +-30% in 15% jumps -- a swing that large pushed text past
+   what several fixed-width/fixed-height parts of the theme (the nav
+   bar, absolutely-positioned captions, the leader-photo captions) can
+   absorb without wrapping oddly or overlapping. This keeps the resize
+   usable for low vision without breaking the layout it's applied to. */
 function set_font_size(fontType){
 	if(fontType == "increase"){
-			 if(fontSize < 130){
-			  fontSize = parseInt(fontSize) + 15;
+			 if(fontSize < 115){
+			  fontSize = parseInt(fontSize) + 5;
 			 }
 		  }else if(fontType == "decrease"){
-			  if(fontSize > 70){
-				fontSize = parseInt(fontSize) - 15;				
+			  if(fontSize > 90){
+				fontSize = parseInt(fontSize) - 5;				
 			  }
 		  }else{
 			  fontSize = 100;

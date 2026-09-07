@@ -129,6 +129,20 @@ h2 {
     font-weight: 600;
 }
 
+/* Homepage "About DIET Chennai" heading and the Chief Minister/Minister
+   name captions (css/logo.css) were added after this high-contrast
+   stylesheet and hardcode a dark/black color for the normal (light)
+   background -- invisible against this stylesheet's black background.
+   The designation line's dark blue is technically visible but well
+   under WCAG contrast on black, so it's lightened here too. */
+.left-block h1,
+.leader-block .min-info .leader-name {
+    color: #ffffff;
+}
+.leader-block .min-info .leader-designation {
+    color: #66b3ff;
+}
+
 .right-block h2 {
     font-size: 150%;
     color: #ffffff;

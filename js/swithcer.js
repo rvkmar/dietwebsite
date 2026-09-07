@@ -5,7 +5,6 @@
 
 //Unofficial Update to fix Safari 5.1 glitch re: alternate stylesheets or the disabled property in regards to them
 
-
 var manual_or_random="manual" //"manual" or "random"
 var randomsetting="3 days" //"eachtime", "sessiononly", or "x days (replace x with desired integer)". Only applicable if mode is random.
 
@@ -114,8 +113,6 @@ try {
 			jQuery(".light").show();
 			jQuery(".dark").hide();
 			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
-			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
-			jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
 			
 			jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
 			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
@@ -132,7 +129,6 @@ try {
 			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
 			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
 			
-			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
 			
 		});
 		jQuery('.light').click(function(){	
@@ -142,8 +138,6 @@ try {
 			jQuery(".light").hide();
 			jQuery(".dark").show();		
 			jQuery("[href*='change.css']").remove();
-			jQuery("[href*='site-change.css']").remove();
-			jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
 			
 			jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
 			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
@@ -160,13 +154,10 @@ try {
 			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility.png");
 			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
 			
-			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
 	
 		});
 		if(getCookie('contrast') == "1") {
 			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="/css/change.css">');
-			jQuery('head').append('<link rel="stylesheet" type="text/css" media="screen" href="theme/css/site-change.html">');
-			jQuery(".national_emblem").attr("src","/images/logo.png");// high contrast
 			
 			jQuery(".ico-skip img.top").attr("src","/images/ico-skip-y.png");
 			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
@@ -183,11 +174,9 @@ try {
 			jQuery(".ico-accessibility img.top").attr("src","/images/ico-accessibility-light.png");
 			jQuery(".ico-accessibility img.bottom").attr("src","/images/ico-accessibility-light.png");
 			
-			jQuery(".sw-logo img").attr("src","/images/favicon/english-logo.png");
 		}
 		if(getCookie('contrast') == "0" ) {
 			jQuery("[href*='../css/change.css']").remove();
-			jQuery(".national_emblem").attr("src","/images/logo.png"); //normal
 			
 			jQuery(".ico-skip img.top").attr("src","/images/ico-skip.png");
 			jQuery(".ico-skip img.bottom").attr("src","/images/ico-skip-light.png");
