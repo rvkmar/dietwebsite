@@ -93,6 +93,33 @@ samp {
     }
 }
 
+/* Desktop header: sit the bilingual title on the same vertical midline
+   as the DIET emblem (left) and the two government seals (right).
+   .logo a strong still inherits padding-top: 10px (min-width 768) and
+   22px (max-width 1200) from site-responsive.css, plus 11px from
+   base-responsive.css (min-width 640). Those values were written for
+   the old inline-logo layout and leave a white gap above the Tamil
+   line, so the title block sits lower than both logos. A recent
+   base.css tweak reduced .logo a span padding-top (the .logo-text
+   wrapper and the English line) from 10px to 1px, but did not touch
+   .logo a strong. #logo-scoped so this outweighs those rules
+   regardless of stylesheet order. Government emblems (.sw-logo) are
+   left unchanged. */
+@media (min-width: 769px) {
+    #logo {
+        display: flex;
+        align-items: center;
+    }
+
+    #logo .logo-text {
+        padding-top: 0;
+    }
+
+    #logo .tamilmarutham {
+        padding-top: 0;
+    }
+}
+
 .logo-img {
     /* Was a percentage of the header's width (22%), which let the logo
        balloon far taller than the adjacent 3-line title/subtitle text
